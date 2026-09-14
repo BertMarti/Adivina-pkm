@@ -14,12 +14,12 @@ El producto busca conservar la lectura inmediata de las referencias visuales: ta
 
 ### Capas
 
-- **Presentación y orquestación — `App.tsx`**: contiene la navegación por estado (`home`, `room`, `selection`, `waiting`, `game`), los componentes de pantalla, la carga de fuentes, audio/hápticos, clipboard, compartir, enlaces de invitación y accesibilidad.
+- **Presentación y orquestación — `App.tsx`**: contiene la navegación por estado (`home`, `room`, `selection`, `waiting`, `game`, `single-player`), los componentes de pantalla, la carga de fuentes, audio/hápticos, clipboard, compartir, enlaces de invitación, reconexión y accesibilidad.
 - **Dominio puro — `src/game/engine.ts`**: define `LocalGameState`, fases, jugadores y transiciones puras para crear partida, empezar selección, seleccionar secreto, empezar juego y tachar/destachar candidatos. No tiene efectos de red, UI ni almacenamiento.
-- **Transporte de sala — `src/game/roomClient.ts`**: cliente WebSocket con URL configurable, timeout inicial de 5 segundos, serialización de `create`, `join`, `select` y `toggle`, recepción de estados y mensajes de error.
+- **Transporte de sala — `src/game/roomClient.ts`**: cliente WebSocket con URL configurable, timeout inicial de 5 segundos, serialización de `create`, `join`, `reconnect`, `select`, `toggle` y `rematch`, sesión persistente y reintentos durante la ventana de reconexión.
 - **Servidor autoritativo local — `server/room-server.js`**: servidor HTTP/WebSocket basado en `ws`. Asigna `p1`/`p2`, conserva salas en un `Map`, valida el esquema del tablero, acciones y generación, calcula el ganador y emite una proyección privada del estado a cada socket. Limita cada payload WebSocket a 64 KiB y evita asociar una conexión a más de una sala.
 - **Datos — `src/data/pokemon.ts`**: catálogo de generaciones, roster local de Kanto, carga de PokéAPI, traducción de tipos, metadatos derivados, selección aleatoria y caché de rosters en memoria.
-- **Audio — `src/audio/sounds.ts`**: tres WAV PCM cortos embebidos como Base64 (`select`, `cross`, `restore`). `App.tsx` los reproduce en nativo y sintetiza tonos con `AudioContext` en web; la victoria usa una fanfarria original sintetizada en web y una secuencia positiva del efecto local en nativo. No se extrae ni se incrusta audio de YouTube.
+- **Audio — `src/audio/sounds.ts`**: efecto PCM corto para tachar. `App.tsx` reproduce localmente los WAV de selección/victoria descargados por petición del usuario y usa un respaldo con `AudioContext` en web; la victoria se protege contra doble reproducción.
 
 El servidor JavaScript replica actualmente parte de las reglas de `engine.ts` porque no importa el módulo TypeScript. La máquina de estados del dominio debe seguir siendo pura; al evolucionar las reglas conviene eliminar esta duplicación mediante un módulo compartido o pruebas de contrato.
 
@@ -40,17 +40,18 @@ El servidor JavaScript replica actualmente parte de las reglas de `engine.ts` po
 | `index.ts` | Punto de entrada Expo mediante `registerRootComponent(App)`. |
 | `src/game/engine.ts` | Tipos `PlayerId`, `LocalPhase`, `PlayerState`, `LocalGameState` y transiciones puras. |
 | `src/game/roomClient.ts` | Cliente WebSocket y tipos `RoomGameState`/mensajes de sala. Usa `EXPO_PUBLIC_ROOM_SERVER_URL` o defaults por plataforma. |
-| `server/room-server.js` | HTTP health check y servidor WebSocket local. Mantiene salas en memoria, proyecta secretos y valida create/join/select/toggle. |
+| `server/room-server.js` | HTTP health check y servidor WebSocket local. Mantiene salas en memoria, proyecta secretos, valida acciones, conserva tokens de sesión, reconexión de 60 s y rematch. |
 | `src/data/pokemon.ts` | `GenerationId`, `PokemonCandidate`, generaciones 1–9, `BOARD_SIZE = 25`, roster local de Kanto y carga/caché de PokéAPI. |
 | `src/audio/sounds.ts` | Constantes WAV embebidas para selección, tachado y restauración. |
-| `assets/fondo_ejemplo.png` | Fondo pixel-art de referencia usado actualmente como `ImageBackground`, oscurecido y cubierto con scanlines CRT. |
+| `assets/spritecollab-background.png` | Fondo local obtenido de la web de SpriteCollab, usado como `ImageBackground`, oscurecido y cubierto con scanlines CRT. |
 | `assets/icon.png`, `android-icon-*`, `splash-icon.png`, `favicon.png` | Iconos y recursos declarados por `app.json` para Android, web y splash. |
 | `app.json` | Configuración Expo: nombre, slug, scheme `adivinapokemon`, orientación vertical, iconos, identificadores Android/iOS y plugins de audio, assets y fuentes. |
 | `package.json` / `package-lock.json` | Dependencias y scripts de Expo, React Native, WebSocket, fuentes, audio, clipboard, hápticos y TypeScript. |
-| `README.md` | Guía breve de ejecución, alcance, créditos y licencias. |
+| `README.md` | Guía visual para jugadores, sin instrucciones técnicas de arranque. |
+| `docs/*.md` | Contexto compartido, notas UX/audio/sprites, contrato de sala, guía de usuario y resumen visual. |
 | `AGENTS.md` | Restricciones de mantenimiento: dominio puro, secretos privados, imágenes remotas con fallback/atribución y accesibilidad móvil. |
 
-El estado `roster` de `App.tsx` conserva el roster cargado, pero la UI renderiza el tablero que llega en `game.board`; el valor no se usa después de guardarlo. Los estilos `tileName` y `tileNameCrossed` existen, pero `PokemonTile` no renderiza actualmente el nombre como texto visible.
+El estado `roster` de `App.tsx` conserva el roster cargado, pero la UI renderiza el tablero que llega en `game.board`; el valor no se usa después de guardarlo. `PokemonTile` muestra ahora retrato, nombre y número Dex en una casilla cuadrada responsive.
 
 ## 4. Estado, flujo de sala y fases
 
@@ -58,36 +59,40 @@ El estado `roster` de `App.tsx` conserva el roster cargado, pero la UI renderiza
 
 `RoomGameState` extiende `LocalGameState` con `generation`:
 
-- `phase`: una de `waiting-for-player`, `selecting`, `waiting-for-selection`, `playing` o `finished`.
+- `phase`: una de `waiting-for-player`, `selecting`, `waiting-for-selection`, `playing`, `finished` o `abandoned`.
 - `roomCode`: identificador de invitación.
 - `generation`: `all` o una generación de 1 a 9.
 - `board`: exactamente 25 `PokemonCandidate` con id, nombre, tipos, peso, URLs y metadatos.
 - `players.p1` y `players.p2`: `secretId` privado y lista `crossedIds` de su tablero.
 - `playerCount`: 1 o 2 sockets conectados.
+- `presence`: conexión actual de `p1` y `p2`; `disconnectedPlayer` y `reconnectDeadline` describen una ventana activa de reconexión.
 - `winner`: `p1`, `p2` o `null`.
 
 La proyección del servidor mantiene públicos el tablero, la generación y los descartes de ambos tableros, pero oculta el secreto del contrario. En `finished` se revelan ambos secretos a los dos jugadores.
 
 ### Fases de producto
 
-1. **`waiting-for-player` — sala creada**  
+1. **`waiting-for-player` — sala creada**
    El creador es `p1`, ve el código, puede copiarlo o compartir un enlace y espera al segundo jugador. La pantalla muestra `1 / 2 CONECTADOS`.
 
-2. **`selecting` — sala completa**  
+2. **`selecting` — sala completa**
    Al entrar `p2`, ambos ven la misma cuadrícula 5×5 y pueden pulsar una casilla para fijar su secreto. La selección se guarda de inmediato; no existe una pantalla de transferencia ni se muestra el secreto al rival.
 
-3. **`waiting-for-selection` — selección asimétrica**  
+3. **`waiting-for-selection` — selección asimétrica**
    El jugador que ya eligió ve su Pokémon y una pantalla de espera con Poké Ball animada. El jugador que aún no eligió conserva la cuadrícula de selección. En cuanto ambos tienen `secretId`, el servidor pasa automáticamente a `playing`.
 
-4. **`playing` — deducción simultánea**  
+4. **`playing` — deducción simultánea**
    Cada jugador ve su tablero interactivo y el tablero rival en modo consulta. El bloque central muestra `TÚ` frente a `RIVAL`; el secreto propio es visible y el rival aparece como `?`.
 
-5. **`finished` — resultado**  
-   Se deshabilitan las acciones de juego, se muestra victoria o derrota desde el punto de vista local, se presenta el Pokémon ganador, se revelan ambos secretos y se muestran descripción/dato breve. `JUGAR DE NUEVO` crea una sala nueva con la misma generación; no reutiliza la sala ni reconecta automáticamente al oponente.
+5. **`finished` — resultado**
+   Se deshabilitan las acciones de juego, se muestra un modal de victoria o derrota desde el punto de vista local, se presenta el Pokémon ganador, se revelan ambos secretos y se muestran descripción/hasta tres curiosidades. `JUGAR DE NUEVO` limpia secretos y tachados en la misma sala para que ambos vuelvan a elegir.
+
+6. **`abandoned` — abandono**
+   Si el jugador desconectado no recupera su sesión en 60 segundos, la sala se marca como abandonada y el cliente vuelve al menú mostrando quién se fue.
 
 ### Desconexiones
 
-Al cerrar un socket, el servidor lo elimina del jugador correspondiente. Si la partida no había terminado, elimina la sala para no dejar plazas o secretos huérfanos; una recarga requiere crear o unirse a una sala nueva. En una partida terminada conserva el resultado hasta que se cierran ambos sockets. No existe una identidad persistente que permita recuperar de forma segura el mismo rol tras una recarga o reconexión.
+Al cerrar un socket durante una partida, el servidor conserva el jugador, secreto y tachados durante 60 segundos. El cliente guarda un token de sesión local y reintenta conectarse; si vuelve dentro del plazo recupera el mismo rol. Si no vuelve, la sala entra en `abandoned`. Las partidas terminadas conservan el resultado para los clientes conectados y permiten rematch mientras la sala siga viva.
 
 ## 5. Reglas del juego
 
@@ -106,7 +111,7 @@ Al cerrar un socket, el servidor lo elimina del jugador correspondiente. Si la p
 
 ### Referencia visual
 
-La referencia disponible en `assets/fondo_ejemplo.png` es una escena pixel-art cenital desenfocada, con paleta oscura, vegetación/terreno y líneas de pantalla tipo CRT. La aplicación la usa como fondo de pantalla completo (`ImageBackground`), añade una capa azul-negra translúcida y 80 líneas horizontales de 2 px. El fondo queda detrás de tarjetas opacas para conservar legibilidad.
+El fondo activo en `assets/spritecollab-background.png` procede de la web de SpriteCollab y presenta un collage/mapa pixel-art. La aplicación lo usa como fondo de pantalla completo (`ImageBackground`), añade una capa azul-negra translúcida y 80 líneas horizontales de 2 px. El fondo queda detrás de tarjetas opacas para conservar legibilidad.
 
 La interfaz actual traduce esa referencia a:
 
@@ -129,7 +134,7 @@ La interfaz actual traduce esa referencia a:
 
 Hay `accessibilityRole`/`accessibilityState` en botones, radios, casillas y campo de código; las casillas exponen nombre y estado (`disponible`, `seleccionado`, `tachado`), los errores usan `accessibilityRole="alert"` y se mantiene un título de pantalla oculto para tecnologías de asistencia. Se respetan `AccessibilityInfo.isReduceMotionEnabled()` y `prefers-reduced-motion` en web. En nativo se añade háptica: selección/restauración para acciones leves, warning para tachado y success para victoria.
 
-La accesibilidad es funcional pero todavía requiere auditoría: los botones principales son de 51 px, las casillas de al menos 48 px y el chip de generación de 44 px; los controles de volver y salir tienen áreas táctiles ampliadas. Los nombres no se dibujan en cada casilla, aunque sí se exponen por etiqueta de accesibilidad; los contrastes no están medidos de forma automatizada.
+La accesibilidad es funcional pero todavía requiere auditoría: los botones principales son de 51 px, las casillas de al menos 48 px y el chip de generación de 44 px; los controles de volver y salir tienen áreas táctiles ampliadas. Los nombres se dibujan en cada casilla y también se exponen por etiqueta de accesibilidad; los contrastes no están medidos de forma automatizada.
 
 ## 7. Datos y assets externos
 
@@ -156,13 +161,13 @@ https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/<id de 
 https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/<id de 4 dígitos>/Sad.png
 ```
 
-`Happy` se usa en la mayoría de vistas, `Normal` en la espera/captura y `Sad` en candidatos tachados. El componente `Portrait` detecta un error de imagen y cambia a la URL de fallback de PokeAPI:
+`Happy` se usa en la mayoría de vistas, `Normal` en la espera/captura y `Sad` en candidatos tachados. El componente `Portrait` avanza por una cadena de fallback específica, priorizando otro retrato de SpriteCollab antes de llegar a PokeAPI:
 
 ```text
 https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/<id>.png
 ```
 
-Si PokéAPI entrega otro sprite oficial o `front_default`, se prefiere ese valor. Las imágenes remotas son dependencias externas: tienen fallback de componente, pero actualmente no hay caché de archivos, precarga, placeholder específico ni modo offline. Hay que conservar atribución de SpriteCollab y revisar licencia de cada recurso antes de distribución comercial. El texto de créditos actual presenta el proyecto como fan project no oficial; también deben revisarse los derechos de la marca Pokémon.
+Si PokéAPI entrega otro sprite oficial o `front_default`, se usa como último fallback. Las imágenes remotas son dependencias externas: tienen fallback de componente, pero actualmente no hay caché de archivos, precarga, placeholder específico ni modo offline. Hay que conservar atribución de SpriteCollab y revisar licencia de cada recurso antes de distribución comercial. El texto de créditos actual presenta el proyecto como fan project no oficial; también deben revisarse los derechos de la marca Pokémon.
 
 ## 8. Ejecución local
 
@@ -228,14 +233,14 @@ No existe actualmente script de test, framework de unit tests, pruebas de compon
 ## 11. Limitaciones conocidas
 
 - **Persistencia y disponibilidad**: las salas viven solo en memoria; reiniciar Node las elimina. No hay base de datos, expiración, limpieza por TTL, multi-instancia, TLS configurado, métricas ni health check operativo más allá de la respuesta básica.
-- **Sesiones y reconexión**: el código es solo una invitación. No hay token de sesión, autenticación, reconexión con recuperación de rol, protección contra suplantación ni recuperación de una partida al refrescar.
+- **Sesiones y reconexión**: el MVP local ya tiene token de sesión, recuperación de rol y una ventana de 60 s, pero no hay autenticación de usuario, almacenamiento seguro nativo ni protección de producción contra suplantación o robo de token.
 - **Confianza en el cliente**: la creación sigue recibiendo el tablero desde el cliente, aunque el servidor ya valida estrictamente los 25 registros, ids únicos, metadatos mínimos, generación y tamaño de payload. Para producción aún conviene generar o verificar el tablero en backend, añadir rate limit y separar el código de invitación de un token de sesión.
 - **Duplicación de reglas**: `engine.ts` y `server/room-server.js` implementan transiciones similares, lo que puede producir divergencias futuras.
 - **Red y datos externos**: una caída de PokéAPI o de raw.githubusercontent.com puede impedir cargar una generación o dejar retratos en fallback; `Promise.all` hace fallar la carga completa si falla un detalle. No hay persistencia local de imágenes ni roster completo offline.
 - **Cobertura Pokémon**: solo Kanto 1–25 está definido localmente. Las generaciones remotas no calculan evoluciones y la clasificación legendaria depende de una lista manual.
-- **Experiencia de sala**: no hay chat, turnos, rematch dentro de la misma sala, historial, espectadores, enlace con preview web, confirmación antes de salir ni indicación de reconexión.
+- **Experiencia de sala**: no hay chat, turnos, historial, espectadores, enlace con preview web ni confirmación antes de salir. Sí hay rematch dentro de la misma sala e indicación de reconexión.
 - **Audio**: no hay ajuste de volumen ni interruptor para desactivar audio/hápticos; movimiento reducido no desactiva sonidos. La selección y el destachado usan `assets/selection-reference.wav`, la victoria usa `assets/victory-reference.wav` y el tachado mantiene un efecto genérico local. Hay que revisar derechos antes de distribución pública.
-- **Accesibilidad**: faltan nombres visibles en casillas, auditoría de contraste, anuncios de cambios de fase/estado y garantía de 44 px en todos los controles; la navegación por teclado web y la compatibilidad con lectores de pantalla deben probarse en dispositivos reales.
+- **Accesibilidad**: falta auditoría de contraste, anuncios completos de cambios de fase y garantía de 44 px en todos los controles; la navegación por teclado web y la compatibilidad con lectores de pantalla deben probarse en dispositivos reales.
 - **Licencias**: la app es fan project no oficial. SpriteCollab indica atribución y licencia CC BY-NC 4.0 en el contexto del proyecto; antes de publicar hay que verificar los términos de cada recurso, la atribución final y los derechos de Pokémon.
 
 ## 12. Próximos pasos recomendados
@@ -244,7 +249,7 @@ No existe actualmente script de test, framework de unit tests, pruebas de compon
 2. Añadir unit tests del motor para selección duplicada, fase inválida, tachado/destachado, mínimo de un candidato y victoria; añadir integración WebSocket y E2E de dos clientes.
 3. Sustituir el servidor en memoria por backend persistente con sesiones separadas, secreto por jugador, TTL de salas, reconexión segura, validación de payloads, rate limit y `wss`/TLS.
 4. Mejorar datos y resiliencia: caché persistente, reintentos/backoff, fallback de roster por generación, precarga/almacenamiento de imágenes y tratamiento parcial de errores de PokéAPI.
-5. Completar accesibilidad y responsive QA: elevar chips y controles auxiliares a 44 px o más, decidir si los nombres deben ser visibles, auditar contraste, añadir anuncios de estado y probar web/Android/iOS con lector de pantalla y teclado.
+5. Completar accesibilidad y responsive QA: elevar chips y controles auxiliares a 44 px o más, auditar contraste, añadir anuncios de estado y probar web/Android/iOS con lector de pantalla y teclado.
 6. Añadir preferencias de audio/hápticos y una política explícita de movimiento reducido.
 7. Hacer una pasada de QA visual sobre las capturas de referencia y pantallas pequeñas, incluyendo nombres largos, fallos de imágenes, red lenta, rotación bloqueada, desconexión y doble pulsación.
 8. Preparar distribución solo después de cerrar atribuciones/licencias, configuración de producción, variables seguras, builds nativas y documentación de despliegue.

@@ -107,12 +107,14 @@ function makeSession(
 }
 
 function MiniPortrait({ pokemon, size = 62, sad = false }: { pokemon: SinglePlayerPokemonKnowledge['candidate']; size?: number; sad?: boolean }) {
-  const [fallback, setFallback] = useState(false);
-  const remote = sad ? pokemon.sadUrl : pokemon.portraitUrl;
+  const [sourceIndex, setSourceIndex] = useState(0);
+  const sources = sad ? [pokemon.sadUrl, pokemon.normalUrl, pokemon.portraitUrl, pokemon.fallbackUrl] : [pokemon.portraitUrl, pokemon.normalUrl, pokemon.fallbackUrl];
+  useEffect(() => setSourceIndex(0), [pokemon.id, sad]);
+  const remote = sources[Math.min(sourceIndex, sources.length - 1)];
   return <View pointerEvents="none" style={[soloStyles.miniPortraitFrame, { width: size, height: size }]}><Image
     accessibilityIgnoresInvertColors
-    source={{ uri: fallback ? pokemon.fallbackUrl : remote }}
-    onError={() => setFallback(true)}
+    source={{ uri: remote }}
+    onError={() => setSourceIndex((current) => Math.min(current + 1, sources.length - 1))}
     style={{ width: size, height: size }}
     resizeMode="contain"
   /><Text style={soloStyles.miniDexBadge}>#{String(pokemon.id).padStart(3, '0')}</Text></View>;

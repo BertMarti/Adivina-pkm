@@ -7,9 +7,11 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
   Animated,
+  Easing,
   Image,
   ImageBackground,
   Linking,
+  Modal,
   Platform,
   Pressable,
   SafeAreaView,
@@ -72,6 +74,7 @@ function roomCodeFromUrl(url: string | null) {
 }
 
 function getScreenForState(state: RoomGameState, player: PlayerId): Screen {
+  if (state.phase === 'abandoned') return 'home';
   if (state.phase === 'waiting-for-player') return 'room';
   if (state.phase === 'selecting') return 'selection';
   if (state.phase === 'waiting-for-selection') return state.players[player].secretId === null ? 'selection' : 'waiting';
@@ -99,6 +102,7 @@ function useGameSounds() {
   const crossPlayer = useAudioPlayer({ uri: `data:audio/wav;base64,${CROSS_WAV}` });
   const victoryPlayer = useAudioPlayer(require('./assets/victory-reference.wav'));
   const webContext = useRef<any>(null);
+  const lastVictoryAt = useRef(0);
 
   const playWebTone = (kind: SoundKind) => {
     if (typeof window === 'undefined') return;
@@ -140,6 +144,11 @@ function useGameSounds() {
   };
 
   return (kind: SoundKind) => {
+    if (kind === 'victory') {
+      const now = Date.now();
+      if (now - lastVictoryAt.current < 1200) return;
+      lastVictoryAt.current = now;
+    }
     const player = kind === 'cross' ? crossPlayer : kind === 'victory' ? victoryPlayer : selectionReferencePlayer;
     const playNative = () => void player.seekTo(0).catch(() => {}).finally(() => player.play());
     try {
@@ -156,14 +165,19 @@ function useGameSounds() {
 }
 
 function RetroBackdrop() {
-  return <View pointerEvents="none" style={styles.backdrop}><ImageBackground source={require('./assets/fondo_ejemplo.png')} style={styles.backdropImage} resizeMode="cover" /><View style={styles.backdropTint} /><View style={styles.scanlines}>{Array.from({ length: 80 }, (_, index) => <View key={index} style={styles.scanline} />)}</View></View>;
+  return <View pointerEvents="none" style={styles.backdrop}><ImageBackground source={require('./assets/spritecollab-background.png')} style={styles.backdropImage} resizeMode="cover" /><View style={styles.backdropTint} /><View style={styles.scanlines}>{Array.from({ length: 80 }, (_, index) => <View key={index} style={styles.scanline} />)}</View></View>;
 }
 
 function Portrait({ pokemon, variant = 'happy', size = 52 }: { pokemon: PokemonCandidate; variant?: 'happy' | 'sad' | 'normal'; size?: number }) {
-  const [fallback, setFallback] = useState(false);
-  useEffect(() => setFallback(false), [pokemon.id, variant]);
-  const uri = fallback ? pokemon.fallbackUrl : variant === 'sad' ? pokemon.sadUrl : variant === 'normal' ? pokemon.normalUrl : pokemon.portraitUrl;
-  return <View pointerEvents="none" style={[styles.portraitFrame, { width: size, height: size }]}><Image accessibilityIgnoresInvertColors source={{ uri }} onError={() => setFallback(true)} style={{ width: size, height: size }} resizeMode="contain" /><Text style={styles.dexBadge}>#{String(pokemon.id).padStart(3, '0')}</Text></View>;
+  const [sourceIndex, setSourceIndex] = useState(0);
+  useEffect(() => setSourceIndex(0), [pokemon.id, variant]);
+  const sources = variant === 'sad'
+    ? [pokemon.sadUrl, pokemon.normalUrl, pokemon.portraitUrl, pokemon.fallbackUrl]
+    : variant === 'normal'
+      ? [pokemon.normalUrl, pokemon.portraitUrl, pokemon.fallbackUrl]
+      : [pokemon.portraitUrl, pokemon.normalUrl, pokemon.fallbackUrl];
+  const uri = sources[Math.min(sourceIndex, sources.length - 1)];
+  return <View pointerEvents="none" style={[styles.portraitFrame, { width: size, height: size }]}><Image accessibilityIgnoresInvertColors source={{ uri }} onError={() => setSourceIndex((current) => Math.min(current + 1, sources.length - 1))} style={{ width: size, height: size }} resizeMode="contain" /><Text style={styles.dexBadge}>#{String(pokemon.id).padStart(3, '0')}</Text></View>;
 }
 
 function Button({ label, onPress, variant = 'primary', disabled = false }: { label: string; onPress: () => void; variant?: 'primary' | 'secondary' | 'orange' | 'gray' | 'ghost'; disabled?: boolean }) {
@@ -193,6 +207,7 @@ function PokemonTile({ pokemon, crossed, selected, interactive, reduceMotion, on
   return (
     <Pressable accessibilityRole="button" accessibilityLabel={`${pokemon.name}, ${crossed ? 'tachado' : selected ? 'seleccionado' : 'disponible'}`} accessibilityState={{ disabled: !interactive, selected: Boolean(selected) }} disabled={!interactive} onPress={onPress} style={({ pressed }) => [styles.tile, selected && styles.tileSelected, crossed && styles.tileCrossed, pressed && styles.tilePressed]}>
       <Portrait pokemon={pokemon} variant={crossed ? 'sad' : 'happy'} size={portraitSize} />
+      <Text numberOfLines={1} style={[styles.tileName, crossed && styles.tileNameCrossed]}>{pokemon.name}</Text>
       <Animated.View pointerEvents="none" style={[styles.crossOverlay, { opacity: progress, transform: [{ scale }] }]}>
         <View style={[styles.crossLine, styles.crossLineA]} />
         <View style={[styles.crossLine, styles.crossLineB]} />
@@ -251,7 +266,7 @@ function HomeScreen({ generation, setGeneration, onCreate, onJoin, onDemo, onCop
     <View style={styles.panel}><RetroPanelHeader title="UNIRSE A PARTIDA" /><Text style={styles.fieldLabel}>Introduce el código de tu rival:</Text><TextInput accessibilityLabel="Código de sala" autoCapitalize="characters" autoCorrect={false} maxLength={8} onChangeText={(value) => setJoinCode(value.toUpperCase().replace(/[^A-Z2-9]/g, ''))} placeholder="EJ. A1B2C" placeholderTextColor="#777986" style={styles.input} value={joinCode} /><Button label={loading ? 'CONECTANDO…' : 'CONECTAR'} onPress={onJoin} variant="primary" disabled={loading} /></View>
     <Button label="JUGAR CONTRA LA MÁQUINA" onPress={onSolo} variant="ghost" />
     <Pressable accessibilityRole="button" onPress={onDemo} style={styles.demoLink}><Text style={styles.demoLinkText}>▶  CREAR SALA DE PRUEBA KANTO</Text><Text style={styles.muted}>Crea una sala rápida para abrirla en dos pestañas.</Text></Pressable>
-    {!!error && <Text accessibilityRole="alert" style={styles.error}>{error}</Text>}<Text style={styles.credits}>Fan project no oficial · Retratos: SpriteCollab PMD{`\n`}Datos: PokéAPI · Sonidos originales sintetizados</Text>
+    {!!error && <Text accessibilityRole="alert" style={styles.error}>{error}</Text>}<Text style={styles.credits}>Inspirado por Checo_512 · Retratos: SpriteCollab PMD{`\n`}Fan project no oficial · Datos: PokéAPI</Text>
   </ScrollView>;
 }
 
@@ -269,15 +284,17 @@ function PokeballCapture({ pokemon, reduceMotion }: { pokemon?: PokemonCandidate
       return;
     }
     const animation = Animated.loop(Animated.sequence([
-      Animated.timing(progress, { toValue: 1, duration: 720, useNativeDriver: Platform.OS !== 'web' }),
-      Animated.timing(progress, { toValue: 0, duration: 720, useNativeDriver: Platform.OS !== 'web' }),
+      Animated.timing(progress, { toValue: 1, duration: 1500, easing: Easing.inOut(Easing.cubic), useNativeDriver: Platform.OS !== 'web' }),
+      Animated.timing(progress, { toValue: 0, duration: 1500, easing: Easing.inOut(Easing.cubic), useNativeDriver: Platform.OS !== 'web' }),
     ]));
     animation.start();
     return () => animation.stop();
   }, [progress, reduceMotion]);
-  const translateX = progress.interpolate({ inputRange: [0, 0.5, 1], outputRange: [28, -26, 28] });
-  const rotate = progress.interpolate({ inputRange: [0, 0.5, 1], outputRange: ['12deg', '-12deg', '12deg'] });
-  return <View style={styles.captureStage}><View style={styles.captureTarget}>{pokemon ? <Portrait pokemon={pokemon} variant="normal" size={76} /> : <Text style={styles.captureQuestion}>?</Text>}</View><Animated.View accessibilityLabel="Poké Ball capturando el Pokémon" style={[styles.pokeball, { transform: [{ translateX }, { rotate }] }]}><View style={styles.pokeballRed} /><View style={styles.pokeballBand} /><View style={styles.pokeballButton}><View style={styles.pokeballButtonCore} /></View></Animated.View></View>;
+  const translateX = progress.interpolate({ inputRange: [0, 0.25, 0.5, 0.75, 1], outputRange: [30, 3, -30, 3, 30] });
+  const translateY = progress.interpolate({ inputRange: [0, 0.25, 0.5, 0.75, 1], outputRange: [0, -4, 0, -4, 0] });
+  const rotate = progress.interpolate({ inputRange: [0, 0.5, 1], outputRange: ['0deg', '-360deg', '-720deg'] });
+  const scale = progress.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1, 0.97, 1] });
+  return <View style={styles.captureStage}><View style={styles.captureTarget}><View style={styles.captureTargetGlow} />{pokemon ? <Portrait pokemon={pokemon} variant="normal" size={76} /> : <Text style={styles.captureQuestion}>?</Text>}</View><View style={styles.pokeballTrack}><Animated.View accessibilityLabel="Poké Ball capturando el Pokémon" style={[styles.pokeball, { transform: [{ translateX }, { translateY }, { rotate }, { scale }] }]}><View style={styles.pokeballRed} /><View style={styles.pokeballBand} /><View style={styles.pokeballButton}><View style={styles.pokeballButtonCore} /></View></Animated.View></View></View>;
 }
 
 function SelectionScreen({ game, player, reduceMotion, onSelect }: { game: RoomGameState; player: PlayerId; reduceMotion: boolean; onSelect: (id: number) => void }) {
@@ -296,13 +313,56 @@ function PokemonInfo({ pokemon, playerLabel }: { pokemon?: PokemonCandidate; pla
   return <View style={styles.infoCard}><View style={styles.infoIdentity}><Portrait pokemon={pokemon} size={58} /><View style={styles.infoName}><Text style={styles.statusLabel}>{playerLabel}</Text><Text style={styles.infoTitle}>{pokemon.name}</Text></View></View><Text style={styles.infoDescription}>{description}</Text>{facts.map((fact, index) => <Text key={`${pokemon.id}-info-fact-${index}`} style={styles.infoFact}><Text style={styles.infoFactLabel}>{index === 0 ? 'DATOS: ' : '          '}</Text>{fact}</Text>)}</View>;
 }
 
-function GameScreen({ game, player, reduceMotion, onToggle, onBack, onRematch }: { game: RoomGameState; player: PlayerId; reduceMotion: boolean; onToggle: (player: PlayerId, id: number) => void; onBack: () => void; onRematch: () => void }) {
+function ReconnectBanner({ game, player }: { game: RoomGameState; player: PlayerId }) {
+  const [seconds, setSeconds] = useState(60);
+  useEffect(() => {
+    if (!game.reconnectDeadline || !game.disconnectedPlayer) return;
+    const update = () => setSeconds(Math.max(0, Math.ceil((game.reconnectDeadline! - Date.now()) / 1000)));
+    update();
+    const timer = setInterval(update, 1000);
+    return () => clearInterval(timer);
+  }, [game.reconnectDeadline, game.disconnectedPlayer]);
+  if (!game.disconnectedPlayer || game.abandonedPlayer || game.phase === 'finished') return null;
+  const disconnectedLabel = game.disconnectedPlayer === player ? 'TÚ' : 'EL RIVAL';
+  return <View accessibilityLiveRegion="polite" style={styles.disconnectBanner}><Text style={styles.disconnectTitle}>{disconnectedLabel} DESCONECTADO</Text><Text style={styles.disconnectText}>Esperando una reconexión… {seconds}s</Text></View>;
+}
+
+function VictoryModal({ game, player, onRematch }: { game: RoomGameState; player: PlayerId; onRematch: () => void }) {
   const winner = game.winner;
   const targetPlayer = winner === 'p1' ? 'p2' : winner === 'p2' ? 'p1' : null;
   const targetPokemon = targetPlayer ? getPokemon(game, game.players[targetPlayer].secretId) : undefined;
-  const won = winner === player;
   const facts = targetPokemon ? (targetPokemon.facts ?? [targetPokemon.funFact ?? '']).filter(Boolean).slice(0, 3) : [];
-  return <ScrollView contentContainerStyle={styles.gameContent}><View style={styles.gameTopbar}><Pressable accessibilityRole="button" onPress={onBack} style={styles.topbarButton}><Text style={styles.backText}>‹ SALIR</Text></Pressable><Text style={styles.gameRoom}>SALA {game.roomCode}</Text><View style={[styles.turnPill, game.phase === 'finished' && styles.turnPillFinished]}><Text style={styles.turnText}>{game.phase === 'finished' ? 'FINAL' : 'EN JUEGO'}</Text></View></View><BoardSection game={game} player={player} activePlayer={player} reduceMotion={reduceMotion} onToggle={(id) => onToggle(player, id)} /><VersusStrip game={game} activePlayer={player} /><BoardSection game={game} player={player === 'p1' ? 'p2' : 'p1'} activePlayer={player} reduceMotion={reduceMotion} onToggle={(id) => onToggle(player === 'p1' ? 'p2' : 'p1', id)} />{game.phase === 'finished' && <View style={styles.resultPanel}><Text style={styles.resultEmoji}>{won ? '✦' : '×'}</Text><Text style={styles.resultTitle}>{won ? 'VICTORIA' : 'HAS PERDIDO'}</Text><Text style={styles.resultText}>{won ? `El último Pokémon rival era ${targetPokemon?.name ?? 'el secreto'}.` : `El rival encontró antes a ${targetPokemon?.name ?? 'tu Pokémon secreto'}.`}</Text>{targetPokemon && <View style={styles.victoryHero}><Portrait pokemon={targetPokemon} size={104} /><Text style={styles.victoryPokemonName}>{targetPokemon.name}</Text>{facts.map((fact, index) => <Text key={`${targetPokemon.id}-hero-fact-${index}`} style={styles.victoryFact}>{fact}</Text>)}</View>}<Text style={styles.resultText}>Los dos Pokémon secretos quedan revelados.</Text><View style={styles.revealRow}><PokemonInfo pokemon={getPokemon(game, game.players.p1.secretId)} playerLabel="SECRETO · JUGADOR 1" /><PokemonInfo pokemon={getPokemon(game, game.players.p2.secretId)} playerLabel="SECRETO · JUGADOR 2" /></View><View style={styles.winnerFact}><Text style={styles.winnerFactTitle}>INFORMACIÓN DEL POKÉMON DESCUBIERTO</Text>{targetPokemon?.description && <Text style={styles.winnerFactText}>{targetPokemon.description}</Text>}{facts.map((fact, index) => <Text key={`${targetPokemon?.id ?? 'winner'}-fact-${index}`} style={styles.winnerFactText}><Text style={styles.winnerFactStrong}>{index === 0 ? 'DATO CURIOSO: ' : '                 '}</Text>{fact}</Text>)}</View><Button label="JUGAR DE NUEVO" onPress={onRematch} /></View>}<Text style={styles.credits}>Tachado: sonido local · Retratos: SpriteCollab PMD · No oficial</Text></ScrollView>;
+  const won = winner === player;
+  return <Modal visible={game.phase === 'finished'} transparent animationType="fade" onRequestClose={() => {}}>
+    <View style={styles.resultModalBackdrop}>
+      <ScrollView contentContainerStyle={styles.resultModalScroll}>
+        <View style={styles.resultPanel}>
+          <Text style={styles.resultEmoji}>{won ? '✦' : '×'}</Text>
+          <Text style={styles.resultTitle}>{won ? 'VICTORIA' : 'HAS PERDIDO'}</Text>
+          <Text style={styles.resultText}>{won ? `El último Pokémon rival era ${targetPokemon?.name ?? 'el secreto'}.` : `El rival encontró antes a ${targetPokemon?.name ?? 'tu Pokémon secreto'}.`}</Text>
+          {targetPokemon && <View style={styles.victoryHero}><Portrait pokemon={targetPokemon} size={118} /><Text style={styles.victoryPokemonName}>{targetPokemon.name}</Text>{facts.map((fact, index) => <Text key={`${targetPokemon.id}-hero-fact-${index}`} style={styles.victoryFact}>{fact}</Text>)}</View>}
+          <Text style={styles.resultText}>Los dos Pokémon secretos quedan revelados.</Text>
+          <View style={styles.revealRow}><PokemonInfo pokemon={getPokemon(game, game.players.p1.secretId)} playerLabel="SECRETO · JUGADOR 1" /><PokemonInfo pokemon={getPokemon(game, game.players.p2.secretId)} playerLabel="SECRETO · JUGADOR 2" /></View>
+          <View style={styles.winnerFact}><Text style={styles.winnerFactTitle}>INFORMACIÓN DEL POKÉMON DESCUBIERTO</Text>{targetPokemon?.description && <Text style={styles.winnerFactText}>{targetPokemon.description}</Text>}{facts.map((fact, index) => <Text key={`${targetPokemon?.id ?? 'winner'}-fact-${index}`} style={styles.winnerFactText}><Text style={styles.winnerFactStrong}>{index === 0 ? 'DATO CURIOSO: ' : '                 '}</Text>{fact}</Text>)}</View>
+          <Button label="JUGAR DE NUEVO" onPress={onRematch} />
+        </View>
+      </ScrollView>
+    </View>
+  </Modal>;
+}
+
+function GameScreen({ game, player, reduceMotion, onToggle, onBack, onRematch }: { game: RoomGameState; player: PlayerId; reduceMotion: boolean; onToggle: (player: PlayerId, id: number) => void; onBack: () => void; onRematch: () => void }) {
+  return <>
+    <ScrollView contentContainerStyle={styles.gameContent}>
+      <View style={styles.gameTopbar}><Pressable accessibilityRole="button" onPress={onBack} style={styles.topbarButton}><Text style={styles.backText}>‹ SALIR</Text></Pressable><Text style={styles.gameRoom}>SALA {game.roomCode}</Text><View style={[styles.turnPill, game.phase === 'finished' && styles.turnPillFinished]}><Text style={styles.turnText}>{game.phase === 'finished' ? 'FINAL' : 'EN JUEGO'}</Text></View></View>
+      <ReconnectBanner game={game} player={player} />
+      <BoardSection game={game} player={player} activePlayer={player} reduceMotion={reduceMotion} onToggle={(id) => onToggle(player, id)} />
+      <VersusStrip game={game} activePlayer={player} />
+      <BoardSection game={game} player={player === 'p1' ? 'p2' : 'p1'} activePlayer={player} reduceMotion={reduceMotion} onToggle={(id) => onToggle(player === 'p1' ? 'p2' : 'p1', id)} />
+      <Text style={styles.credits}>Tachado: sonido local · Retratos: SpriteCollab PMD · No oficial</Text>
+    </ScrollView>
+    <VictoryModal game={game} player={player} onRematch={onRematch} />
+  </>;
 }
 
 export default function App() {
@@ -331,9 +391,20 @@ export default function App() {
   const getClient = () => {
     if (!roomClientRef.current) {
       roomClientRef.current = new RoomClient((nextGame, nextPlayer) => {
-        setError('');
+        setError(nextGame.phase === 'abandoned'
+          ? `La partida terminó: ${nextGame.abandonedPlayer === nextPlayer ? 'has abandonado la sala' : 'el rival abandonó la partida'}.`
+          : '');
         applyState(nextGame, nextPlayer);
-      }, (message) => setError(message));
+      }, (message) => {
+        setError(message);
+        if (message.includes('no se reconectó') || message.includes('reconexión ha terminado')) {
+          roomClientRef.current?.close({ forgetSession: true });
+          roomClientRef.current = null;
+          setGame(null);
+          setPlayer(null);
+          setScreen('home');
+        }
+      });
     }
     return roomClientRef.current;
   };
@@ -443,9 +514,8 @@ export default function App() {
   };
 
   const rematch = () => {
-    const nextGeneration = game?.generation ?? generation;
-    leaveRoom();
-    void createRoom(nextGeneration);
+    if (!game || !player) return;
+    getClient().rematch();
   };
 
   const screenTitle = useMemo(() => screen === 'home' ? 'Inicio' : screen === 'room' ? 'Sala' : screen === 'selection' ? 'Elección' : screen === 'waiting' ? 'Esperando' : screen === 'single-player' ? 'Modo 1 jugador' : 'Partida', [screen]);
@@ -467,7 +537,7 @@ const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: COLORS.background },
   appRoot: { flex: 1, maxWidth: 720, width: '100%', alignSelf: 'center', zIndex: 1 },
   backdrop: { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, overflow: 'hidden', backgroundColor: COLORS.background },
-  backdropImage: { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, opacity: 0.96 },
+  backdropImage: { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, opacity: 0.88 },
   backdropTint: { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, backgroundColor: 'rgba(4, 8, 18, 0.58)' },
   scanlines: { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, opacity: 0.13 },
   scanline: { height: 2, backgroundColor: '#C2D8FF' },
@@ -553,10 +623,12 @@ const styles = StyleSheet.create({
   waitingContent: { flexGrow: 1, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12, backgroundColor: 'rgba(0, 0, 0, 0.78)' },
   waitingTitle: { color: COLORS.success, fontFamily: PIXEL_FONT, fontSize: 17, lineHeight: 29, textAlign: 'center', textShadowColor: '#0A4A31', textShadowOffset: { width: 3, height: 3 }, textShadowRadius: 0 },
   waitingText: { color: COLORS.white, fontSize: 13, lineHeight: 21, maxWidth: 380, textAlign: 'center' },
-  captureStage: { width: 260, height: 145, marginTop: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 24 },
-  captureTarget: { width: 94, height: 94, borderRadius: 47, backgroundColor: COLORS.panelLight, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: '#5A538A' },
+  captureStage: { width: '100%', maxWidth: 360, height: 170, marginTop: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 34 },
+  captureTarget: { width: 104, height: 104, borderRadius: 52, backgroundColor: COLORS.panelLight, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: '#5A538A', overflow: 'visible', shadowColor: COLORS.cyan, shadowOpacity: 0.35, shadowRadius: 12, shadowOffset: { width: 0, height: 0 } },
+  captureTargetGlow: { position: 'absolute', width: 86, height: 86, borderRadius: 43, borderWidth: 1, borderColor: 'rgba(121, 162, 255, 0.48)' },
   captureQuestion: { color: COLORS.yellow, fontSize: 42, fontWeight: '900' },
-  pokeball: { width: 58, height: 58, borderRadius: 29, backgroundColor: COLORS.white, borderWidth: 3, borderColor: COLORS.ink, overflow: 'hidden', shadowColor: COLORS.ink, shadowOpacity: 0.35, shadowRadius: 5, shadowOffset: { width: 0, height: 4 } },
+  pokeballTrack: { width: 92, height: 92, alignItems: 'center', justifyContent: 'center' },
+  pokeball: { width: 58, height: 58, borderRadius: 29, backgroundColor: COLORS.white, borderWidth: 3, borderColor: COLORS.ink, overflow: 'hidden', shadowColor: COLORS.ink, shadowOpacity: 0.46, shadowRadius: 7, shadowOffset: { width: 0, height: 5 } },
   pokeballRed: { position: 'absolute', top: 0, left: 0, right: 0, height: 27, backgroundColor: COLORS.danger },
   pokeballBand: { position: 'absolute', left: 0, right: 0, top: 25, height: 6, backgroundColor: COLORS.ink },
   pokeballButton: { position: 'absolute', width: 23, height: 23, borderRadius: 12, backgroundColor: COLORS.white, borderWidth: 3, borderColor: COLORS.ink, left: 14, top: 15, alignItems: 'center', justifyContent: 'center' },
@@ -566,6 +638,9 @@ const styles = StyleSheet.create({
   waitingHint: { color: COLORS.muted, fontSize: 11, textAlign: 'center', maxWidth: 340, lineHeight: 17 },
   gameTopbar: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 36, paddingHorizontal: 2 },
   gameRoom: { color: COLORS.muted, fontFamily: PIXEL_FONT, fontSize: 7, letterSpacing: 0.4 },
+  disconnectBanner: { backgroundColor: 'rgba(96, 50, 29, 0.94)', borderRadius: 8, borderWidth: 2, borderColor: COLORS.orange, padding: 11, gap: 4, alignItems: 'center' },
+  disconnectTitle: { color: COLORS.yellow, fontFamily: PIXEL_FONT, fontSize: 8, textAlign: 'center' },
+  disconnectText: { color: COLORS.white, fontSize: 12, lineHeight: 17, textAlign: 'center' },
   turnPill: { backgroundColor: COLORS.success, paddingHorizontal: 9, paddingVertical: 5, borderRadius: 4, borderWidth: 1, borderColor: COLORS.white },
   turnPillFinished: { backgroundColor: COLORS.orange },
   turnText: { color: COLORS.ink, fontFamily: PIXEL_FONT, fontSize: 7 },
@@ -601,6 +676,8 @@ const styles = StyleSheet.create({
   vsMark: { width: 55, alignItems: 'center', justifyContent: 'center' },
   vsMarkText: { color: COLORS.danger, fontFamily: PIXEL_FONT, fontSize: 18, textShadowColor: COLORS.white, textShadowOffset: { width: 3, height: 3 }, textShadowRadius: 0 },
   resultPanel: { backgroundColor: 'rgba(29, 30, 42, 0.96)', borderRadius: 10, padding: 14, alignItems: 'center', gap: 8, borderWidth: 3, borderColor: COLORS.yellow, shadowColor: COLORS.yellow, shadowOpacity: 0.35, shadowRadius: 8, shadowOffset: { width: 0, height: 0 } },
+  resultModalBackdrop: { flex: 1, backgroundColor: 'rgba(3, 5, 10, 0.82)', justifyContent: 'center', padding: 14 },
+  resultModalScroll: { flexGrow: 1, justifyContent: 'center', paddingVertical: 14 },
   resultEmoji: { color: COLORS.yellow, fontFamily: PIXEL_FONT, fontSize: 21 },
   resultTitle: { color: COLORS.yellow, fontFamily: PIXEL_FONT, fontSize: 16, lineHeight: 25, textAlign: 'center' },
   resultText: { color: COLORS.white, textAlign: 'center', fontSize: 13, lineHeight: 18 },

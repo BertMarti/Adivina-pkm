@@ -1,7 +1,7 @@
 import { PokemonCandidate } from '../data/pokemon';
 
 export type PlayerId = 'p1' | 'p2';
-export type LocalPhase = 'waiting-for-player' | 'selecting' | 'waiting-for-selection' | 'playing' | 'finished';
+export type LocalPhase = 'waiting-for-player' | 'selecting' | 'waiting-for-selection' | 'playing' | 'finished' | 'abandoned';
 
 export type PlayerState = {
   secretId: number | null;
