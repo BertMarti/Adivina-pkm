@@ -1,15 +1,14 @@
 {
   "expo": {
-    "name": "Adivina-pkm",
-    "slug": "Adivina-pkm",
-    "version": "1.0.0",
+    "name": "Adivina Quién Pokémon",
+    "slug": "adivina-quien-pokemon",
+    "scheme": "adivinapokemon",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "ios": {
-      "supportsTablet": true
-    },
     "android": {
+      "package": "com.adivinapokemon.app",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -18,8 +17,17 @@
       },
       "predictiveBackGestureEnabled": false
     },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.adivinapokemon.app"
+    },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-audio",
+      "expo-asset",
+      "expo-font"
+    ]
   }
 }

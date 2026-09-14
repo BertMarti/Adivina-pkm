@@ -1,3 +1,6 @@
-# Expo HAS CHANGED
+# Guía rápida de agentes
 
-Read the exact versioned docs at https://docs.expo.dev/versions/v57.0.0/ before writing any code.
+- Mantener la máquina de estados pura en `src/game/engine.ts`.
+- No mover secretos Pokémon al estado público cuando se añada un backend.
+- Tratar las imágenes remotas como dependencias externas: cachear, mostrar fallback y conservar atribución.
+- Validar siempre accesibilidad móvil: controles ≥44 px, contraste, etiquetas de estado y tachado no dependiente solo del color.
