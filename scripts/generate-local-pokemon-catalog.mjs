@@ -55,6 +55,7 @@ async function getJson(url) {
 async function main() {
   const list = await getJson(`https://pokeapi.co/api/v2/pokemon?limit=${total}&offset=0`);
   const entries = [];
+  const speciesIdByName = new Map();
   const concurrency = 24;
   for (let offset = 0; offset < list.results.length; offset += concurrency) {
     const batch = list.results.slice(offset, offset + concurrency);
@@ -65,6 +66,7 @@ async function main() {
     }));
     for (const { pokemon, species } of details) {
       const name = titleCase(pokemon.name);
+      speciesIdByName.set(species.name, pokemon.id);
       const types = pokemon.types.map(({ type }) => typeNames[type.name] ?? titleCase(type.name));
       const weightKg = pokemon.weight / 10;
       const facts = [
@@ -76,6 +78,7 @@ async function main() {
         id: pokemon.id,
         name,
         types,
+        evolutionChainUrl: species.evolution_chain?.url,
         color: colorNames[species.color?.name] ?? species.color?.name ?? 'desconocido',
         shape: species.shape?.name ?? 'desconocida',
         generation: generationNumber(species.generation?.name),
@@ -91,6 +94,42 @@ async function main() {
       });
     }
     console.log(`Catálogo local: ${Math.min(offset + concurrency, list.results.length)}/${list.results.length}`);
+  }
+
+  const speciesByName = new Map([
+    ...speciesIdByName,
+    ...entries.map((entry) => [entry.name.toLowerCase().replaceAll('-', ' '), entry.id]),
+  ]);
+  const evolutionChainUrls = [...new Set(entries.map((entry) => entry.evolutionChainUrl).filter(Boolean))];
+  const evolutionByPokemonId = new Map();
+  for (let offset = 0; offset < evolutionChainUrls.length; offset += concurrency) {
+    const batch = evolutionChainUrls.slice(offset, offset + concurrency);
+    const chains = await Promise.all(batch.map((url) => getJson(url)));
+    for (const chain of chains) {
+      const members = [];
+      const visit = (node, depth) => {
+        const normalizedName = node.species.name;
+        const id = speciesByName.get(normalizedName) ?? speciesByName.get(titleCase(normalizedName).toLowerCase());
+        if (id !== undefined) members.push({ id, depth });
+        for (const child of node.evolves_to ?? []) visit(child, depth + 1);
+      };
+      visit(chain.chain, 0);
+      const maxDepth = Math.max(0, ...members.map((member) => member.depth));
+      const stageCount = maxDepth + 1;
+      for (const member of members) evolutionByPokemonId.set(member.id, { stage: member.depth, stageCount });
+    }
+    console.log(`Evoluciones locales: ${Math.min(offset + concurrency, evolutionChainUrls.length)}/${evolutionChainUrls.length}`);
+  }
+
+  for (const entry of entries) {
+    const evolution = evolutionByPokemonId.get(entry.id);
+    delete entry.evolutionChainUrl;
+    if (evolution) {
+      entry.evolutionStage = evolution.stage;
+      entry.evolutionStageCount = evolution.stageCount;
+      entry.stage = Math.min(2, evolution.stage);
+      entry.stageKnown = true;
+    }
   }
   entries.sort((left, right) => left.id - right.id);
   if (entries.length !== total) throw new Error(`Se esperaban ${total} Pokémon y se obtuvieron ${entries.length}.`);

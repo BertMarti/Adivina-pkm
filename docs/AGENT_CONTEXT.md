@@ -59,5 +59,5 @@ HOME
 - Rematch en la misma sala, reconexión de un minuto y estado `abandoned`.
 - Modal de resultado con victoria/derrota, audio específico, sprite y curiosidades únicamente del Pokémon elegido por el jugador local, más `JUGAR DE NUEVO`.
 - Título flotante, Poké Ball de espera con movimiento suave y nombres/Dex en casillas.
-- Banco solitario nacional con preguntas de tipos, colores, silueta, animal de inspiración, hábitat y cuerpo; sin preguntas de número nacional, peso, región ni generación.
+- Banco solitario nacional con preguntas de tipos, evolución pública, colores, silueta, animal de inspiración, hábitat y cuerpo; sin preguntas de número nacional, peso, región ni generación.
 - Motor solitario con semilla por ronda, ganancia de información ponderada por creencia, tolerancia a respuestas imperfectas y límite de 30 preguntas; el historial local guarda cada respuesta y resultado.

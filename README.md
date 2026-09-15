@@ -25,8 +25,46 @@
 
 ---
 
+## 📸 Capturas de pantalla
+
+<details>
+<summary><b>🏠 Pantalla de Inicio — Crea o únete a una sala</b></summary>
+<br>
+<p align="center">
+  <img src="assets/screenshots/home_android.png" width="280" alt="Inicio en Android" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/screenshots/home_ios.png" width="280" alt="Inicio en iOS" />
+</p>
+<p align="center"><sub>📱 Android Pixel &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; iPhone 15 Pro</sub></p>
+</details>
+
+<details>
+<summary><b>⚔️ Tablero de Juego — Duelo 2 jugadores</b></summary>
+<br>
+<p align="center">
+  <img src="assets/screenshots/game_android.png" width="280" alt="Tablero en Android" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/screenshots/game_ios.png" width="280" alt="Tablero en iOS" />
+</p>
+<p align="center"><sub>📱 Android Pixel &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; iPhone 15 Pro</sub></p>
+</details>
+
+<details>
+<summary><b>🤖 Modo Solitario — Juega contra la máquina</b></summary>
+<br>
+<p align="center">
+  <img src="assets/screenshots/solo_android.png" width="280" alt="Solitario en Android" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="assets/screenshots/solo_ios.png" width="280" alt="Solitario en iOS" />
+</p>
+<p align="center"><sub>📱 Android Pixel &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; iPhone 15 Pro</sub></p>
+</details>
+
+---
+
 ## 📖 Tabla de contenido
 
+- [📸 Capturas de pantalla](#-capturas-de-pantalla)
 - [🌍 ¿Qué es PokéQuién?](#-qué-es-pokéquién)
 - [🕹️ Modo Duelo (2 jugadores)](#️-modo-duelo-2-jugadores)
 - [🤖 Modo Solitario (1 jugador)](#-modo-solitario-1-jugador)

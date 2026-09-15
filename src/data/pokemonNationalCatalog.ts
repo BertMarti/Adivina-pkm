@@ -1,4 +1,4 @@
-// Generated from PokéAPI on 2026-09-14.
+// Generated from PokéAPI on 2026-09-15.
 // This file is intentionally local so the board and solo mode work without a runtime API dependency.
 import type { PokemonCandidate } from './pokemon';
 
@@ -15,7 +15,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0001/Happy.png",
@@ -28,7 +28,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bulbasaur ocupa el número 1 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y veneno.",
       "Su peso registrado es de 6,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 2,
@@ -41,8 +43,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 13,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0002/Happy.png",
@@ -55,7 +57,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ivysaur ocupa el número 2 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y veneno.",
       "Su peso registrado es de 13 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 3,
@@ -68,8 +72,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 100,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0003/Happy.png",
@@ -82,7 +86,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Venusaur ocupa el número 3 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y veneno.",
       "Su peso registrado es de 100 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 4,
@@ -95,7 +101,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0004/Happy.png",
@@ -108,7 +114,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Charmander ocupa el número 4 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 8,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 5,
@@ -120,8 +128,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0005/Happy.png",
@@ -134,7 +142,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Charmeleon ocupa el número 5 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 19 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 6,
@@ -147,8 +157,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 90.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0006/Happy.png",
@@ -161,7 +171,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Charizard ocupa el número 6 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y volador.",
       "Su peso registrado es de 90,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 7,
@@ -174,7 +186,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0007/Happy.png",
@@ -187,7 +199,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Squirtle ocupa el número 7 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 8,
@@ -199,8 +213,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 22.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0008/Happy.png",
@@ -213,7 +227,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wartortle ocupa el número 8 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 22,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 9,
@@ -225,8 +241,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 85.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0009/Happy.png",
@@ -239,7 +255,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Blastoise ocupa el número 9 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 85,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 10,
@@ -252,7 +270,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0010/Happy.png",
@@ -265,7 +283,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Caterpie ocupa el número 10 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 2,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 11,
@@ -277,8 +297,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 1,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0011/Happy.png",
@@ -291,7 +311,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Metapod ocupa el número 11 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 9,9 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 12,
@@ -304,8 +326,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 1,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 32,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0012/Happy.png",
@@ -318,7 +340,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Butterfree ocupa el número 12 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y volador.",
       "Su peso registrado es de 32 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 13,
@@ -332,7 +356,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0013/Happy.png",
@@ -345,7 +369,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Weedle ocupa el número 13 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y veneno.",
       "Su peso registrado es de 3,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 14,
@@ -358,8 +384,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 1,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0014/Happy.png",
@@ -372,7 +398,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kakuna ocupa el número 14 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y veneno.",
       "Su peso registrado es de 10 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 15,
@@ -385,8 +413,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 1,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 29.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0015/Happy.png",
@@ -399,7 +427,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Beedrill ocupa el número 15 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y veneno.",
       "Su peso registrado es de 29,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 16,
@@ -413,7 +443,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0016/Happy.png",
@@ -426,7 +456,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pidgey ocupa el número 16 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 1,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 17,
@@ -439,8 +471,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 1,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0017/Happy.png",
@@ -453,7 +485,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pidgeotto ocupa el número 17 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 30 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 18,
@@ -466,8 +500,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 1,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 39.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0018/Happy.png",
@@ -480,7 +514,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pidgeot ocupa el número 18 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 39,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 19,
@@ -493,7 +529,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0019/Happy.png",
@@ -506,7 +542,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rattata ocupa el número 19 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 3,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 20,
@@ -518,8 +556,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 18.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0020/Happy.png",
@@ -532,7 +570,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Raticate ocupa el número 20 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 18,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 21,
@@ -546,7 +586,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "terreno accidentado",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0021/Happy.png",
@@ -559,7 +599,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Spearow ocupa el número 21 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 22,
@@ -572,8 +614,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 1,
     "habitat": "terreno accidentado",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 38,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0022/Happy.png",
@@ -586,7 +628,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Fearow ocupa el número 22 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 38 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 23,
@@ -599,7 +643,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0023/Happy.png",
@@ -612,7 +656,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ekans ocupa el número 23 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 6,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 24,
@@ -624,8 +670,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 65,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0024/Happy.png",
@@ -638,7 +684,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Arbok ocupa el número 24 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 65 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 25,
@@ -650,8 +698,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 1,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0025/Happy.png",
@@ -664,7 +712,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pikachu ocupa el número 25 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 26,
@@ -676,8 +726,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0026/Happy.png",
@@ -690,7 +740,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Raichu ocupa el número 26 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 30 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 27,
@@ -703,7 +755,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "terreno accidentado",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0027/Happy.png",
@@ -716,7 +768,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sandshrew ocupa el número 27 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 12 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 28,
@@ -728,8 +782,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "terreno accidentado",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 29.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0028/Happy.png",
@@ -742,7 +796,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sandslash ocupa el número 28 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 29,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 29,
@@ -755,7 +811,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0029/Happy.png",
@@ -768,7 +824,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Nidoran F ocupa el número 29 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 30,
@@ -780,8 +838,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 20,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0030/Happy.png",
@@ -794,7 +852,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Nidorina ocupa el número 30 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 20 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 31,
@@ -807,8 +867,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 60,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0031/Happy.png",
@@ -821,7 +881,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Nidoqueen ocupa el número 31 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y tierra.",
       "Su peso registrado es de 60 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 32,
@@ -834,7 +896,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0032/Happy.png",
@@ -847,7 +909,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Nidoran M ocupa el número 32 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 33,
@@ -859,8 +923,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0033/Happy.png",
@@ -873,7 +937,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Nidorino ocupa el número 33 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 19,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 34,
@@ -886,8 +952,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 62,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0034/Happy.png",
@@ -900,7 +966,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Nidoking ocupa el número 34 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y tierra.",
       "Su peso registrado es de 62 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 35,
@@ -912,8 +980,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0035/Happy.png",
@@ -926,7 +994,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Clefairy ocupa el número 35 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 7,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 36,
@@ -938,8 +1008,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 40,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0036/Happy.png",
@@ -952,7 +1022,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Clefable ocupa el número 36 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 40 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 37,
@@ -965,7 +1037,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0037/Happy.png",
@@ -978,7 +1050,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Vulpix ocupa el número 37 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 9,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 38,
@@ -990,8 +1064,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0038/Happy.png",
@@ -1004,7 +1078,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ninetales ocupa el número 38 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 19,9 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 39,
@@ -1017,8 +1093,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0039/Happy.png",
@@ -1031,7 +1107,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Jigglypuff ocupa el número 39 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y hada.",
       "Su peso registrado es de 5,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 40,
@@ -1044,8 +1122,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0040/Happy.png",
@@ -1058,7 +1136,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wigglytuff ocupa el número 40 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y hada.",
       "Su peso registrado es de 12 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 41,
@@ -1072,7 +1152,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0041/Happy.png",
@@ -1085,7 +1165,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Zubat ocupa el número 41 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y volador.",
       "Su peso registrado es de 7,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 42,
@@ -1098,8 +1180,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 1,
     "habitat": "cueva",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 55,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0042/Happy.png",
@@ -1112,7 +1194,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Golbat ocupa el número 42 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y volador.",
       "Su peso registrado es de 55 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 43,
@@ -1126,7 +1210,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0043/Happy.png",
@@ -1139,7 +1223,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Oddish ocupa el número 43 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y veneno.",
       "Su peso registrado es de 5,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 44,
@@ -1152,8 +1238,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0044/Happy.png",
@@ -1166,7 +1252,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gloom ocupa el número 44 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y veneno.",
       "Su peso registrado es de 8,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 45,
@@ -1179,8 +1267,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 18.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0045/Happy.png",
@@ -1193,7 +1281,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Vileplume ocupa el número 45 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y veneno.",
       "Su peso registrado es de 18,6 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 46,
@@ -1207,7 +1297,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0046/Happy.png",
@@ -1220,7 +1310,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Paras ocupa el número 46 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y planta.",
       "Su peso registrado es de 5,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 47,
@@ -1233,8 +1325,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "armor",
     "generation": 1,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 29.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0047/Happy.png",
@@ -1247,7 +1339,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Parasect ocupa el número 47 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y planta.",
       "Su peso registrado es de 29,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 48,
@@ -1261,7 +1355,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0048/Happy.png",
@@ -1274,7 +1368,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Venonat ocupa el número 48 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y veneno.",
       "Su peso registrado es de 30 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 49,
@@ -1287,8 +1383,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 1,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0049/Happy.png",
@@ -1301,7 +1397,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Venomoth ocupa el número 49 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y veneno.",
       "Su peso registrado es de 12,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 50,
@@ -1314,7 +1412,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0050/Happy.png",
@@ -1327,7 +1425,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Diglett ocupa el número 50 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 0,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 51,
@@ -1339,8 +1439,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "heads",
     "generation": 1,
     "habitat": "cueva",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 33.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0051/Happy.png",
@@ -1353,7 +1453,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dugtrio ocupa el número 51 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 33,3 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 52,
@@ -1366,7 +1468,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "ciudad",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0052/Happy.png",
@@ -1379,7 +1481,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Meowth ocupa el número 52 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 4,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 53,
@@ -1391,8 +1495,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 1,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 32,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0053/Happy.png",
@@ -1405,7 +1509,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Persian ocupa el número 53 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 32 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 54,
@@ -1418,7 +1524,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0054/Happy.png",
@@ -1431,7 +1537,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Psyduck ocupa el número 54 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 19,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 55,
@@ -1443,8 +1551,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 76.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0055/Happy.png",
@@ -1457,7 +1565,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Golduck ocupa el número 55 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 76,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 56,
@@ -1470,7 +1580,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 28,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0056/Happy.png",
@@ -1483,7 +1593,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mankey ocupa el número 56 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 28 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 57,
@@ -1495,8 +1607,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 32,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0057/Happy.png",
@@ -1509,7 +1621,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Primeape ocupa el número 57 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 32 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 58,
@@ -1522,7 +1636,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0058/Happy.png",
@@ -1535,7 +1649,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Growlithe ocupa el número 58 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 19 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 59,
@@ -1547,8 +1663,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 155,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0059/Happy.png",
@@ -1561,7 +1677,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Arcanine ocupa el número 59 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 155 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 60,
@@ -1574,7 +1692,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0060/Happy.png",
@@ -1587,7 +1705,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Poliwag ocupa el número 60 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 12,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 61,
@@ -1599,8 +1719,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 20,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0061/Happy.png",
@@ -1613,7 +1733,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Poliwhirl ocupa el número 61 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 20 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 62,
@@ -1626,8 +1748,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 54,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0062/Happy.png",
@@ -1640,7 +1762,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Poliwrath ocupa el número 62 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y lucha.",
       "Su peso registrado es de 54 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 63,
@@ -1653,7 +1777,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "ciudad",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0063/Happy.png",
@@ -1666,7 +1790,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Abra ocupa el número 63 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 19,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 64,
@@ -1678,8 +1804,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 56.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0064/Happy.png",
@@ -1692,7 +1818,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kadabra ocupa el número 64 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 56,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 65,
@@ -1704,8 +1832,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 48,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0065/Happy.png",
@@ -1718,7 +1846,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Alakazam ocupa el número 65 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 48 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 66,
@@ -1731,7 +1861,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0066/Happy.png",
@@ -1744,7 +1874,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Machop ocupa el número 66 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 19,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 67,
@@ -1756,8 +1888,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 70.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0067/Happy.png",
@@ -1770,7 +1902,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Machoke ocupa el número 67 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 70,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 68,
@@ -1782,8 +1916,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 130,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0068/Happy.png",
@@ -1796,7 +1930,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Machamp ocupa el número 68 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 130 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 69,
@@ -1810,7 +1946,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0069/Happy.png",
@@ -1823,7 +1959,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bellsprout ocupa el número 69 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y veneno.",
       "Su peso registrado es de 4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 70,
@@ -1836,8 +1974,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 1,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0070/Happy.png",
@@ -1850,7 +1988,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Weepinbell ocupa el número 70 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y veneno.",
       "Su peso registrado es de 6,4 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 71,
@@ -1863,8 +2003,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 1,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0071/Happy.png",
@@ -1877,7 +2017,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Victreebel ocupa el número 71 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y veneno.",
       "Su peso registrado es de 15,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 72,
@@ -1891,7 +2033,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 45.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0072/Happy.png",
@@ -1904,7 +2046,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tentacool ocupa el número 72 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y veneno.",
       "Su peso registrado es de 45,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 73,
@@ -1917,8 +2061,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "tentacles",
     "generation": 1,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 55,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0073/Happy.png",
@@ -1931,7 +2075,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tentacruel ocupa el número 73 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y veneno.",
       "Su peso registrado es de 55 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 74,
@@ -1945,7 +2091,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 20,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0074/Happy.png",
@@ -1958,7 +2104,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Geodude ocupa el número 74 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y tierra.",
       "Su peso registrado es de 20 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 75,
@@ -1971,8 +2119,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 105,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0075/Happy.png",
@@ -1985,7 +2133,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Graveler ocupa el número 75 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y tierra.",
       "Su peso registrado es de 105 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 76,
@@ -1998,8 +2148,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 300,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0076/Happy.png",
@@ -2012,7 +2162,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Golem ocupa el número 76 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y tierra.",
       "Su peso registrado es de 300 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 77,
@@ -2025,7 +2177,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0077/Happy.png",
@@ -2038,7 +2190,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ponyta ocupa el número 77 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 30 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 78,
@@ -2050,8 +2204,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 95,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0078/Happy.png",
@@ -2064,7 +2218,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rapidash ocupa el número 78 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 95 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 79,
@@ -2078,7 +2234,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 36,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0079/Happy.png",
@@ -2091,7 +2247,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Slowpoke ocupa el número 79 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y psíquico.",
       "Su peso registrado es de 36 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 80,
@@ -2104,8 +2262,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 78.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0080/Happy.png",
@@ -2118,7 +2276,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Slowbro ocupa el número 80 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y psíquico.",
       "Su peso registrado es de 78,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 81,
@@ -2132,7 +2292,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "terreno accidentado",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0081/Happy.png",
@@ -2145,7 +2305,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Magnemite ocupa el número 81 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y acero.",
       "Su peso registrado es de 6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 82,
@@ -2158,8 +2320,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "heads",
     "generation": 1,
     "habitat": "terreno accidentado",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 60,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0082/Happy.png",
@@ -2172,7 +2334,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Magneton ocupa el número 82 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y acero.",
       "Su peso registrado es de 60 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 83,
@@ -2186,7 +2350,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0083/Happy.png",
@@ -2199,7 +2363,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Farfetchd ocupa el número 83 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 15 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 84,
@@ -2213,7 +2379,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 39.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0084/Happy.png",
@@ -2226,7 +2392,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Doduo ocupa el número 84 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 39,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 85,
@@ -2239,8 +2407,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "legs",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 85.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0085/Happy.png",
@@ -2253,7 +2421,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dodrio ocupa el número 85 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 85,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 86,
@@ -2266,7 +2436,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 90,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0086/Happy.png",
@@ -2279,7 +2449,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Seel ocupa el número 86 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 90 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 87,
@@ -2292,8 +2464,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 1,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 120,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0087/Happy.png",
@@ -2306,7 +2478,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dewgong ocupa el número 87 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y hielo.",
       "Su peso registrado es de 120 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 88,
@@ -2319,7 +2493,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "ciudad",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0088/Happy.png",
@@ -2332,7 +2506,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Grimer ocupa el número 88 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 30 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 89,
@@ -2344,8 +2520,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 1,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0089/Happy.png",
@@ -2358,7 +2534,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Muk ocupa el número 89 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 30 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 90,
@@ -2371,7 +2549,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0090/Happy.png",
@@ -2384,7 +2562,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Shellder ocupa el número 90 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 91,
@@ -2397,8 +2577,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "ball",
     "generation": 1,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 132.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0091/Happy.png",
@@ -2411,7 +2591,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cloyster ocupa el número 91 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y hielo.",
       "Su peso registrado es de 132,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 92,
@@ -2425,7 +2607,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0092/Happy.png",
@@ -2438,7 +2620,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gastly ocupa el número 92 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y veneno.",
       "Su peso registrado es de 0,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 93,
@@ -2451,8 +2635,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 1,
     "habitat": "cueva",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0093/Happy.png",
@@ -2465,7 +2649,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Haunter ocupa el número 93 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y veneno.",
       "Su peso registrado es de 0,1 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 94,
@@ -2478,8 +2664,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "cueva",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 40.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0094/Happy.png",
@@ -2492,7 +2678,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gengar ocupa el número 94 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y veneno.",
       "Su peso registrado es de 40,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 95,
@@ -2506,7 +2694,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 210,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0095/Happy.png",
@@ -2519,7 +2707,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Onix ocupa el número 95 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y tierra.",
       "Su peso registrado es de 210 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 96,
@@ -2532,7 +2722,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 32.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0096/Happy.png",
@@ -2545,7 +2735,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Drowzee ocupa el número 96 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 32,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 97,
@@ -2557,8 +2749,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 75.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0097/Happy.png",
@@ -2571,7 +2763,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hypno ocupa el número 97 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 75,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 98,
@@ -2584,7 +2778,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0098/Happy.png",
@@ -2597,7 +2791,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Krabby ocupa el número 98 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 6,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 99,
@@ -2609,8 +2805,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "armor",
     "generation": 1,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 60,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0099/Happy.png",
@@ -2623,7 +2819,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kingler ocupa el número 99 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 60 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 100,
@@ -2636,7 +2834,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "ciudad",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0100/Happy.png",
@@ -2649,7 +2847,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Voltorb ocupa el número 100 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 10,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 101,
@@ -2661,8 +2861,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "ball",
     "generation": 1,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 66.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0101/Happy.png",
@@ -2675,7 +2875,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Electrode ocupa el número 101 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 66,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 102,
@@ -2689,7 +2891,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0102/Happy.png",
@@ -2702,7 +2904,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Exeggcute ocupa el número 102 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y psíquico.",
       "Su peso registrado es de 2,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 103,
@@ -2715,8 +2919,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "legs",
     "generation": 1,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 120,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0103/Happy.png",
@@ -2729,7 +2933,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Exeggutor ocupa el número 103 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y psíquico.",
       "Su peso registrado es de 120 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 104,
@@ -2742,7 +2948,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0104/Happy.png",
@@ -2755,7 +2961,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cubone ocupa el número 104 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 6,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 105,
@@ -2767,8 +2975,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 45,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0105/Happy.png",
@@ -2781,7 +2989,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Marowak ocupa el número 105 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 45 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 106,
@@ -2793,8 +3003,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 49.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0106/Happy.png",
@@ -2807,7 +3017,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hitmonlee ocupa el número 106 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 49,8 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 107,
@@ -2819,8 +3031,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 50.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0107/Happy.png",
@@ -2833,7 +3045,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hitmonchan ocupa el número 107 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 50,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 108,
@@ -2846,7 +3060,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 65.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0108/Happy.png",
@@ -2859,7 +3073,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lickitung ocupa el número 108 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 65,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 109,
@@ -2872,7 +3088,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "ciudad",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0109/Happy.png",
@@ -2885,7 +3101,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Koffing ocupa el número 109 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 110,
@@ -2897,8 +3115,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "heads",
     "generation": 1,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0110/Happy.png",
@@ -2911,7 +3129,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Weezing ocupa el número 110 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 9,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 111,
@@ -2925,7 +3145,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "terreno accidentado",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 115,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0111/Happy.png",
@@ -2938,7 +3158,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rhyhorn ocupa el número 111 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y roca.",
       "Su peso registrado es de 115 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 112,
@@ -2951,8 +3173,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "terreno accidentado",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 120,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0112/Happy.png",
@@ -2965,7 +3187,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rhydon ocupa el número 112 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y roca.",
       "Su peso registrado es de 120 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 113,
@@ -2977,8 +3201,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 34.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0113/Happy.png",
@@ -2991,7 +3215,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Chansey ocupa el número 113 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 34,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 114,
@@ -3004,7 +3230,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 35,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0114/Happy.png",
@@ -3017,7 +3243,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tangela ocupa el número 114 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 35 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 115,
@@ -3030,7 +3258,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 80,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0115/Happy.png",
@@ -3043,7 +3271,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kangaskhan ocupa el número 115 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 80 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 116,
@@ -3056,7 +3286,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0116/Happy.png",
@@ -3069,7 +3299,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Horsea ocupa el número 116 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 117,
@@ -3081,8 +3313,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 1,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 25,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0117/Happy.png",
@@ -3095,7 +3327,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Seadra ocupa el número 117 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 25 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 118,
@@ -3108,7 +3342,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0118/Happy.png",
@@ -3121,7 +3355,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Goldeen ocupa el número 118 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 15 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 119,
@@ -3133,8 +3369,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 1,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 39,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0119/Happy.png",
@@ -3147,7 +3383,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Seaking ocupa el número 119 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 39 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 120,
@@ -3160,7 +3398,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 34.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0120/Happy.png",
@@ -3173,7 +3411,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Staryu ocupa el número 120 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 34,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 121,
@@ -3186,8 +3426,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 1,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 80,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0121/Happy.png",
@@ -3200,7 +3440,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Starmie ocupa el número 121 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y psíquico.",
       "Su peso registrado es de 80 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 122,
@@ -3213,8 +3455,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 54.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0122/Happy.png",
@@ -3227,7 +3469,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mr Mime ocupa el número 122 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y hada.",
       "Su peso registrado es de 54,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 123,
@@ -3241,7 +3485,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 56,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0123/Happy.png",
@@ -3254,7 +3498,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Scyther ocupa el número 123 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y volador.",
       "Su peso registrado es de 56 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 124,
@@ -3267,8 +3513,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 40.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0124/Happy.png",
@@ -3281,7 +3527,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Jynx ocupa el número 124 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo y psíquico.",
       "Su peso registrado es de 40,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 125,
@@ -3293,8 +3541,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0125/Happy.png",
@@ -3307,7 +3555,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Electabuzz ocupa el número 125 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 30 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 126,
@@ -3319,8 +3569,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 44.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0126/Happy.png",
@@ -3333,7 +3583,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Magmar ocupa el número 126 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 44,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 127,
@@ -3346,7 +3598,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 55,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0127/Happy.png",
@@ -3359,7 +3611,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pinsir ocupa el número 127 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 55 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 128,
@@ -3372,7 +3626,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 88.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0128/Happy.png",
@@ -3385,7 +3639,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tauros ocupa el número 128 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 88,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 129,
@@ -3398,7 +3654,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0129/Happy.png",
@@ -3411,7 +3667,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Magikarp ocupa el número 129 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 10 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 130,
@@ -3424,8 +3682,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 1,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 235,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0130/Happy.png",
@@ -3438,7 +3696,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gyarados ocupa el número 130 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y volador.",
       "Su peso registrado es de 235 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 131,
@@ -3452,7 +3712,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 220,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0131/Happy.png",
@@ -3465,7 +3725,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lapras ocupa el número 131 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y hielo.",
       "Su peso registrado es de 220 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 132,
@@ -3478,7 +3740,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "ciudad",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0132/Happy.png",
@@ -3491,7 +3753,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ditto ocupa el número 132 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 133,
@@ -3504,7 +3768,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "ciudad",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0133/Happy.png",
@@ -3517,7 +3781,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Eevee ocupa el número 133 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 6,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 134,
@@ -3529,8 +3795,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 1,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 29,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0134/Happy.png",
@@ -3543,7 +3809,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Vaporeon ocupa el número 134 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 29 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 135,
@@ -3555,8 +3823,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 1,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 24.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0135/Happy.png",
@@ -3569,7 +3837,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Jolteon ocupa el número 135 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 24,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 136,
@@ -3581,8 +3851,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 1,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 25,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0136/Happy.png",
@@ -3595,7 +3865,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Flareon ocupa el número 136 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 25 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 137,
@@ -3608,7 +3880,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "ciudad",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 36.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0137/Happy.png",
@@ -3621,7 +3893,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Porygon ocupa el número 137 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 36,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 138,
@@ -3635,7 +3909,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0138/Happy.png",
@@ -3648,7 +3922,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Omanyte ocupa el número 138 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y agua.",
       "Su peso registrado es de 7,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 139,
@@ -3661,8 +3937,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "tentacles",
     "generation": 1,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 35,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0139/Happy.png",
@@ -3675,7 +3951,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Omastar ocupa el número 139 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y agua.",
       "Su peso registrado es de 35 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 140,
@@ -3689,7 +3967,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0140/Happy.png",
@@ -3702,7 +3980,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kabuto ocupa el número 140 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y agua.",
       "Su peso registrado es de 11,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 141,
@@ -3715,8 +3995,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 40.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0141/Happy.png",
@@ -3729,7 +4009,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kabutops ocupa el número 141 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y agua.",
       "Su peso registrado es de 40,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 142,
@@ -3743,7 +4025,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 59,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0142/Happy.png",
@@ -3756,7 +4038,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Aerodactyl ocupa el número 142 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y volador.",
       "Su peso registrado es de 59 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 143,
@@ -3768,8 +4052,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 1,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 460,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0143/Happy.png",
@@ -3782,7 +4066,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Snorlax ocupa el número 143 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 460 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 144,
@@ -3796,7 +4082,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "raro",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 55.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0144/Happy.png",
@@ -3809,7 +4095,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Articuno ocupa el número 144 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo y volador.",
       "Su peso registrado es de 55,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 145,
@@ -3823,7 +4111,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "raro",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 52.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0145/Happy.png",
@@ -3836,7 +4124,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Zapdos ocupa el número 145 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y volador.",
       "Su peso registrado es de 52,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 146,
@@ -3850,7 +4140,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "raro",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 60,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0146/Happy.png",
@@ -3863,7 +4153,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Moltres ocupa el número 146 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y volador.",
       "Su peso registrado es de 60 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 147,
@@ -3876,7 +4168,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0147/Happy.png",
@@ -3889,7 +4181,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dratini ocupa el número 147 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón.",
       "Su peso registrado es de 3,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 148,
@@ -3901,8 +4195,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 1,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 16.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0148/Happy.png",
@@ -3915,7 +4209,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dragonair ocupa el número 148 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón.",
       "Su peso registrado es de 16,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 149,
@@ -3928,8 +4224,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 1,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 210,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0149/Happy.png",
@@ -3942,7 +4238,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dragonite ocupa el número 149 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y volador.",
       "Su peso registrado es de 210 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 150,
@@ -3955,7 +4253,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "raro",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 122,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0150/Happy.png",
@@ -3968,7 +4266,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mewtwo ocupa el número 150 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 122 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 151,
@@ -3981,7 +4281,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 1,
     "habitat": "raro",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0151/Happy.png",
@@ -3994,7 +4294,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mew ocupa el número 151 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 152,
@@ -4007,7 +4309,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0152/Happy.png",
@@ -4020,7 +4322,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Chikorita ocupa el número 152 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 6,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 153,
@@ -4032,8 +4336,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 2,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0153/Happy.png",
@@ -4046,7 +4350,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bayleef ocupa el número 153 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 15,8 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 154,
@@ -4058,8 +4364,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 2,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 100.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0154/Happy.png",
@@ -4072,7 +4378,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Meganium ocupa el número 154 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 100,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 155,
@@ -4085,7 +4393,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0155/Happy.png",
@@ -4098,7 +4406,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cyndaquil ocupa el número 155 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 7,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 156,
@@ -4110,8 +4420,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 2,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0156/Happy.png",
@@ -4124,7 +4434,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Quilava ocupa el número 156 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 19 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 157,
@@ -4136,8 +4448,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 2,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 79.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0157/Happy.png",
@@ -4150,7 +4462,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Typhlosion ocupa el número 157 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 79,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 158,
@@ -4163,7 +4477,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0158/Happy.png",
@@ -4176,7 +4490,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Totodile ocupa el número 158 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 9,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 159,
@@ -4188,8 +4504,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 2,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 25,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0159/Happy.png",
@@ -4202,7 +4518,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Croconaw ocupa el número 159 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 25 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 160,
@@ -4214,8 +4532,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 2,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 88.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0160/Happy.png",
@@ -4228,7 +4546,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Feraligatr ocupa el número 160 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 88,8 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 161,
@@ -4241,7 +4561,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0161/Happy.png",
@@ -4254,7 +4574,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sentret ocupa el número 161 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 162,
@@ -4266,8 +4588,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 2,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 32.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0162/Happy.png",
@@ -4280,7 +4602,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Furret ocupa el número 162 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 32,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 163,
@@ -4294,7 +4618,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 21.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0163/Happy.png",
@@ -4307,7 +4631,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hoothoot ocupa el número 163 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 21,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 164,
@@ -4320,8 +4646,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 2,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 40.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0164/Happy.png",
@@ -4334,7 +4660,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Noctowl ocupa el número 164 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 40,8 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 165,
@@ -4348,7 +4676,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0165/Happy.png",
@@ -4361,7 +4689,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ledyba ocupa el número 165 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y volador.",
       "Su peso registrado es de 10,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 166,
@@ -4374,8 +4704,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 2,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 35.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0166/Happy.png",
@@ -4388,7 +4718,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ledian ocupa el número 166 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y volador.",
       "Su peso registrado es de 35,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 167,
@@ -4402,7 +4734,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0167/Happy.png",
@@ -4415,7 +4747,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Spinarak ocupa el número 167 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y veneno.",
       "Su peso registrado es de 8,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 168,
@@ -4428,8 +4762,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "armor",
     "generation": 2,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 33.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0168/Happy.png",
@@ -4442,7 +4776,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ariados ocupa el número 168 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y veneno.",
       "Su peso registrado es de 33,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 169,
@@ -4455,8 +4791,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 2,
     "habitat": "cueva",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 75,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0169/Happy.png",
@@ -4469,7 +4805,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Crobat ocupa el número 169 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y volador.",
       "Su peso registrado es de 75 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 170,
@@ -4483,7 +4821,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0170/Happy.png",
@@ -4496,7 +4834,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Chinchou ocupa el número 170 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y eléctrico.",
       "Su peso registrado es de 12 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 171,
@@ -4509,8 +4849,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 2,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 22.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0171/Happy.png",
@@ -4523,7 +4863,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lanturn ocupa el número 171 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y eléctrico.",
       "Su peso registrado es de 22,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 172,
@@ -4536,7 +4878,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0172/Happy.png",
@@ -4549,7 +4891,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pichu ocupa el número 172 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 173,
@@ -4562,7 +4906,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0173/Happy.png",
@@ -4575,7 +4919,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cleffa ocupa el número 173 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 174,
@@ -4589,7 +4935,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0174/Happy.png",
@@ -4602,7 +4948,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Igglybuff ocupa el número 174 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y hada.",
       "Su peso registrado es de 1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 175,
@@ -4615,7 +4963,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0175/Happy.png",
@@ -4628,7 +4976,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Togepi ocupa el número 175 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 1,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 176,
@@ -4641,8 +4991,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 2,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0176/Happy.png",
@@ -4655,7 +5005,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Togetic ocupa el número 176 de la Pokédex Nacional.",
       "Su combinación de tipos es hada y volador.",
       "Su peso registrado es de 3,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 177,
@@ -4669,7 +5021,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0177/Happy.png",
@@ -4682,7 +5034,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Natu ocupa el número 177 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y volador.",
       "Su peso registrado es de 2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 178,
@@ -4695,8 +5049,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 2,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0178/Happy.png",
@@ -4709,7 +5063,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Xatu ocupa el número 178 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y volador.",
       "Su peso registrado es de 15 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 179,
@@ -4722,7 +5078,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0179/Happy.png",
@@ -4735,7 +5091,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mareep ocupa el número 179 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 7,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 180,
@@ -4747,8 +5105,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 2,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 13.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0180/Happy.png",
@@ -4761,7 +5119,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Flaaffy ocupa el número 180 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 13,3 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 181,
@@ -4773,8 +5133,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 2,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 61.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0181/Happy.png",
@@ -4787,7 +5147,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ampharos ocupa el número 181 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 61,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 182,
@@ -4799,8 +5161,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 2,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0182/Happy.png",
@@ -4813,7 +5175,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bellossom ocupa el número 182 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 5,8 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 183,
@@ -4826,8 +5190,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 2,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0183/Happy.png",
@@ -4840,7 +5204,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Marill ocupa el número 183 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y hada.",
       "Su peso registrado es de 8,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 184,
@@ -4853,8 +5219,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 2,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 28.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0184/Happy.png",
@@ -4867,7 +5233,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Azumarill ocupa el número 184 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y hada.",
       "Su peso registrado es de 28,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 185,
@@ -4879,8 +5247,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 2,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 38,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0185/Happy.png",
@@ -4893,7 +5261,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sudowoodo ocupa el número 185 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 38 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 186,
@@ -4905,8 +5275,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 2,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 33.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0186/Happy.png",
@@ -4919,7 +5289,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Politoed ocupa el número 186 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 33,9 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 187,
@@ -4933,7 +5305,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0187/Happy.png",
@@ -4946,7 +5318,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hoppip ocupa el número 187 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y volador.",
       "Su peso registrado es de 0,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 188,
@@ -4959,8 +5333,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 2,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0188/Happy.png",
@@ -4973,7 +5347,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Skiploom ocupa el número 188 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y volador.",
       "Su peso registrado es de 1 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 189,
@@ -4986,8 +5362,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 2,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0189/Happy.png",
@@ -5000,7 +5376,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Jumpluff ocupa el número 189 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y volador.",
       "Su peso registrado es de 3 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 190,
@@ -5013,7 +5391,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0190/Happy.png",
@@ -5026,7 +5404,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Aipom ocupa el número 190 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 11,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 191,
@@ -5039,7 +5419,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0191/Happy.png",
@@ -5052,7 +5432,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sunkern ocupa el número 191 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 1,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 192,
@@ -5064,8 +5446,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 2,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0192/Happy.png",
@@ -5078,7 +5460,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sunflora ocupa el número 192 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 8,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 193,
@@ -5092,7 +5476,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 38,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0193/Happy.png",
@@ -5105,7 +5489,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Yanma ocupa el número 193 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y volador.",
       "Su peso registrado es de 38 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 194,
@@ -5119,7 +5505,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0194/Happy.png",
@@ -5132,7 +5518,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wooper ocupa el número 194 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y tierra.",
       "Su peso registrado es de 8,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 195,
@@ -5145,8 +5533,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 2,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 75,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0195/Happy.png",
@@ -5159,7 +5547,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Quagsire ocupa el número 195 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y tierra.",
       "Su peso registrado es de 75 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 196,
@@ -5171,8 +5561,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 2,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 26.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0196/Happy.png",
@@ -5185,7 +5575,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Espeon ocupa el número 196 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 26,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 197,
@@ -5197,8 +5589,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 2,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 27,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0197/Happy.png",
@@ -5211,7 +5603,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Umbreon ocupa el número 197 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro.",
       "Su peso registrado es de 27 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 198,
@@ -5225,7 +5619,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0198/Happy.png",
@@ -5238,7 +5632,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Murkrow ocupa el número 198 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y volador.",
       "Su peso registrado es de 2,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 199,
@@ -5251,8 +5647,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 2,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 79.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0199/Happy.png",
@@ -5265,7 +5661,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Slowking ocupa el número 199 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y psíquico.",
       "Su peso registrado es de 79,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 200,
@@ -5278,7 +5676,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0200/Happy.png",
@@ -5291,7 +5689,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Misdreavus ocupa el número 200 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 201,
@@ -5304,7 +5704,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "raro",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0201/Happy.png",
@@ -5317,7 +5717,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Unown ocupa el número 201 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 202,
@@ -5329,8 +5731,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 2,
     "habitat": "cueva",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 28.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0202/Happy.png",
@@ -5343,7 +5745,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wobbuffet ocupa el número 202 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 28,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 203,
@@ -5357,7 +5761,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 41.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0203/Happy.png",
@@ -5370,7 +5774,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Girafarig ocupa el número 203 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y psíquico.",
       "Su peso registrado es de 41,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 204,
@@ -5383,7 +5789,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0204/Happy.png",
@@ -5396,7 +5802,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pineco ocupa el número 204 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 7,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 205,
@@ -5409,8 +5817,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "ball",
     "generation": 2,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 125.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0205/Happy.png",
@@ -5423,7 +5831,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Forretress ocupa el número 205 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y acero.",
       "Su peso registrado es de 125,8 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 206,
@@ -5436,7 +5846,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 14,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0206/Happy.png",
@@ -5449,7 +5859,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dunsparce ocupa el número 206 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 14 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 207,
@@ -5463,7 +5875,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 64.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0207/Happy.png",
@@ -5476,7 +5888,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gligar ocupa el número 207 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y volador.",
       "Su peso registrado es de 64,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 208,
@@ -5489,8 +5903,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 2,
     "habitat": "cueva",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 400,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0208/Happy.png",
@@ -5503,7 +5917,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Steelix ocupa el número 208 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y tierra.",
       "Su peso registrado es de 400 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 209,
@@ -5516,7 +5932,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "ciudad",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0209/Happy.png",
@@ -5529,7 +5945,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Snubbull ocupa el número 209 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 7,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 210,
@@ -5541,8 +5959,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 2,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 48.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0210/Happy.png",
@@ -5555,7 +5973,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Granbull ocupa el número 210 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 48,7 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 211,
@@ -5569,7 +5989,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0211/Happy.png",
@@ -5582,7 +6002,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Qwilfish ocupa el número 211 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y veneno.",
       "Su peso registrado es de 3,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 212,
@@ -5595,8 +6017,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 2,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 118,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0212/Happy.png",
@@ -5609,7 +6031,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Scizor ocupa el número 212 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y acero.",
       "Su peso registrado es de 118 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 213,
@@ -5623,7 +6047,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 20.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0213/Happy.png",
@@ -5636,7 +6060,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Shuckle ocupa el número 213 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y roca.",
       "Su peso registrado es de 20,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 214,
@@ -5650,7 +6076,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 54,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0214/Happy.png",
@@ -5663,7 +6089,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Heracross ocupa el número 214 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y lucha.",
       "Su peso registrado es de 54 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 215,
@@ -5677,7 +6105,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 28,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0215/Happy.png",
@@ -5690,7 +6118,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sneasel ocupa el número 215 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y hielo.",
       "Su peso registrado es de 28 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 216,
@@ -5703,7 +6133,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0216/Happy.png",
@@ -5716,7 +6146,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Teddiursa ocupa el número 216 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 8,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 217,
@@ -5728,8 +6160,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 2,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 125.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0217/Happy.png",
@@ -5742,7 +6174,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ursaring ocupa el número 217 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 125,8 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 218,
@@ -5755,7 +6189,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 35,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0218/Happy.png",
@@ -5768,7 +6202,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Slugma ocupa el número 218 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 35 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 219,
@@ -5781,8 +6217,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 2,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 55,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0219/Happy.png",
@@ -5795,7 +6231,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Magcargo ocupa el número 219 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y roca.",
       "Su peso registrado es de 55 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 220,
@@ -5809,7 +6247,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0220/Happy.png",
@@ -5822,7 +6260,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Swinub ocupa el número 220 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo y tierra.",
       "Su peso registrado es de 6,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 221,
@@ -5835,8 +6275,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 2,
     "habitat": "cueva",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 55.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0221/Happy.png",
@@ -5849,7 +6289,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Piloswine ocupa el número 221 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo y tierra.",
       "Su peso registrado es de 55,8 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 222,
@@ -5863,7 +6305,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0222/Happy.png",
@@ -5876,7 +6318,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Corsola ocupa el número 222 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y roca.",
       "Su peso registrado es de 5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 223,
@@ -5889,7 +6333,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0223/Happy.png",
@@ -5902,7 +6346,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Remoraid ocupa el número 223 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 12 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 224,
@@ -5914,8 +6360,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "tentacles",
     "generation": 2,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 28.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0224/Happy.png",
@@ -5928,7 +6374,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Octillery ocupa el número 224 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 28,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 225,
@@ -5942,7 +6390,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 16,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0225/Happy.png",
@@ -5955,7 +6403,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Delibird ocupa el número 225 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo y volador.",
       "Su peso registrado es de 16 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 226,
@@ -5968,8 +6418,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 2,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 220,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0226/Happy.png",
@@ -5982,7 +6432,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mantine ocupa el número 226 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y volador.",
       "Su peso registrado es de 220 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 227,
@@ -5996,7 +6448,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "terreno accidentado",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 50.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0227/Happy.png",
@@ -6009,7 +6461,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Skarmory ocupa el número 227 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y volador.",
       "Su peso registrado es de 50,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 228,
@@ -6023,7 +6477,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "terreno accidentado",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0228/Happy.png",
@@ -6036,7 +6490,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Houndour ocupa el número 228 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y fuego.",
       "Su peso registrado es de 10,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 229,
@@ -6049,8 +6505,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 2,
     "habitat": "terreno accidentado",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 35,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0229/Happy.png",
@@ -6063,7 +6519,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Houndoom ocupa el número 229 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y fuego.",
       "Su peso registrado es de 35 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 230,
@@ -6076,8 +6534,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 2,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 152,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0230/Happy.png",
@@ -6090,7 +6548,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kingdra ocupa el número 230 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y dragón.",
       "Su peso registrado es de 152 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 231,
@@ -6103,7 +6563,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "terreno accidentado",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 33.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0231/Happy.png",
@@ -6116,7 +6576,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Phanpy ocupa el número 231 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 33,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 232,
@@ -6128,8 +6590,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 2,
     "habitat": "terreno accidentado",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 120,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0232/Happy.png",
@@ -6142,7 +6604,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Donphan ocupa el número 232 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 120 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 233,
@@ -6154,8 +6618,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "legs",
     "generation": 2,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 32.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0233/Happy.png",
@@ -6168,7 +6632,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Porygon2 ocupa el número 233 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 32,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 234,
@@ -6181,7 +6647,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 71.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0234/Happy.png",
@@ -6194,7 +6660,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Stantler ocupa el número 234 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 71,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 235,
@@ -6207,7 +6675,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "ciudad",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 58,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0235/Happy.png",
@@ -6220,7 +6688,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Smeargle ocupa el número 235 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 58 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 236,
@@ -6233,7 +6703,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "ciudad",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 21,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0236/Happy.png",
@@ -6246,7 +6716,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tyrogue ocupa el número 236 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 21 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 237,
@@ -6258,8 +6730,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 2,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 48,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0237/Happy.png",
@@ -6272,7 +6744,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hitmontop ocupa el número 237 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 48 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 238,
@@ -6286,7 +6760,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "ciudad",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0238/Happy.png",
@@ -6299,7 +6773,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Smoochum ocupa el número 238 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo y psíquico.",
       "Su peso registrado es de 6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 239,
@@ -6312,7 +6788,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 23.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0239/Happy.png",
@@ -6325,7 +6801,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Elekid ocupa el número 239 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 23,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 240,
@@ -6338,7 +6816,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 21.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0240/Happy.png",
@@ -6351,7 +6829,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Magby ocupa el número 240 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 21,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 241,
@@ -6364,7 +6844,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 75.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0241/Happy.png",
@@ -6377,7 +6857,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Miltank ocupa el número 241 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 75,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 242,
@@ -6389,8 +6871,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 2,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 46.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0242/Happy.png",
@@ -6403,7 +6885,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Blissey ocupa el número 242 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 46,8 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 243,
@@ -6416,7 +6900,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 178,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0243/Happy.png",
@@ -6429,7 +6913,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Raikou ocupa el número 243 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 178 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 244,
@@ -6442,7 +6928,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 198,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0244/Happy.png",
@@ -6455,7 +6941,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Entei ocupa el número 244 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 198 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 245,
@@ -6468,7 +6956,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 187,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0245/Happy.png",
@@ -6481,7 +6969,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Suicune ocupa el número 245 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 187 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 246,
@@ -6495,7 +6985,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 72,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0246/Happy.png",
@@ -6508,7 +6998,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Larvitar ocupa el número 246 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y tierra.",
       "Su peso registrado es de 72 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 247,
@@ -6521,8 +7013,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 2,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 152,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0247/Happy.png",
@@ -6535,7 +7027,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pupitar ocupa el número 247 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y tierra.",
       "Su peso registrado es de 152 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 248,
@@ -6548,8 +7042,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 2,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 202,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0248/Happy.png",
@@ -6562,7 +7056,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tyranitar ocupa el número 248 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y siniestro.",
       "Su peso registrado es de 202 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 249,
@@ -6576,7 +7072,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "raro",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 216,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0249/Happy.png",
@@ -6589,7 +7085,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lugia ocupa el número 249 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y volador.",
       "Su peso registrado es de 216 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 250,
@@ -6603,7 +7101,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "raro",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 199,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0250/Happy.png",
@@ -6616,7 +7114,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ho Oh ocupa el número 250 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y volador.",
       "Su peso registrado es de 199 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 251,
@@ -6630,7 +7130,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 2,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0251/Happy.png",
@@ -6643,7 +7143,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Celebi ocupa el número 251 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y planta.",
       "Su peso registrado es de 5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 252,
@@ -6656,7 +7158,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0252/Happy.png",
@@ -6669,7 +7171,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Treecko ocupa el número 252 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 253,
@@ -6681,8 +7185,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 21.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0253/Happy.png",
@@ -6695,7 +7199,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Grovyle ocupa el número 253 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 21,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 254,
@@ -6707,8 +7213,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 52.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0254/Happy.png",
@@ -6721,7 +7227,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sceptile ocupa el número 254 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 52,2 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 255,
@@ -6734,7 +7242,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0255/Happy.png",
@@ -6747,7 +7255,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Torchic ocupa el número 255 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 2,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 256,
@@ -6760,8 +7270,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 3,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0256/Happy.png",
@@ -6774,7 +7284,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Combusken ocupa el número 256 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y lucha.",
       "Su peso registrado es de 19,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 257,
@@ -6787,8 +7299,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 3,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 52,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0257/Happy.png",
@@ -6801,7 +7313,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Blaziken ocupa el número 257 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y lucha.",
       "Su peso registrado es de 52 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 258,
@@ -6814,7 +7328,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0258/Happy.png",
@@ -6827,7 +7341,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mudkip ocupa el número 258 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 7,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 259,
@@ -6840,8 +7356,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 3,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 28,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0259/Happy.png",
@@ -6854,7 +7370,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Marshtomp ocupa el número 259 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y tierra.",
       "Su peso registrado es de 28 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 260,
@@ -6867,8 +7385,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 3,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 81.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0260/Happy.png",
@@ -6881,7 +7399,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Swampert ocupa el número 260 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y tierra.",
       "Su peso registrado es de 81,9 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 261,
@@ -6894,7 +7414,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 13.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0261/Happy.png",
@@ -6907,7 +7427,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Poochyena ocupa el número 261 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro.",
       "Su peso registrado es de 13,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 262,
@@ -6919,8 +7441,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 3,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 37,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0262/Happy.png",
@@ -6933,7 +7455,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mightyena ocupa el número 262 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro.",
       "Su peso registrado es de 37 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 263,
@@ -6946,7 +7470,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 17.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0263/Happy.png",
@@ -6959,7 +7483,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Zigzagoon ocupa el número 263 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 17,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 264,
@@ -6971,8 +7497,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 3,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 32.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0264/Happy.png",
@@ -6985,7 +7511,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Linoone ocupa el número 264 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 32,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 265,
@@ -6998,7 +7526,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0265/Happy.png",
@@ -7011,7 +7539,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wurmple ocupa el número 265 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 3,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 266,
@@ -7023,8 +7553,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "ball",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0266/Happy.png",
@@ -7037,7 +7567,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Silcoon ocupa el número 266 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 10 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 267,
@@ -7050,8 +7582,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 28.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0267/Happy.png",
@@ -7064,7 +7596,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Beautifly ocupa el número 267 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y volador.",
       "Su peso registrado es de 28,4 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 268,
@@ -7076,8 +7610,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "ball",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0268/Happy.png",
@@ -7090,7 +7624,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cascoon ocupa el número 268 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 11,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 269,
@@ -7103,8 +7639,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 31.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0269/Happy.png",
@@ -7117,7 +7653,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dustox ocupa el número 269 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y veneno.",
       "Su peso registrado es de 31,6 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 270,
@@ -7131,7 +7669,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0270/Happy.png",
@@ -7144,7 +7682,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lotad ocupa el número 270 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y planta.",
       "Su peso registrado es de 2,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 271,
@@ -7157,8 +7697,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 3,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 32.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0271/Happy.png",
@@ -7171,7 +7711,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lombre ocupa el número 271 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y planta.",
       "Su peso registrado es de 32,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 272,
@@ -7184,8 +7726,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 3,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 55,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0272/Happy.png",
@@ -7198,7 +7740,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ludicolo ocupa el número 272 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y planta.",
       "Su peso registrado es de 55 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 273,
@@ -7211,7 +7755,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0273/Happy.png",
@@ -7224,7 +7768,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Seedot ocupa el número 273 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 274,
@@ -7237,8 +7783,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 28,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0274/Happy.png",
@@ -7251,7 +7797,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Nuzleaf ocupa el número 274 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y siniestro.",
       "Su peso registrado es de 28 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 275,
@@ -7264,8 +7812,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 59.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0275/Happy.png",
@@ -7278,7 +7826,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Shiftry ocupa el número 275 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y siniestro.",
       "Su peso registrado es de 59,6 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 276,
@@ -7292,7 +7842,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0276/Happy.png",
@@ -7305,7 +7855,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Taillow ocupa el número 276 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 2,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 277,
@@ -7318,8 +7870,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 3,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0277/Happy.png",
@@ -7332,7 +7884,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Swellow ocupa el número 277 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 19,8 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 278,
@@ -7346,7 +7900,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0278/Happy.png",
@@ -7359,7 +7913,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wingull ocupa el número 278 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y volador.",
       "Su peso registrado es de 9,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 279,
@@ -7372,8 +7928,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 3,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 28,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0279/Happy.png",
@@ -7386,7 +7942,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pelipper ocupa el número 279 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y volador.",
       "Su peso registrado es de 28 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 280,
@@ -7400,7 +7958,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "ciudad",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0280/Happy.png",
@@ -7413,7 +7971,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ralts ocupa el número 280 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y hada.",
       "Su peso registrado es de 6,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 281,
@@ -7426,8 +7986,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 3,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 20.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0281/Happy.png",
@@ -7440,7 +8000,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kirlia ocupa el número 281 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y hada.",
       "Su peso registrado es de 20,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 282,
@@ -7453,8 +8015,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 3,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 48.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0282/Happy.png",
@@ -7467,7 +8029,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gardevoir ocupa el número 282 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y hada.",
       "Su peso registrado es de 48,4 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 283,
@@ -7481,7 +8045,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0283/Happy.png",
@@ -7494,7 +8058,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Surskit ocupa el número 283 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y agua.",
       "Su peso registrado es de 1,7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 284,
@@ -7507,8 +8073,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 3,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0284/Happy.png",
@@ -7521,7 +8087,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Masquerain ocupa el número 284 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y volador.",
       "Su peso registrado es de 3,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 285,
@@ -7534,7 +8102,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0285/Happy.png",
@@ -7547,7 +8115,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Shroomish ocupa el número 285 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 4,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 286,
@@ -7560,8 +8130,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 39.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0286/Happy.png",
@@ -7574,7 +8144,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Breloom ocupa el número 286 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y lucha.",
       "Su peso registrado es de 39,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 287,
@@ -7587,7 +8159,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 24,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0287/Happy.png",
@@ -7600,7 +8172,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Slakoth ocupa el número 287 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 24 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 288,
@@ -7612,8 +8186,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 46.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0288/Happy.png",
@@ -7626,7 +8200,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Vigoroth ocupa el número 288 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 46,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 289,
@@ -7638,8 +8214,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 130.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0289/Happy.png",
@@ -7652,7 +8228,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Slaking ocupa el número 289 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 130,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 290,
@@ -7666,7 +8244,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0290/Happy.png",
@@ -7679,7 +8257,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Nincada ocupa el número 290 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y tierra.",
       "Su peso registrado es de 5,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 291,
@@ -7692,8 +8272,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0291/Happy.png",
@@ -7706,7 +8286,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ninjask ocupa el número 291 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y volador.",
       "Su peso registrado es de 12 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 292,
@@ -7719,8 +8301,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0292/Happy.png",
@@ -7733,7 +8315,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Shedinja ocupa el número 292 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y fantasma.",
       "Su peso registrado es de 1,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 293,
@@ -7746,7 +8330,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 16.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0293/Happy.png",
@@ -7759,7 +8343,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Whismur ocupa el número 293 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 16,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 294,
@@ -7771,8 +8357,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 3,
     "habitat": "cueva",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 40.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0294/Happy.png",
@@ -7785,7 +8371,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Loudred ocupa el número 294 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 40,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 295,
@@ -7797,8 +8385,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 3,
     "habitat": "cueva",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 84,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0295/Happy.png",
@@ -7811,7 +8399,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Exploud ocupa el número 295 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 84 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 296,
@@ -7824,7 +8414,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 86.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0296/Happy.png",
@@ -7837,7 +8427,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Makuhita ocupa el número 296 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 86,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 297,
@@ -7849,8 +8441,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 3,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 253.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0297/Happy.png",
@@ -7863,7 +8455,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hariyama ocupa el número 297 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 253,8 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 298,
@@ -7877,7 +8471,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0298/Happy.png",
@@ -7890,7 +8484,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Azurill ocupa el número 298 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y hada.",
       "Su peso registrado es de 2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 299,
@@ -7903,7 +8499,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 97,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0299/Happy.png",
@@ -7916,7 +8512,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Nosepass ocupa el número 299 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 97 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 300,
@@ -7929,7 +8527,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0300/Happy.png",
@@ -7942,7 +8540,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Skitty ocupa el número 300 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 11 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 301,
@@ -7954,8 +8554,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 32.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0301/Happy.png",
@@ -7968,7 +8568,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Delcatty ocupa el número 301 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 32,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 302,
@@ -7982,7 +8584,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0302/Happy.png",
@@ -7995,7 +8597,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sableye ocupa el número 302 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y fantasma.",
       "Su peso registrado es de 11 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 303,
@@ -8009,7 +8613,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0303/Happy.png",
@@ -8022,7 +8626,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mawile ocupa el número 303 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y hada.",
       "Su peso registrado es de 11,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 304,
@@ -8036,7 +8642,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 60,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0304/Happy.png",
@@ -8049,7 +8655,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Aron ocupa el número 304 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y roca.",
       "Su peso registrado es de 60 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 305,
@@ -8062,8 +8670,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 3,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 120,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0305/Happy.png",
@@ -8076,7 +8684,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lairon ocupa el número 305 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y roca.",
       "Su peso registrado es de 120 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 306,
@@ -8089,8 +8699,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 3,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 360,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0306/Happy.png",
@@ -8103,7 +8713,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Aggron ocupa el número 306 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y roca.",
       "Su peso registrado es de 360 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 307,
@@ -8117,7 +8729,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0307/Happy.png",
@@ -8130,7 +8742,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Meditite ocupa el número 307 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha y psíquico.",
       "Su peso registrado es de 11,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 308,
@@ -8143,8 +8757,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 3,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 31.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0308/Happy.png",
@@ -8157,7 +8771,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Medicham ocupa el número 308 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha y psíquico.",
       "Su peso registrado es de 31,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 309,
@@ -8170,7 +8786,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0309/Happy.png",
@@ -8183,7 +8799,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Electrike ocupa el número 309 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 15,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 310,
@@ -8195,8 +8813,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 3,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 40.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0310/Happy.png",
@@ -8209,7 +8827,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Manectric ocupa el número 310 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 40,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 311,
@@ -8222,7 +8842,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0311/Happy.png",
@@ -8235,7 +8855,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Plusle ocupa el número 311 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 4,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 312,
@@ -8248,7 +8870,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0312/Happy.png",
@@ -8261,7 +8883,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Minun ocupa el número 312 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 4,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 313,
@@ -8274,7 +8898,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 17.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0313/Happy.png",
@@ -8287,7 +8911,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Volbeat ocupa el número 313 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 17,7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 314,
@@ -8300,7 +8926,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 17.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0314/Happy.png",
@@ -8313,7 +8939,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Illumise ocupa el número 314 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 17,7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 315,
@@ -8326,8 +8954,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 3,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0315/Happy.png",
@@ -8340,7 +8968,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Roselia ocupa el número 315 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y veneno.",
       "Su peso registrado es de 2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 316,
@@ -8353,7 +8983,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0316/Happy.png",
@@ -8366,7 +8996,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gulpin ocupa el número 316 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 10,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 317,
@@ -8378,8 +9010,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 3,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 80,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0317/Happy.png",
@@ -8392,7 +9024,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Swalot ocupa el número 317 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 80 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 318,
@@ -8406,7 +9040,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 20.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0318/Happy.png",
@@ -8419,7 +9053,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Carvanha ocupa el número 318 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y siniestro.",
       "Su peso registrado es de 20,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 319,
@@ -8432,8 +9068,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 3,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 88.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0319/Happy.png",
@@ -8446,7 +9082,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sharpedo ocupa el número 319 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y siniestro.",
       "Su peso registrado es de 88,8 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 320,
@@ -8459,7 +9097,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 130,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0320/Happy.png",
@@ -8472,7 +9110,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wailmer ocupa el número 320 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 130 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 321,
@@ -8484,8 +9124,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 3,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 398,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0321/Happy.png",
@@ -8498,7 +9138,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wailord ocupa el número 321 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 398 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 322,
@@ -8512,7 +9154,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 24,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0322/Happy.png",
@@ -8525,7 +9167,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Numel ocupa el número 322 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y tierra.",
       "Su peso registrado es de 24 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 323,
@@ -8538,8 +9182,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 3,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 220,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0323/Happy.png",
@@ -8552,7 +9196,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Camerupt ocupa el número 323 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y tierra.",
       "Su peso registrado es de 220 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 324,
@@ -8565,7 +9211,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 80.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0324/Happy.png",
@@ -8578,7 +9224,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Torkoal ocupa el número 324 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 80,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 325,
@@ -8591,7 +9239,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0325/Happy.png",
@@ -8604,7 +9252,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Spoink ocupa el número 325 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 30,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 326,
@@ -8616,8 +9266,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 3,
     "habitat": "montaña",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 71.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0326/Happy.png",
@@ -8630,7 +9280,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Grumpig ocupa el número 326 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 71,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 327,
@@ -8643,7 +9295,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0327/Happy.png",
@@ -8656,7 +9308,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Spinda ocupa el número 327 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 328,
@@ -8669,7 +9323,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "terreno accidentado",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0328/Happy.png",
@@ -8682,7 +9336,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Trapinch ocupa el número 328 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 15 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 329,
@@ -8695,8 +9351,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 3,
     "habitat": "terreno accidentado",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0329/Happy.png",
@@ -8709,7 +9365,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Vibrava ocupa el número 329 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y dragón.",
       "Su peso registrado es de 15,3 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 330,
@@ -8722,8 +9380,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 3,
     "habitat": "terreno accidentado",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 82,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0330/Happy.png",
@@ -8736,7 +9394,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Flygon ocupa el número 330 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y dragón.",
       "Su peso registrado es de 82 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 331,
@@ -8749,7 +9409,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "terreno accidentado",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 51.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0331/Happy.png",
@@ -8762,7 +9422,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cacnea ocupa el número 331 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 51,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 332,
@@ -8775,8 +9437,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 3,
     "habitat": "terreno accidentado",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 77.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0332/Happy.png",
@@ -8789,7 +9451,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cacturne ocupa el número 332 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y siniestro.",
       "Su peso registrado es de 77,4 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 333,
@@ -8803,7 +9467,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0333/Happy.png",
@@ -8816,7 +9480,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Swablu ocupa el número 333 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 1,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 334,
@@ -8829,8 +9495,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 20.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0334/Happy.png",
@@ -8843,7 +9509,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Altaria ocupa el número 334 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y volador.",
       "Su peso registrado es de 20,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 335,
@@ -8856,7 +9524,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 40.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0335/Happy.png",
@@ -8869,7 +9537,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Zangoose ocupa el número 335 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 40,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 336,
@@ -8882,7 +9552,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 52.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0336/Happy.png",
@@ -8895,7 +9565,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Seviper ocupa el número 336 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 52,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 337,
@@ -8909,7 +9581,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 168,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0337/Happy.png",
@@ -8922,7 +9594,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lunatone ocupa el número 337 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y psíquico.",
       "Su peso registrado es de 168 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 338,
@@ -8936,7 +9610,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 154,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0338/Happy.png",
@@ -8949,7 +9623,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Solrock ocupa el número 338 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y psíquico.",
       "Su peso registrado es de 154 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 339,
@@ -8963,7 +9639,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0339/Happy.png",
@@ -8976,7 +9652,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Barboach ocupa el número 339 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y tierra.",
       "Su peso registrado es de 1,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 340,
@@ -8989,8 +9667,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 3,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 23.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0340/Happy.png",
@@ -9003,7 +9681,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Whiscash ocupa el número 340 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y tierra.",
       "Su peso registrado es de 23,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 341,
@@ -9016,7 +9696,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0341/Happy.png",
@@ -9029,7 +9709,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Corphish ocupa el número 341 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 11,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 342,
@@ -9042,8 +9724,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "armor",
     "generation": 3,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 32.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0342/Happy.png",
@@ -9056,7 +9738,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Crawdaunt ocupa el número 342 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y siniestro.",
       "Su peso registrado es de 32,8 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 343,
@@ -9070,7 +9754,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "terreno accidentado",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 21.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0343/Happy.png",
@@ -9083,7 +9767,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Baltoy ocupa el número 343 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y psíquico.",
       "Su peso registrado es de 21,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 344,
@@ -9096,8 +9782,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 3,
     "habitat": "terreno accidentado",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 108,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0344/Happy.png",
@@ -9110,7 +9796,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Claydol ocupa el número 344 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y psíquico.",
       "Su peso registrado es de 108 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 345,
@@ -9124,7 +9812,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 23.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0345/Happy.png",
@@ -9137,7 +9825,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lileep ocupa el número 345 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y planta.",
       "Su peso registrado es de 23,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 346,
@@ -9150,8 +9840,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 3,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 60.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0346/Happy.png",
@@ -9164,7 +9854,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cradily ocupa el número 346 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y planta.",
       "Su peso registrado es de 60,4 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 347,
@@ -9178,7 +9870,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0347/Happy.png",
@@ -9191,7 +9883,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Anorith ocupa el número 347 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y bicho.",
       "Su peso registrado es de 12,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 348,
@@ -9204,8 +9898,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 3,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 68.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0348/Happy.png",
@@ -9218,7 +9912,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Armaldo ocupa el número 348 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y bicho.",
       "Su peso registrado es de 68,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 349,
@@ -9231,7 +9927,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0349/Happy.png",
@@ -9244,7 +9940,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Feebas ocupa el número 349 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 7,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 350,
@@ -9256,8 +9954,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 3,
     "habitat": "orilla del agua",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 162,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0350/Happy.png",
@@ -9270,7 +9968,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Milotic ocupa el número 350 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 162 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 351,
@@ -9283,7 +9983,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "pradera",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0351/Happy.png",
@@ -9296,7 +9996,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Castform ocupa el número 351 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 0,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 352,
@@ -9309,7 +10011,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 22,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0352/Happy.png",
@@ -9322,7 +10024,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kecleon ocupa el número 352 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 22 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 353,
@@ -9335,7 +10039,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "ciudad",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0353/Happy.png",
@@ -9348,7 +10052,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Shuppet ocupa el número 353 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 2,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 354,
@@ -9360,8 +10066,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 3,
     "habitat": "ciudad",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0354/Happy.png",
@@ -9374,7 +10080,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Banette ocupa el número 354 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 12,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 355,
@@ -9387,7 +10095,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0355/Happy.png",
@@ -9400,7 +10108,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Duskull ocupa el número 355 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 15 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 356,
@@ -9412,8 +10122,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 3,
     "habitat": "bosque",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0356/Happy.png",
@@ -9426,7 +10136,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dusclops ocupa el número 356 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 30,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 357,
@@ -9440,7 +10152,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "bosque",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 100,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0357/Happy.png",
@@ -9453,7 +10165,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tropius ocupa el número 357 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y volador.",
       "Su peso registrado es de 100 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 358,
@@ -9465,8 +10179,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 3,
     "habitat": "pradera",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0358/Happy.png",
@@ -9479,7 +10193,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Chimecho ocupa el número 358 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 1 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 359,
@@ -9492,7 +10208,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 47,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0359/Happy.png",
@@ -9505,7 +10221,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Absol ocupa el número 359 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro.",
       "Su peso registrado es de 47 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 360,
@@ -9518,7 +10236,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 14,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0360/Happy.png",
@@ -9531,7 +10249,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wynaut ocupa el número 360 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 14 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 361,
@@ -9544,7 +10264,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 16.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0361/Happy.png",
@@ -9557,7 +10277,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Snorunt ocupa el número 361 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 16,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 362,
@@ -9569,8 +10291,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "ball",
     "generation": 3,
     "habitat": "cueva",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 256.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0362/Happy.png",
@@ -9583,7 +10305,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Glalie ocupa el número 362 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 256,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 363,
@@ -9597,7 +10321,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 39.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0363/Happy.png",
@@ -9610,7 +10334,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Spheal ocupa el número 363 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo y agua.",
       "Su peso registrado es de 39,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 364,
@@ -9623,8 +10349,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 3,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 87.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0364/Happy.png",
@@ -9637,7 +10363,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sealeo ocupa el número 364 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo y agua.",
       "Su peso registrado es de 87,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 365,
@@ -9650,8 +10378,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 3,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 150.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0365/Happy.png",
@@ -9664,7 +10392,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Walrein ocupa el número 365 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo y agua.",
       "Su peso registrado es de 150,6 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 366,
@@ -9677,7 +10407,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 52.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0366/Happy.png",
@@ -9690,7 +10420,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Clamperl ocupa el número 366 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 52,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 367,
@@ -9702,8 +10434,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 3,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 27,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0367/Happy.png",
@@ -9716,7 +10448,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Huntail ocupa el número 367 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 27 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 368,
@@ -9728,8 +10462,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 3,
     "habitat": "mar",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 22.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0368/Happy.png",
@@ -9742,7 +10476,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gorebyss ocupa el número 368 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 22,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 369,
@@ -9756,7 +10492,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 23.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0369/Happy.png",
@@ -9769,7 +10505,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Relicanth ocupa el número 369 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y roca.",
       "Su peso registrado es de 23,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 370,
@@ -9782,7 +10520,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0370/Happy.png",
@@ -9795,7 +10533,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Luvdisc ocupa el número 370 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 8,7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 371,
@@ -9808,7 +10548,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "terreno accidentado",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 42.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0371/Happy.png",
@@ -9821,7 +10561,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bagon ocupa el número 371 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón.",
       "Su peso registrado es de 42,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 372,
@@ -9833,8 +10575,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 3,
     "habitat": "terreno accidentado",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 110.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0372/Happy.png",
@@ -9847,7 +10589,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Shelgon ocupa el número 372 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón.",
       "Su peso registrado es de 110,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 373,
@@ -9860,8 +10604,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 3,
     "habitat": "terreno accidentado",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 102.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0373/Happy.png",
@@ -9874,7 +10618,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Salamence ocupa el número 373 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y volador.",
       "Su peso registrado es de 102,6 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 374,
@@ -9888,7 +10634,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "terreno accidentado",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 95.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0374/Happy.png",
@@ -9901,7 +10647,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Beldum ocupa el número 374 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y psíquico.",
       "Su peso registrado es de 95,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 375,
@@ -9914,8 +10662,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 3,
     "habitat": "terreno accidentado",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 202.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0375/Happy.png",
@@ -9928,7 +10676,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Metang ocupa el número 375 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y psíquico.",
       "Su peso registrado es de 202,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 376,
@@ -9941,8 +10691,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "heads",
     "generation": 3,
     "habitat": "terreno accidentado",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 550,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0376/Happy.png",
@@ -9955,7 +10705,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Metagross ocupa el número 376 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y psíquico.",
       "Su peso registrado es de 550 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 377,
@@ -9968,7 +10720,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 230,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0377/Happy.png",
@@ -9981,7 +10733,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Regirock ocupa el número 377 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 230 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 378,
@@ -9994,7 +10748,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 175,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0378/Happy.png",
@@ -10007,7 +10761,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Regice ocupa el número 378 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 175 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 379,
@@ -10020,7 +10776,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "cueva",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 205,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0379/Happy.png",
@@ -10033,7 +10789,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Registeel ocupa el número 379 de la Pokédex Nacional.",
       "Su combinación de tipos es acero.",
       "Su peso registrado es de 205 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 380,
@@ -10047,7 +10805,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 40,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0380/Happy.png",
@@ -10060,7 +10818,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Latias ocupa el número 380 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y psíquico.",
       "Su peso registrado es de 40 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 381,
@@ -10074,7 +10834,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "orilla del agua",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 60,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0381/Happy.png",
@@ -10087,7 +10847,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Latios ocupa el número 381 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y psíquico.",
       "Su peso registrado es de 60 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 382,
@@ -10100,7 +10862,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "mar",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 352,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0382/Happy.png",
@@ -10113,7 +10875,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kyogre ocupa el número 382 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 352 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 383,
@@ -10126,7 +10890,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "terreno accidentado",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 950,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0383/Happy.png",
@@ -10139,7 +10903,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Groudon ocupa el número 383 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 950 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 384,
@@ -10153,7 +10919,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "raro",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 206.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0384/Happy.png",
@@ -10166,7 +10932,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rayquaza ocupa el número 384 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y volador.",
       "Su peso registrado es de 206,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 385,
@@ -10180,7 +10948,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "montaña",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 1.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0385/Happy.png",
@@ -10193,7 +10961,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Jirachi ocupa el número 385 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y psíquico.",
       "Su peso registrado es de 1,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 386,
@@ -10206,7 +10976,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 3,
     "habitat": "raro",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 60.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0386/Happy.png",
@@ -10219,7 +10989,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Deoxys Normal ocupa el número 386 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 60,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 387,
@@ -10232,7 +11004,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0387/Happy.png",
@@ -10245,7 +11017,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Turtwig ocupa el número 387 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 10,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 388,
@@ -10257,8 +11031,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 97,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0388/Happy.png",
@@ -10271,7 +11045,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Grotle ocupa el número 388 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 97 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 389,
@@ -10284,8 +11060,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 310,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0389/Happy.png",
@@ -10298,7 +11074,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Torterra ocupa el número 389 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y tierra.",
       "Su peso registrado es de 310 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 390,
@@ -10311,7 +11089,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0390/Happy.png",
@@ -10324,7 +11102,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Chimchar ocupa el número 390 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 6,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 391,
@@ -10337,8 +11117,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 22,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0391/Happy.png",
@@ -10351,7 +11131,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Monferno ocupa el número 391 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y lucha.",
       "Su peso registrado es de 22 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 392,
@@ -10364,8 +11146,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 55,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0392/Happy.png",
@@ -10378,7 +11160,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Infernape ocupa el número 392 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y lucha.",
       "Su peso registrado es de 55 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 393,
@@ -10391,7 +11175,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0393/Happy.png",
@@ -10404,7 +11188,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Piplup ocupa el número 393 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 5,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 394,
@@ -10416,8 +11202,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 23,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0394/Happy.png",
@@ -10430,7 +11216,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Prinplup ocupa el número 394 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 23 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 395,
@@ -10443,8 +11231,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 84.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0395/Happy.png",
@@ -10457,7 +11245,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Empoleon ocupa el número 395 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y acero.",
       "Su peso registrado es de 84,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 396,
@@ -10471,7 +11261,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0396/Happy.png",
@@ -10484,7 +11274,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Starly ocupa el número 396 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 397,
@@ -10497,8 +11289,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0397/Happy.png",
@@ -10511,7 +11303,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Staravia ocupa el número 397 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 15,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 398,
@@ -10524,8 +11318,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 24.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0398/Happy.png",
@@ -10538,7 +11332,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Staraptor ocupa el número 398 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 24,9 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 399,
@@ -10551,7 +11347,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 20,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0399/Happy.png",
@@ -10564,7 +11360,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bidoof ocupa el número 399 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 20 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 400,
@@ -10577,8 +11375,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 31.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0400/Happy.png",
@@ -10591,7 +11389,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bibarel ocupa el número 400 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y agua.",
       "Su peso registrado es de 31,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 401,
@@ -10604,7 +11404,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0401/Happy.png",
@@ -10617,7 +11417,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kricketot ocupa el número 401 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 2,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 402,
@@ -10629,8 +11431,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 25.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0402/Happy.png",
@@ -10643,7 +11445,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kricketune ocupa el número 402 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 25,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 403,
@@ -10656,7 +11460,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0403/Happy.png",
@@ -10669,7 +11473,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Shinx ocupa el número 403 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 9,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 404,
@@ -10681,8 +11487,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0404/Happy.png",
@@ -10695,7 +11501,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Luxio ocupa el número 404 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 30,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 405,
@@ -10707,8 +11515,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 42,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0405/Happy.png",
@@ -10721,7 +11529,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Luxray ocupa el número 405 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 42 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 406,
@@ -10735,7 +11545,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0406/Happy.png",
@@ -10748,7 +11558,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Budew ocupa el número 406 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y veneno.",
       "Su peso registrado es de 1,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 407,
@@ -10761,8 +11573,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 14.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0407/Happy.png",
@@ -10775,7 +11587,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Roserade ocupa el número 407 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y veneno.",
       "Su peso registrado es de 14,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 408,
@@ -10788,7 +11602,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 31.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0408/Happy.png",
@@ -10801,7 +11615,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cranidos ocupa el número 408 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 31,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 409,
@@ -10813,8 +11629,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 102.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0409/Happy.png",
@@ -10827,7 +11643,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rampardos ocupa el número 409 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 102,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 410,
@@ -10841,7 +11659,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 57,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0410/Happy.png",
@@ -10854,7 +11672,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Shieldon ocupa el número 410 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y acero.",
       "Su peso registrado es de 57 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 411,
@@ -10867,8 +11687,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 149.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0411/Happy.png",
@@ -10881,7 +11701,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bastiodon ocupa el número 411 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y acero.",
       "Su peso registrado es de 149,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 412,
@@ -10894,7 +11716,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0412/Happy.png",
@@ -10907,7 +11729,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Burmy ocupa el número 412 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 3,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 413,
@@ -10920,8 +11744,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0413/Happy.png",
@@ -10934,7 +11758,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wormadam Plant ocupa el número 413 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y planta.",
       "Su peso registrado es de 6,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 414,
@@ -10947,8 +11773,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 23.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0414/Happy.png",
@@ -10961,7 +11787,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mothim ocupa el número 414 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y volador.",
       "Su peso registrado es de 23,3 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 415,
@@ -10975,7 +11803,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0415/Happy.png",
@@ -10988,7 +11816,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Combee ocupa el número 415 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y volador.",
       "Su peso registrado es de 5,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 416,
@@ -11001,8 +11831,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 38.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0416/Happy.png",
@@ -11015,7 +11845,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Vespiquen ocupa el número 416 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y volador.",
       "Su peso registrado es de 38,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 417,
@@ -11028,7 +11860,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0417/Happy.png",
@@ -11041,7 +11873,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pachirisu ocupa el número 417 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 3,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 418,
@@ -11054,7 +11888,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 29.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0418/Happy.png",
@@ -11067,7 +11901,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Buizel ocupa el número 418 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 29,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 419,
@@ -11079,8 +11915,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 33.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0419/Happy.png",
@@ -11093,7 +11929,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Floatzel ocupa el número 419 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 33,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 420,
@@ -11106,7 +11944,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0420/Happy.png",
@@ -11119,7 +11957,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cherubi ocupa el número 420 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 3,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 421,
@@ -11131,8 +11971,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "legs",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0421/Happy.png",
@@ -11145,7 +11985,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cherrim ocupa el número 421 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 9,3 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 422,
@@ -11158,7 +12000,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0422/Happy.png",
@@ -11171,7 +12013,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Shellos ocupa el número 422 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 6,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 423,
@@ -11184,8 +12028,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 29.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0423/Happy.png",
@@ -11198,7 +12042,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gastrodon ocupa el número 423 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y tierra.",
       "Su peso registrado es de 29,9 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 424,
@@ -11210,8 +12056,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 20.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0424/Happy.png",
@@ -11224,7 +12070,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ambipom ocupa el número 424 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 20,3 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 425,
@@ -11238,7 +12086,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0425/Happy.png",
@@ -11251,7 +12099,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Drifloon ocupa el número 425 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y volador.",
       "Su peso registrado es de 1,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 426,
@@ -11264,8 +12114,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0426/Happy.png",
@@ -11278,7 +12128,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Drifblim ocupa el número 426 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y volador.",
       "Su peso registrado es de 15 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 427,
@@ -11291,7 +12143,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0427/Happy.png",
@@ -11304,7 +12156,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Buneary ocupa el número 427 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 5,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 428,
@@ -11316,8 +12170,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 33.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0428/Happy.png",
@@ -11330,7 +12184,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lopunny ocupa el número 428 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 33,3 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 429,
@@ -11342,8 +12198,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "ball",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0429/Happy.png",
@@ -11356,7 +12212,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mismagius ocupa el número 429 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 4,4 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 430,
@@ -11369,8 +12227,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 27.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0430/Happy.png",
@@ -11383,7 +12241,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Honchkrow ocupa el número 430 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y volador.",
       "Su peso registrado es de 27,3 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 431,
@@ -11396,7 +12256,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0431/Happy.png",
@@ -11409,7 +12269,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Glameow ocupa el número 431 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 3,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 432,
@@ -11421,8 +12283,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 43.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0432/Happy.png",
@@ -11435,7 +12297,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Purugly ocupa el número 432 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 43,8 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 433,
@@ -11448,7 +12312,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0433/Happy.png",
@@ -11461,7 +12325,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Chingling ocupa el número 433 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 0,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 434,
@@ -11475,7 +12341,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0434/Happy.png",
@@ -11488,7 +12354,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Stunky ocupa el número 434 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y siniestro.",
       "Su peso registrado es de 19,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 435,
@@ -11501,8 +12369,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 38,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0435/Happy.png",
@@ -11515,7 +12383,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Skuntank ocupa el número 435 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y siniestro.",
       "Su peso registrado es de 38 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 436,
@@ -11529,7 +12399,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 60.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0436/Happy.png",
@@ -11542,7 +12412,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bronzor ocupa el número 436 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y psíquico.",
       "Su peso registrado es de 60,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 437,
@@ -11555,8 +12427,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 187,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0437/Happy.png",
@@ -11569,7 +12441,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bronzong ocupa el número 437 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y psíquico.",
       "Su peso registrado es de 187 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 438,
@@ -11582,7 +12456,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0438/Happy.png",
@@ -11595,7 +12469,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bonsly ocupa el número 438 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 15 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 439,
@@ -11609,7 +12485,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 13,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0439/Happy.png",
@@ -11622,7 +12498,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mime Jr ocupa el número 439 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y hada.",
       "Su peso registrado es de 13 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 440,
@@ -11635,7 +12513,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 24.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0440/Happy.png",
@@ -11648,7 +12526,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Happiny ocupa el número 440 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 24,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 441,
@@ -11662,7 +12542,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0441/Happy.png",
@@ -11675,7 +12555,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Chatot ocupa el número 441 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 1,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 442,
@@ -11689,7 +12571,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 108,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0442/Happy.png",
@@ -11702,7 +12584,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Spiritomb ocupa el número 442 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y siniestro.",
       "Su peso registrado es de 108 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 443,
@@ -11716,7 +12600,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 20.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0443/Happy.png",
@@ -11729,7 +12613,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gible ocupa el número 443 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y tierra.",
       "Su peso registrado es de 20,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 444,
@@ -11742,8 +12628,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 56,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0444/Happy.png",
@@ -11756,7 +12642,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gabite ocupa el número 444 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y tierra.",
       "Su peso registrado es de 56 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 445,
@@ -11769,8 +12657,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 95,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0445/Happy.png",
@@ -11783,7 +12671,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Garchomp ocupa el número 445 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y tierra.",
       "Su peso registrado es de 95 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 446,
@@ -11796,7 +12686,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 105,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0446/Happy.png",
@@ -11809,7 +12699,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Munchlax ocupa el número 446 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 105 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 447,
@@ -11822,7 +12714,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 20.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0447/Happy.png",
@@ -11835,7 +12727,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Riolu ocupa el número 447 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 20,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 448,
@@ -11848,8 +12742,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 54,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0448/Happy.png",
@@ -11862,7 +12756,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lucario ocupa el número 448 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha y acero.",
       "Su peso registrado es de 54 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 449,
@@ -11875,7 +12771,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 49.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0449/Happy.png",
@@ -11888,7 +12784,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hippopotas ocupa el número 449 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 49,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 450,
@@ -11900,8 +12798,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 300,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0450/Happy.png",
@@ -11914,7 +12812,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hippowdon ocupa el número 450 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 300 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 451,
@@ -11928,7 +12828,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0451/Happy.png",
@@ -11941,7 +12841,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Skorupi ocupa el número 451 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y bicho.",
       "Su peso registrado es de 12 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 452,
@@ -11954,8 +12856,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "armor",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 61.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0452/Happy.png",
@@ -11968,7 +12870,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Drapion ocupa el número 452 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y siniestro.",
       "Su peso registrado es de 61,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 453,
@@ -11982,7 +12886,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 23,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0453/Happy.png",
@@ -11995,7 +12899,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Croagunk ocupa el número 453 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y lucha.",
       "Su peso registrado es de 23 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 454,
@@ -12008,8 +12914,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 44.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0454/Happy.png",
@@ -12022,7 +12928,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Toxicroak ocupa el número 454 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y lucha.",
       "Su peso registrado es de 44,4 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 455,
@@ -12035,7 +12943,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 27,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0455/Happy.png",
@@ -12048,7 +12956,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Carnivine ocupa el número 455 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 27 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 456,
@@ -12061,7 +12971,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0456/Happy.png",
@@ -12074,7 +12984,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Finneon ocupa el número 456 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 457,
@@ -12086,8 +12998,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 24,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0457/Happy.png",
@@ -12100,7 +13012,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lumineon ocupa el número 457 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 24 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 458,
@@ -12114,7 +13028,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 65,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0458/Happy.png",
@@ -12127,7 +13041,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mantyke ocupa el número 458 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y volador.",
       "Su peso registrado es de 65 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 459,
@@ -12141,7 +13057,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 50.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0459/Happy.png",
@@ -12154,7 +13070,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Snover ocupa el número 459 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y hielo.",
       "Su peso registrado es de 50,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 460,
@@ -12167,8 +13085,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 135.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0460/Happy.png",
@@ -12181,7 +13099,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Abomasnow ocupa el número 460 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y hielo.",
       "Su peso registrado es de 135,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 461,
@@ -12194,8 +13114,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 34,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0461/Happy.png",
@@ -12208,7 +13128,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Weavile ocupa el número 461 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y hielo.",
       "Su peso registrado es de 34 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 462,
@@ -12221,8 +13143,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 180,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0462/Happy.png",
@@ -12235,7 +13157,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Magnezone ocupa el número 462 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y acero.",
       "Su peso registrado es de 180 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 463,
@@ -12247,8 +13171,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 140,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0463/Happy.png",
@@ -12261,7 +13185,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lickilicky ocupa el número 463 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 140 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 464,
@@ -12274,8 +13200,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 282.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0464/Happy.png",
@@ -12288,7 +13214,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rhyperior ocupa el número 464 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y roca.",
       "Su peso registrado es de 282,8 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 465,
@@ -12300,8 +13228,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 128.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0465/Happy.png",
@@ -12314,7 +13242,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tangrowth ocupa el número 465 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 128,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 466,
@@ -12326,8 +13256,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 138.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0466/Happy.png",
@@ -12340,7 +13270,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Electivire ocupa el número 466 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 138,6 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 467,
@@ -12352,8 +13284,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 68,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0467/Happy.png",
@@ -12366,7 +13298,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Magmortar ocupa el número 467 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 68 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 468,
@@ -12379,8 +13313,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 38,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0468/Happy.png",
@@ -12393,7 +13327,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Togekiss ocupa el número 468 de la Pokédex Nacional.",
       "Su combinación de tipos es hada y volador.",
       "Su peso registrado es de 38 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 469,
@@ -12406,8 +13342,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 51.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0469/Happy.png",
@@ -12420,7 +13356,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Yanmega ocupa el número 469 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y volador.",
       "Su peso registrado es de 51,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 470,
@@ -12432,8 +13370,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 25.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0470/Happy.png",
@@ -12446,7 +13384,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Leafeon ocupa el número 470 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 25,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 471,
@@ -12458,8 +13398,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 25.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0471/Happy.png",
@@ -12472,7 +13412,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Glaceon ocupa el número 471 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 25,9 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 472,
@@ -12485,8 +13427,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 42.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0472/Happy.png",
@@ -12499,7 +13441,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gliscor ocupa el número 472 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y volador.",
       "Su peso registrado es de 42,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 473,
@@ -12512,8 +13456,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 291,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0473/Happy.png",
@@ -12526,7 +13470,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mamoswine ocupa el número 473 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo y tierra.",
       "Su peso registrado es de 291 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 474,
@@ -12538,8 +13484,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 34,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0474/Happy.png",
@@ -12552,7 +13498,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Porygon Z ocupa el número 474 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 34 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 475,
@@ -12565,8 +13513,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 52,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0475/Happy.png",
@@ -12579,7 +13527,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gallade ocupa el número 475 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y lucha.",
       "Su peso registrado es de 52 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 476,
@@ -12592,8 +13542,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "heads",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 340,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0476/Happy.png",
@@ -12606,7 +13556,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Probopass ocupa el número 476 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y acero.",
       "Su peso registrado es de 340 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 477,
@@ -12618,8 +13570,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 106.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0477/Happy.png",
@@ -12632,7 +13584,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dusknoir ocupa el número 477 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 106,6 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 478,
@@ -12645,8 +13599,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 26.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0478/Happy.png",
@@ -12659,7 +13613,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Froslass ocupa el número 478 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo y fantasma.",
       "Su peso registrado es de 26,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 479,
@@ -12673,7 +13629,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0479/Happy.png",
@@ -12686,7 +13642,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rotom ocupa el número 479 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y fantasma.",
       "Su peso registrado es de 0,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 480,
@@ -12699,7 +13657,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 0.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0480/Happy.png",
@@ -12712,7 +13670,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Uxie ocupa el número 480 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 0,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 481,
@@ -12725,7 +13685,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 0.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0481/Happy.png",
@@ -12738,7 +13698,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mesprit ocupa el número 481 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 0,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 482,
@@ -12751,7 +13713,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 0.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0482/Happy.png",
@@ -12764,7 +13726,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Azelf ocupa el número 482 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 0,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 483,
@@ -12778,7 +13742,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 683,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0483/Happy.png",
@@ -12791,7 +13755,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dialga ocupa el número 483 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y dragón.",
       "Su peso registrado es de 683 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 484,
@@ -12805,7 +13771,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 336,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0484/Happy.png",
@@ -12818,7 +13784,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Palkia ocupa el número 484 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y dragón.",
       "Su peso registrado es de 336 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 485,
@@ -12832,7 +13800,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 430,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0485/Happy.png",
@@ -12845,7 +13813,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Heatran ocupa el número 485 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y acero.",
       "Su peso registrado es de 430 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 486,
@@ -12858,7 +13828,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 420,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0486/Happy.png",
@@ -12871,7 +13841,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Regigigas ocupa el número 486 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 420 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 487,
@@ -12885,7 +13857,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 750,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0487/Happy.png",
@@ -12898,7 +13870,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Giratina Altered ocupa el número 487 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y dragón.",
       "Su peso registrado es de 750 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 488,
@@ -12911,7 +13885,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 85.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0488/Happy.png",
@@ -12924,7 +13898,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cresselia ocupa el número 488 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 85,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 489,
@@ -12937,7 +13913,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 3.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0489/Happy.png",
@@ -12950,7 +13926,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Phione ocupa el número 489 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 3,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 490,
@@ -12962,8 +13940,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 4,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 1.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0490/Happy.png",
@@ -12976,7 +13954,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Manaphy ocupa el número 490 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 1,4 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 491,
@@ -12989,7 +13969,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 50.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0491/Happy.png",
@@ -13002,7 +13982,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Darkrai ocupa el número 491 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro.",
       "Su peso registrado es de 50,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 492,
@@ -13015,7 +13997,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 2.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0492/Happy.png",
@@ -13028,7 +14010,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Shaymin Land ocupa el número 492 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 2,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 493,
@@ -13041,7 +14025,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 4,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 320,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0493/Happy.png",
@@ -13054,7 +14038,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Arceus ocupa el número 493 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 320 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 494,
@@ -13068,7 +14054,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0494/Happy.png",
@@ -13081,7 +14067,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Victini ocupa el número 494 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y fuego.",
       "Su peso registrado es de 4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 495,
@@ -13094,7 +14082,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0495/Happy.png",
@@ -13107,7 +14095,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Snivy ocupa el número 495 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 8,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 496,
@@ -13119,8 +14109,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 16,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0496/Happy.png",
@@ -13133,7 +14123,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Servine ocupa el número 496 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 16 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 497,
@@ -13145,8 +14137,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 63,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0497/Happy.png",
@@ -13159,7 +14151,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Serperior ocupa el número 497 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 63 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 498,
@@ -13172,7 +14166,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0498/Happy.png",
@@ -13185,7 +14179,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tepig ocupa el número 498 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 9,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 499,
@@ -13198,8 +14194,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 55.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0499/Happy.png",
@@ -13212,7 +14208,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pignite ocupa el número 499 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y lucha.",
       "Su peso registrado es de 55,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 500,
@@ -13225,8 +14223,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 150,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0500/Happy.png",
@@ -13239,7 +14237,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Emboar ocupa el número 500 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y lucha.",
       "Su peso registrado es de 150 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 501,
@@ -13252,7 +14252,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0501/Happy.png",
@@ -13265,7 +14265,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Oshawott ocupa el número 501 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 5,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 502,
@@ -13277,8 +14279,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 24.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0502/Happy.png",
@@ -13291,7 +14293,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dewott ocupa el número 502 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 24,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 503,
@@ -13303,8 +14307,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 94.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0503/Happy.png",
@@ -13317,7 +14321,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Samurott ocupa el número 503 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 94,6 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 504,
@@ -13330,7 +14336,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0504/Happy.png",
@@ -13343,7 +14349,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Patrat ocupa el número 504 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 11,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 505,
@@ -13355,8 +14363,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 27,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0505/Happy.png",
@@ -13369,7 +14377,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Watchog ocupa el número 505 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 27 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 506,
@@ -13382,7 +14392,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0506/Happy.png",
@@ -13395,7 +14405,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lillipup ocupa el número 506 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 4,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 507,
@@ -13407,8 +14419,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 14.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0507/Happy.png",
@@ -13421,7 +14433,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Herdier ocupa el número 507 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 14,7 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 508,
@@ -13433,8 +14447,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 61,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0508/Happy.png",
@@ -13447,7 +14461,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Stoutland ocupa el número 508 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 61 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 509,
@@ -13460,7 +14476,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0509/Happy.png",
@@ -13473,7 +14489,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Purrloin ocupa el número 509 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro.",
       "Su peso registrado es de 10,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 510,
@@ -13485,8 +14503,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 37.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0510/Happy.png",
@@ -13499,7 +14517,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Liepard ocupa el número 510 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro.",
       "Su peso registrado es de 37,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 511,
@@ -13512,7 +14532,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0511/Happy.png",
@@ -13525,7 +14545,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pansage ocupa el número 511 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 10,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 512,
@@ -13537,8 +14559,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0512/Happy.png",
@@ -13551,7 +14573,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Simisage ocupa el número 512 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 30,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 513,
@@ -13564,7 +14588,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0513/Happy.png",
@@ -13577,7 +14601,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pansear ocupa el número 513 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 11 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 514,
@@ -13589,8 +14615,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 28,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0514/Happy.png",
@@ -13603,7 +14629,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Simisear ocupa el número 514 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 28 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 515,
@@ -13616,7 +14644,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 13.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0515/Happy.png",
@@ -13629,7 +14657,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Panpour ocupa el número 515 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 13,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 516,
@@ -13641,8 +14671,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 29,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0516/Happy.png",
@@ -13655,7 +14685,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Simipour ocupa el número 516 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 29 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 517,
@@ -13668,7 +14700,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 23.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0517/Happy.png",
@@ -13681,7 +14713,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Munna ocupa el número 517 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 23,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 518,
@@ -13693,8 +14727,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 60.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0518/Happy.png",
@@ -13707,7 +14741,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Musharna ocupa el número 518 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 60,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 519,
@@ -13721,7 +14757,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0519/Happy.png",
@@ -13734,7 +14770,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pidove ocupa el número 519 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 2,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 520,
@@ -13747,8 +14785,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0520/Happy.png",
@@ -13761,7 +14799,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tranquill ocupa el número 520 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 15 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 521,
@@ -13774,8 +14814,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 29,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0521/Happy.png",
@@ -13788,7 +14828,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Unfezant ocupa el número 521 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 29 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 522,
@@ -13801,7 +14843,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 29.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0522/Happy.png",
@@ -13814,7 +14856,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Blitzle ocupa el número 522 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 29,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 523,
@@ -13826,8 +14870,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 79.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0523/Happy.png",
@@ -13840,7 +14884,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Zebstrika ocupa el número 523 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 79,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 524,
@@ -13853,7 +14899,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 18,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0524/Happy.png",
@@ -13866,7 +14912,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Roggenrola ocupa el número 524 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 18 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 525,
@@ -13878,8 +14926,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "tentacles",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 102,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0525/Happy.png",
@@ -13892,7 +14940,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Boldore ocupa el número 525 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 102 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 526,
@@ -13904,8 +14954,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "tentacles",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 260,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0526/Happy.png",
@@ -13918,7 +14968,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gigalith ocupa el número 526 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 260 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 527,
@@ -13932,7 +14984,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0527/Happy.png",
@@ -13945,7 +14997,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Woobat ocupa el número 527 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y volador.",
       "Su peso registrado es de 2,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 528,
@@ -13958,8 +15012,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0528/Happy.png",
@@ -13972,7 +15026,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Swoobat ocupa el número 528 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y volador.",
       "Su peso registrado es de 10,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 529,
@@ -13985,7 +15041,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0529/Happy.png",
@@ -13998,7 +15054,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Drilbur ocupa el número 529 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 8,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 530,
@@ -14011,8 +15069,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 40.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0530/Happy.png",
@@ -14025,7 +15083,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Excadrill ocupa el número 530 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y acero.",
       "Su peso registrado es de 40,4 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 531,
@@ -14038,7 +15098,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 31,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0531/Happy.png",
@@ -14051,7 +15111,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Audino ocupa el número 531 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 31 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 532,
@@ -14064,7 +15126,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0532/Happy.png",
@@ -14077,7 +15139,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Timburr ocupa el número 532 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 12,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 533,
@@ -14089,8 +15153,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 40,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0533/Happy.png",
@@ -14103,7 +15167,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gurdurr ocupa el número 533 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 40 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 534,
@@ -14115,8 +15181,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 87,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0534/Happy.png",
@@ -14129,7 +15195,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Conkeldurr ocupa el número 534 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 87 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 535,
@@ -14142,7 +15210,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0535/Happy.png",
@@ -14155,7 +15223,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tympole ocupa el número 535 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 4,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 536,
@@ -14168,8 +15238,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 17,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0536/Happy.png",
@@ -14182,7 +15252,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Palpitoad ocupa el número 536 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y tierra.",
       "Su peso registrado es de 17 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 537,
@@ -14195,8 +15267,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 62,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0537/Happy.png",
@@ -14209,7 +15281,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Seismitoad ocupa el número 537 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y tierra.",
       "Su peso registrado es de 62 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 538,
@@ -14222,7 +15296,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 55.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0538/Happy.png",
@@ -14235,7 +15309,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Throh ocupa el número 538 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 55,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 539,
@@ -14248,7 +15324,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 51,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0539/Happy.png",
@@ -14261,7 +15337,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sawk ocupa el número 539 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 51 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 540,
@@ -14275,7 +15353,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0540/Happy.png",
@@ -14288,7 +15366,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sewaddle ocupa el número 540 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y planta.",
       "Su peso registrado es de 2,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 541,
@@ -14301,8 +15381,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0541/Happy.png",
@@ -14315,7 +15395,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Swadloon ocupa el número 541 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y planta.",
       "Su peso registrado es de 7,3 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 542,
@@ -14328,8 +15410,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 20.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0542/Happy.png",
@@ -14342,7 +15424,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Leavanny ocupa el número 542 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y planta.",
       "Su peso registrado es de 20,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 543,
@@ -14356,7 +15440,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0543/Happy.png",
@@ -14369,7 +15453,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Venipede ocupa el número 543 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y veneno.",
       "Su peso registrado es de 5,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 544,
@@ -14382,8 +15468,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "ball",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 58.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0544/Happy.png",
@@ -14396,7 +15482,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Whirlipede ocupa el número 544 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y veneno.",
       "Su peso registrado es de 58,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 545,
@@ -14409,8 +15497,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "armor",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 200.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0545/Happy.png",
@@ -14423,7 +15511,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Scolipede ocupa el número 545 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y veneno.",
       "Su peso registrado es de 200,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 546,
@@ -14437,7 +15527,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0546/Happy.png",
@@ -14450,7 +15540,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cottonee ocupa el número 546 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y hada.",
       "Su peso registrado es de 0,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 547,
@@ -14463,8 +15555,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0547/Happy.png",
@@ -14477,7 +15569,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Whimsicott ocupa el número 547 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y hada.",
       "Su peso registrado es de 6,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 548,
@@ -14490,7 +15584,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0548/Happy.png",
@@ -14503,7 +15597,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Petilil ocupa el número 548 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 6,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 549,
@@ -14515,8 +15611,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 16.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0549/Happy.png",
@@ -14529,7 +15625,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lilligant ocupa el número 549 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 16,3 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 550,
@@ -14542,7 +15640,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 18,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0550/Happy.png",
@@ -14555,7 +15653,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Basculin Red Striped ocupa el número 550 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 18 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 551,
@@ -14569,7 +15669,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0551/Happy.png",
@@ -14582,7 +15682,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sandile ocupa el número 551 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y siniestro.",
       "Su peso registrado es de 15,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 552,
@@ -14595,8 +15697,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 33.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0552/Happy.png",
@@ -14609,7 +15711,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Krokorok ocupa el número 552 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y siniestro.",
       "Su peso registrado es de 33,4 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 553,
@@ -14622,8 +15726,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 96.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0553/Happy.png",
@@ -14636,7 +15740,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Krookodile ocupa el número 553 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y siniestro.",
       "Su peso registrado es de 96,3 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 554,
@@ -14649,7 +15755,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 37.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0554/Happy.png",
@@ -14662,7 +15768,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Darumaka ocupa el número 554 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 37,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 555,
@@ -14674,8 +15782,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 92.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0555/Happy.png",
@@ -14688,7 +15796,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Darmanitan Standard ocupa el número 555 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 92,9 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 556,
@@ -14701,7 +15811,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 28,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0556/Happy.png",
@@ -14714,7 +15824,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Maractus ocupa el número 556 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 28 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 557,
@@ -14728,7 +15840,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 14.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0557/Happy.png",
@@ -14741,7 +15853,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dwebble ocupa el número 557 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y roca.",
       "Su peso registrado es de 14,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 558,
@@ -14754,8 +15868,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "armor",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 200,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0558/Happy.png",
@@ -14768,7 +15882,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Crustle ocupa el número 558 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y roca.",
       "Su peso registrado es de 200 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 559,
@@ -14782,7 +15898,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0559/Happy.png",
@@ -14795,7 +15911,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Scraggy ocupa el número 559 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y lucha.",
       "Su peso registrado es de 11,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 560,
@@ -14808,8 +15926,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0560/Happy.png",
@@ -14822,7 +15940,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Scrafty ocupa el número 560 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y lucha.",
       "Su peso registrado es de 30 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 561,
@@ -14836,7 +15956,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 14,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0561/Happy.png",
@@ -14849,7 +15969,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sigilyph ocupa el número 561 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y volador.",
       "Su peso registrado es de 14 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 562,
@@ -14862,7 +15984,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0562/Happy.png",
@@ -14875,7 +15997,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Yamask ocupa el número 562 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 1,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 563,
@@ -14887,8 +16011,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 76.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0563/Happy.png",
@@ -14901,7 +16025,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cofagrigus ocupa el número 563 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 76,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 564,
@@ -14915,7 +16041,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 16.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0564/Happy.png",
@@ -14928,7 +16054,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tirtouga ocupa el número 564 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y roca.",
       "Su peso registrado es de 16,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 565,
@@ -14941,8 +16069,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 81,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0565/Happy.png",
@@ -14955,7 +16083,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Carracosta ocupa el número 565 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y roca.",
       "Su peso registrado es de 81 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 566,
@@ -14969,7 +16099,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0566/Happy.png",
@@ -14982,7 +16112,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Archen ocupa el número 566 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y volador.",
       "Su peso registrado es de 9,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 567,
@@ -14995,8 +16127,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 32,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0567/Happy.png",
@@ -15009,7 +16141,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Archeops ocupa el número 567 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y volador.",
       "Su peso registrado es de 32 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 568,
@@ -15022,7 +16156,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 31,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0568/Happy.png",
@@ -15035,7 +16169,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Trubbish ocupa el número 568 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 31 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 569,
@@ -15047,8 +16183,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 107.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0569/Happy.png",
@@ -15061,7 +16197,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Garbodor ocupa el número 569 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 107,3 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 570,
@@ -15074,7 +16212,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0570/Happy.png",
@@ -15087,7 +16225,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Zorua ocupa el número 570 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro.",
       "Su peso registrado es de 12,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 571,
@@ -15099,8 +16239,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 81.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0571/Happy.png",
@@ -15113,7 +16253,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Zoroark ocupa el número 571 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro.",
       "Su peso registrado es de 81,1 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 572,
@@ -15126,7 +16268,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0572/Happy.png",
@@ -15139,7 +16281,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Minccino ocupa el número 572 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 5,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 573,
@@ -15151,8 +16295,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0573/Happy.png",
@@ -15165,7 +16309,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cinccino ocupa el número 573 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 7,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 574,
@@ -15178,7 +16324,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0574/Happy.png",
@@ -15191,7 +16337,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gothita ocupa el número 574 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 5,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 575,
@@ -15203,8 +16351,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 18,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0575/Happy.png",
@@ -15217,7 +16365,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gothorita ocupa el número 575 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 18 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 576,
@@ -15229,8 +16379,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 44,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0576/Happy.png",
@@ -15243,7 +16393,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gothitelle ocupa el número 576 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 44 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 577,
@@ -15256,7 +16408,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0577/Happy.png",
@@ -15269,7 +16421,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Solosis ocupa el número 577 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 578,
@@ -15281,8 +16435,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "ball",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0578/Happy.png",
@@ -15295,7 +16449,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Duosion ocupa el número 578 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 8 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 579,
@@ -15307,8 +16463,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 20.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0579/Happy.png",
@@ -15321,7 +16477,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Reuniclus ocupa el número 579 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 20,1 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 580,
@@ -15335,7 +16493,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0580/Happy.png",
@@ -15348,7 +16506,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ducklett ocupa el número 580 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y volador.",
       "Su peso registrado es de 5,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 581,
@@ -15361,8 +16521,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 24.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0581/Happy.png",
@@ -15375,7 +16535,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Swanna ocupa el número 581 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y volador.",
       "Su peso registrado es de 24,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 582,
@@ -15388,7 +16550,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0582/Happy.png",
@@ -15401,7 +16563,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Vanillite ocupa el número 582 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 5,7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 583,
@@ -15413,8 +16577,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 41,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0583/Happy.png",
@@ -15427,7 +16591,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Vanillish ocupa el número 583 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 41 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 584,
@@ -15439,8 +16605,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "heads",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 57.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0584/Happy.png",
@@ -15453,7 +16619,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Vanilluxe ocupa el número 584 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 57,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 585,
@@ -15467,7 +16635,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0585/Happy.png",
@@ -15480,7 +16648,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Deerling ocupa el número 585 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y planta.",
       "Su peso registrado es de 19,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 586,
@@ -15493,8 +16663,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 92.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0586/Happy.png",
@@ -15507,7 +16677,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sawsbuck ocupa el número 586 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y planta.",
       "Su peso registrado es de 92,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 587,
@@ -15521,7 +16693,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0587/Happy.png",
@@ -15534,7 +16706,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Emolga ocupa el número 587 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y volador.",
       "Su peso registrado es de 5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 588,
@@ -15547,7 +16721,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0588/Happy.png",
@@ -15560,7 +16734,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Karrablast ocupa el número 588 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 5,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 589,
@@ -15573,8 +16749,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 33,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0589/Happy.png",
@@ -15587,7 +16763,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Escavalier ocupa el número 589 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y acero.",
       "Su peso registrado es de 33 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 590,
@@ -15601,7 +16779,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0590/Happy.png",
@@ -15614,7 +16792,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Foongus ocupa el número 590 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y veneno.",
       "Su peso registrado es de 1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 591,
@@ -15627,8 +16807,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0591/Happy.png",
@@ -15641,7 +16821,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Amoonguss ocupa el número 591 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y veneno.",
       "Su peso registrado es de 10,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 592,
@@ -15655,7 +16837,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 33,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0592/Happy.png",
@@ -15668,7 +16850,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Frillish Male ocupa el número 592 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y fantasma.",
       "Su peso registrado es de 33 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 593,
@@ -15681,8 +16865,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "tentacles",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 135,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0593/Happy.png",
@@ -15695,7 +16879,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Jellicent Male ocupa el número 593 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y fantasma.",
       "Su peso registrado es de 135 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 594,
@@ -15708,7 +16894,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 31.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0594/Happy.png",
@@ -15721,7 +16907,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Alomomola ocupa el número 594 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 31,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 595,
@@ -15735,7 +16923,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0595/Happy.png",
@@ -15748,7 +16936,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Joltik ocupa el número 595 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y eléctrico.",
       "Su peso registrado es de 0,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 596,
@@ -15761,8 +16951,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "armor",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 14.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0596/Happy.png",
@@ -15775,7 +16965,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Galvantula ocupa el número 596 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y eléctrico.",
       "Su peso registrado es de 14,3 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 597,
@@ -15789,7 +16981,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 18.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0597/Happy.png",
@@ -15802,7 +16994,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ferroseed ocupa el número 597 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y acero.",
       "Su peso registrado es de 18,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 598,
@@ -15815,8 +17009,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "tentacles",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 110,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0598/Happy.png",
@@ -15829,7 +17023,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ferrothorn ocupa el número 598 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y acero.",
       "Su peso registrado es de 110 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 599,
@@ -15842,7 +17038,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 21,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0599/Happy.png",
@@ -15855,7 +17051,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Klink ocupa el número 599 de la Pokédex Nacional.",
       "Su combinación de tipos es acero.",
       "Su peso registrado es de 21 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 600,
@@ -15867,8 +17065,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "heads",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 51,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0600/Happy.png",
@@ -15881,7 +17079,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Klang ocupa el número 600 de la Pokédex Nacional.",
       "Su combinación de tipos es acero.",
       "Su peso registrado es de 51 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 601,
@@ -15893,8 +17093,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "heads",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 81,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0601/Happy.png",
@@ -15907,7 +17107,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Klinklang ocupa el número 601 de la Pokédex Nacional.",
       "Su combinación de tipos es acero.",
       "Su peso registrado es de 81 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 602,
@@ -15920,7 +17122,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0602/Happy.png",
@@ -15933,7 +17135,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tynamo ocupa el número 602 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 0,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 603,
@@ -15945,8 +17149,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 22,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0603/Happy.png",
@@ -15959,7 +17163,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Eelektrik ocupa el número 603 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 22 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 604,
@@ -15971,8 +17177,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 80.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0604/Happy.png",
@@ -15985,7 +17191,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Eelektross ocupa el número 604 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 80,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 605,
@@ -15998,7 +17206,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0605/Happy.png",
@@ -16011,7 +17219,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Elgyem ocupa el número 605 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 606,
@@ -16023,8 +17233,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 34.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0606/Happy.png",
@@ -16037,7 +17247,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Beheeyem ocupa el número 606 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 34,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 607,
@@ -16051,7 +17263,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0607/Happy.png",
@@ -16064,7 +17276,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Litwick ocupa el número 607 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y fuego.",
       "Su peso registrado es de 3,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 608,
@@ -16077,8 +17291,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 13,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0608/Happy.png",
@@ -16091,7 +17305,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lampent ocupa el número 608 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y fuego.",
       "Su peso registrado es de 13 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 609,
@@ -16104,8 +17320,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 34.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0609/Happy.png",
@@ -16118,7 +17334,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Chandelure ocupa el número 609 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y fuego.",
       "Su peso registrado es de 34,3 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 610,
@@ -16131,7 +17349,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 18,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0610/Happy.png",
@@ -16144,7 +17362,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Axew ocupa el número 610 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón.",
       "Su peso registrado es de 18 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 611,
@@ -16156,8 +17376,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 36,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0611/Happy.png",
@@ -16170,7 +17390,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Fraxure ocupa el número 611 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón.",
       "Su peso registrado es de 36 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 612,
@@ -16182,8 +17404,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 105.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0612/Happy.png",
@@ -16196,7 +17418,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Haxorus ocupa el número 612 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón.",
       "Su peso registrado es de 105,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 613,
@@ -16209,7 +17433,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0613/Happy.png",
@@ -16222,7 +17446,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cubchoo ocupa el número 613 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 8,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 614,
@@ -16234,8 +17460,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 260,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0614/Happy.png",
@@ -16248,7 +17474,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Beartic ocupa el número 614 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 260 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 615,
@@ -16261,7 +17489,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 148,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0615/Happy.png",
@@ -16274,7 +17502,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cryogonal ocupa el número 615 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 148 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 616,
@@ -16287,7 +17517,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0616/Happy.png",
@@ -16300,7 +17530,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Shelmet ocupa el número 616 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 7,7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 617,
@@ -16312,8 +17544,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 25.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0617/Happy.png",
@@ -16326,7 +17558,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Accelgor ocupa el número 617 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 25,3 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 618,
@@ -16340,7 +17574,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0618/Happy.png",
@@ -16353,7 +17587,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Stunfisk ocupa el número 618 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y eléctrico.",
       "Su peso registrado es de 11 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 619,
@@ -16366,7 +17602,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 20,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0619/Happy.png",
@@ -16379,7 +17615,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mienfoo ocupa el número 619 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 20 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 620,
@@ -16391,8 +17629,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 35.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0620/Happy.png",
@@ -16405,7 +17643,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mienshao ocupa el número 620 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 35,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 621,
@@ -16418,7 +17658,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 139,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0621/Happy.png",
@@ -16431,7 +17671,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Druddigon ocupa el número 621 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón.",
       "Su peso registrado es de 139 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 622,
@@ -16445,7 +17687,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 92,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0622/Happy.png",
@@ -16458,7 +17700,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Golett ocupa el número 622 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y fantasma.",
       "Su peso registrado es de 92 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 623,
@@ -16471,8 +17715,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 330,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0623/Happy.png",
@@ -16485,7 +17729,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Golurk ocupa el número 623 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y fantasma.",
       "Su peso registrado es de 330 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 624,
@@ -16499,7 +17745,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0624/Happy.png",
@@ -16512,7 +17758,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pawniard ocupa el número 624 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y acero.",
       "Su peso registrado es de 10,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 625,
@@ -16525,8 +17773,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 70,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0625/Happy.png",
@@ -16539,7 +17787,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bisharp ocupa el número 625 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y acero.",
       "Su peso registrado es de 70 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 626,
@@ -16552,7 +17802,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 94.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0626/Happy.png",
@@ -16565,7 +17815,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bouffalant ocupa el número 626 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 94,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 627,
@@ -16579,7 +17831,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0627/Happy.png",
@@ -16592,7 +17844,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rufflet ocupa el número 627 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 10,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 628,
@@ -16605,8 +17859,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 41,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0628/Happy.png",
@@ -16619,7 +17873,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Braviary ocupa el número 628 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 41 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 629,
@@ -16633,7 +17889,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0629/Happy.png",
@@ -16646,7 +17902,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Vullaby ocupa el número 629 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y volador.",
       "Su peso registrado es de 9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 630,
@@ -16659,8 +17917,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 39.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0630/Happy.png",
@@ -16673,7 +17931,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mandibuzz ocupa el número 630 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y volador.",
       "Su peso registrado es de 39,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 631,
@@ -16686,7 +17946,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 58,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0631/Happy.png",
@@ -16699,7 +17959,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Heatmor ocupa el número 631 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 58 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 632,
@@ -16713,7 +17975,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 33,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0632/Happy.png",
@@ -16726,7 +17988,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Durant ocupa el número 632 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y acero.",
       "Su peso registrado es de 33 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 633,
@@ -16740,7 +18004,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 17.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0633/Happy.png",
@@ -16753,7 +18017,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Deino ocupa el número 633 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y dragón.",
       "Su peso registrado es de 17,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 634,
@@ -16766,8 +18032,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 50,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0634/Happy.png",
@@ -16780,7 +18046,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Zweilous ocupa el número 634 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y dragón.",
       "Su peso registrado es de 50 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 635,
@@ -16793,8 +18061,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 160,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0635/Happy.png",
@@ -16807,7 +18075,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hydreigon ocupa el número 635 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y dragón.",
       "Su peso registrado es de 160 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 636,
@@ -16821,7 +18091,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 28.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0636/Happy.png",
@@ -16834,7 +18104,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Larvesta ocupa el número 636 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y fuego.",
       "Su peso registrado es de 28,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 637,
@@ -16847,8 +18119,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 5,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 46,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0637/Happy.png",
@@ -16861,7 +18133,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Volcarona ocupa el número 637 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y fuego.",
       "Su peso registrado es de 46 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 638,
@@ -16875,7 +18149,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 250,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0638/Happy.png",
@@ -16888,7 +18162,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cobalion ocupa el número 638 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y lucha.",
       "Su peso registrado es de 250 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 639,
@@ -16902,7 +18178,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 260,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0639/Happy.png",
@@ -16915,7 +18191,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Terrakion ocupa el número 639 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y lucha.",
       "Su peso registrado es de 260 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 640,
@@ -16929,7 +18207,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 200,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0640/Happy.png",
@@ -16942,7 +18220,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Virizion ocupa el número 640 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y lucha.",
       "Su peso registrado es de 200 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 641,
@@ -16955,7 +18235,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 63,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0641/Happy.png",
@@ -16968,7 +18248,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tornadus Incarnate ocupa el número 641 de la Pokédex Nacional.",
       "Su combinación de tipos es volador.",
       "Su peso registrado es de 63 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 642,
@@ -16982,7 +18264,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 61,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0642/Happy.png",
@@ -16995,7 +18277,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Thundurus Incarnate ocupa el número 642 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y volador.",
       "Su peso registrado es de 61 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 643,
@@ -17009,7 +18293,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 330,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0643/Happy.png",
@@ -17022,7 +18306,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Reshiram ocupa el número 643 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y fuego.",
       "Su peso registrado es de 330 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 644,
@@ -17036,7 +18322,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 345,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0644/Happy.png",
@@ -17049,7 +18335,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Zekrom ocupa el número 644 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y eléctrico.",
       "Su peso registrado es de 345 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 645,
@@ -17063,7 +18351,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 68,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0645/Happy.png",
@@ -17076,7 +18364,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Landorus Incarnate ocupa el número 645 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y volador.",
       "Su peso registrado es de 68 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 646,
@@ -17090,7 +18380,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 325,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0646/Happy.png",
@@ -17103,7 +18393,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kyurem ocupa el número 646 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y hielo.",
       "Su peso registrado es de 325 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 647,
@@ -17117,7 +18409,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 48.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0647/Happy.png",
@@ -17130,7 +18422,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Keldeo Ordinary ocupa el número 647 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y lucha.",
       "Su peso registrado es de 48,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 648,
@@ -17144,7 +18438,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 6.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0648/Happy.png",
@@ -17157,7 +18451,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Meloetta Aria ocupa el número 648 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y psíquico.",
       "Su peso registrado es de 6,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 649,
@@ -17171,7 +18467,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 5,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 82.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0649/Happy.png",
@@ -17184,7 +18480,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Genesect ocupa el número 649 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y acero.",
       "Su peso registrado es de 82,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 650,
@@ -17197,7 +18495,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0650/Happy.png",
@@ -17210,7 +18508,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Chespin ocupa el número 650 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 651,
@@ -17222,8 +18522,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 29,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0651/Happy.png",
@@ -17236,7 +18536,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Quilladin ocupa el número 651 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 29 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 652,
@@ -17249,8 +18551,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 90,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0652/Happy.png",
@@ -17263,7 +18565,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Chesnaught ocupa el número 652 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y lucha.",
       "Su peso registrado es de 90 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 653,
@@ -17276,7 +18580,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0653/Happy.png",
@@ -17289,7 +18593,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Fennekin ocupa el número 653 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 9,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 654,
@@ -17301,8 +18607,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 14.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0654/Happy.png",
@@ -17315,7 +18621,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Braixen ocupa el número 654 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 14,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 655,
@@ -17328,8 +18636,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 39,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0655/Happy.png",
@@ -17342,7 +18650,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Delphox ocupa el número 655 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y psíquico.",
       "Su peso registrado es de 39 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 656,
@@ -17355,7 +18665,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0656/Happy.png",
@@ -17368,7 +18678,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Froakie ocupa el número 656 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 657,
@@ -17380,8 +18692,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0657/Happy.png",
@@ -17394,7 +18706,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Frogadier ocupa el número 657 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 10,9 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 658,
@@ -17407,8 +18721,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 40,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0658/Happy.png",
@@ -17421,7 +18735,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Greninja ocupa el número 658 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y siniestro.",
       "Su peso registrado es de 40 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 659,
@@ -17434,7 +18750,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0659/Happy.png",
@@ -17447,7 +18763,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bunnelby ocupa el número 659 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 660,
@@ -17460,8 +18778,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 42.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0660/Happy.png",
@@ -17474,7 +18792,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Diggersby ocupa el número 660 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y tierra.",
       "Su peso registrado es de 42,4 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 661,
@@ -17488,7 +18808,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0661/Happy.png",
@@ -17501,7 +18821,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Fletchling ocupa el número 661 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 1,7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 662,
@@ -17514,8 +18836,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 16,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0662/Happy.png",
@@ -17528,7 +18850,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Fletchinder ocupa el número 662 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y volador.",
       "Su peso registrado es de 16 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 663,
@@ -17541,8 +18865,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 24.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0663/Happy.png",
@@ -17555,7 +18879,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Talonflame ocupa el número 663 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y volador.",
       "Su peso registrado es de 24,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 664,
@@ -17568,7 +18894,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0664/Happy.png",
@@ -17581,7 +18907,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Scatterbug ocupa el número 664 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 2,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 665,
@@ -17593,8 +18921,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0665/Happy.png",
@@ -17607,7 +18935,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Spewpa ocupa el número 665 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 8,4 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 666,
@@ -17620,8 +18950,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 17,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0666/Happy.png",
@@ -17634,7 +18964,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Vivillon ocupa el número 666 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y volador.",
       "Su peso registrado es de 17 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 667,
@@ -17648,7 +18980,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 13.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0667/Happy.png",
@@ -17661,7 +18993,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Litleo ocupa el número 667 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y normal.",
       "Su peso registrado es de 13,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 668,
@@ -17674,8 +19008,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 81.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0668/Happy.png",
@@ -17688,7 +19022,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pyroar Male ocupa el número 668 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y normal.",
       "Su peso registrado es de 81,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 669,
@@ -17701,7 +19037,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0669/Happy.png",
@@ -17714,7 +19050,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Flabebe ocupa el número 669 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 0,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 670,
@@ -17726,8 +19064,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0670/Happy.png",
@@ -17740,7 +19078,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Floette ocupa el número 670 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 0,9 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 671,
@@ -17752,8 +19092,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0671/Happy.png",
@@ -17766,7 +19106,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Florges ocupa el número 671 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 10 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 672,
@@ -17779,7 +19121,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 31,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0672/Happy.png",
@@ -17792,7 +19134,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Skiddo ocupa el número 672 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 31 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 673,
@@ -17804,8 +19148,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 91,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0673/Happy.png",
@@ -17818,7 +19162,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gogoat ocupa el número 673 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 91 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 674,
@@ -17831,7 +19177,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0674/Happy.png",
@@ -17844,7 +19190,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pancham ocupa el número 674 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 675,
@@ -17857,8 +19205,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 136,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0675/Happy.png",
@@ -17871,7 +19219,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pangoro ocupa el número 675 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha y siniestro.",
       "Su peso registrado es de 136 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 676,
@@ -17884,7 +19234,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 28,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0676/Happy.png",
@@ -17897,7 +19247,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Furfrou ocupa el número 676 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 28 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 677,
@@ -17910,7 +19262,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0677/Happy.png",
@@ -17923,7 +19275,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Espurr ocupa el número 677 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 3,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 678,
@@ -17935,8 +19289,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0678/Happy.png",
@@ -17949,7 +19303,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Meowstic Male ocupa el número 678 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 8,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 679,
@@ -17963,7 +19319,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0679/Happy.png",
@@ -17976,7 +19332,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Honedge ocupa el número 679 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y fantasma.",
       "Su peso registrado es de 2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 680,
@@ -17989,8 +19347,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "heads",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0680/Happy.png",
@@ -18003,7 +19361,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Doublade ocupa el número 680 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y fantasma.",
       "Su peso registrado es de 4,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 681,
@@ -18016,8 +19376,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 53,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0681/Happy.png",
@@ -18030,7 +19390,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Aegislash Shield ocupa el número 681 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y fantasma.",
       "Su peso registrado es de 53 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 682,
@@ -18043,7 +19405,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0682/Happy.png",
@@ -18056,7 +19418,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Spritzee ocupa el número 682 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 0,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 683,
@@ -18068,8 +19432,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0683/Happy.png",
@@ -18082,7 +19446,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Aromatisse ocupa el número 683 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 15,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 684,
@@ -18095,7 +19461,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0684/Happy.png",
@@ -18108,7 +19474,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Swirlix ocupa el número 684 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 3,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 685,
@@ -18120,8 +19488,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0685/Happy.png",
@@ -18134,7 +19502,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Slurpuff ocupa el número 685 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 686,
@@ -18148,7 +19518,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0686/Happy.png",
@@ -18161,7 +19531,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Inkay ocupa el número 686 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y psíquico.",
       "Su peso registrado es de 3,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 687,
@@ -18174,8 +19546,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 47,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0687/Happy.png",
@@ -18188,7 +19560,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Malamar ocupa el número 687 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y psíquico.",
       "Su peso registrado es de 47 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 688,
@@ -18202,7 +19576,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 31,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0688/Happy.png",
@@ -18215,7 +19589,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Binacle ocupa el número 688 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y agua.",
       "Su peso registrado es de 31 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 689,
@@ -18228,8 +19604,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "heads",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 96,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0689/Happy.png",
@@ -18242,7 +19618,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Barbaracle ocupa el número 689 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y agua.",
       "Su peso registrado es de 96 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 690,
@@ -18256,7 +19634,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0690/Happy.png",
@@ -18269,7 +19647,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Skrelp ocupa el número 690 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y agua.",
       "Su peso registrado es de 7,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 691,
@@ -18282,8 +19662,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 81.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0691/Happy.png",
@@ -18296,7 +19676,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dragalge ocupa el número 691 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y dragón.",
       "Su peso registrado es de 81,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 692,
@@ -18309,7 +19691,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0692/Happy.png",
@@ -18322,7 +19704,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Clauncher ocupa el número 692 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 8,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 693,
@@ -18334,8 +19718,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 35.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0693/Happy.png",
@@ -18348,7 +19732,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Clawitzer ocupa el número 693 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 35,3 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 694,
@@ -18362,7 +19748,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0694/Happy.png",
@@ -18375,7 +19761,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Helioptile ocupa el número 694 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y normal.",
       "Su peso registrado es de 6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 695,
@@ -18388,8 +19776,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 21,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0695/Happy.png",
@@ -18402,7 +19790,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Heliolisk ocupa el número 695 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y normal.",
       "Su peso registrado es de 21 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 696,
@@ -18416,7 +19806,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 26,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0696/Happy.png",
@@ -18429,7 +19819,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tyrunt ocupa el número 696 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y dragón.",
       "Su peso registrado es de 26 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 697,
@@ -18442,8 +19834,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 270,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0697/Happy.png",
@@ -18456,7 +19848,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tyrantrum ocupa el número 697 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y dragón.",
       "Su peso registrado es de 270 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 698,
@@ -18470,7 +19864,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 25.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0698/Happy.png",
@@ -18483,7 +19877,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Amaura ocupa el número 698 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y hielo.",
       "Su peso registrado es de 25,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 699,
@@ -18496,8 +19892,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 225,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0699/Happy.png",
@@ -18510,7 +19906,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Aurorus ocupa el número 699 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y hielo.",
       "Su peso registrado es de 225 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 700,
@@ -18522,8 +19920,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 23.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0700/Happy.png",
@@ -18536,7 +19934,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sylveon ocupa el número 700 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 23,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 701,
@@ -18550,7 +19950,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 21.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0701/Happy.png",
@@ -18563,7 +19963,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hawlucha ocupa el número 701 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha y volador.",
       "Su peso registrado es de 21,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 702,
@@ -18577,7 +19979,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0702/Happy.png",
@@ -18590,7 +19992,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dedenne ocupa el número 702 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y hada.",
       "Su peso registrado es de 2,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 703,
@@ -18604,7 +20008,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0703/Happy.png",
@@ -18617,7 +20021,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Carbink ocupa el número 703 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y hada.",
       "Su peso registrado es de 5,7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 704,
@@ -18630,7 +20036,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0704/Happy.png",
@@ -18643,7 +20049,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Goomy ocupa el número 704 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón.",
       "Su peso registrado es de 2,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 705,
@@ -18655,8 +20063,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 17.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0705/Happy.png",
@@ -18669,7 +20077,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sliggoo ocupa el número 705 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón.",
       "Su peso registrado es de 17,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 706,
@@ -18681,8 +20091,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 150.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0706/Happy.png",
@@ -18695,7 +20105,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Goodra ocupa el número 706 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón.",
       "Su peso registrado es de 150,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 707,
@@ -18709,7 +20121,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0707/Happy.png",
@@ -18722,7 +20134,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Klefki ocupa el número 707 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y hada.",
       "Su peso registrado es de 3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 708,
@@ -18736,7 +20150,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0708/Happy.png",
@@ -18749,7 +20163,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Phantump ocupa el número 708 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y planta.",
       "Su peso registrado es de 7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 709,
@@ -18762,8 +20178,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "tentacles",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 71,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0709/Happy.png",
@@ -18776,7 +20192,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Trevenant ocupa el número 709 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y planta.",
       "Su peso registrado es de 71 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 710,
@@ -18790,7 +20208,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0710/Happy.png",
@@ -18803,7 +20221,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pumpkaboo Average ocupa el número 710 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y planta.",
       "Su peso registrado es de 5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 711,
@@ -18816,8 +20236,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0711/Happy.png",
@@ -18830,7 +20250,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gourgeist Average ocupa el número 711 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y planta.",
       "Su peso registrado es de 12,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 712,
@@ -18843,7 +20265,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 99.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0712/Happy.png",
@@ -18856,7 +20278,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bergmite ocupa el número 712 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 99,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 713,
@@ -18868,8 +20292,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 505,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0713/Happy.png",
@@ -18882,7 +20306,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Avalugg ocupa el número 713 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 505 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 714,
@@ -18896,7 +20322,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0714/Happy.png",
@@ -18909,7 +20335,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Noibat ocupa el número 714 de la Pokédex Nacional.",
       "Su combinación de tipos es volador y dragón.",
       "Su peso registrado es de 8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 715,
@@ -18922,8 +20350,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 6,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 85,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0715/Happy.png",
@@ -18936,7 +20364,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Noivern ocupa el número 715 de la Pokédex Nacional.",
       "Su combinación de tipos es volador y dragón.",
       "Su peso registrado es de 85 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 716,
@@ -18949,7 +20379,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 215,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0716/Happy.png",
@@ -18962,7 +20392,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Xerneas ocupa el número 716 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 215 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 717,
@@ -18976,7 +20408,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 203,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0717/Happy.png",
@@ -18989,7 +20421,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Yveltal ocupa el número 717 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y volador.",
       "Su peso registrado es de 203 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 718,
@@ -19003,7 +20437,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 305,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0718/Happy.png",
@@ -19016,7 +20450,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Zygarde 50 ocupa el número 718 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y tierra.",
       "Su peso registrado es de 305 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 719,
@@ -19030,7 +20466,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0719/Happy.png",
@@ -19043,7 +20479,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Diancie ocupa el número 719 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y hada.",
       "Su peso registrado es de 8,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 720,
@@ -19057,7 +20495,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0720/Happy.png",
@@ -19070,7 +20508,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hoopa ocupa el número 720 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y fantasma.",
       "Su peso registrado es de 9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 721,
@@ -19084,7 +20524,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 6,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 195,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0721/Happy.png",
@@ -19097,7 +20537,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Volcanion ocupa el número 721 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y agua.",
       "Su peso registrado es de 195 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 722,
@@ -19111,7 +20553,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0722/Happy.png",
@@ -19124,7 +20566,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rowlet ocupa el número 722 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y volador.",
       "Su peso registrado es de 1,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 723,
@@ -19137,8 +20581,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 16,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0723/Happy.png",
@@ -19151,7 +20595,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dartrix ocupa el número 723 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y volador.",
       "Su peso registrado es de 16 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 724,
@@ -19164,8 +20610,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 36.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0724/Happy.png",
@@ -19178,7 +20624,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Decidueye ocupa el número 724 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y fantasma.",
       "Su peso registrado es de 36,6 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 725,
@@ -19191,7 +20639,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0725/Happy.png",
@@ -19204,7 +20652,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Litten ocupa el número 725 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 4,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 726,
@@ -19216,8 +20666,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 25,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0726/Happy.png",
@@ -19230,7 +20680,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Torracat ocupa el número 726 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 25 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 727,
@@ -19243,8 +20695,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 83,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0727/Happy.png",
@@ -19257,7 +20709,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Incineroar ocupa el número 727 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y siniestro.",
       "Su peso registrado es de 83 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 728,
@@ -19270,7 +20724,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0728/Happy.png",
@@ -19283,7 +20737,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Popplio ocupa el número 728 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 7,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 729,
@@ -19295,8 +20751,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 17.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0729/Happy.png",
@@ -19309,7 +20765,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Brionne ocupa el número 729 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 17,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 730,
@@ -19322,8 +20780,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 44,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0730/Happy.png",
@@ -19336,7 +20794,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Primarina ocupa el número 730 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y hada.",
       "Su peso registrado es de 44 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 731,
@@ -19350,7 +20810,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0731/Happy.png",
@@ -19363,7 +20823,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pikipek ocupa el número 731 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 1,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 732,
@@ -19376,8 +20838,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 14.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0732/Happy.png",
@@ -19390,7 +20852,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Trumbeak ocupa el número 732 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 14,8 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 733,
@@ -19403,8 +20867,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 26,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0733/Happy.png",
@@ -19417,7 +20881,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Toucannon ocupa el número 733 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 26 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 734,
@@ -19430,7 +20896,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0734/Happy.png",
@@ -19443,7 +20909,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Yungoos ocupa el número 734 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 735,
@@ -19455,8 +20923,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 14.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0735/Happy.png",
@@ -19469,7 +20937,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gumshoos ocupa el número 735 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 14,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 736,
@@ -19482,7 +20952,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0736/Happy.png",
@@ -19495,7 +20965,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Grubbin ocupa el número 736 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 4,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 737,
@@ -19508,8 +20980,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0737/Happy.png",
@@ -19522,7 +20994,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Charjabug ocupa el número 737 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y eléctrico.",
       "Su peso registrado es de 10,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 738,
@@ -19535,8 +21009,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "armor",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 45,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0738/Happy.png",
@@ -19549,7 +21023,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Vikavolt ocupa el número 738 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y eléctrico.",
       "Su peso registrado es de 45 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 739,
@@ -19562,7 +21038,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0739/Happy.png",
@@ -19575,7 +21051,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Crabrawler ocupa el número 739 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 740,
@@ -19588,8 +21066,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "armor",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 180,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0740/Happy.png",
@@ -19602,7 +21080,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Crabominable ocupa el número 740 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha y hielo.",
       "Su peso registrado es de 180 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 741,
@@ -19616,7 +21096,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0741/Happy.png",
@@ -19629,7 +21109,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Oricorio Baile ocupa el número 741 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y volador.",
       "Su peso registrado es de 3,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 742,
@@ -19643,7 +21125,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0742/Happy.png",
@@ -19656,7 +21138,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cutiefly ocupa el número 742 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y hada.",
       "Su peso registrado es de 0,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 743,
@@ -19669,8 +21153,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0743/Happy.png",
@@ -19683,7 +21167,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ribombee ocupa el número 743 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y hada.",
       "Su peso registrado es de 0,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 744,
@@ -19696,7 +21182,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0744/Happy.png",
@@ -19709,7 +21195,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rockruff ocupa el número 744 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 9,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 745,
@@ -19721,8 +21209,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 25,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0745/Happy.png",
@@ -19735,7 +21223,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lycanroc Midday ocupa el número 745 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 25 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 746,
@@ -19748,7 +21238,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0746/Happy.png",
@@ -19761,7 +21251,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wishiwashi Solo ocupa el número 746 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 0,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 747,
@@ -19775,7 +21267,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0747/Happy.png",
@@ -19788,7 +21280,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mareanie ocupa el número 747 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y agua.",
       "Su peso registrado es de 8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 748,
@@ -19801,8 +21295,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "tentacles",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 14.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0748/Happy.png",
@@ -19815,7 +21309,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Toxapex ocupa el número 748 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y agua.",
       "Su peso registrado es de 14,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 749,
@@ -19828,7 +21324,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 110,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0749/Happy.png",
@@ -19841,7 +21337,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mudbray ocupa el número 749 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 110 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 750,
@@ -19853,8 +21351,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 920,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0750/Happy.png",
@@ -19867,7 +21365,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mudsdale ocupa el número 750 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 920 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 751,
@@ -19881,7 +21381,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0751/Happy.png",
@@ -19894,7 +21394,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dewpider ocupa el número 751 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y bicho.",
       "Su peso registrado es de 4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 752,
@@ -19907,8 +21409,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "armor",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 82,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0752/Happy.png",
@@ -19921,7 +21423,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Araquanid ocupa el número 752 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y bicho.",
       "Su peso registrado es de 82 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 753,
@@ -19934,7 +21438,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0753/Happy.png",
@@ -19947,7 +21451,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Fomantis ocupa el número 753 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 1,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 754,
@@ -19959,8 +21465,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 18.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0754/Happy.png",
@@ -19973,7 +21479,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lurantis ocupa el número 754 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 18,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 755,
@@ -19987,7 +21495,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0755/Happy.png",
@@ -20000,7 +21508,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Morelull ocupa el número 755 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y hada.",
       "Su peso registrado es de 1,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 756,
@@ -20013,8 +21523,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0756/Happy.png",
@@ -20027,7 +21537,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Shiinotic ocupa el número 756 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y hada.",
       "Su peso registrado es de 11,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 757,
@@ -20041,7 +21553,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0757/Happy.png",
@@ -20054,7 +21566,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Salandit ocupa el número 757 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y fuego.",
       "Su peso registrado es de 4,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 758,
@@ -20067,8 +21581,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 22.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0758/Happy.png",
@@ -20081,7 +21595,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Salazzle ocupa el número 758 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y fuego.",
       "Su peso registrado es de 22,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 759,
@@ -20095,7 +21611,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0759/Happy.png",
@@ -20108,7 +21624,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Stufful ocupa el número 759 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y lucha.",
       "Su peso registrado es de 6,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 760,
@@ -20121,8 +21639,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 135,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0760/Happy.png",
@@ -20135,7 +21653,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bewear ocupa el número 760 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y lucha.",
       "Su peso registrado es de 135 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 761,
@@ -20148,7 +21668,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0761/Happy.png",
@@ -20161,7 +21681,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bounsweet ocupa el número 761 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 3,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 762,
@@ -20173,8 +21695,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0762/Happy.png",
@@ -20187,7 +21709,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Steenee ocupa el número 762 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 8,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 763,
@@ -20199,8 +21723,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 21.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0763/Happy.png",
@@ -20213,7 +21737,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tsareena ocupa el número 763 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 21,4 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 764,
@@ -20226,7 +21752,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0764/Happy.png",
@@ -20239,7 +21765,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Comfey ocupa el número 764 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 0,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 765,
@@ -20253,7 +21781,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 76,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0765/Happy.png",
@@ -20266,7 +21794,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Oranguru ocupa el número 765 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y psíquico.",
       "Su peso registrado es de 76 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 766,
@@ -20279,7 +21809,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 82.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0766/Happy.png",
@@ -20292,7 +21822,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Passimian ocupa el número 766 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 82,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 767,
@@ -20306,7 +21838,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0767/Happy.png",
@@ -20319,7 +21851,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wimpod ocupa el número 767 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y agua.",
       "Su peso registrado es de 12 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 768,
@@ -20332,8 +21866,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 108,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0768/Happy.png",
@@ -20346,7 +21880,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Golisopod ocupa el número 768 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y agua.",
       "Su peso registrado es de 108 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 769,
@@ -20360,7 +21896,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 70,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0769/Happy.png",
@@ -20373,7 +21909,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sandygast ocupa el número 769 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y tierra.",
       "Su peso registrado es de 70 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 770,
@@ -20386,8 +21924,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 250,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0770/Happy.png",
@@ -20400,7 +21938,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Palossand ocupa el número 770 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y tierra.",
       "Su peso registrado es de 250 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 771,
@@ -20413,7 +21953,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0771/Happy.png",
@@ -20426,7 +21966,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pyukumuku ocupa el número 771 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 1,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 772,
@@ -20439,7 +21981,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 120.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0772/Happy.png",
@@ -20452,7 +21994,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Type Null ocupa el número 772 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 120,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 773,
@@ -20464,8 +22008,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 100.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0773/Happy.png",
@@ -20478,7 +22022,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Silvally ocupa el número 773 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 100,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 774,
@@ -20492,7 +22038,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 40,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0774/Happy.png",
@@ -20505,7 +22051,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Minior Red Meteor ocupa el número 774 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y volador.",
       "Su peso registrado es de 40 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 775,
@@ -20518,7 +22066,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0775/Happy.png",
@@ -20531,7 +22079,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Komala ocupa el número 775 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 19,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 776,
@@ -20545,7 +22095,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 212,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0776/Happy.png",
@@ -20558,7 +22108,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Turtonator ocupa el número 776 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y dragón.",
       "Su peso registrado es de 212 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 777,
@@ -20572,7 +22124,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0777/Happy.png",
@@ -20585,7 +22137,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Togedemaru ocupa el número 777 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y acero.",
       "Su peso registrado es de 3,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 778,
@@ -20599,7 +22153,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0778/Happy.png",
@@ -20612,7 +22166,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mimikyu Disguised ocupa el número 778 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y hada.",
       "Su peso registrado es de 0,7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 779,
@@ -20626,7 +22182,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0779/Happy.png",
@@ -20639,7 +22195,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bruxish ocupa el número 779 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y psíquico.",
       "Su peso registrado es de 19 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 780,
@@ -20653,7 +22211,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 185,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0780/Happy.png",
@@ -20666,7 +22224,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Drampa ocupa el número 780 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y dragón.",
       "Su peso registrado es de 185 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 781,
@@ -20680,7 +22240,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 210,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0781/Happy.png",
@@ -20693,7 +22253,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dhelmise ocupa el número 781 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y planta.",
       "Su peso registrado es de 210 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 782,
@@ -20706,7 +22268,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 29.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0782/Happy.png",
@@ -20719,7 +22281,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Jangmo O ocupa el número 782 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón.",
       "Su peso registrado es de 29,7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 783,
@@ -20732,8 +22296,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 47,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0783/Happy.png",
@@ -20746,7 +22310,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hakamo O ocupa el número 783 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y lucha.",
       "Su peso registrado es de 47 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 784,
@@ -20759,8 +22325,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 78.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0784/Happy.png",
@@ -20773,7 +22339,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kommo O ocupa el número 784 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y lucha.",
       "Su peso registrado es de 78,2 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 785,
@@ -20787,7 +22355,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 20.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0785/Happy.png",
@@ -20800,7 +22368,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tapu Koko ocupa el número 785 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y hada.",
       "Su peso registrado es de 20,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 786,
@@ -20814,7 +22384,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 18.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0786/Happy.png",
@@ -20827,7 +22397,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tapu Lele ocupa el número 786 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y hada.",
       "Su peso registrado es de 18,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 787,
@@ -20841,7 +22413,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 45.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0787/Happy.png",
@@ -20854,7 +22426,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tapu Bulu ocupa el número 787 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y hada.",
       "Su peso registrado es de 45,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 788,
@@ -20868,7 +22442,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 21.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0788/Happy.png",
@@ -20881,7 +22455,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tapu Fini ocupa el número 788 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y hada.",
       "Su peso registrado es de 21,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 789,
@@ -20894,7 +22470,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0789/Happy.png",
@@ -20907,7 +22483,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cosmog ocupa el número 789 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 0,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 790,
@@ -20919,8 +22497,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "ball",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 999.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0790/Happy.png",
@@ -20933,7 +22511,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cosmoem ocupa el número 790 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 999,9 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 791,
@@ -20946,8 +22526,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 230,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0791/Happy.png",
@@ -20960,7 +22540,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Solgaleo ocupa el número 791 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y acero.",
       "Su peso registrado es de 230 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 792,
@@ -20973,8 +22555,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 120,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0792/Happy.png",
@@ -20987,7 +22569,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lunala ocupa el número 792 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y fantasma.",
       "Su peso registrado es de 120 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 793,
@@ -21001,7 +22585,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 55.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0793/Happy.png",
@@ -21014,7 +22598,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Nihilego ocupa el número 793 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y veneno.",
       "Su peso registrado es de 55,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 794,
@@ -21028,7 +22614,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 333.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0794/Happy.png",
@@ -21041,7 +22627,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Buzzwole ocupa el número 794 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y lucha.",
       "Su peso registrado es de 333,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 795,
@@ -21055,7 +22643,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 25,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0795/Happy.png",
@@ -21068,7 +22656,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pheromosa ocupa el número 795 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y lucha.",
       "Su peso registrado es de 25 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 796,
@@ -21081,7 +22671,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 100,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0796/Happy.png",
@@ -21094,7 +22684,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Xurkitree ocupa el número 796 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 100 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 797,
@@ -21108,7 +22700,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 999.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0797/Happy.png",
@@ -21121,7 +22713,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Celesteela ocupa el número 797 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y volador.",
       "Su peso registrado es de 999,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 798,
@@ -21135,7 +22729,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0798/Happy.png",
@@ -21148,7 +22742,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kartana ocupa el número 798 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y acero.",
       "Su peso registrado es de 0,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 799,
@@ -21162,7 +22758,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 888,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0799/Happy.png",
@@ -21175,7 +22771,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Guzzlord ocupa el número 799 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y dragón.",
       "Su peso registrado es de 888 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 800,
@@ -21188,7 +22786,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 230,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0800/Happy.png",
@@ -21201,7 +22799,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Necrozma ocupa el número 800 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 230 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 801,
@@ -21215,7 +22815,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 80.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0801/Happy.png",
@@ -21228,7 +22828,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Magearna ocupa el número 801 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y hada.",
       "Su peso registrado es de 80,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 802,
@@ -21242,7 +22844,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 22.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0802/Happy.png",
@@ -21255,7 +22857,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Marshadow ocupa el número 802 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha y fantasma.",
       "Su peso registrado es de 22,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 803,
@@ -21268,7 +22872,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0803/Happy.png",
@@ -21281,7 +22885,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Poipole ocupa el número 803 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno.",
       "Su peso registrado es de 1,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 804,
@@ -21294,8 +22900,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 7,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 150,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0804/Happy.png",
@@ -21308,7 +22914,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Naganadel ocupa el número 804 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y dragón.",
       "Su peso registrado es de 150 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 805,
@@ -21322,7 +22930,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 820,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0805/Happy.png",
@@ -21335,7 +22943,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Stakataka ocupa el número 805 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y acero.",
       "Su peso registrado es de 820 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 806,
@@ -21349,7 +22959,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 13,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0806/Happy.png",
@@ -21362,7 +22972,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Blacephalon ocupa el número 806 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y fantasma.",
       "Su peso registrado es de 13 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 807,
@@ -21375,7 +22987,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 44.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0807/Happy.png",
@@ -21388,7 +23000,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Zeraora ocupa el número 807 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 44,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 808,
@@ -21401,7 +23015,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0808/Happy.png",
@@ -21414,7 +23028,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Meltan ocupa el número 808 de la Pokédex Nacional.",
       "Su combinación de tipos es acero.",
       "Su peso registrado es de 8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 809,
@@ -21427,7 +23043,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 7,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 800,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0809/Happy.png",
@@ -21440,7 +23056,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Melmetal ocupa el número 809 de la Pokédex Nacional.",
       "Su combinación de tipos es acero.",
       "Su peso registrado es de 800 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 810,
@@ -21453,7 +23071,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0810/Happy.png",
@@ -21466,7 +23084,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Grookey ocupa el número 810 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 811,
@@ -21478,8 +23098,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 14,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0811/Happy.png",
@@ -21492,7 +23112,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Thwackey ocupa el número 811 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 14 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 812,
@@ -21504,8 +23126,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 90,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0812/Happy.png",
@@ -21518,7 +23140,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rillaboom ocupa el número 812 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 90 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 813,
@@ -21531,7 +23155,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0813/Happy.png",
@@ -21544,7 +23168,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Scorbunny ocupa el número 813 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 4,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 814,
@@ -21556,8 +23182,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0814/Happy.png",
@@ -21570,7 +23196,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Raboot ocupa el número 814 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 9 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 815,
@@ -21582,8 +23210,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 33,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0815/Happy.png",
@@ -21596,7 +23224,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cinderace ocupa el número 815 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 33 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 816,
@@ -21609,7 +23239,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0816/Happy.png",
@@ -21622,7 +23252,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sobble ocupa el número 816 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 817,
@@ -21634,8 +23266,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0817/Happy.png",
@@ -21648,7 +23280,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Drizzile ocupa el número 817 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 11,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 818,
@@ -21660,8 +23294,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 45.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0818/Happy.png",
@@ -21674,7 +23308,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Inteleon ocupa el número 818 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 45,2 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 819,
@@ -21687,7 +23323,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0819/Happy.png",
@@ -21700,7 +23336,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Skwovet ocupa el número 819 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 2,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 820,
@@ -21712,8 +23350,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0820/Happy.png",
@@ -21726,7 +23364,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Greedent ocupa el número 820 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 821,
@@ -21739,7 +23379,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0821/Happy.png",
@@ -21752,7 +23392,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rookidee ocupa el número 821 de la Pokédex Nacional.",
       "Su combinación de tipos es volador.",
       "Su peso registrado es de 1,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 822,
@@ -21764,8 +23406,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 16,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0822/Happy.png",
@@ -21778,7 +23420,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Corvisquire ocupa el número 822 de la Pokédex Nacional.",
       "Su combinación de tipos es volador.",
       "Su peso registrado es de 16 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 823,
@@ -21791,8 +23435,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 75,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0823/Happy.png",
@@ -21805,7 +23449,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Corviknight ocupa el número 823 de la Pokédex Nacional.",
       "Su combinación de tipos es volador y acero.",
       "Su peso registrado es de 75 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 824,
@@ -21818,7 +23464,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0824/Happy.png",
@@ -21831,7 +23477,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Blipbug ocupa el número 824 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 825,
@@ -21844,8 +23492,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "armor",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0825/Happy.png",
@@ -21858,7 +23506,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dottler ocupa el número 825 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y psíquico.",
       "Su peso registrado es de 19,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 826,
@@ -21871,8 +23521,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 40.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0826/Happy.png",
@@ -21885,7 +23535,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Orbeetle ocupa el número 826 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y psíquico.",
       "Su peso registrado es de 40,8 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 827,
@@ -21898,7 +23550,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0827/Happy.png",
@@ -21911,7 +23563,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Nickit ocupa el número 827 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro.",
       "Su peso registrado es de 8,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 828,
@@ -21923,8 +23577,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 19.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0828/Happy.png",
@@ -21937,7 +23591,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Thievul ocupa el número 828 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro.",
       "Su peso registrado es de 19,9 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 829,
@@ -21950,7 +23606,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0829/Happy.png",
@@ -21963,7 +23619,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gossifleur ocupa el número 829 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 2,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 830,
@@ -21975,8 +23633,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0830/Happy.png",
@@ -21989,7 +23647,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Eldegoss ocupa el número 830 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 2,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 831,
@@ -22002,7 +23662,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0831/Happy.png",
@@ -22015,7 +23675,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wooloo ocupa el número 831 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 832,
@@ -22027,8 +23689,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 43,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0832/Happy.png",
@@ -22041,7 +23703,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dubwool ocupa el número 832 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 43 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 833,
@@ -22054,7 +23718,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0833/Happy.png",
@@ -22067,7 +23731,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Chewtle ocupa el número 833 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 8,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 834,
@@ -22080,8 +23746,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 115.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0834/Happy.png",
@@ -22094,7 +23760,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Drednaw ocupa el número 834 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y roca.",
       "Su peso registrado es de 115,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 835,
@@ -22107,7 +23775,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 13.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0835/Happy.png",
@@ -22120,7 +23788,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Yamper ocupa el número 835 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 13,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 836,
@@ -22132,8 +23802,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 34,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0836/Happy.png",
@@ -22146,7 +23816,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Boltund ocupa el número 836 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 34 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 837,
@@ -22159,7 +23831,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0837/Happy.png",
@@ -22172,7 +23844,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rolycoly ocupa el número 837 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 12 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 838,
@@ -22185,8 +23859,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "legs",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 78,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0838/Happy.png",
@@ -22199,7 +23873,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Carkol ocupa el número 838 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y fuego.",
       "Su peso registrado es de 78 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 839,
@@ -22212,8 +23888,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 310.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0839/Happy.png",
@@ -22226,7 +23902,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Coalossal ocupa el número 839 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y fuego.",
       "Su peso registrado es de 310,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 840,
@@ -22240,7 +23918,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0840/Happy.png",
@@ -22253,7 +23931,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Applin ocupa el número 840 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y dragón.",
       "Su peso registrado es de 0,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 841,
@@ -22266,8 +23946,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0841/Happy.png",
@@ -22280,7 +23960,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Flapple ocupa el número 841 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y dragón.",
       "Su peso registrado es de 1 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 842,
@@ -22293,8 +23975,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 13,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0842/Happy.png",
@@ -22307,7 +23989,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Appletun ocupa el número 842 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y dragón.",
       "Su peso registrado es de 13 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 843,
@@ -22320,7 +24004,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 7.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0843/Happy.png",
@@ -22333,7 +24017,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Silicobra ocupa el número 843 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 7,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 844,
@@ -22345,8 +24031,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 65.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0844/Happy.png",
@@ -22359,7 +24045,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sandaconda ocupa el número 844 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra.",
       "Su peso registrado es de 65,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 845,
@@ -22373,7 +24061,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 18,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0845/Happy.png",
@@ -22386,7 +24074,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cramorant ocupa el número 845 de la Pokédex Nacional.",
       "Su combinación de tipos es volador y agua.",
       "Su peso registrado es de 18 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 846,
@@ -22399,7 +24089,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0846/Happy.png",
@@ -22412,7 +24102,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Arrokuda ocupa el número 846 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 847,
@@ -22424,8 +24116,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0847/Happy.png",
@@ -22438,7 +24130,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Barraskewda ocupa el número 847 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 30 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 848,
@@ -22452,7 +24146,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0848/Happy.png",
@@ -22465,7 +24159,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Toxel ocupa el número 848 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y veneno.",
       "Su peso registrado es de 11 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 849,
@@ -22478,8 +24174,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 40,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0849/Happy.png",
@@ -22492,7 +24188,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Toxtricity Amped ocupa el número 849 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y veneno.",
       "Su peso registrado es de 40 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 850,
@@ -22506,7 +24204,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0850/Happy.png",
@@ -22519,7 +24217,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sizzlipede ocupa el número 850 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y bicho.",
       "Su peso registrado es de 1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 851,
@@ -22532,8 +24232,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "tentacles",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 120,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0851/Happy.png",
@@ -22546,7 +24246,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Centiskorch ocupa el número 851 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y bicho.",
       "Su peso registrado es de 120 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 852,
@@ -22559,7 +24261,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0852/Happy.png",
@@ -22572,7 +24274,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Clobbopus ocupa el número 852 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 853,
@@ -22584,8 +24288,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "tentacles",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 39,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0853/Happy.png",
@@ -22598,7 +24302,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Grapploct ocupa el número 853 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 39 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 854,
@@ -22611,7 +24317,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0854/Happy.png",
@@ -22624,7 +24330,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sinistea ocupa el número 854 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 0,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 855,
@@ -22636,8 +24344,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "ball",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0855/Happy.png",
@@ -22650,7 +24358,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Polteageist ocupa el número 855 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 0,4 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 856,
@@ -22663,7 +24373,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0856/Happy.png",
@@ -22676,7 +24386,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hatenna ocupa el número 856 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 3,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 857,
@@ -22688,8 +24400,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0857/Happy.png",
@@ -22702,7 +24414,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hattrem ocupa el número 857 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 4,8 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 858,
@@ -22715,8 +24429,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0858/Happy.png",
@@ -22729,7 +24443,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hatterene ocupa el número 858 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y hada.",
       "Su peso registrado es de 5,1 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 859,
@@ -22743,7 +24459,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0859/Happy.png",
@@ -22756,7 +24472,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Impidimp ocupa el número 859 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y hada.",
       "Su peso registrado es de 5,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 860,
@@ -22769,8 +24487,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0860/Happy.png",
@@ -22783,7 +24501,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Morgrem ocupa el número 860 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y hada.",
       "Su peso registrado es de 12,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 861,
@@ -22796,8 +24516,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 61,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0861/Happy.png",
@@ -22810,7 +24530,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Grimmsnarl ocupa el número 861 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y hada.",
       "Su peso registrado es de 61 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 862,
@@ -22823,8 +24545,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 46,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0862/Happy.png",
@@ -22837,7 +24559,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Obstagoon ocupa el número 862 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y normal.",
       "Su peso registrado es de 46 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 863,
@@ -22849,8 +24573,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 28,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0863/Happy.png",
@@ -22863,7 +24587,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Perrserker ocupa el número 863 de la Pokédex Nacional.",
       "Su combinación de tipos es acero.",
       "Su peso registrado es de 28 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 864,
@@ -22875,8 +24601,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0864/Happy.png",
@@ -22889,7 +24615,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cursola ocupa el número 864 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 0,4 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 865,
@@ -22901,8 +24629,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 117,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0865/Happy.png",
@@ -22915,7 +24643,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sirfetchd ocupa el número 865 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 117 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 866,
@@ -22928,8 +24658,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 58.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0866/Happy.png",
@@ -22942,7 +24672,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mr Rime ocupa el número 866 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo y psíquico.",
       "Su peso registrado es de 58,2 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 867,
@@ -22955,8 +24687,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 66.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0867/Happy.png",
@@ -22969,7 +24701,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Runerigus ocupa el número 867 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y fantasma.",
       "Su peso registrado es de 66,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 868,
@@ -22982,7 +24716,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0868/Happy.png",
@@ -22995,7 +24729,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Milcery ocupa el número 868 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 0,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 869,
@@ -23007,8 +24743,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0869/Happy.png",
@@ -23021,7 +24757,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Alcremie ocupa el número 869 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 0,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 870,
@@ -23034,7 +24772,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 62,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0870/Happy.png",
@@ -23047,7 +24785,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Falinks ocupa el número 870 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 62 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 871,
@@ -23060,7 +24800,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0871/Happy.png",
@@ -23073,7 +24813,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pincurchin ocupa el número 871 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 872,
@@ -23087,7 +24829,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0872/Happy.png",
@@ -23100,7 +24842,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Snom ocupa el número 872 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo y bicho.",
       "Su peso registrado es de 3,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 873,
@@ -23113,8 +24857,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 42,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0873/Happy.png",
@@ -23127,7 +24871,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Frosmoth ocupa el número 873 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo y bicho.",
       "Su peso registrado es de 42 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 874,
@@ -23140,7 +24886,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 520,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0874/Happy.png",
@@ -23153,7 +24899,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Stonjourner ocupa el número 874 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 520 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 875,
@@ -23166,7 +24914,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 89,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0875/Happy.png",
@@ -23179,7 +24927,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Eiscue Ice ocupa el número 875 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 89 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 876,
@@ -23193,7 +24943,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 28,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0876/Happy.png",
@@ -23206,7 +24956,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Indeedee Male ocupa el número 876 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y normal.",
       "Su peso registrado es de 28 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 877,
@@ -23220,7 +24972,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0877/Happy.png",
@@ -23233,7 +24985,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Morpeko Full Belly ocupa el número 877 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y siniestro.",
       "Su peso registrado es de 3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 878,
@@ -23246,7 +25000,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 100,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0878/Happy.png",
@@ -23259,7 +25013,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cufant ocupa el número 878 de la Pokédex Nacional.",
       "Su combinación de tipos es acero.",
       "Su peso registrado es de 100 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 879,
@@ -23271,8 +25027,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 650,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0879/Happy.png",
@@ -23285,7 +25041,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Copperajah ocupa el número 879 de la Pokédex Nacional.",
       "Su combinación de tipos es acero.",
       "Su peso registrado es de 650 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 880,
@@ -23299,7 +25057,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 190,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0880/Happy.png",
@@ -23312,7 +25070,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dracozolt ocupa el número 880 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y dragón.",
       "Su peso registrado es de 190 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 881,
@@ -23326,7 +25086,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 150,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0881/Happy.png",
@@ -23339,7 +25099,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Arctozolt ocupa el número 881 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y hielo.",
       "Su peso registrado es de 150 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 882,
@@ -23353,7 +25115,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 215,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0882/Happy.png",
@@ -23366,7 +25128,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dracovish ocupa el número 882 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y dragón.",
       "Su peso registrado es de 215 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 883,
@@ -23380,7 +25144,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 175,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0883/Happy.png",
@@ -23393,7 +25157,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Arctovish ocupa el número 883 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y hielo.",
       "Su peso registrado es de 175 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 884,
@@ -23407,7 +25173,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 40,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0884/Happy.png",
@@ -23420,7 +25186,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Duraludon ocupa el número 884 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y dragón.",
       "Su peso registrado es de 40 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 885,
@@ -23434,7 +25202,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0885/Happy.png",
@@ -23447,7 +25215,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dreepy ocupa el número 885 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y fantasma.",
       "Su peso registrado es de 2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 886,
@@ -23460,8 +25230,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "arms",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0886/Happy.png",
@@ -23474,7 +25244,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Drakloak ocupa el número 886 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y fantasma.",
       "Su peso registrado es de 11 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 887,
@@ -23487,8 +25259,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 50,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0887/Happy.png",
@@ -23501,7 +25273,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dragapult ocupa el número 887 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y fantasma.",
       "Su peso registrado es de 50 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 888,
@@ -23514,7 +25288,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 110,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0888/Happy.png",
@@ -23527,7 +25301,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Zacian ocupa el número 888 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 110 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 889,
@@ -23540,7 +25316,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 210,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0889/Happy.png",
@@ -23553,7 +25329,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Zamazenta ocupa el número 889 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 210 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 890,
@@ -23567,7 +25345,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 950,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0890/Happy.png",
@@ -23580,7 +25358,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Eternatus ocupa el número 890 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y dragón.",
       "Su peso registrado es de 950 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 891,
@@ -23593,7 +25373,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 12,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0891/Happy.png",
@@ -23606,7 +25386,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kubfu ocupa el número 891 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha.",
       "Su peso registrado es de 12 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 892,
@@ -23619,8 +25401,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 105,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0892/Happy.png",
@@ -23633,7 +25415,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Urshifu Single Strike ocupa el número 892 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha y siniestro.",
       "Su peso registrado es de 105 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 893,
@@ -23647,7 +25431,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 70,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0893/Happy.png",
@@ -23660,7 +25444,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Zarude ocupa el número 893 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y planta.",
       "Su peso registrado es de 70 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 894,
@@ -23673,7 +25459,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 145,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0894/Happy.png",
@@ -23686,7 +25472,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Regieleki ocupa el número 894 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 145 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 895,
@@ -23699,7 +25487,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 200,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0895/Happy.png",
@@ -23712,7 +25500,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Regidrago ocupa el número 895 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón.",
       "Su peso registrado es de 200 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 896,
@@ -23725,7 +25515,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 800,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0896/Happy.png",
@@ -23738,7 +25528,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Glastrier ocupa el número 896 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 800 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 897,
@@ -23751,7 +25543,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 44.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0897/Happy.png",
@@ -23764,7 +25556,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Spectrier ocupa el número 897 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 44,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 898,
@@ -23778,7 +25572,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 7.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0898/Happy.png",
@@ -23791,7 +25585,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Calyrex ocupa el número 898 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico y planta.",
       "Su peso registrado es de 7,7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 899,
@@ -23804,8 +25600,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 95.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0899/Happy.png",
@@ -23818,7 +25614,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wyrdeer ocupa el número 899 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y psíquico.",
       "Su peso registrado es de 95,1 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 900,
@@ -23831,8 +25629,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "bug-wings",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 89,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0900/Happy.png",
@@ -23845,7 +25643,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kleavor ocupa el número 900 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y roca.",
       "Su peso registrado es de 89 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 901,
@@ -23858,8 +25658,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 290,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0901/Happy.png",
@@ -23872,7 +25672,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ursaluna ocupa el número 901 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y normal.",
       "Su peso registrado es de 290 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 902,
@@ -23885,8 +25687,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 110,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0902/Happy.png",
@@ -23899,7 +25701,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Basculegion Male ocupa el número 902 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y fantasma.",
       "Su peso registrado es de 110 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 903,
@@ -23912,8 +25716,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 43,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0903/Happy.png",
@@ -23926,7 +25730,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sneasler ocupa el número 903 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha y veneno.",
       "Su peso registrado es de 43 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 904,
@@ -23939,8 +25745,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 8,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 60.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0904/Happy.png",
@@ -23953,7 +25759,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Overqwil ocupa el número 904 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y veneno.",
       "Su peso registrado es de 60,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 905,
@@ -23967,7 +25775,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 8,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 48,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0905/Happy.png",
@@ -23980,7 +25788,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Enamorus Incarnate ocupa el número 905 de la Pokédex Nacional.",
       "Su combinación de tipos es hada y volador.",
       "Su peso registrado es de 48 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 906,
@@ -23993,7 +25803,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0906/Happy.png",
@@ -24006,7 +25816,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sprigatito ocupa el número 906 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 4,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 907,
@@ -24018,8 +25830,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 12.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0907/Happy.png",
@@ -24032,7 +25844,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Floragato ocupa el número 907 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 12,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 908,
@@ -24045,8 +25859,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 31.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0908/Happy.png",
@@ -24059,7 +25873,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Meowscarada ocupa el número 908 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y siniestro.",
       "Su peso registrado es de 31,2 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 909,
@@ -24072,7 +25888,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0909/Happy.png",
@@ -24085,7 +25901,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Fuecoco ocupa el número 909 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 9,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 910,
@@ -24097,8 +25915,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0910/Happy.png",
@@ -24111,7 +25929,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Crocalor ocupa el número 910 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 30,7 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 911,
@@ -24124,8 +25944,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 326.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0911/Happy.png",
@@ -24138,7 +25958,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Skeledirge ocupa el número 911 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y fantasma.",
       "Su peso registrado es de 326,5 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 912,
@@ -24151,7 +25973,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0912/Happy.png",
@@ -24164,7 +25986,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Quaxly ocupa el número 912 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 6,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 913,
@@ -24176,8 +26000,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 21.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0913/Happy.png",
@@ -24190,7 +26014,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Quaxwell ocupa el número 913 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 21,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 914,
@@ -24203,8 +26029,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 61.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0914/Happy.png",
@@ -24217,7 +26043,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Quaquaval ocupa el número 914 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y lucha.",
       "Su peso registrado es de 61,9 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 915,
@@ -24230,7 +26058,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0915/Happy.png",
@@ -24243,7 +26071,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lechonk ocupa el número 915 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 10,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 916,
@@ -24255,8 +26085,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 120,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0916/Happy.png",
@@ -24269,7 +26099,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Oinkologne Male ocupa el número 916 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 120 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 917,
@@ -24282,7 +26114,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0917/Happy.png",
@@ -24295,7 +26127,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tarountula ocupa el número 917 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 918,
@@ -24307,8 +26141,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "armor",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 16.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0918/Happy.png",
@@ -24321,7 +26155,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Spidops ocupa el número 918 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 16,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 919,
@@ -24334,7 +26170,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0919/Happy.png",
@@ -24347,7 +26183,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Nymble ocupa el número 919 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 920,
@@ -24360,8 +26198,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 17.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0920/Happy.png",
@@ -24374,7 +26212,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Lokix ocupa el número 920 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y siniestro.",
       "Su peso registrado es de 17,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 921,
@@ -24387,7 +26227,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0921/Happy.png",
@@ -24400,7 +26240,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pawmi ocupa el número 921 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 2,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 922,
@@ -24413,8 +26255,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0922/Happy.png",
@@ -24427,7 +26269,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pawmo ocupa el número 922 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y lucha.",
       "Su peso registrado es de 6,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 923,
@@ -24440,8 +26284,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 41,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0923/Happy.png",
@@ -24454,7 +26298,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pawmot ocupa el número 923 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y lucha.",
       "Su peso registrado es de 41 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 924,
@@ -24467,7 +26313,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0924/Happy.png",
@@ -24480,7 +26326,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tandemaus ocupa el número 924 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 1,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 925,
@@ -24492,8 +26340,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "heads",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0925/Happy.png",
@@ -24506,7 +26354,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Maushold Family Of Four ocupa el número 925 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 2,8 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 926,
@@ -24519,7 +26369,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0926/Happy.png",
@@ -24532,7 +26382,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Fidough ocupa el número 926 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 10,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 927,
@@ -24544,8 +26396,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 14.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0927/Happy.png",
@@ -24558,7 +26410,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dachsbun ocupa el número 927 de la Pokédex Nacional.",
       "Su combinación de tipos es hada.",
       "Su peso registrado es de 14,9 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 928,
@@ -24572,7 +26426,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0928/Happy.png",
@@ -24585,7 +26439,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Smoliv ocupa el número 928 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y normal.",
       "Su peso registrado es de 6,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 929,
@@ -24598,8 +26454,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0929/Happy.png",
@@ -24612,7 +26468,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dolliv ocupa el número 929 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y normal.",
       "Su peso registrado es de 11,9 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 930,
@@ -24625,8 +26483,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 48.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0930/Happy.png",
@@ -24639,7 +26497,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Arboliva ocupa el número 930 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y normal.",
       "Su peso registrado es de 48,2 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 931,
@@ -24653,7 +26513,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0931/Happy.png",
@@ -24666,7 +26526,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Squawkabilly Green Plumage ocupa el número 931 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y volador.",
       "Su peso registrado es de 2,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 932,
@@ -24679,7 +26541,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 16,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0932/Happy.png",
@@ -24692,7 +26554,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Nacli ocupa el número 932 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 16 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 933,
@@ -24704,8 +26568,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 105,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0933/Happy.png",
@@ -24718,7 +26582,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Naclstack ocupa el número 933 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 105 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 934,
@@ -24730,8 +26596,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 240,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0934/Happy.png",
@@ -24744,7 +26610,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Garganacl ocupa el número 934 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 240 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 935,
@@ -24757,7 +26625,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 10.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0935/Happy.png",
@@ -24770,7 +26638,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Charcadet ocupa el número 935 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego.",
       "Su peso registrado es de 10,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 936,
@@ -24783,8 +26653,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 85,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0936/Happy.png",
@@ -24797,7 +26667,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Armarouge ocupa el número 936 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y psíquico.",
       "Su peso registrado es de 85 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 937,
@@ -24810,8 +26682,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 62,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0937/Happy.png",
@@ -24824,7 +26696,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ceruledge ocupa el número 937 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y fantasma.",
       "Su peso registrado es de 62 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 938,
@@ -24837,7 +26711,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0938/Happy.png",
@@ -24850,7 +26724,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tadbulb ocupa el número 938 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 0,4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 939,
@@ -24862,8 +26738,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 113,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0939/Happy.png",
@@ -24876,7 +26752,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bellibolt ocupa el número 939 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico.",
       "Su peso registrado es de 113 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 940,
@@ -24890,7 +26768,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0940/Happy.png",
@@ -24903,7 +26781,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wattrel ocupa el número 940 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y volador.",
       "Su peso registrado es de 3,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 941,
@@ -24916,8 +26796,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "wings",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 38.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0941/Happy.png",
@@ -24930,7 +26810,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kilowattrel ocupa el número 941 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y volador.",
       "Su peso registrado es de 38,6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 942,
@@ -24943,7 +26825,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 16,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0942/Happy.png",
@@ -24956,7 +26838,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Maschiff ocupa el número 942 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro.",
       "Su peso registrado es de 16 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 943,
@@ -24968,8 +26852,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 61,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0943/Happy.png",
@@ -24982,7 +26866,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Mabosstiff ocupa el número 943 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro.",
       "Su peso registrado es de 61 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 944,
@@ -24996,7 +26882,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0944/Happy.png",
@@ -25009,7 +26895,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Shroodle ocupa el número 944 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y normal.",
       "Su peso registrado es de 0,7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 945,
@@ -25022,8 +26910,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 27.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0945/Happy.png",
@@ -25036,7 +26924,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Grafaiai ocupa el número 945 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y normal.",
       "Su peso registrado es de 27,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 946,
@@ -25050,7 +26940,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 0.6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0946/Happy.png",
@@ -25063,7 +26953,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bramblin ocupa el número 946 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y fantasma.",
       "Su peso registrado es de 0,6 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 947,
@@ -25076,8 +26968,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "ball",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 6,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0947/Happy.png",
@@ -25090,7 +26982,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Brambleghast ocupa el número 947 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y fantasma.",
       "Su peso registrado es de 6 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 948,
@@ -25104,7 +26998,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 33,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0948/Happy.png",
@@ -25117,7 +27011,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Toedscool ocupa el número 948 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y planta.",
       "Su peso registrado es de 33 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 949,
@@ -25130,8 +27026,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "tentacles",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 58,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0949/Happy.png",
@@ -25144,7 +27040,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Toedscruel ocupa el número 949 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y planta.",
       "Su peso registrado es de 58 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 950,
@@ -25157,7 +27055,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 79,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0950/Happy.png",
@@ -25170,7 +27068,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Klawf ocupa el número 950 de la Pokédex Nacional.",
       "Su combinación de tipos es roca.",
       "Su peso registrado es de 79 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 951,
@@ -25183,7 +27083,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0951/Happy.png",
@@ -25196,7 +27096,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Capsakid ocupa el número 951 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 952,
@@ -25209,8 +27111,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0952/Happy.png",
@@ -25223,7 +27125,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Scovillain ocupa el número 952 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y fuego.",
       "Su peso registrado es de 15 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 953,
@@ -25236,7 +27140,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0953/Happy.png",
@@ -25249,7 +27153,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rellor ocupa el número 953 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho.",
       "Su peso registrado es de 1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 954,
@@ -25262,8 +27168,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "armor",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 3.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0954/Happy.png",
@@ -25276,7 +27182,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Rabsca ocupa el número 954 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y psíquico.",
       "Su peso registrado es de 3,5 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 955,
@@ -25289,7 +27197,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0955/Happy.png",
@@ -25302,7 +27210,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Flittle ocupa el número 955 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 1,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 956,
@@ -25314,8 +27224,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 90,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0956/Happy.png",
@@ -25328,7 +27238,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Espathra ocupa el número 956 de la Pokédex Nacional.",
       "Su combinación de tipos es psíquico.",
       "Su peso registrado es de 90 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 957,
@@ -25342,7 +27254,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0957/Happy.png",
@@ -25355,7 +27267,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tinkatink ocupa el número 957 de la Pokédex Nacional.",
       "Su combinación de tipos es hada y acero.",
       "Su peso registrado es de 8,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 958,
@@ -25368,8 +27282,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 59.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0958/Happy.png",
@@ -25382,7 +27296,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tinkatuff ocupa el número 958 de la Pokédex Nacional.",
       "Su combinación de tipos es hada y acero.",
       "Su peso registrado es de 59,1 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 959,
@@ -25395,8 +27311,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 112.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0959/Happy.png",
@@ -25409,7 +27325,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tinkaton ocupa el número 959 de la Pokédex Nacional.",
       "Su combinación de tipos es hada y acero.",
       "Su peso registrado es de 112,8 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 960,
@@ -25422,7 +27340,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0960/Happy.png",
@@ -25435,7 +27353,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wiglett ocupa el número 960 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 1,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 961,
@@ -25447,8 +27367,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "blob",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5.4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0961/Happy.png",
@@ -25461,7 +27381,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wugtrio ocupa el número 961 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 5,4 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 962,
@@ -25475,7 +27397,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 42.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0962/Happy.png",
@@ -25488,7 +27410,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Bombirdier ocupa el número 962 de la Pokédex Nacional.",
       "Su combinación de tipos es volador y siniestro.",
       "Su peso registrado es de 42,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 963,
@@ -25501,7 +27425,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 60.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0963/Happy.png",
@@ -25514,7 +27438,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Finizen ocupa el número 963 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 60,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 964,
@@ -25526,8 +27452,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "fish",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 60.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0964/Happy.png",
@@ -25540,7 +27466,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Palafin Zero ocupa el número 964 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 60,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 965,
@@ -25554,7 +27482,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 35,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0965/Happy.png",
@@ -25567,7 +27495,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Varoom ocupa el número 965 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y veneno.",
       "Su peso registrado es de 35 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 966,
@@ -25580,8 +27510,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "legs",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 120,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0966/Happy.png",
@@ -25594,7 +27524,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Revavroom ocupa el número 966 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y veneno.",
       "Su peso registrado es de 120 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 967,
@@ -25608,7 +27540,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 63,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0967/Happy.png",
@@ -25621,7 +27553,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cyclizar ocupa el número 967 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y normal.",
       "Su peso registrado es de 63 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 968,
@@ -25634,7 +27568,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 310,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0968/Happy.png",
@@ -25647,7 +27581,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Orthworm ocupa el número 968 de la Pokédex Nacional.",
       "Su combinación de tipos es acero.",
       "Su peso registrado es de 310 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 969,
@@ -25661,7 +27597,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0969/Happy.png",
@@ -25674,7 +27610,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Glimmet ocupa el número 969 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y veneno.",
       "Su peso registrado es de 8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 970,
@@ -25687,8 +27625,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "ball",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 45,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0970/Happy.png",
@@ -25701,7 +27639,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Glimmora ocupa el número 970 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y veneno.",
       "Su peso registrado es de 45 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 971,
@@ -25714,7 +27654,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 35,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0971/Happy.png",
@@ -25727,7 +27667,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Greavard ocupa el número 971 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 35 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 972,
@@ -25739,8 +27681,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 15,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0972/Happy.png",
@@ -25753,7 +27695,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Houndstone ocupa el número 972 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 15 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 973,
@@ -25767,7 +27711,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 37,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0973/Happy.png",
@@ -25780,7 +27724,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Flamigo ocupa el número 973 de la Pokédex Nacional.",
       "Su combinación de tipos es volador y lucha.",
       "Su peso registrado es de 37 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 974,
@@ -25793,7 +27739,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 45,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0974/Happy.png",
@@ -25806,7 +27752,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cetoddle ocupa el número 974 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 45 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 975,
@@ -25818,8 +27766,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 700,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0975/Happy.png",
@@ -25832,7 +27780,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Cetitan ocupa el número 975 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo.",
       "Su peso registrado es de 700 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 976,
@@ -25846,7 +27796,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 90,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0976/Happy.png",
@@ -25859,7 +27809,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Veluza ocupa el número 976 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y psíquico.",
       "Su peso registrado es de 90 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 977,
@@ -25872,7 +27824,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 220,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0977/Happy.png",
@@ -25885,7 +27837,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dondozo ocupa el número 977 de la Pokédex Nacional.",
       "Su combinación de tipos es agua.",
       "Su peso registrado es de 220 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 978,
@@ -25899,7 +27853,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0978/Happy.png",
@@ -25912,7 +27866,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Tatsugiri Curly ocupa el número 978 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y agua.",
       "Su peso registrado es de 8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 979,
@@ -25925,8 +27881,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 56,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0979/Happy.png",
@@ -25939,7 +27895,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Annihilape ocupa el número 979 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha y fantasma.",
       "Su peso registrado es de 56 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 980,
@@ -25952,8 +27910,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 223,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0980/Happy.png",
@@ -25966,7 +27924,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Clodsire ocupa el número 980 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y tierra.",
       "Su peso registrado es de 223 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 981,
@@ -25979,8 +27939,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "quadruped",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 160,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0981/Happy.png",
@@ -25993,7 +27953,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Farigiraf ocupa el número 981 de la Pokédex Nacional.",
       "Su combinación de tipos es normal y psíquico.",
       "Su peso registrado es de 160 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 982,
@@ -26005,8 +27967,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "squiggle",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 39.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0982/Happy.png",
@@ -26019,7 +27981,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dudunsparce Two Segment ocupa el número 982 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 39,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 983,
@@ -26032,8 +27996,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 120,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0983/Happy.png",
@@ -26046,7 +28010,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Kingambit ocupa el número 983 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y acero.",
       "Su peso registrado es de 120 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 984,
@@ -26060,7 +28026,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 320,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0984/Happy.png",
@@ -26073,7 +28039,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Great Tusk ocupa el número 984 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y lucha.",
       "Su peso registrado es de 320 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 985,
@@ -26087,7 +28055,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0985/Happy.png",
@@ -26100,7 +28068,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Scream Tail ocupa el número 985 de la Pokédex Nacional.",
       "Su combinación de tipos es hada y psíquico.",
       "Su peso registrado es de 8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 986,
@@ -26114,7 +28084,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 21,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0986/Happy.png",
@@ -26127,7 +28097,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Brute Bonnet ocupa el número 986 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y siniestro.",
       "Su peso registrado es de 21 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 987,
@@ -26141,7 +28113,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 4,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0987/Happy.png",
@@ -26154,7 +28126,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Flutter Mane ocupa el número 987 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma y hada.",
       "Su peso registrado es de 4 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 988,
@@ -26168,7 +28142,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 92,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0988/Happy.png",
@@ -26181,7 +28155,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Slither Wing ocupa el número 988 de la Pokédex Nacional.",
       "Su combinación de tipos es bicho y lucha.",
       "Su peso registrado es de 92 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 989,
@@ -26195,7 +28171,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 60,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0989/Happy.png",
@@ -26208,7 +28184,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sandy Shocks ocupa el número 989 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y tierra.",
       "Su peso registrado es de 60 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 990,
@@ -26222,7 +28200,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 240,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0990/Happy.png",
@@ -26235,7 +28213,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Iron Treads ocupa el número 990 de la Pokédex Nacional.",
       "Su combinación de tipos es tierra y acero.",
       "Su peso registrado es de 240 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 991,
@@ -26249,7 +28229,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 11,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0991/Happy.png",
@@ -26262,7 +28242,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Iron Bundle ocupa el número 991 de la Pokédex Nacional.",
       "Su combinación de tipos es hielo y agua.",
       "Su peso registrado es de 11 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 992,
@@ -26276,7 +28258,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 380.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0992/Happy.png",
@@ -26289,7 +28271,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Iron Hands ocupa el número 992 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha y eléctrico.",
       "Su peso registrado es de 380,7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 993,
@@ -26303,7 +28287,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 111,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0993/Happy.png",
@@ -26316,7 +28300,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Iron Jugulis ocupa el número 993 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y volador.",
       "Su peso registrado es de 111 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 994,
@@ -26330,7 +28316,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 36,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0994/Happy.png",
@@ -26343,7 +28329,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Iron Moth ocupa el número 994 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y veneno.",
       "Su peso registrado es de 36 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 995,
@@ -26357,7 +28345,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 303,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0995/Happy.png",
@@ -26370,7 +28358,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Iron Thorns ocupa el número 995 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y eléctrico.",
       "Su peso registrado es de 303 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 996,
@@ -26384,7 +28374,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 17,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0996/Happy.png",
@@ -26397,7 +28387,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Frigibax ocupa el número 996 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y hielo.",
       "Su peso registrado es de 17 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 3
   },
   {
     "id": 997,
@@ -26410,8 +28402,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0997/Happy.png",
@@ -26424,7 +28416,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Arctibax ocupa el número 997 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y hielo.",
       "Su peso registrado es de 30 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 998,
@@ -26437,8 +28431,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 210,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0998/Happy.png",
@@ -26451,7 +28445,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Baxcalibur ocupa el número 998 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y hielo.",
       "Su peso registrado es de 210 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 999,
@@ -26464,7 +28460,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0999/Happy.png",
@@ -26477,7 +28473,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gimmighoul ocupa el número 999 de la Pokédex Nacional.",
       "Su combinación de tipos es fantasma.",
       "Su peso registrado es de 5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 1000,
@@ -26490,8 +28488,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "humanoid",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 30,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1000/Happy.png",
@@ -26504,7 +28502,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gholdengo ocupa el número 1000 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y fantasma.",
       "Su peso registrado es de 30 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 1001,
@@ -26518,7 +28518,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 74.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1001/Happy.png",
@@ -26531,7 +28531,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Wo Chien ocupa el número 1001 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y planta.",
       "Su peso registrado es de 74,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1002,
@@ -26545,7 +28547,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 152.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1002/Happy.png",
@@ -26558,7 +28560,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Chien Pao ocupa el número 1002 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y hielo.",
       "Su peso registrado es de 152,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1003,
@@ -26572,7 +28576,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 699.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1003/Happy.png",
@@ -26585,7 +28589,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ting Lu ocupa el número 1003 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y tierra.",
       "Su peso registrado es de 699,7 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1004,
@@ -26599,7 +28605,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 4.9,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1004/Happy.png",
@@ -26612,7 +28618,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Chi Yu ocupa el número 1004 de la Pokédex Nacional.",
       "Su combinación de tipos es siniestro y fuego.",
       "Su peso registrado es de 4,9 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1005,
@@ -26626,7 +28634,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 380,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1005/Happy.png",
@@ -26639,7 +28647,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Roaring Moon ocupa el número 1005 de la Pokédex Nacional.",
       "Su combinación de tipos es dragón y siniestro.",
       "Su peso registrado es de 380 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1006,
@@ -26653,7 +28663,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 35,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1006/Happy.png",
@@ -26666,7 +28676,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Iron Valiant ocupa el número 1006 de la Pokédex Nacional.",
       "Su combinación de tipos es hada y lucha.",
       "Su peso registrado es de 35 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1007,
@@ -26680,7 +28692,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 303,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1007/Happy.png",
@@ -26693,7 +28705,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Koraidon ocupa el número 1007 de la Pokédex Nacional.",
       "Su combinación de tipos es lucha y dragón.",
       "Su peso registrado es de 303 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1008,
@@ -26707,7 +28721,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 240,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1008/Happy.png",
@@ -26720,7 +28734,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Miraidon ocupa el número 1008 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y dragón.",
       "Su peso registrado es de 240 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1009,
@@ -26734,7 +28750,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 280,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1009/Happy.png",
@@ -26747,7 +28763,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Walking Wake ocupa el número 1009 de la Pokédex Nacional.",
       "Su combinación de tipos es agua y dragón.",
       "Su peso registrado es de 280 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1010,
@@ -26761,7 +28779,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 125,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1010/Happy.png",
@@ -26774,7 +28792,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Iron Leaves ocupa el número 1010 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y psíquico.",
       "Su peso registrado es de 125 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1011,
@@ -26787,8 +28807,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "heads",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 9.7,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1011/Happy.png",
@@ -26801,7 +28821,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Dipplin ocupa el número 1011 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y dragón.",
       "Su peso registrado es de 9,7 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 3
   },
   {
     "id": 1012,
@@ -26815,7 +28837,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 1.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1012/Happy.png",
@@ -26828,7 +28850,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Poltchageist ocupa el número 1012 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y fantasma.",
       "Su peso registrado es de 1,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 2
   },
   {
     "id": 1013,
@@ -26841,8 +28865,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "ball",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 2.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1013/Happy.png",
@@ -26855,7 +28879,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Sinistcha ocupa el número 1013 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y fantasma.",
       "Su peso registrado es de 2,2 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 1014,
@@ -26869,7 +28895,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 92.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1014/Happy.png",
@@ -26882,7 +28908,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Okidogi ocupa el número 1014 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y lucha.",
       "Su peso registrado es de 92,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1015,
@@ -26896,7 +28924,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 12.2,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1015/Happy.png",
@@ -26909,7 +28937,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Munkidori ocupa el número 1015 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y psíquico.",
       "Su peso registrado es de 12,2 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1016,
@@ -26923,7 +28953,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 30.1,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1016/Happy.png",
@@ -26936,7 +28966,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Fezandipiti ocupa el número 1016 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y hada.",
       "Su peso registrado es de 30,1 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1017,
@@ -26949,7 +28981,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 39.8,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1017/Happy.png",
@@ -26962,7 +28994,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Ogerpon ocupa el número 1017 de la Pokédex Nacional.",
       "Su combinación de tipos es planta.",
       "Su peso registrado es de 39,8 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1018,
@@ -26975,8 +29009,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "upright",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 1,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 60,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1018/Happy.png",
@@ -26989,7 +29023,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Archaludon ocupa el número 1018 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y dragón.",
       "Su peso registrado es de 60 kg."
-    ]
+    ],
+    "evolutionStage": 1,
+    "evolutionStageCount": 2
   },
   {
     "id": 1019,
@@ -27002,8 +29038,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "shape": "heads",
     "generation": 9,
     "habitat": "desconocido",
-    "stage": 0,
-    "stageKnown": false,
+    "stage": 2,
+    "stageKnown": true,
     "legendary": false,
     "weightKg": 93,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1019/Happy.png",
@@ -27016,7 +29052,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Hydrapple ocupa el número 1019 de la Pokédex Nacional.",
       "Su combinación de tipos es planta y dragón.",
       "Su peso registrado es de 93 kg."
-    ]
+    ],
+    "evolutionStage": 2,
+    "evolutionStageCount": 3
   },
   {
     "id": 1020,
@@ -27030,7 +29068,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 590,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1020/Happy.png",
@@ -27043,7 +29081,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Gouging Fire ocupa el número 1020 de la Pokédex Nacional.",
       "Su combinación de tipos es fuego y dragón.",
       "Su peso registrado es de 590 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1021,
@@ -27057,7 +29097,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 480,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1021/Happy.png",
@@ -27070,7 +29110,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Raging Bolt ocupa el número 1021 de la Pokédex Nacional.",
       "Su combinación de tipos es eléctrico y dragón.",
       "Su peso registrado es de 480 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1022,
@@ -27084,7 +29126,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 162.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1022/Happy.png",
@@ -27097,7 +29139,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Iron Boulder ocupa el número 1022 de la Pokédex Nacional.",
       "Su combinación de tipos es roca y psíquico.",
       "Su peso registrado es de 162,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1023,
@@ -27111,7 +29155,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 156,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1023/Happy.png",
@@ -27124,7 +29168,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Iron Crown ocupa el número 1023 de la Pokédex Nacional.",
       "Su combinación de tipos es acero y psíquico.",
       "Su peso registrado es de 156 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1024,
@@ -27137,7 +29183,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 6.5,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1024/Happy.png",
@@ -27150,7 +29196,9 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Terapagos ocupa el número 1024 de la Pokédex Nacional.",
       "Su combinación de tipos es normal.",
       "Su peso registrado es de 6,5 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   },
   {
     "id": 1025,
@@ -27164,7 +29212,7 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
     "generation": 9,
     "habitat": "desconocido",
     "stage": 0,
-    "stageKnown": false,
+    "stageKnown": true,
     "legendary": true,
     "weightKg": 0.3,
     "portraitUrl": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/1025/Happy.png",
@@ -27177,6 +29225,8 @@ export const NATIONAL_POKEMON_CATALOG: readonly PokemonCandidate[] = [
       "Pecharunt ocupa el número 1025 de la Pokédex Nacional.",
       "Su combinación de tipos es veneno y fantasma.",
       "Su peso registrado es de 0,3 kg."
-    ]
+    ],
+    "evolutionStage": 0,
+    "evolutionStageCount": 1
   }
 ];

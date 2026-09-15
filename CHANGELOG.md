@@ -16,6 +16,8 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
   atajos de identificación.
 - 💾 Cada partida humana se guarda localmente con preguntas, respuestas,
   candidatos supervivientes y resultado; las escrituras rápidas se serializan.
+- 🌱 El catálogo nacional incorpora líneas evolutivas públicas y cinco pistas
+  genéricas para reducir empates como Paras/Parasect.
 
 ---
 

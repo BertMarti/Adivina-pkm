@@ -61,6 +61,11 @@ al jugador local para que pueda contestar, y el motor solo recibe sus respuestas
 - manos, brazos, patas, alas, cola, cuernos y silueta;
 - flotación, forma, hábitat y situaciones cotidianas sencillas.
 
+El catálogo nacional se ha enriquecido con la línea evolutiva pública de
+PokéAPI. Así, las preguntas genéricas de forma básica, evolución previa,
+posibilidad de evolucionar, evolución final y línea de varias etapas también
+funcionan fuera de Kanto, sin mencionar nombres concretos.
+
 Se han eliminado del banco jugable las preguntas sobre número de Pokédex,
 rango numérico, peso, región y generación. Esos valores pueden existir como
 metadatos para catálogo, sprites o QA, pero no son preguntas disponibles para
@@ -89,18 +94,23 @@ La campaña nacional de referencia de 50.000 partidas sigue disponible en
 `artifacts/single-player-national-fleet-50000/`. Fue generada antes de la
 última capa de creencia tolerante y sirve como línea base histórica.
 
-El smoke actual, ejecutado ya con el motor nuevo y el banco depurado, está en
-`artifacts/single-player-national-fleet-smoke-v3/`:
+El smoke actual, ejecutado ya con el motor nuevo, el catálogo evolutivo y el
+banco depurado, está en
+`artifacts/single-player-national-fleet-smoke-v5/`:
 
 | Métrica | Resultado |
 | --- | ---: |
 | Sesiones | 100 |
-| Preguntas almacenadas | 1.175 |
-| Victorias de la máquina | 64 |
-| Empates por perfiles indistinguibles | 36 |
+| Preguntas almacenadas | 1.213 |
+| Victorias de la máquina | 86 |
+| Empates por perfiles indistinguibles | 14 |
 | Inconsistencias | 0 |
 | Partidas sobre 30 preguntas | 0 |
 | Preguntas prohibidas detectadas | 0 |
+
+Las 14 ambigüedades restantes no son fallos ocultos: indican perfiles que
+comparten las pistas disponibles y sirven como inventario para añadir rasgos
+visuales curados.
 
 También se ha comprobado que diferentes semillas producen aperturas y
 secuencias diferentes, que el límite de 30 funciona y que rechazar una

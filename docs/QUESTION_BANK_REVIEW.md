@@ -5,6 +5,10 @@
 > catálogo activo queda limitado a pistas semánticas, visuales y cotidianas;
 > tampoco se usan número de Pokédex, peso o región.
 
+El catálogo nacional añade ahora metadatos públicos de línea evolutiva y activa
+cinco preguntas genéricas de evolución, lo que reduce colisiones sin convertir
+la partida en una búsqueda por número o nombre.
+
 ## Alcance
 
 Esta revisión se ha realizado leyendo únicamente `src/data/singlePlayerKnowledge.ts` y comprobando su matriz de rasgos en ejecución. No se ha modificado código ni ningún otro archivo.

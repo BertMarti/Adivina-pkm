@@ -13,6 +13,9 @@ export type PokemonCandidate = {
   shape?: string;
   /** Generation in which the species first appeared; not a national number. */
   generation?: number;
+  /** Public evolution-chain metadata used only for generic evolution clues. */
+  evolutionStage?: number;
+  evolutionStageCount?: number;
   /** Broad natural habitat from PokéAPI, translated for player-facing clues. */
   habitat?: string;
   stage: 0 | 1 | 2;

@@ -61,7 +61,9 @@ manifiesto de la ejecución está en
 
 La campaña de referencia almacenó 50.000 partidas y 494.925 preguntas antes de
 la capa de creencia tolerante. La validación actual del motor se realiza con el
-smoke reproducible `artifacts/single-player-national-fleet-smoke-v3/`, que ya
-usa el selector probabilístico y el banco sin preguntas de generación. Las
-ambigüedades no son fallos ocultos: indican perfiles que comparten las pistas
-disponibles y sirven como inventario para añadir rasgos visuales curados.
+smoke reproducible `artifacts/single-player-national-fleet-smoke-v5/`, que usa
+el selector probabilístico y el banco sin preguntas numéricas, físicas,
+regionales ni de generación. El banco nacional actual contiene 86 preguntas,
+incluidas cinco claves evolutivas genéricas. Las ambigüedades no son fallos
+ocultos: indican perfiles que comparten las pistas disponibles y sirven como
+inventario para añadir rasgos visuales curados.

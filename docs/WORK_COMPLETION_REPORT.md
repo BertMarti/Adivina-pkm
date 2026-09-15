@@ -19,7 +19,7 @@ POKÉ QUIÉN
 | Marca | `PokéQuién · Duelo Pixel`, `pokequien://` y título web `PokéQuién · Duelo Pixel`. |
 | Icono | Icono cuadrado pixel-art de mascota eléctrica amarilla en `assets/icon.png`, favicon y foreground Android. |
 | Catálogo | 151 Pokémon de Kanto y 1.025 entradas nacionales locales, con nombres, tipos, peso, Dex, retrato, fallback, descripción y tres datos. |
-| Solo | Botón visible en el inicio, elección secreta, 126 preguntas Kanto / 81 nacionales de tipo, color, silueta, hábitat y conocimiento básico, selector adaptativo tipo Akinator con creencia tolerante y exploración por semilla, máximo de 30 preguntas, respuestas SÍ/NO y registro local de cada sesión humana. Si la máquina no acierta en 30, gana el jugador y ve su sprite y curiosidades. |
+| Solo | Botón visible en el inicio, elección secreta, 126 preguntas Kanto / 86 nacionales de tipo, evolución, color, silueta, hábitat y conocimiento básico, selector adaptativo tipo Akinator con creencia tolerante y exploración por semilla, máximo de 30 preguntas, respuestas SÍ/NO y registro local de cada sesión humana. Si la máquina no acierta en 30, gana el jugador y ve su sprite y curiosidades. |
 | Multijugador | Sala por código, enlace directo, dos clientes, selección privada, dos tableros independientes, tachado reversible, rematch y reconexión de 60 segundos. |
 | Victoria | Solo gana quien deja un candidato y coincide con el secreto rival; se evita dejar el tablero vacío. Modal con sprite y datos del Pokémon propio. |
 | Audio | Selección/destachado, tachado corto, victoria para el ganador y derrota para el perdedor; deduplicación de resultado y háptica. |
@@ -46,10 +46,10 @@ El detalle completo de la campaña de referencia queda en `artifacts/single-play
 contienen todas las preguntas, respuestas, candidatos antes/después y ids
 restantes. Se puede regenerar con `npm run single-player:fleet`.
 
-Tras la mejora de creencia tolerante y la retirada de preguntas de generación,
-el smoke actual de 100 sesiones está en
-`artifacts/single-player-national-fleet-smoke-v3/`: 1.224 preguntas, 45
-victorias de la máquina, 55 empates, 0 inconsistencias, 0 partidas por encima
+Tras la mejora de creencia tolerante, la capa de evolución pública y la retirada
+de preguntas de generación, el smoke actual de 100 sesiones está en
+`artifacts/single-player-national-fleet-smoke-v5/`: 1.213 preguntas, 86
+victorias de la máquina, 14 empates, 0 inconsistencias, 0 partidas por encima
 del límite y 0 preguntas prohibidas.
 
 ## Verificaciones ejecutadas

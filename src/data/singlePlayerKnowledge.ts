@@ -608,6 +608,14 @@ const NATIONAL_TYPE_QUESTIONS: readonly SinglePlayerQuestion[] = [
   ['steel', 'Acero'], ['fairy', 'Hada'],
 ].map(([id, label]) => makeQuestion(`type.${id}`, `type.${id}` as SinglePlayerTraitKey, `¿Es de tipo ${label}?`, 'type', 2));
 
+const NATIONAL_EVOLUTION_QUESTIONS: readonly SinglePlayerQuestion[] = [
+  makeQuestion('evolution.base', 'evolution.base', '¿Está en su forma básica?', 'evolution', 2),
+  makeQuestion('evolution.hasPrevious', 'evolution.hasPrevious', '¿Ha evolucionado desde otra forma?', 'evolution', 2),
+  makeQuestion('evolution.canEvolve', 'evolution.canEvolve', '¿Puede evolucionar a otra forma?', 'evolution', 2),
+  makeQuestion('evolution.final', 'evolution.final', '¿Es una evolución final?', 'evolution', 2),
+  makeQuestion('evolution.hasMultipleStages', 'evolution.hasMultipleStages', '¿Pertenece a una línea evolutiva de varias etapas?', 'evolution', 1),
+];
+
 function applyDerivedTraits(
   candidate: PokemonCandidate,
   traits: Partial<Record<SinglePlayerTraitKey, boolean>>,
@@ -720,6 +728,7 @@ function applyDerivedTraits(
  */
 export const SINGLE_PLAYER_NATIONAL_QUESTION_BANK: readonly SinglePlayerQuestion[] = Object.freeze([
   ...NATIONAL_TYPE_QUESTIONS,
+  ...NATIONAL_EVOLUTION_QUESTIONS,
   makeQuestion('type.dual', 'type.dual', '¿Tiene dos tipos?', 'type', 2),
   makeQuestion('special.legendary', 'special.legendary', '¿Es legendario?', 'special', 1),
   makeQuestion('special.starter', 'special.starter', '¿Es uno de los Pokémon iniciales?', 'special', 1),
@@ -749,6 +758,14 @@ function createNationalTraits(candidate: PokemonCandidate) {
   traits['special.legendary'] = candidate.legendary;
   traits['special.starter'] = NATIONAL_STARTER_IDS.has(candidate.id);
   traits['special.mascot'] = candidate.id === 25;
+  const evolutionStage = candidate.evolutionStage ?? candidate.stage;
+  const evolutionStageCount = candidate.evolutionStageCount ?? 1;
+  const isFinalEvolution = evolutionStageCount > 1 && evolutionStage >= evolutionStageCount - 1;
+  traits['evolution.base'] = evolutionStage === 0;
+  traits['evolution.hasPrevious'] = evolutionStage > 0;
+  traits['evolution.canEvolve'] = !isFinalEvolution;
+  traits['evolution.final'] = isFinalEvolution;
+  traits['evolution.hasMultipleStages'] = evolutionStageCount > 1;
   const lineId = KANTO_LINE_BY_ID[candidate.id];
   if (lineId) traits[`line.${lineId}`] = true;
   applyDerivedTraits(candidate, traits);

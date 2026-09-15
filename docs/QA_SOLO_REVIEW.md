@@ -2,7 +2,7 @@
 
 > **Actualización 15/09/2026:** la persistencia de sesiones ahora usa una cola
 > de escrituras idempotentes; la nueva validación smoke está en
-> `artifacts/single-player-national-fleet-smoke-v3/`. La suite automatizada
+> `artifacts/single-player-national-fleet-smoke-v5/`. La suite automatizada
 > formal y la curación de datos visuales siguen siendo trabajo recomendado.
 
 **Fecha:** 15/09/2026  
@@ -36,7 +36,11 @@ Estos resultados son pruebas de consistencia con las etiquetas actuales de la ba
 
 ### Auditoría de la campaña de 50.000
 
-Manifiesto revisado: `artifacts/single-player-national-fleet-50000/manifest.json`.
+Manifiesto histórico revisado: `artifacts/single-player-national-fleet-50000/manifest.json`.
+La validación actual del selector adaptativo y del catálogo evolutivo es el smoke
+reproducible de `artifacts/single-player-national-fleet-smoke-v5/`: 100 sesiones,
+1.213 preguntas, 86 victorias de la máquina, 14 sesiones ambiguas, 0
+inconsistencias y 0 partidas agotadas por límite.
 
 ```text
 agentCount:    50

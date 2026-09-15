@@ -141,7 +141,7 @@ La accesibilidad es funcional pero todavía requiere auditoría: los botones pri
 
 ### PokéAPI
 
-El catálogo se genera con `scripts/generate-local-pokemon-catalog.mjs` y queda versionado en `src/data/pokemonNationalCatalog.ts`. El script toma de PokéAPI el id, nombre, tipos, peso y sprites, convierte el peso de hectogramos a kg, traduce los tipos y materializa tres datos base por entrada. `legendaryIds` es una lista manual versionada; las entradas llevan `stage: 0` y `stageKnown: false`, por lo que aún no hay cálculo local de líneas evolutivas.
+El catálogo se genera con `scripts/generate-local-pokemon-catalog.mjs` y queda versionado en `src/data/pokemonNationalCatalog.ts`. El script toma de PokéAPI el id, nombre, tipos, peso y sprites, convierte el peso de hectogramos a kg, traduce los tipos y materializa tres datos base por entrada. También resuelve localmente las cadenas evolutivas públicas y guarda `evolutionStage`/`evolutionStageCount` para poder preguntar por forma base, evolución y etapa final sin exponer preguntas de Pokédex, peso, región o generación. `legendaryIds` es una lista manual versionada.
 
 El roster local `LOCAL_KANTO_ROSTER` contiene los ids 1–151, con nombres, tipos, pesos, descripciones y tres datos preparados. `LOCAL_NATIONAL_ROSTER` contiene las 1.025 entradas. La caché de rosters es un `Map` en memoria del proceso de cada cliente; el catálogo fuente sí está versionado.
 
@@ -231,7 +231,7 @@ No existe actualmente script de test, framework de unit tests, pruebas de compon
 - **Confianza en el cliente**: la creación sigue recibiendo el tablero desde el cliente, aunque el servidor ya valida estrictamente los 25 registros, ids únicos, metadatos mínimos, generación y tamaño de payload. Para producción aún conviene generar o verificar el tablero en backend, añadir rate limit y separar el código de invitación de un token de sesión.
 - **Duplicación de reglas**: `engine.ts` y `server/room-server.js` implementan transiciones similares, lo que puede producir divergencias futuras.
 - **Red y datos externos**: una caída de PokéAPI o de raw.githubusercontent.com puede impedir cargar una generación o dejar retratos en fallback; `Promise.all` hace fallar la carga completa si falla un detalle. No hay persistencia local de imágenes ni roster completo offline.
-- **Cobertura Pokémon**: las 1.025 entradas están definidas localmente. Las generaciones no calculan todavía líneas evolutivas y la clasificación legendaria depende de una lista manual versionada.
+- **Cobertura Pokémon**: las 1.025 entradas están definidas localmente y tienen metadatos de etapa evolutiva validados; la clasificación legendaria depende de una lista manual versionada.
 - **Experiencia de sala**: no hay chat, turnos, historial, espectadores, enlace con preview web ni confirmación antes de salir. Sí hay rematch dentro de la misma sala e indicación de reconexión.
 - **Audio**: no hay ajuste de volumen ni interruptor para desactivar audio/hápticos; movimiento reducido no desactiva sonidos. La selección y el destachado usan `assets/selection-reference.wav`, la victoria `assets/victory-reference.wav`, la derrota `assets/defeat-reference.wav` y el tachado mantiene un efecto genérico local. Hay que revisar derechos/licencias antes de distribución pública.
 - **Accesibilidad**: falta auditoría de contraste, anuncios completos de cambios de fase y garantía de 44 px en todos los controles; la navegación por teclado web y la compatibilidad con lectores de pantalla deben probarse en dispositivos reales.

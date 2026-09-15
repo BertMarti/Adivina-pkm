@@ -60,6 +60,7 @@ derrota     ──▶ tono de derrota para el jugador perdedor
 - Preguntas de tipo, colores, animal de inspiración, silueta y situaciones cotidianas deterministas.
 - No se usan preguntas de número de Pokédex, rango nacional, peso, región ni generación.
 - Preguntas binarias de ganancia de información.
+- Cinco pistas genéricas de evolución también disponibles en el catálogo nacional.
 - El Pokémon elegido permanece visible para el jugador durante toda la ronda de preguntas.
 - La elección secreta permanece fuera del conocimiento de la máquina.
 - Historial local de preguntas, respuestas y resultados.

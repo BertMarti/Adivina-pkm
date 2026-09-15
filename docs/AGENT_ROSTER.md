@@ -42,6 +42,13 @@ cubierto por la prueba de producto aunque no se alcanzó en esta campaña.
 La semilla fija hace que QA pueda reproducir el resultado. Los 50 fragmentos
 JSON contienen el detalle de cada sesión.
 
+La validación posterior del motor tolerante, el catálogo evolutivo y el banco
+sin generación está en
+`artifacts/single-player-national-fleet-smoke-v5/`: 100 sesiones, 1.213
+preguntas, 86 aciertos de la máquina, 14 empates y ninguna pregunta prohibida.
+La campaña de 50.000 se conserva como línea base histórica, no como sustituto
+de este smoke actualizado.
+
 La validación posterior del motor tolerante y del banco sin generación está en
 `artifacts/single-player-national-fleet-smoke-v3/`: 100 sesiones, 1.224
 preguntas, 45 aciertos de la máquina, 55 empates y ninguna pregunta prohibida.
