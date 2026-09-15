@@ -578,8 +578,8 @@ export function createSinglePlayerGame<TId extends CandidateId, TMetadata = unkn
     throw new Error(`Estrategia de preguntas no soportada: ${String(strategy)}.`);
   }
   const maxQuestions = options.maxQuestions ?? SINGLE_PLAYER_MAX_QUESTIONS;
-  if (!Number.isInteger(maxQuestions) || maxQuestions < 1) {
-    throw new Error('El límite de preguntas debe ser un entero positivo.');
+  if (!Number.isInteger(maxQuestions) || maxQuestions < 1 || maxQuestions > SINGLE_PLAYER_MAX_QUESTIONS) {
+    throw new Error(`El límite de preguntas debe ser un entero entre 1 y ${SINGLE_PLAYER_MAX_QUESTIONS}.`);
   }
   const questionSelectionSeed = options.questionSelectionSeed === undefined
     ? Math.floor(Math.random() * 0xFFFFFFFF)

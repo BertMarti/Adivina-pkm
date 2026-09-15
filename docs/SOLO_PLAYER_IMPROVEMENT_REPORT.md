@@ -44,6 +44,8 @@ máquina acierta / jugador corrige / se alcanzan 30 preguntas
   claras;
 - lista explícita de candidatos restantes en cada evento para auditar cómo
   razonó la máquina;
+- límite de producto blindado en el motor: se permiten pruebas con menos de 30
+  preguntas, pero nunca una partida configurada por encima de 30;
 - rechazo de una propuesta sin inventar una respuesta a una pregunta que no se
   hizo; el candidato rechazado queda excluido y el juego continúa.
 

@@ -49,12 +49,6 @@ preguntas, 86 aciertos de la máquina, 14 empates y ninguna pregunta prohibida.
 La campaña de 50.000 se conserva como línea base histórica, no como sustituto
 de este smoke actualizado.
 
-La validación posterior del motor tolerante y del banco sin generación está en
-`artifacts/single-player-national-fleet-smoke-v3/`: 100 sesiones, 1.224
-preguntas, 45 aciertos de la máquina, 55 empates y ninguna pregunta prohibida.
-La campaña de 50.000 se conserva como línea base histórica, no como sustituto
-de este smoke actualizado.
-
 ## Regla de honestidad
 
 Estos agentes son jugadores de prueba deterministas, no una IA que vea imágenes

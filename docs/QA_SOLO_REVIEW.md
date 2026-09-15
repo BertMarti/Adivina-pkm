@@ -59,14 +59,14 @@ La suma de resultados coincide con las 50.000 sesiones y los eventos coinciden c
 
 ## Riesgos concretos
 
-### R-01 — El límite de producto no está blindado en el motor
+### R-01 — El límite de producto no estaba blindado en el motor (**resuelto**)
 
 **Severidad:** alta.  
-**Evidencia:** `src/game/singlePlayerEngine.ts:550-553` valida que `maxQuestions` sea entero positivo, pero acepta `31`, `100` o cualquier otro valor. La interfaz pasa 30, aunque una integración futura o una restauración manipulada puede saltarse la regla.
+**Evidencia histórica:** la primera revisión detectó que `createSinglePlayerGame` aceptaba `31`, `100` o cualquier otro valor. Ahora la API rechaza cualquier valor superior a `SINGLE_PLAYER_MAX_QUESTIONS` y el verificador automatizado cubre el rechazo.
 
-**Impacto:** una partida puede exceder las 30 preguntas y el registro puede afirmar un límite distinto del producto.
+**Estado actual:** una partida de producto no puede exceder las 30 preguntas; se siguen permitiendo límites inferiores en fixtures para probar finales tempranos.
 
-**Criterio de aceptación:** decidir si el motor debe rechazar cualquier valor distinto de 30 o permitir límites configurables fuera de producción. Si la regla es fija, la API pública debe impedir valores mayores que `SINGLE_PLAYER_MAX_QUESTIONS`.
+**Criterio de aceptación:** cumplido mediante la validación del motor y `npm run single-player:verify`.
 
 ### R-02 — La prueba nacional no cubre el estado `limit-reached`
 
@@ -77,14 +77,14 @@ La suma de resultados coincide con las 50.000 sesiones y los eventos coinciden c
 
 **Criterio de aceptación:** añadir un fixture determinista que mantenga al menos dos candidatos activos durante 30 respuestas y comprobar también una propuesta en la pregunta 30 que el jugador rechaza.
 
-### R-03 — Las escrituras locales pueden perder actualizaciones
+### R-03 — Las escrituras locales podían perder actualizaciones (**resuelto en el código actual**)
 
 **Severidad:** alta.  
-**Evidencia:** `src/singlePlayer/SinglePlayerScreen.tsx:240-246` llama a `upsertSinglePlayerSession` sin esperar ni encadenar la promesa. `src/game/singlePlayerStorage.ts:97-102` hace `read → modificar → set` sobre una única clave.
+**Evidencia histórica:** la primera revisión detectó escrituras concurrentes sin cola. `src/game/singlePlayerStorage.ts` ahora serializa las operaciones con una cola idempotente y la pantalla vuelve a leer el historial para mostrar el contador real.
 
-**Impacto:** dos respuestas rápidas, un cambio de pantalla o un cierre durante una escritura pueden dejar guardada una versión antigua. El método es idempotente por `sessionId`, pero no es transaccional.
+**Estado actual:** dos respuestas rápidas reemplazan la misma sesión de forma ordenada. Sigue siendo almacenamiento local no transaccional de AsyncStorage; para una aplicación multi-dispositivo convendría una base de datos con transacciones.
 
-**Criterio de aceptación:** simular dos `upsert` concurrentes y comprobar que el resultado final contiene la unión ordenada de todos los eventos y el estado terminal correcto. Una cola de escrituras o una base de datos transaccional sería la solución de producto.
+**Criterio de aceptación:** cumplido con cola de escrituras; queda como mejora futura una prueba de fallo/cierre y una base transaccional si se exporta la analítica.
 
 ### R-04 — El conjunto “restante” es un posterior activo, no una intersección exacta
 

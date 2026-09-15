@@ -53,6 +53,11 @@ const limited = answerQuestion(createSinglePlayerGame(fixtureCandidates, {
   questionSelectionSeed: 1,
 }), true);
 assert.equal(limited.phase, 'limit-reached', 'El límite debe dar la victoria al jugador.');
+assert.throws(
+  () => createSinglePlayerGame(fixtureCandidates, { questions: fixtureQuestions, maxQuestions: SINGLE_PLAYER_MAX_QUESTIONS + 1 }),
+  /entre 1 y 30/,
+  'El motor no debe aceptar más de 30 preguntas.',
+);
 
 const forbidden = [...SINGLE_PLAYER_QUESTION_BANK, ...SINGLE_PLAYER_NATIONAL_QUESTION_BANK]
   .filter((question) => /pokédex|pokedex|número|numero|peso|región|region|generación|generacion/i.test(question.prompt));

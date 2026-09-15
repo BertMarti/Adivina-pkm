@@ -18,6 +18,8 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
   candidatos supervivientes y resultado; las escrituras rápidas se serializan.
 - 🌱 El catálogo nacional incorpora líneas evolutivas públicas y cinco pistas
   genéricas para reducir empates como Paras/Parasect.
+- ⏱️ El motor impide configurar partidas de más de 30 preguntas; los límites
+  inferiores quedan disponibles para pruebas controladas.
 
 ---
 

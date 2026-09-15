@@ -14,7 +14,7 @@ límite, gana el jugador.
 | Familia | Ejemplos |
 | --- | --- |
 | Tipo | Fuego, Agua, Planta, Fantasma, Hada y los 18 tipos. |
-| Evolución | Forma básica, fase final o línea de varias fases (Kanto). |
+| Evolución | Forma básica, fase final o línea de varias fases (Kanto y catálogo nacional). |
 | Especial | Inicial, legendario o mascota reconocible. |
 | Color | Rojo, azul, amarillo, verde, marrón, morado, rosa, blanco, negro y gris. |
 | Animal | Mamífero, ave, reptil, insecto, animal acuático o planta. |
