@@ -1,4 +1,5 @@
 import { getPokemonFacts } from './pokemonFacts';
+import { NATIONAL_POKEMON_CATALOG } from './pokemonNationalCatalog';
 
 export type GenerationId = 'all' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
@@ -6,6 +7,14 @@ export type PokemonCandidate = {
   id: number;
   name: string;
   types: string[];
+  /** Dominant species colour from PokéAPI; used only for visual yes/no clues. */
+  color?: string;
+  /** PokéAPI silhouette category; used to phrase broad shape/body clues. */
+  shape?: string;
+  /** Generation in which the species first appeared; not a national number. */
+  generation?: number;
+  /** Broad natural habitat from PokéAPI, translated for player-facing clues. */
+  habitat?: string;
   stage: 0 | 1 | 2;
   stageKnown?: boolean;
   legendary: boolean;
@@ -84,17 +93,17 @@ function buildFunFact(id: number, weightKg: number) {
   return `Su peso registrado es de ${weightKg.toLocaleString('es-ES')} kg y ocupa el número ${id} de la Pokédex Nacional.`;
 }
 
-export const LOCAL_KANTO_ROSTER: PokemonCandidate[] = kantoSeed.map((pokemon) => ({
-  ...pokemon,
-  stageKnown: true,
-  portraitUrl: portraitUrl(pokemon.id),
-  normalUrl: normalUrl(pokemon.id),
-  sadUrl: sadUrl(pokemon.id),
-  fallbackUrl: fallbackUrl(pokemon.id),
-  description: buildDescription(pokemon.name, pokemon.types),
-  funFact: buildFunFact(pokemon.id, pokemon.weightKg),
-  facts: getPokemonFacts(pokemon),
-}));
+/**
+ * The first generation is fully local (151 candidates), not just the small
+ * starter slice used by the original prototype. Every other generation and
+ * the national board use the same checked-in catalog below.
+ */
+export const LOCAL_KANTO_ROSTER: PokemonCandidate[] = NATIONAL_POKEMON_CATALOG
+  .filter((pokemon) => pokemon.id <= 151)
+  .map((pokemon) => ({ ...pokemon, types: [...pokemon.types] }));
+
+export const LOCAL_NATIONAL_ROSTER: PokemonCandidate[] = NATIONAL_POKEMON_CATALOG
+  .map((pokemon) => ({ ...pokemon, types: [...pokemon.types] }));
 
 const rosterCache = new Map<GenerationId, PokemonCandidate[]>();
 let nationalRosterCache: PokemonCandidate[] | null = null;
@@ -133,45 +142,12 @@ const legendaryIds = new Set([
 ]);
 
 export async function loadRoster(generation: GenerationId): Promise<PokemonCandidate[]> {
-  if (generation === 1) return LOCAL_KANTO_ROSTER;
   const cached = rosterCache.get(generation);
   if (cached) return cached;
 
   const config = generationConfig(generation);
-  const limit = config.end - config.start + 1;
-  const listResponse = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${config.start - 1}`);
-  if (!listResponse.ok) throw new Error('No se pudo cargar la Pokédex');
-  const list = await listResponse.json() as { results: Array<{ name: string; url: string }> };
-  const selected = (generation === 'all' ? shuffle(list.results) : list.results).slice(0, BOARD_SIZE);
-
-  const detailed = await Promise.all(selected.map(async (item) => {
-    const detailResponse = await fetch(item.url);
-    if (!detailResponse.ok) throw new Error('No se pudo cargar un Pokémon');
-    return detailResponse.json() as Promise<{
-      id: number;
-      name: string;
-      types: Array<{ type: { name: string } }>;
-      weight: number;
-      sprites?: { front_default?: string | null; other?: { 'official-artwork'?: { front_default?: string | null } } };
-    }>;
-  }));
-
-  const roster = detailed.map((pokemon, index) => ({
-    id: pokemon.id,
-    name: titleCase(pokemon.name),
-    types: pokemon.types.map(({ type }) => typeNames[type.name] ?? titleCase(type.name)),
-    stage: 0 as 0 | 1 | 2,
-    stageKnown: false,
-    legendary: legendaryIds.has(pokemon.id),
-    weightKg: pokemon.weight / 10,
-    portraitUrl: portraitUrl(pokemon.id),
-    normalUrl: normalUrl(pokemon.id),
-    sadUrl: sadUrl(pokemon.id),
-    fallbackUrl: pokemon.sprites?.other?.['official-artwork']?.front_default ?? pokemon.sprites?.front_default ?? fallbackUrl(pokemon.id),
-    description: buildDescription(titleCase(pokemon.name), pokemon.types.map(({ type }) => typeNames[type.name] ?? titleCase(type.name))),
-    funFact: buildFunFact(pokemon.id, pokemon.weight / 10),
-    facts: getPokemonFacts({ id: pokemon.id, name: titleCase(pokemon.name), types: pokemon.types.map(({ type }) => typeNames[type.name] ?? titleCase(type.name)), weightKg: pokemon.weight / 10 }),
-  }));
+  const localPool = LOCAL_NATIONAL_ROSTER.filter((pokemon) => pokemon.id >= config.start && pokemon.id <= config.end);
+  const roster = (generation === 'all' ? shuffle(localPool) : localPool).slice(0, BOARD_SIZE);
   rosterCache.set(generation, roster);
   return roster;
 }
@@ -183,43 +159,9 @@ export async function loadRoster(generation: GenerationId): Promise<PokemonCandi
  */
 export async function loadNationalRoster(onProgress?: (loaded: number, total: number) => void): Promise<PokemonCandidate[]> {
   if (nationalRosterCache) return nationalRosterCache;
-  const total = GENERATIONS[0].end;
-  const listResponse = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${total}&offset=0`);
-  if (!listResponse.ok) throw new Error('No se pudo cargar la Pokédex Nacional.');
-  const list = await listResponse.json() as { results: Array<{ url: string }> };
-  const loaded: PokemonCandidate[] = [];
-  const batchSize = 40;
-
-  for (let start = 0; start < list.results.length; start += batchSize) {
-    const batch = list.results.slice(start, start + batchSize);
-    const details = await Promise.all(batch.map(async (item) => {
-      const response = await fetch(item.url);
-      if (!response.ok) throw new Error('No se pudo cargar un Pokémon de la Pokédex Nacional.');
-      return response.json() as Promise<PokemonApiDetail>;
-    }));
-    loaded.push(...details.map((pokemon) => {
-      const types = pokemon.types.map(({ type }) => typeNames[type.name] ?? titleCase(type.name));
-      const name = titleCase(pokemon.name);
-      return {
-        id: pokemon.id,
-        name,
-        types,
-        stage: 0 as 0 | 1 | 2,
-        stageKnown: false,
-        legendary: legendaryIds.has(pokemon.id),
-        weightKg: pokemon.weight / 10,
-        portraitUrl: portraitUrl(pokemon.id),
-        normalUrl: normalUrl(pokemon.id),
-        sadUrl: sadUrl(pokemon.id),
-        fallbackUrl: pokemon.sprites?.other?.['official-artwork']?.front_default ?? pokemon.sprites?.front_default ?? fallbackUrl(pokemon.id),
-        description: buildDescription(name, types),
-        funFact: buildFunFact(pokemon.id, pokemon.weight / 10),
-        facts: getPokemonFacts({ id: pokemon.id, name, types, weightKg: pokemon.weight / 10 }),
-      };
-    }));
-    onProgress?.(loaded.length, list.results.length);
-  }
-
-  nationalRosterCache = loaded.sort((left, right) => left.id - right.id);
+  const total = LOCAL_NATIONAL_ROSTER.length;
+  for (let loaded = 40; loaded < total; loaded += 40) onProgress?.(loaded, total);
+  onProgress?.(total, total);
+  nationalRosterCache = LOCAL_NATIONAL_ROSTER;
   return nationalRosterCache;
 }

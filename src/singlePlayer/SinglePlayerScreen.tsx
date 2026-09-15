@@ -24,6 +24,7 @@ import {
   answerQuestion,
   createSinglePlayerGame,
   rejectWinner,
+  SINGLE_PLAYER_MAX_QUESTIONS,
   SinglePlayerCandidate,
   SinglePlayerQuestion as EngineQuestion,
   SinglePlayerState,
@@ -34,7 +35,9 @@ import {
   createSinglePlayerSessionId,
   exportSinglePlayerLog,
   readSinglePlayerLog,
+  SINGLE_PLAYER_LOG_VERSION,
   SINGLE_PLAYER_KNOWLEDGE_VERSION,
+  SINGLE_PLAYER_NATIONAL_KNOWLEDGE_VERSION,
   SinglePlayerSessionRecord,
   upsertSinglePlayerSession,
 } from '../game/singlePlayerStorage';
@@ -82,9 +85,7 @@ function makeSession(
       answer: event.answer ? 'yes' as const : 'no' as const,
       candidatesBefore,
       candidatesAfter: event.remainingCount,
-      remainingCandidateIds: state.candidates
-        .filter((candidate) => candidate.answers[event.question.trait] === event.answer)
-        .map((candidate) => candidate.id),
+      remainingCandidateIds: event.remainingCandidateIds.filter((id): id is number => typeof id === 'number'),
       recordedAt: new Date().toISOString(),
     };
     candidatesBefore = event.remainingCount;
@@ -92,12 +93,14 @@ function makeSession(
   });
   return {
     sessionId,
-    schemaVersion: 1,
+    schemaVersion: SINGLE_PLAYER_LOG_VERSION,
     knowledgeVersion,
     catalogId,
     startedAt,
     ...(result !== 'in-progress' ? { finishedAt: new Date().toISOString() } : {}),
     result,
+    maxQuestions: state.maxQuestions,
+    questionSelectionSeed: state.questionSelectionSeed,
     selectedPokemonId,
     ...(guessedPokemonId === undefined ? {} : { guessedPokemonId }),
     rejectedGuessIds,
@@ -148,7 +151,7 @@ function SoloSelection({ entries, questionCount, catalogLabel, nationalLoading, 
     <View style={soloStyles.header}>
       <Text accessibilityRole="header" style={soloStyles.title}>MODO 1 JUGADOR</Text>
       <Text style={soloStyles.subtitle}>ELIGE UN POKÉMON EN SECRETO</Text>
-      <Text style={soloStyles.body}>Después te haré preguntas que solo necesitan respuestas de SÍ o NO.</Text>
+      <Text style={soloStyles.body}>Después te haré preguntas que solo necesitan respuestas de SÍ o NO. La máquina tiene hasta {SINGLE_PLAYER_MAX_QUESTIONS} intentos para descubrirlo.</Text>
       <Text style={soloStyles.machineHint}>La máquina no ve tu elección: solo aprende de tus respuestas.</Text>
     </View>
     <TextInput
@@ -161,7 +164,7 @@ function SoloSelection({ entries, questionCount, catalogLabel, nationalLoading, 
       value={search}
     />
     <View style={soloStyles.catalogBadge}><Text style={soloStyles.catalogText}>BANCO {catalogLabel.toUpperCase()} · {entries.length} POKÉMON · {questionCount} PREGUNTAS</Text></View>
-    {entries.length < 1025 && <Pressable accessibilityRole="button" accessibilityState={{ disabled: nationalLoading }} disabled={nationalLoading} onPress={onLoadNational} style={({ pressed }) => [soloStyles.nationalButton, pressed && soloStyles.pressed, nationalLoading && soloStyles.disabled]}><Text style={soloStyles.nationalButtonText}>{nationalLoading ? 'CARGANDO 1.025 POKÉMON…' : 'CARGAR POKÉDEX NACIONAL · 1.025'}</Text></Pressable>}
+    {entries.length < 1025 && <Pressable accessibilityRole="button" accessibilityState={{ disabled: nationalLoading }} disabled={nationalLoading} onPress={onLoadNational} style={({ pressed }) => [soloStyles.nationalButton, pressed && soloStyles.pressed, nationalLoading && soloStyles.disabled]}><Text style={soloStyles.nationalButtonText}>{nationalLoading ? 'PREPARANDO 1.025 POKÉMON…' : 'USAR POKÉDEX NACIONAL · 1.025'}</Text></Pressable>}
     <View style={soloStyles.grid}>{filtered.map((entry) => <SoloPokemonTile key={entry.candidate.id} entry={entry} onPress={() => onPick(entry)} />)}</View>
     {filtered.length === 0 && <Text style={soloStyles.empty}>No hay Pokémon con ese nombre.</Text>}
   </ScrollView>;
@@ -174,13 +177,14 @@ function QuestionActions({ onAnswer, disabled }: { onAnswer: (answer: boolean) =
   </View>;
 }
 
-function QuestionView({ state, onAnswer, onBack, onNewGame }: { state: SinglePlayerState<number, SinglePlayerPokemonKnowledge>; onAnswer: (answer: boolean) => void; onBack: () => void; onNewGame: () => void }) {
+function QuestionView({ state, selectedPokemon, onAnswer, onBack, onNewGame }: { state: SinglePlayerState<number, SinglePlayerPokemonKnowledge>; selectedPokemon: SinglePlayerPokemonKnowledge['candidate']; onAnswer: (answer: boolean) => void; onBack: () => void; onNewGame: () => void }) {
   const question = state.currentQuestion;
   const currentIndex = state.history.length + 1;
   return <ScrollView contentContainerStyle={soloStyles.content}>
     <Pressable accessibilityRole="button" onPress={onBack} style={soloStyles.back}><Text style={soloStyles.backText}>‹ SALIR</Text></Pressable>
     <View style={soloStyles.header}><Text accessibilityRole="header" style={soloStyles.title}>PIENSO Y ADIVINO</Text><Text style={soloStyles.subtitle}>RESPONDE SOLO SÍ O NO</Text></View>
-    <View accessibilityLiveRegion="polite" style={soloStyles.progressCard}><Text style={soloStyles.progressText}>PREGUNTA {currentIndex}</Text><Text style={soloStyles.remaining}>QUEDAN {state.remainingCandidates.length} POKÉMON</Text></View>
+    <View accessibilityLiveRegion="polite" style={soloStyles.progressCard}><Text style={soloStyles.progressText}>PREGUNTA {currentIndex} / {SINGLE_PLAYER_MAX_QUESTIONS}</Text><Text style={soloStyles.remaining}>QUEDAN {state.remainingCandidates.length} POKÉMON</Text></View>
+    <View accessibilityLabel={`Tu Pokémon secreto es ${selectedPokemon.name}, número ${selectedPokemon.id}`} style={soloStyles.secretCard}><MiniPortrait pokemon={selectedPokemon} size={82} /><View style={soloStyles.secretCopy}><Text style={soloStyles.secretKicker}>TU POKÉMON SECRETO</Text><Text style={soloStyles.secretName}>{selectedPokemon.name}</Text><Text style={soloStyles.secretDex}>POKÉDEX NACIONAL #{String(selectedPokemon.id).padStart(3, '0')}</Text></View></View>
     {!!question && <View accessibilityLiveRegion="polite" style={soloStyles.questionCard}><Text style={soloStyles.questionKicker}>MI PREGUNTA ES…</Text><Text accessibilityRole="header" style={soloStyles.questionText}>{question.text}</Text><QuestionActions onAnswer={onAnswer} disabled={false} /></View>}
     <View style={soloStyles.tipCard}><Text style={soloStyles.tipTitle}>CÓMO JUGAR</Text><Text style={soloStyles.body}>Contesta pensando en el Pokémon que acabas de elegir. Si te equivocas, podrás volver a empezar sin perder el registro.</Text></View>
     {state.history.length > 0 && <View style={soloStyles.historyCard}><Text style={soloStyles.tipTitle}>ÚLTIMA RESPUESTA</Text><Text style={soloStyles.body}>{state.history[state.history.length - 1].question.text}</Text><Text style={soloStyles.lastAnswer}>{state.history[state.history.length - 1].answer ? 'SÍ' : 'NO'} · QUEDAN {state.remainingCandidates.length}</Text></View>}
@@ -200,13 +204,14 @@ function GuessView({ state, onGuessAnswer, onBack }: { state: SinglePlayerState<
 }
 
 function ResultView({ state, selectedPokemonId, onNewGame, onBack }: { state: SinglePlayerState<number, SinglePlayerPokemonKnowledge>; selectedPokemonId: number; onNewGame: () => void; onBack: () => void }) {
-  const title = state.phase === 'won' ? 'VICTORIA' : state.phase === 'no-match' ? 'RESPUESTAS INCOMPATIBLES' : 'NO PUEDO DECIDIRLO';
+  const title = state.phase === 'won' ? 'LA MÁQUINA HA GANADO' : state.phase === 'limit-reached' ? '¡HAS GANADO!' : state.phase === 'no-match' ? 'RESPUESTAS INCOMPATIBLES' : 'NO PUEDO DECIDIRLO';
   const target = state.candidates.find((candidate) => candidate.id === selectedPokemonId)?.metadata;
   return <ScrollView contentContainerStyle={soloStyles.content}>
     <Pressable accessibilityRole="button" onPress={onBack} style={soloStyles.back}><Text style={soloStyles.backText}>‹ SALIR</Text></Pressable>
-    <View style={[soloStyles.resultCard, state.phase === 'won' ? soloStyles.resultWin : soloStyles.resultOther]}>
+    <View style={[soloStyles.resultCard, state.phase === 'won' || state.phase === 'limit-reached' ? soloStyles.resultWin : soloStyles.resultOther]}>
       <Text accessibilityRole="header" style={soloStyles.resultTitle}>{title}</Text>
       {state.phase === 'won' && state.winner && <><MiniPortrait pokemon={state.winner.metadata?.candidate ?? target?.candidate ?? SINGLE_PLAYER_KANTO_KNOWLEDGE[0].candidate} size={142} /><Text style={soloStyles.resultPokemon}>{state.winner.name}</Text><Text style={soloStyles.bodyCenter}>¡He encontrado tu Pokémon!</Text><Text style={soloStyles.fact}>{(state.winner.metadata?.shortFacts ?? [state.winner.metadata?.candidate.funFact ?? '']).slice(0, 3).map((fact, index) => <Text key={`${state.winner?.id ?? 'winner'}-fact-${index}`}>{index > 0 ? '\n' : ''}{index + 1}. {fact}</Text>)}</Text></>}
+      {state.phase === 'limit-reached' && target && <><MiniPortrait pokemon={target.candidate} size={142} /><Text style={soloStyles.resultPokemon}>{target.candidate.name}</Text><Text style={soloStyles.bodyCenter}>La máquina no lo ha descubierto en {SINGLE_PLAYER_MAX_QUESTIONS} preguntas. ¡El punto es para ti!</Text><Text style={soloStyles.fact}>{target.shortFacts.slice(0, 3).map((fact, index) => <Text key={`${target.candidate.id}-fact-${index}`}>{index > 0 ? '\n' : ''}{index + 1}. {fact}</Text>)}</Text></>}
       {state.phase === 'no-match' && <Text style={soloStyles.bodyCenter}>Alguna respuesta no encaja con la base de conocimiento. Puedes corregirlo empezando otra partida.</Text>}
       {state.phase === 'tie' && <><Text style={soloStyles.bodyCenter}>Estas opciones siguen siendo compatibles:</Text><Text style={soloStyles.tieNames}>{state.tiedCandidates.map((candidate) => candidate.name).join(' · ')}</Text></>}
       <Text style={soloStyles.bodyCenter}>La sesión y todas sus respuestas se han guardado en este dispositivo.</Text>
@@ -234,12 +239,16 @@ export function SinglePlayerScreen({ reduceMotion: _reduceMotion, onBack, onSoun
     void AccessibilityInfo.announceForAccessibility?.('Modo 1 jugador preparado');
   }, []);
 
+  const refreshSessionCount = () => {
+    void readSinglePlayerLog().then((sessions) => setSessionCount(sessions.length));
+  };
+
   const persist = (nextState: SinglePlayerState<number, SinglePlayerPokemonKnowledge>, result: SinglePlayerSessionRecord['result'] = 'in-progress', guessedPokemonId?: number, nextRejectedGuessIds = rejectedGuessIds) => {
     const session = sessionRef.current;
     const selected = selectedPokemonId;
     if (!session || selected === null) return;
     void upsertSinglePlayerSession(makeSession(session.id, selected, session.startedAt, nextState, session.catalogId, session.knowledgeVersion, result, guessedPokemonId, nextRejectedGuessIds)).then((saved) => {
-      if (saved) setSessionCount((count) => Math.max(count, 1));
+      if (saved) refreshSessionCount();
     });
   };
 
@@ -262,12 +271,17 @@ export function SinglePlayerScreen({ reduceMotion: _reduceMotion, onBack, onSoun
 
   const startGame = (entry: SinglePlayerPokemonKnowledge) => {
     const questions = questionBank.map(toEngineQuestion);
-    const nextState = createSinglePlayerGame(entries.map((entry) => toEngineCandidate(entry, questionBank)), { questions });
+    const nextState = createSinglePlayerGame(entries.map((entry) => toEngineCandidate(entry, questionBank)), { questions, maxQuestions: SINGLE_PLAYER_MAX_QUESTIONS });
     setSelectedPokemonId(entry.candidate.id);
-    sessionRef.current = { id: createSinglePlayerSessionId(), startedAt: new Date().toISOString(), catalogId, knowledgeVersion: catalogId === 'national' ? 'national-1025-v1' : SINGLE_PLAYER_KNOWLEDGE_VERSION };
+    const startedAt = new Date().toISOString();
+    const session = { id: createSinglePlayerSessionId(), startedAt, catalogId, knowledgeVersion: catalogId === 'national' ? SINGLE_PLAYER_NATIONAL_KNOWLEDGE_VERSION : SINGLE_PLAYER_KNOWLEDGE_VERSION };
+    sessionRef.current = session;
     setRejectedGuessIds([]);
     setState(nextState);
     setStep('questions');
+    void upsertSinglePlayerSession(makeSession(session.id, entry.candidate.id, startedAt, nextState, catalogId, session.knowledgeVersion)).then((saved) => {
+      if (saved) refreshSessionCount();
+    });
     onSound('select');
   };
 
@@ -275,9 +289,19 @@ export function SinglePlayerScreen({ reduceMotion: _reduceMotion, onBack, onSoun
     if (!state || state.phase !== 'playing') return;
     const nextState = answerQuestion(state, value);
     setState(nextState);
-    persist(nextState);
+    const storedResult: SinglePlayerSessionRecord['result'] = nextState.phase === 'limit-reached'
+      ? 'player-won'
+      : nextState.phase === 'no-match'
+        ? 'inconsistent'
+        : nextState.phase === 'tie'
+          ? 'ambiguous'
+          : 'in-progress';
+    persist(nextState, storedResult);
     if (nextState.phase === 'won') setStep('guess');
-    else if (nextState.phase === 'tie' || nextState.phase === 'no-match') setStep('result');
+    else if (nextState.phase === 'limit-reached' || nextState.phase === 'tie' || nextState.phase === 'no-match') {
+      if (nextState.phase === 'limit-reached') onSound('victory');
+      setStep('result');
+    }
   };
 
   const answerGuess = (correct: boolean) => {
@@ -292,7 +316,13 @@ export function SinglePlayerScreen({ reduceMotion: _reduceMotion, onBack, onSoun
     const nextState = rejectWinner(state);
     setRejectedGuessIds(nextRejected);
     setState(nextState);
-    persist(nextState, nextState.phase === 'no-match' ? 'inconsistent' : 'in-progress', undefined, nextRejected);
+    const storedResult: SinglePlayerSessionRecord['result'] = nextState.phase === 'limit-reached'
+      ? 'player-won'
+      : nextState.phase === 'no-match'
+        ? 'inconsistent'
+        : 'in-progress';
+    persist(nextState, storedResult, undefined, nextRejected);
+    if (nextState.phase === 'limit-reached') onSound('victory');
     setStep(nextState.phase === 'playing' ? 'questions' : 'result');
   };
 
@@ -327,7 +357,7 @@ export function SinglePlayerScreen({ reduceMotion: _reduceMotion, onBack, onSoun
   return <View style={soloStyles.root}>
     {step === 'pick' && <SoloSelection entries={entries} questionCount={questionBank.length} catalogLabel={catalogLabel} nationalLoading={nationalLoading} onLoadNational={() => void loadNational()} onPick={startGame} onBack={onBack} />}
     {!!catalogError && step === 'pick' && <Text accessibilityRole="alert" style={soloStyles.error}>{catalogError}</Text>}
-    {step === 'questions' && state && <QuestionView state={state} onAnswer={answer} onBack={back} onNewGame={newGame} />}
+    {step === 'questions' && state && selectedPokemonId !== null && entries.find((entry) => entry.candidate.id === selectedPokemonId) && <QuestionView state={state} selectedPokemon={entries.find((entry) => entry.candidate.id === selectedPokemonId)!.candidate} onAnswer={answer} onBack={back} onNewGame={newGame} />}
     {step === 'guess' && state && <GuessView state={state} onGuessAnswer={answerGuess} onBack={back} />}
     {step === 'result' && state && selectedPokemonId !== null && <ResultView state={state} selectedPokemonId={selectedPokemonId} onNewGame={newGame} onBack={onBack} />}
     {step === 'pick' && <View style={soloStyles.historyFooter}><Text style={soloStyles.historyTitle}>HISTORIAL LOCAL: {sessionCount}</Text><View style={soloStyles.historyActions}><Pressable accessibilityRole="button" onPress={() => void exportLog()} style={soloStyles.smallAction}><Text style={soloStyles.smallActionText}>COPIAR JSON</Text></Pressable><Pressable accessibilityRole="button" onPress={() => void clearLog()} style={soloStyles.smallAction}><Text style={soloStyles.smallActionText}>BORRAR</Text></Pressable></View><Text style={soloStyles.historyHint}>Se guardan preguntas, respuestas, candidatos restantes y resultados. Sin servidor.</Text></View>}
@@ -360,6 +390,11 @@ const soloStyles = StyleSheet.create({
   progressCard: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'rgba(5, 11, 24, 0.94)', borderRadius: 8, borderWidth: 2, borderColor: '#4B4B4F', padding: 13 },
   progressText: { color: '#38D37D', fontFamily: 'PressStart2P_400Regular', fontSize: 8 },
   remaining: { color: '#FFD000', fontFamily: 'PressStart2P_400Regular', fontSize: 7 },
+  secretCard: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 13, backgroundColor: 'rgba(17, 18, 24, 0.95)', borderRadius: 11, borderWidth: 2, borderColor: '#FFD000', paddingHorizontal: 14, paddingVertical: 8, shadowColor: '#FFD000', shadowOpacity: 0.18, shadowRadius: 7, shadowOffset: { width: 0, height: 0 } },
+  secretCopy: { flex: 1, gap: 5 },
+  secretKicker: { color: '#38D37D', fontFamily: 'PressStart2P_400Regular', fontSize: 7, lineHeight: 12 },
+  secretName: { color: '#FFD000', fontFamily: 'PressStart2P_400Regular', fontSize: 14, lineHeight: 21 },
+  secretDex: { color: '#A7A8B2', fontFamily: 'PressStart2P_400Regular', fontSize: 6, lineHeight: 11 },
   questionCard: { backgroundColor: 'rgba(29, 30, 42, 0.97)', borderRadius: 14, borderWidth: 3, borderColor: '#FFD000', padding: 17, gap: 14, alignItems: 'center', shadowColor: '#FFD000', shadowOpacity: 0.22, shadowRadius: 8, shadowOffset: { width: 0, height: 0 } },
   questionKicker: { color: '#F06B00', fontFamily: 'PressStart2P_400Regular', fontSize: 8 },
   questionText: { color: '#F6F5EF', fontSize: 22, fontWeight: '900', lineHeight: 31, textAlign: 'center' },

@@ -4,7 +4,7 @@
 
 ## 1. Objetivo y alcance
 
-**Adivina Quién Pokémon** es un prototipo mobile-first de un juego de deducción para dos jugadores. Cada jugador comparte una sala, recibe la misma cuadrícula de 25 Pokémon, elige en privado un Pokémon secreto y va descartando candidatos de su propio tablero hasta dejar uno. Gana quien deja como único candidato el secreto del rival.
+**PokéQuién** es un juego mobile-first de deducción para dos jugadores. Cada jugador comparte una sala, recibe la misma cuadrícula de 25 Pokémon, elige en privado un Pokémon secreto y va descartando candidatos de su propio tablero hasta dejar uno. Gana quien deja como único candidato el secreto del rival.
 
 El cliente funciona en web, Android e iOS mediante Expo/React Native. La primera versión está pensada para jugar en local o dentro de una red de confianza: el servidor de salas es un proceso Node.js con estado en memoria y WebSocket. No es todavía un servicio multiusuario persistente ni un backend listo para producción.
 
@@ -17,9 +17,9 @@ El producto busca conservar la lectura inmediata de las referencias visuales: ta
 - **Presentación y orquestación — `App.tsx`**: contiene la navegación por estado (`home`, `room`, `selection`, `waiting`, `game`, `single-player`), los componentes de pantalla, la carga de fuentes, audio/hápticos, clipboard, compartir, enlaces de invitación, reconexión y accesibilidad.
 - **Dominio puro — `src/game/engine.ts`**: define `LocalGameState`, fases, jugadores y transiciones puras para crear partida, empezar selección, seleccionar secreto, empezar juego y tachar/destachar candidatos. No tiene efectos de red, UI ni almacenamiento.
 - **Transporte de sala — `src/game/roomClient.ts`**: cliente WebSocket con URL configurable, timeout inicial de 5 segundos, serialización de `create`, `join`, `reconnect`, `select`, `toggle` y `rematch`, sesión persistente y reintentos durante la ventana de reconexión.
-- **Servidor autoritativo local — `server/room-server.js`**: servidor HTTP/WebSocket basado en `ws`. Asigna `p1`/`p2`, conserva salas en un `Map`, valida el esquema del tablero, acciones y generación, calcula el ganador y emite una proyección privada del estado a cada socket. Limita cada payload WebSocket a 64 KiB y evita asociar una conexión a más de una sala.
-- **Datos — `src/data/pokemon.ts`**: catálogo de generaciones, roster local de Kanto, carga de PokéAPI, traducción de tipos, metadatos derivados, selección aleatoria y caché de rosters en memoria.
-- **Audio — `src/audio/sounds.ts`**: efecto PCM corto para tachar. `App.tsx` reproduce localmente los WAV de selección/victoria descargados por petición del usuario y usa un respaldo con `AudioContext` en web; la victoria se protege contra doble reproducción.
+- **Servidor autoritativo local — `server/room-server.js`**: servidor HTTP/WebSocket basado en `ws`. Asigna `p1`/`p2`, conserva salas en un `Map`, valida el esquema del tablero, acciones y generación, calcula el ganador y emite una proyección privada del estado a cada socket. Limita payload a 64 KiB, origen local/allowlist, mensajes por ventana, número de salas, tamaño de texto y sesiones con comparación constante.
+- **Datos — `src/data/pokemon.ts` + `src/data/pokemonNationalCatalog.ts`**: catálogo local nacional de 1.025 Pokémon generado desde PokéAPI, Kanto completo (151), traducción de tipos, metadatos derivados, selección aleatoria y caché de rosters en memoria. El juego no necesita pedir la PokéAPI durante una partida.
+- **Audio — `src/audio/sounds.ts` + `assets/*.wav`**: efecto PCM corto para tachar, selección/destachado, victoria y derrota. `App.tsx` reproduce localmente los WAV y usa un respaldo con `AudioContext` en web; los resultados se protegen contra doble reproducción.
 
 El servidor JavaScript replica actualmente parte de las reglas de `engine.ts` porque no importa el módulo TypeScript. La máquina de estados del dominio debe seguir siendo pura; al evolucionar las reglas conviene eliminar esta duplicación mediante un módulo compartido o pruebas de contrato.
 
@@ -41,11 +41,12 @@ El servidor JavaScript replica actualmente parte de las reglas de `engine.ts` po
 | `src/game/engine.ts` | Tipos `PlayerId`, `LocalPhase`, `PlayerState`, `LocalGameState` y transiciones puras. |
 | `src/game/roomClient.ts` | Cliente WebSocket y tipos `RoomGameState`/mensajes de sala. Usa `EXPO_PUBLIC_ROOM_SERVER_URL` o defaults por plataforma. |
 | `server/room-server.js` | HTTP health check y servidor WebSocket local. Mantiene salas en memoria, proyecta secretos, valida acciones, conserva tokens de sesión, reconexión de 60 s y rematch. |
-| `src/data/pokemon.ts` | `GenerationId`, `PokemonCandidate`, generaciones 1–9, `BOARD_SIZE = 25`, roster local de Kanto y carga/caché de PokéAPI. |
+| `src/data/pokemon.ts` | `GenerationId`, `PokemonCandidate`, generaciones 1–9, `BOARD_SIZE = 25`, Kanto local completo, catálogo nacional local y caché de rosters. |
+| `src/data/pokemonNationalCatalog.ts` | 1.025 candidatos locales con tipos, peso, Dex, color dominante, silueta, 3 datos base y URLs de retratos/fallback. Generado desde PokéAPI. |
 | `src/audio/sounds.ts` | Constantes WAV embebidas para selección, tachado y restauración. |
 | `assets/spritecollab-background.png` | Fondo local obtenido de la web de SpriteCollab, usado como `ImageBackground`, oscurecido y cubierto con scanlines CRT. |
 | `assets/icon.png`, `android-icon-*`, `splash-icon.png`, `favicon.png` | Iconos y recursos declarados por `app.json` para Android, web y splash. |
-| `app.json` | Configuración Expo: nombre, slug, scheme `adivinapokemon`, orientación vertical, iconos, identificadores Android/iOS y plugins de audio, assets y fuentes. |
+| `app.json` | Configuración Expo: marca `PokéQuién`, slug/scheme, orientación vertical, iconos, identificadores Android/iOS y plugins de audio, assets, fuentes y SecureStore. |
 | `package.json` / `package-lock.json` | Dependencias y scripts de Expo, React Native, WebSocket, fuentes, audio, clipboard, hápticos y TypeScript. |
 | `README.md` | Guía visual para jugadores, sin instrucciones técnicas de arranque. |
 | `docs/*.md` | Contexto compartido, notas UX/audio/sprites, contrato de sala, guía de usuario y resumen visual. |
@@ -62,13 +63,13 @@ El estado `roster` de `App.tsx` conserva el roster cargado, pero la UI renderiza
 - `phase`: una de `waiting-for-player`, `selecting`, `waiting-for-selection`, `playing`, `finished` o `abandoned`.
 - `roomCode`: identificador de invitación.
 - `generation`: `all` o una generación de 1 a 9.
-- `board`: exactamente 25 `PokemonCandidate` con id, nombre, tipos, peso, URLs y metadatos.
+- `board`: exactamente 25 `PokemonCandidate` con id, nombre, tipos, color, silueta, peso, URLs y metadatos.
 - `players.p1` y `players.p2`: `secretId` privado y lista `crossedIds` de su tablero.
 - `playerCount`: 1 o 2 sockets conectados.
 - `presence`: conexión actual de `p1` y `p2`; `disconnectedPlayer` y `reconnectDeadline` describen una ventana activa de reconexión.
 - `winner`: `p1`, `p2` o `null`.
 
-La proyección del servidor mantiene públicos el tablero, la generación y los descartes de ambos tableros, pero oculta el secreto del contrario. En `finished` se revelan ambos secretos a los dos jugadores.
+La proyección del servidor mantiene públicos el tablero, la generación y los descartes de ambos tableros, pero oculta el secreto del contrario. En `finished` se resuelve el resultado, aunque cada cliente sigue mostrando las curiosidades únicamente de su propio secreto.
 
 ### Fases de producto
 
@@ -85,7 +86,7 @@ La proyección del servidor mantiene públicos el tablero, la generación y los 
    Cada jugador ve su tablero interactivo y el tablero rival en modo consulta. El bloque central muestra `TÚ` frente a `RIVAL`; el secreto propio es visible y el rival aparece como `?`.
 
 5. **`finished` — resultado**
-   Se deshabilitan las acciones de juego, se muestra un modal de victoria o derrota desde el punto de vista local, se presenta el Pokémon ganador, se revelan ambos secretos y se muestran descripción/hasta tres curiosidades. `JUGAR DE NUEVO` limpia secretos y tachados en la misma sala para que ambos vuelvan a elegir.
+   Se deshabilitan las acciones de juego, se muestra un modal de victoria o derrota desde el punto de vista local, se reproduce audio de resultado y se presenta el Pokémon elegido por ese jugador con descripción/hasta tres curiosidades privadas. El texto puede indicar el nombre del secreto rival, pero no muestra sus datos curiosos. `JUGAR DE NUEVO` limpia secretos y tachados en la misma sala para que ambos vuelvan a elegir.
 
 6. **`abandoned` — abandono**
    Si el jugador desconectado no recupera su sesión en 60 segundos, la sala se marca como abandonada y el cliente vuelve al menú mostrando quién se fue.
@@ -97,7 +98,7 @@ Al cerrar un socket durante una partida, el servidor conserva el jugador, secret
 ## 5. Reglas del juego
 
 - El tablero contiene 25 Pokémon, en una cuadrícula 5×5.
-- `Todas` cubre ids 1–1025 y elige 25 elementos aleatorios. Una generación concreta usa su rango nacional y toma los primeros 25 en el orden de PokéAPI; la primera generación usa el roster local de Kanto.
+- `Todas` cubre ids 1–1025 y elige 25 elementos aleatorios desde el catálogo local. Una generación concreta usa su rango nacional; la primera generación usa sus 151 entradas locales y toma 25.
 - El código generado por el cliente tiene ocho caracteres y usa `ABCDEFGHJKLMNPQRSTUVWXYZ23456789`, evitando caracteres ambiguos como `I`, `O`, `0` y `1`. El servidor acepta exactamente ocho caracteres `[A-Z2-9]`.
 - Cada jugador puede elegir una única vez y el servidor no impide que ambos elijan el mismo Pokémon.
 - Cada jugador solo puede modificar su propia lista `crossedIds`. Pulsar un candidato lo tacha; pulsarlo otra vez lo destacha.
@@ -123,12 +124,12 @@ La interfaz actual traduce esa referencia a:
 
 ### Pantallas y acciones
 
-- **Inicio**: logotipo `ADIVINA QUIÉN`, subtítulo de sala multijugador, selector horizontal de `Todas`/generaciones, código de invitación pre-generado, `COPIAR ENLACE`, `CREAR SALA`, campo de código rival, `CONECTAR` y acceso rápido `CREAR SALA DE PRUEBA KANTO`. Si se copia desde esta pantalla, la sala se crea con ese mismo código antes de copiar el enlace. Los errores aparecen como alerta.
+   - **Inicio**: logotipo `POKÉ QUIÉN`, subtítulo de duelo pixel, selector horizontal de `Todas`/generaciones, código de invitación pre-generado, `COPIAR ENLACE`, `CREAR SALA`, campo de código rival, `CONECTAR` y el CTA visible `MODO SOLITARIO · JUGAR CONTRA LA MÁQUINA`, además de `CREAR SALA DE PRUEBA KANTO`. Si se copia desde esta pantalla, la sala se crea con ese mismo código antes de copiar el enlace. Los errores aparecen como alerta.
 - **Sala**: muestra generación, código, `COPIAR CÓDIGO`, `COPIAR ENLACE`, contador de conexiones y un estado de espera o de sala completa.
 - **Selección**: título “ELIGE TU POKÉMON SECRETO”, jugador y sala, cuadrícula 5×5; la casilla elegida queda resaltada en amarillo y la acción se envía inmediatamente.
 - **Espera**: enseña el secreto propio, mensaje de espera y una Poké Ball animada que se desplaza entre un objetivo y el centro. Con `prefers-reduced-motion`/ajuste de accesibilidad la animación queda estática.
 - **Partida**: barra con salir, sala y estado; tablero propio con contador de Pokémon libres y ayuda de tachar/destachar; separador `VS`; tablero rival con contador y mensaje de solo consulta. Solo el tablero propio activa `toggle`.
-- **Resultado**: tarjeta de `VICTORIA` o `HAS PERDIDO`, texto contextual, retrato y dato curioso del Pokémon descubierto (el último candidato que coincide con el secreto rival), revelación de ambos secretos con descripción y dato, bloque de información del descubierto y botón `JUGAR DE NUEVO`.
+   - **Resultado**: tarjeta de `VICTORIA` o `HAS PERDIDO`, audio contextual, texto de resultado, retrato y hasta tres datos del Pokémon elegido por el jugador local, bloque de información privado y botón `JUGAR DE NUEVO`.
 
 ### Accesibilidad y feedback
 
@@ -140,16 +141,9 @@ La accesibilidad es funcional pero todavía requiere auditoría: los botones pri
 
 ### PokéAPI
 
-Para generaciones distintas de la 1, `loadRoster` llama a:
+El catálogo se genera con `scripts/generate-local-pokemon-catalog.mjs` y queda versionado en `src/data/pokemonNationalCatalog.ts`. El script toma de PokéAPI el id, nombre, tipos, peso y sprites, convierte el peso de hectogramos a kg, traduce los tipos y materializa tres datos base por entrada. `legendaryIds` es una lista manual versionada; las entradas llevan `stage: 0` y `stageKnown: false`, por lo que aún no hay cálculo local de líneas evolutivas.
 
-```text
-GET https://pokeapi.co/api/v2/pokemon?limit=<rango>&offset=<inicio-1>
-GET <url individual>     # hasta 25 detalles en paralelo
-```
-
-De cada detalle usa id, nombre, tipos, peso y sprites. El peso de PokéAPI, expresado en hectogramos, se convierte a kg dividiendo entre 10. Los nombres se pasan a title case, los tipos se traducen al español y se deriva una descripción y un dato con número de Pokédex/peso. `legendaryIds` es una lista manual; los Pokémon remotos llevan `stage: 0` y `stageKnown: false`, por lo que aún no hay cálculo de líneas evolutivas.
-
-El roster local `LOCAL_KANTO_ROSTER` contiene exactamente los ids 1–25, con nombres, tipos, fase evolutiva, pesos, descripciones y datos preparados. Sirve para la generación 1 y para el botón de demo. La caché de rosters es un `Map` en memoria del proceso de cada cliente; no es una caché persistente de red.
+El roster local `LOCAL_KANTO_ROSTER` contiene los ids 1–151, con nombres, tipos, pesos, descripciones y tres datos preparados. `LOCAL_NATIONAL_ROSTER` contiene las 1.025 entradas. La caché de rosters es un `Map` en memoria del proceso de cada cliente; el catálogo fuente sí está versionado.
 
 ### SpriteCollab PMD y fallback
 
@@ -218,7 +212,7 @@ $env:EXPO_PUBLIC_ROOM_SERVER_URL = "ws://IP-DE-TU-ORDENADOR:8787"
 npm run start
 ```
 
-No hay API keys ni secretos configurados. El código se puede compartir como enlace: en web se genera `/?room=<codigo>` sobre el origen actual; en nativo se genera `adivinapokemon://join?room=<codigo>` mediante el `scheme` de `app.json`. `App.tsx` procesa la URL inicial y los eventos de enlace, rellena el código y trata de unirse automáticamente.
+No hay API keys ni secretos configurados. El código se puede compartir como enlace: en web se genera `/?room=<codigo>` sobre el origen actual; en nativo se genera `pokequien://join?room=<codigo>` mediante el `scheme` de `app.json`. `App.tsx` procesa la URL inicial y los eventos de enlace, rellena el código y trata de unirse automáticamente.
 
 ## 10. Pruebas y verificaciones realizadas
 
@@ -237,9 +231,9 @@ No existe actualmente script de test, framework de unit tests, pruebas de compon
 - **Confianza en el cliente**: la creación sigue recibiendo el tablero desde el cliente, aunque el servidor ya valida estrictamente los 25 registros, ids únicos, metadatos mínimos, generación y tamaño de payload. Para producción aún conviene generar o verificar el tablero en backend, añadir rate limit y separar el código de invitación de un token de sesión.
 - **Duplicación de reglas**: `engine.ts` y `server/room-server.js` implementan transiciones similares, lo que puede producir divergencias futuras.
 - **Red y datos externos**: una caída de PokéAPI o de raw.githubusercontent.com puede impedir cargar una generación o dejar retratos en fallback; `Promise.all` hace fallar la carga completa si falla un detalle. No hay persistencia local de imágenes ni roster completo offline.
-- **Cobertura Pokémon**: solo Kanto 1–25 está definido localmente. Las generaciones remotas no calculan evoluciones y la clasificación legendaria depende de una lista manual.
+- **Cobertura Pokémon**: las 1.025 entradas están definidas localmente. Las generaciones no calculan todavía líneas evolutivas y la clasificación legendaria depende de una lista manual versionada.
 - **Experiencia de sala**: no hay chat, turnos, historial, espectadores, enlace con preview web ni confirmación antes de salir. Sí hay rematch dentro de la misma sala e indicación de reconexión.
-- **Audio**: no hay ajuste de volumen ni interruptor para desactivar audio/hápticos; movimiento reducido no desactiva sonidos. La selección y el destachado usan `assets/selection-reference.wav`, la victoria usa `assets/victory-reference.wav` y el tachado mantiene un efecto genérico local. Hay que revisar derechos antes de distribución pública.
+- **Audio**: no hay ajuste de volumen ni interruptor para desactivar audio/hápticos; movimiento reducido no desactiva sonidos. La selección y el destachado usan `assets/selection-reference.wav`, la victoria `assets/victory-reference.wav`, la derrota `assets/defeat-reference.wav` y el tachado mantiene un efecto genérico local. Hay que revisar derechos/licencias antes de distribución pública.
 - **Accesibilidad**: falta auditoría de contraste, anuncios completos de cambios de fase y garantía de 44 px en todos los controles; la navegación por teclado web y la compatibilidad con lectores de pantalla deben probarse en dispositivos reales.
 - **Licencias**: la app es fan project no oficial. SpriteCollab indica atribución y licencia CC BY-NC 4.0 en el contexto del proyecto; antes de publicar hay que verificar los términos de cada recurso, la atribución final y los derechos de Pokémon.
 
@@ -261,21 +255,21 @@ La aplicación incluye ahora un flujo individual separado del motor de salas. Se
 ### Flujo
 
 1. El jugador elige en secreto un Pokémon de un catálogo buscable.
-2. El motor escoge la pregunta binaria con mayor ganancia de información.
+2. El motor escoge la pregunta binaria con mayor ganancia de información y, entre preguntas casi equivalentes, explora una opción distinta usando una semilla exclusiva de la ronda.
 3. La UI solo ofrece `SÍ` y `NO`, muestra la pregunta actual y el número de candidatos restantes.
-4. Cuando queda una propuesta, se solicita confirmación. Si la respuesta es `NO`, `rejectWinner` elimina esa propuesta y la partida continúa.
-5. `VICTORIA`, contradicción o ambigüedad terminan la sesión y conservan el registro.
+4. La partida admite como máximo 30 respuestas. Cuando queda una propuesta, se solicita confirmación; si la respuesta es `NO`, `rejectWinner` elimina esa propuesta y la partida continúa mientras queden preguntas.
+5. Si la máquina no identifica el Pokémon al llegar a 30, la fase es `limit-reached`, gana el jugador y la UI revela su sprite y sus curiosidades. `VICTORIA`, contradicción o ambigüedad terminan la sesión y conservan el registro.
 
 ### Conocimiento
 
-- `src/data/singlePlayerKnowledge.ts` contiene el catálogo local de 25 Pokémon de Kanto, 95 preguntas semánticas, líneas evolutivas, rasgos visuales y umbrales de Pokédex. `src/data/pokemonFacts.ts` aporta hasta tres datos curiosos por Pokémon: curados para Kanto y deterministas para el catálogo nacional.
-- El botón `CARGAR POKÉDEX NACIONAL · 1.025` obtiene los detalles de la PokéAPI en lotes, crea 1.025 candidatos y genera 1.062 preguntas (tipo, doble tipo, legendario, peso y cortes de Pokédex). Los cortes de Pokédex permiten distinguir ids aunque no exista todavía conocimiento semántico específico para cada especie.
-- Las imágenes se sirven desde SpriteCollab con fallback a PokeAPI y muestran el número Dex. El catálogo nacional se carga bajo demanda para que el inicio siga siendo rápido.
+- `src/data/singlePlayerKnowledge.ts` contiene preguntas semánticas y visuales para Kanto y el catálogo nacional. Incluye tipos, colores, animal de inspiración, cuerpo, silueta y situaciones cotidianas; no incluye número de Pokédex, rangos nacionales ni peso.
+- El botón `CARGAR POKÉDEX NACIONAL · 1.025` activa las 1.025 entradas ya versionadas localmente. El catálogo incorpora color dominante y silueta pública para que las preguntas sean contestables mirando el retrato.
+- Las imágenes se sirven desde SpriteCollab con fallback a PokéAPI y muestran el número Dex. Los datos nacionales funcionan offline; las imágenes remotas se descargan cuando el dispositivo las necesita.
 - La máquina nunca recibe `selectedPokemonId`: el secreto permanece en el estado local de la pantalla y el motor solo trabaja con candidatos y respuestas binarias.
 
 ### Estado, persistencia y exportación
 
-- `src/game/singlePlayerEngine.ts` es puro y genérico: valida candidatos/preguntas, calcula ganancia de información, filtra, detecta `won`, `tie` y `no-match`, y permite rechazar una propuesta.
+- `src/game/singlePlayerEngine.ts` es puro y genérico: valida candidatos/preguntas, calcula ganancia de información, explora preguntas casi equivalentes con semilla, aplica el límite de 30, filtra, detecta `won`, `tie`, `no-match` y `limit-reached`, y permite rechazar una propuesta.
 - `src/game/singlePlayerStorage.ts` guarda sesiones idempotentemente con AsyncStorage. Cada evento contiene id de pregunta, texto, respuesta, candidatos antes/después y candidatos restantes. El historial conserva hasta 5.000 sesiones para limitar el crecimiento local.
 - `COPIAR JSON` exporta un sobre `adivina-pkm-single-player-log` sin imágenes ni datos de red. `BORRAR` requiere una acción explícita desde la pantalla de historial.
 - El secreto seleccionado se mantiene en el estado local y no se envía al servidor de salas.
@@ -284,6 +278,6 @@ La aplicación incluye ahora un flujo individual separado del motor de salas. Se
 
 `npm run single-player:soak` ejecuta lotes deterministas sobre Kanto, mezcla respuestas correctas y un 10% de contradicciones, y guarda todas las preguntas/respuestas en el JSON indicado por `SINGLE_PLAYER_SOAK_OUTPUT`. El runner acepta `SINGLE_PLAYER_SOAK_RUNS`, `SINGLE_PLAYER_SOAK_SEED`, `SINGLE_PLAYER_SOAK_AGENT_ID` y `SINGLE_PLAYER_SOAK_CONTRADICTION_RATE`. `npm run single-player:merge` fusiona los fragmentos de `artifacts/soak-shards/`, deduplica por sesión y calcula estadísticas agregadas por pregunta.
 
-La campaña ampliada verificada reunió 17 fragmentos/agents, 320.025 sesiones, 1.505.505 preguntas y 487 MB de JSON detallado. Produjo 288.100 victorias y 31.925 derrotas/inconsistencias. Cada sesión conserva la secuencia de preguntas, respuestas SÍ/NO, candidatos antes/después y candidatos restantes; los fragmentos quedan disponibles para auditoría.
+La campaña ampliada verificada reunió seis agentes históricos y una flota lógica de 50 agentes nacionales. La última ejecución, ya con selector adaptativo y límite de 30 preguntas, ejecutó 50 agentes × 1.000 sesiones = 50.000 partidas, con 494.925 preguntas, 32.004 victorias, 1.748 inconsistencias deliberadas y 16.248 empates honestos por perfiles semánticos indistinguibles. No hubo sesiones agotadas por límite en esta distribución porque las preguntas informativas resolvieron antes; el límite sí está cubierto por pruebas unitarias del motor. Cada sesión conserva la secuencia de preguntas, respuestas SÍ/NO, candidatos antes/después y candidatos restantes en fragmentos de `artifacts/single-player-national-fleet-50000/`, con sus métricas en `manifest.json`.
 
 La campaña sintética sustituye una espera literal de una hora por una carga reproducible y auditable, ejecutada en paralelo con workers independientes. Para una validación de una hora en un dispositivo real se puede ejecutar el runner repetidamente y combinarlo con pruebas manuales de red, segundo plano y accesibilidad.

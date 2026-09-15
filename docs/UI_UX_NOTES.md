@@ -48,7 +48,12 @@ La X ocupa todo el recuadro, tiene dos diagonales rojas gruesas y una entrada br
 - Si solo un jugador ha elegido: mostrar su secreto, texto de espera y una Poké Ball que se desplaza y rota suavemente.
 - Si ambos han elegido: iniciar automáticamente.
 - Al ganar: abrir un modal real sobre la partida, no un bloque perdido al final del scroll.
-- El modal revela el Pokémon, sus curiosidades, ambos secretos y ofrece `JUGAR DE NUEVO`.
+- El modal revela el Pokémon propio, sus curiosidades privadas y ofrece `JUGAR DE NUEVO`; no muestra las curiosidades del rival.
+
+## Modo solitario
+
+- Después de elegir, la vista de preguntas mantiene visible una tarjeta `TU POKÉMON SECRETO` con sprite, nombre y número de Pokédex.
+- Esta tarjeta sirve como recordatorio para responder sin volver atrás; la máquina solo recibe el SÍ/NO pulsado y no el identificador elegido.
 
 ## Accesibilidad
 
@@ -57,4 +62,3 @@ La X ocupa todo el recuadro, tiene dos diagonales rojas gruesas y una entrada br
 - El color no es la única señal: se combinan texto, X, número Dex y etiquetas.
 - Botones con área táctil generosa, contraste alto y foco visible.
 - Los mensajes de reconexión usan `accessibilityLiveRegion="polite"`.
-

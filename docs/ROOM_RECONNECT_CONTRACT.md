@@ -30,7 +30,7 @@ El código de sala no sirve como token de reconexión.
 
 ## Privacidad
 
-`publicState` solo incluye `secretId` propio antes de terminar. Los dos secretos se revelan cuando `phase === "finished"`. El servidor valida que cada selección pertenece al tablero, que hay 25 IDs distintos y que nunca se tachan las 25 casillas.
+`publicState` solo incluye `secretId` propio antes de terminar. El estado final mantiene la resolución de la partida, pero la interfaz muestra las curiosidades únicamente del Pokémon que eligió el jugador local. El servidor valida que cada selección pertenece al tablero, que hay 25 IDs distintos y que nunca se tachan las 25 casillas.
 
 ## Victoria
 
@@ -47,4 +47,3 @@ La condición se evalúa en servidor después de cada `toggle`, por lo que el cl
 ## Rematch
 
 `rematch` solo se acepta en `finished` o `selecting`. Limpia ambos secretos, tachados, ganador y estados de desconexión, y mantiene el mismo código y tablero para que ambos jugadores vuelvan a elegir.
-

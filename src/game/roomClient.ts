@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 import { GenerationId, PokemonCandidate } from '../data/pokemon';
 import { LocalGameState, PlayerId } from './engine';
@@ -42,15 +42,32 @@ function getServerUrl() {
 type SavedRoomSession = Readonly<{ roomCode: string; player: PlayerId; sessionToken: string }>;
 const SESSION_STORAGE_PREFIX = 'adivina-pkm:room-session:';
 
-type SessionStore = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'> | typeof AsyncStorage;
+type SessionStore = {
+  getItem: (key: string) => Promise<string | null>;
+  setItem: (key: string, value: string) => Promise<void>;
+  removeItem: (key: string) => Promise<void>;
+};
 
 function getSessionStore(): SessionStore {
   // En web, cada pestaña representa una sesión de jugador distinta. Usar
   // localStorage aquí haría que J2 heredase el token de J1 al emular dos
   // jugadores en el mismo navegador. sessionStorage sigue sobreviviendo a
   // una recarga, pero queda aislado por pestaña.
-  if (Platform.OS === 'web' && typeof window !== 'undefined' && window.sessionStorage) return window.sessionStorage;
-  return AsyncStorage;
+  if (Platform.OS === 'web' && typeof window !== 'undefined' && window.sessionStorage) {
+    return {
+      getItem: async (key) => window.sessionStorage.getItem(key),
+      setItem: async (key, value) => window.sessionStorage.setItem(key, value),
+      removeItem: async (key) => window.sessionStorage.removeItem(key),
+    };
+  }
+  // The reconnect token is a capability, not an account credential. Secure
+  // Store keeps it out of plain app preferences on Android/iOS while the web
+  // tab remains isolated through sessionStorage.
+  return {
+    getItem: (key) => SecureStore.getItemAsync(key),
+    setItem: (key, value) => SecureStore.setItemAsync(key, value),
+    removeItem: (key) => SecureStore.deleteItemAsync(key),
+  };
 }
 
 function sessionKey(roomCode: string) {

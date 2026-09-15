@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "Adivina Quién Pokémon",
-    "slug": "adivina-quien-pokemon",
-    "scheme": "adivinapokemon",
+    "name": "PokéQuién",
+    "slug": "pokequien",
+    "scheme": "pokequien",
     "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "android": {
-      "package": "com.adivinapokemon.app",
+      "package": "com.pokequien.app",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -19,7 +19,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.adivinapokemon.app"
+      "bundleIdentifier": "com.pokequien.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -27,7 +27,8 @@
     "plugins": [
       "expo-audio",
       "expo-asset",
-      "expo-font"
+      "expo-font",
+      "expo-secure-store"
     ]
   }
 }

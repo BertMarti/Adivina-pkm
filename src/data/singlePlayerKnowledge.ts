@@ -14,8 +14,6 @@ export type SinglePlayerQuestionCategory =
   | 'type'
   | 'evolution'
   | 'appearance'
-  | 'dex'
-  | 'weight'
   | 'special';
 
 /**
@@ -72,7 +70,66 @@ type SinglePlayerAppearanceId =
   | 'canCoil'
   | 'hood'
   | 'longEars'
-  | 'cheekPouches';
+  | 'cheekPouches'
+  | 'aquatic'
+  | 'furry'
+  | 'mechanical'
+  | 'mystical'
+  | 'armored'
+  | 'spiky'
+  | 'hot'
+  | 'cold'
+  | 'goodCompanion'
+  | 'cityFriendly'
+  | 'scaryAtNight'
+  | 'colorRed'
+  | 'colorBlue'
+  | 'colorYellow'
+  | 'colorGreen'
+  | 'colorBrown'
+  | 'colorPurple'
+  | 'colorPink'
+  | 'colorWhite'
+  | 'colorBlack'
+  | 'colorGray'
+  | 'animalMammal'
+  | 'animalAquatic'
+  | 'animalReptile'
+  | 'animalBird'
+  | 'animalInsect'
+  | 'animalPlant'
+  | 'hasHands'
+  | 'hasArms'
+  | 'hasLegs'
+  | 'biped'
+  | 'floats'
+  | 'humanoid'
+  | 'round'
+  | 'cute'
+  | 'scary'
+  | 'silhouetteBall'
+  | 'silhouetteBlob'
+  | 'silhouetteFish'
+  | 'silhouetteArms'
+  | 'silhouetteUpright'
+  | 'silhouetteLegs'
+  | 'silhouetteQuadruped'
+  | 'silhouetteWings'
+  | 'silhouetteTentacles'
+  | 'silhouetteHead'
+  | 'silhouetteHumanoid'
+  | 'silhouetteBugWings'
+  | 'silhouetteArmor'
+  | 'silhouetteSquiggle'
+  | 'habitatCave'
+  | 'habitatForest'
+  | 'habitatGrassland'
+  | 'habitatMountain'
+  | 'habitatRare'
+  | 'habitatRoughTerrain'
+  | 'habitatSea'
+  | 'habitatUrban'
+  | 'habitatWatersEdge';
 
 export type SinglePlayerTraitKey =
   | `type.${SinglePlayerTypeId}`
@@ -86,10 +143,6 @@ export type SinglePlayerTraitKey =
   | 'special.starter'
   | 'special.mascot'
   | `appearance.${SinglePlayerAppearanceId}`
-  | `dex.lte.${number}`
-  | `dex.gte.${number}`
-  | `weight.lte.${number}`
-  | `weight.gte.${number}`
   | `line.${string}`;
 
 export type SinglePlayerQuestion = Readonly<{
@@ -174,6 +227,11 @@ const KANTO_MULTI_STAGE_LINE_IDS = new Set<SinglePlayerLineId>([
   'bulbasaur', 'charmander', 'squirtle', 'caterpie', 'weedle', 'pidgey', 'pikachu',
 ]);
 
+const NATIONAL_STARTER_IDS = new Set([
+  1, 4, 7, 152, 155, 158, 252, 255, 258, 387, 390, 393, 494, 498, 501,
+  650, 653, 656, 722, 725, 728, 810, 813, 816, 906, 909, 912,
+]);
+
 /**
  * Manual visual/species facts are kept in one table. A new Pokémon can be
  * added by supplying its candidate and a list of positive traits here; all
@@ -235,7 +293,7 @@ const KANTO_SHORT_FACTS: Readonly<Record<number, readonly string[]>> = {
   25: ['Almacena electricidad en las bolsas de sus mejillas.', 'Es el Pokémon más conocido de la franquicia.'],
 };
 
-/** The current playable single-player catalog: the same 25 local Kanto candidates as multiplayer. */
+/** The default solo catalog: all 151 local Kanto candidates. */
 export const SINGLE_PLAYER_KANTO_CANDIDATES: readonly PokemonCandidate[] = Object.freeze(
   LOCAL_KANTO_ROSTER.map((candidate) => ({ ...candidate, types: [...candidate.types] })),
 );
@@ -259,6 +317,16 @@ const CORE_QUESTIONS: readonly SinglePlayerQuestion[] = [
   makeQuestion('type.poison', 'type.poison', '¿Es de tipo Veneno?', 'type', 2),
   makeQuestion('type.bug', 'type.bug', '¿Es de tipo Bicho?', 'type', 2),
   makeQuestion('type.flying', 'type.flying', '¿Es de tipo Volador?', 'type', 2),
+  makeQuestion('type.ice', 'type.ice', '¿Es de tipo Hielo?', 'type', 2),
+  makeQuestion('type.fighting', 'type.fighting', '¿Es de tipo Lucha?', 'type', 2),
+  makeQuestion('type.ground', 'type.ground', '¿Es de tipo Tierra?', 'type', 2),
+  makeQuestion('type.psychic', 'type.psychic', '¿Es de tipo Psíquico?', 'type', 2),
+  makeQuestion('type.rock', 'type.rock', '¿Es de tipo Roca?', 'type', 2),
+  makeQuestion('type.ghost', 'type.ghost', '¿Es de tipo Fantasma?', 'type', 2),
+  makeQuestion('type.dragon', 'type.dragon', '¿Es de tipo Dragón?', 'type', 2),
+  makeQuestion('type.dark', 'type.dark', '¿Es de tipo Siniestro?', 'type', 2),
+  makeQuestion('type.steel', 'type.steel', '¿Es de tipo Acero?', 'type', 2),
+  makeQuestion('type.fairy', 'type.fairy', '¿Es de tipo Hada?', 'type', 2),
   makeQuestion('type.dual', 'type.dual', '¿Tiene dos tipos?', 'type', 2),
 
   makeQuestion('evolution.base', 'evolution.base', '¿Está en su forma básica?', 'evolution', 2),
@@ -313,46 +381,77 @@ const LINE_QUESTIONS: readonly SinglePlayerQuestion[] = SINGLE_PLAYER_KANTO_EVOL
   )
 ));
 
-const KANTO_DEX_CUTOFFS = Array.from({ length: 24 }, (_, index) => index + 1);
-const KANTO_WEIGHT_CUTOFFS = [3, 5, 10, 20, 40, 70, 90] as const;
-
-const KANTO_DEX_QUESTIONS: readonly SinglePlayerQuestion[] = KANTO_DEX_CUTOFFS.map((cutoff) => (
-  makeQuestion(
-    `dex.lte.${cutoff}`,
-    `dex.lte.${cutoff}`,
-    `¿Su número de Pokédex Nacional es ${cutoff} o menor?`,
-    'dex',
-    0,
-  )
-));
-
-const KANTO_WEIGHT_QUESTIONS: readonly SinglePlayerQuestion[] = KANTO_WEIGHT_CUTOFFS.flatMap((cutoff) => [
-  makeQuestion(
-    `weight.lte.${cutoff}`,
-    `weight.lte.${cutoff}`,
-    `¿Pesa ${cutoff} kg o menos?`,
-    'weight',
-    0,
-  ),
-  makeQuestion(
-    `weight.gte.${cutoff}`,
-    `weight.gte.${cutoff}`,
-    `¿Pesa ${cutoff} kg o más?`,
-    'weight',
-    0,
-  ),
-]);
+const DERIVED_VISUAL_QUESTIONS: readonly SinglePlayerQuestion[] = [
+  makeQuestion('appearance.aquatic', 'appearance.aquatic', '¿Tiene aspecto acuático?', 'appearance', 1),
+  makeQuestion('appearance.furry', 'appearance.furry', '¿Parece tener pelo o pelaje?', 'appearance', 1),
+  makeQuestion('appearance.mechanical', 'appearance.mechanical', '¿Tiene un aspecto mecánico?', 'appearance', 1),
+  makeQuestion('appearance.mystical', 'appearance.mystical', '¿Tiene un aire místico o sobrenatural?', 'appearance', 1),
+  makeQuestion('appearance.armored', 'appearance.armored', '¿Parece llevar armadura?', 'appearance', 1),
+  makeQuestion('appearance.spiky', 'appearance.spiky', '¿Tiene un aspecto puntiagudo o rocoso?', 'appearance', 1),
+  makeQuestion('appearance.hot', 'appearance.hot', '¿Te recuerda al calor o al fuego?', 'appearance', 1),
+  makeQuestion('appearance.cold', 'appearance.cold', '¿Te recuerda al frío o al hielo?', 'appearance', 1),
+  makeQuestion('appearance.goodCompanion', 'appearance.goodCompanion', '¿Te lo imaginarías como mascota?', 'appearance', 1),
+  makeQuestion('appearance.cityFriendly', 'appearance.cityFriendly', '¿Te lo imaginarías viviendo en una ciudad?', 'appearance', 1),
+  makeQuestion('appearance.scaryAtNight', 'appearance.scaryAtNight', '¿Daría miedo encontrarlo de noche?', 'appearance', 1),
+  makeQuestion('appearance.colorRed', 'appearance.colorRed', '¿Predomina el color rojo?', 'appearance', 1),
+  makeQuestion('appearance.colorBlue', 'appearance.colorBlue', '¿Predomina el color azul?', 'appearance', 1),
+  makeQuestion('appearance.colorYellow', 'appearance.colorYellow', '¿Predomina el color amarillo?', 'appearance', 1),
+  makeQuestion('appearance.colorGreen', 'appearance.colorGreen', '¿Predomina el color verde?', 'appearance', 1),
+  makeQuestion('appearance.colorBrown', 'appearance.colorBrown', '¿Predomina el color marrón?', 'appearance', 1),
+  makeQuestion('appearance.colorPurple', 'appearance.colorPurple', '¿Predomina el color morado?', 'appearance', 1),
+  makeQuestion('appearance.colorPink', 'appearance.colorPink', '¿Predomina el color rosa?', 'appearance', 1),
+  makeQuestion('appearance.colorWhite', 'appearance.colorWhite', '¿Predomina el color blanco?', 'appearance', 1),
+  makeQuestion('appearance.colorBlack', 'appearance.colorBlack', '¿Predomina el color negro?', 'appearance', 1),
+  makeQuestion('appearance.colorGray', 'appearance.colorGray', '¿Predomina el color gris?', 'appearance', 1),
+  makeQuestion('appearance.animalMammal', 'appearance.animalMammal', '¿Está inspirado en un mamífero?', 'appearance', 1),
+  makeQuestion('appearance.animalAquatic', 'appearance.animalAquatic', '¿Está inspirado en un animal acuático?', 'appearance', 1),
+  makeQuestion('appearance.animalReptile', 'appearance.animalReptile', '¿Está inspirado en un reptil?', 'appearance', 1),
+  makeQuestion('appearance.animalBird', 'appearance.animalBird', '¿Está inspirado en un ave?', 'appearance', 1),
+  makeQuestion('appearance.animalInsect', 'appearance.animalInsect', '¿Está inspirado en un insecto?', 'appearance', 1),
+  makeQuestion('appearance.animalPlant', 'appearance.animalPlant', '¿Está inspirado en una planta?', 'appearance', 1),
+  makeQuestion('appearance.hasHands', 'appearance.hasHands', '¿Tiene manos visibles?', 'appearance', 1),
+  makeQuestion('appearance.hasArms', 'appearance.hasArms', '¿Tiene brazos visibles?', 'appearance', 1),
+  makeQuestion('appearance.hasLegs', 'appearance.hasLegs', '¿Tiene piernas o patas visibles?', 'appearance', 1),
+  makeQuestion('appearance.biped', 'appearance.biped', '¿Camina normalmente sobre dos patas?', 'appearance', 1),
+  makeQuestion('appearance.floats', 'appearance.floats', '¿Parece capaz de flotar?', 'appearance', 1),
+  makeQuestion('appearance.humanoid', 'appearance.humanoid', '¿Tiene una silueta parecida a la humana?', 'appearance', 1),
+  makeQuestion('appearance.round', 'appearance.round', '¿Tiene una silueta redondeada?', 'appearance', 1),
+  makeQuestion('appearance.cute', 'appearance.cute', '¿Tiene un aspecto tierno?', 'appearance', 1),
+  makeQuestion('appearance.scary', 'appearance.scary', '¿Tiene un aspecto inquietante?', 'appearance', 1),
+  makeQuestion('appearance.silhouetteBall', 'appearance.silhouetteBall', '¿Su silueta recuerda a una bola?', 'appearance', 1),
+  makeQuestion('appearance.silhouetteBlob', 'appearance.silhouetteBlob', '¿Tiene una silueta blanda y redondeada?', 'appearance', 1),
+  makeQuestion('appearance.silhouetteFish', 'appearance.silhouetteFish', '¿Su silueta recuerda a un pez?', 'appearance', 1),
+  makeQuestion('appearance.silhouetteArms', 'appearance.silhouetteArms', '¿Su silueta destaca por tener brazos?', 'appearance', 1),
+  makeQuestion('appearance.silhouetteUpright', 'appearance.silhouetteUpright', '¿Tiene una silueta erguida?', 'appearance', 1),
+  makeQuestion('appearance.silhouetteLegs', 'appearance.silhouetteLegs', '¿Su silueta destaca por tener patas?', 'appearance', 1),
+  makeQuestion('appearance.silhouetteQuadruped', 'appearance.silhouetteQuadruped', '¿Su silueta es de cuatro patas?', 'appearance', 1),
+  makeQuestion('appearance.silhouetteWings', 'appearance.silhouetteWings', '¿Su silueta tiene alas?', 'appearance', 1),
+  makeQuestion('appearance.silhouetteTentacles', 'appearance.silhouetteTentacles', '¿Su silueta tiene tentáculos?', 'appearance', 1),
+  makeQuestion('appearance.silhouetteHead', 'appearance.silhouetteHead', '¿Su silueta parece principalmente una cabeza?', 'appearance', 1),
+  makeQuestion('appearance.silhouetteHumanoid', 'appearance.silhouetteHumanoid', '¿Tiene una silueta humanoide?', 'appearance', 1),
+  makeQuestion('appearance.silhouetteBugWings', 'appearance.silhouetteBugWings', '¿Tiene alas con silueta de insecto?', 'appearance', 1),
+  makeQuestion('appearance.silhouetteArmor', 'appearance.silhouetteArmor', '¿Su silueta recuerda a una armadura?', 'appearance', 1),
+  makeQuestion('appearance.silhouetteSquiggle', 'appearance.silhouetteSquiggle', '¿Tiene una silueta alargada o serpenteante?', 'appearance', 1),
+  makeQuestion('appearance.habitatCave', 'appearance.habitatCave', '¿Se asocia normalmente con cuevas?', 'appearance', 1),
+  makeQuestion('appearance.habitatForest', 'appearance.habitatForest', '¿Se asocia normalmente con bosques?', 'appearance', 1),
+  makeQuestion('appearance.habitatGrassland', 'appearance.habitatGrassland', '¿Se asocia normalmente con praderas?', 'appearance', 1),
+  makeQuestion('appearance.habitatMountain', 'appearance.habitatMountain', '¿Se asocia normalmente con montañas?', 'appearance', 1),
+  makeQuestion('appearance.habitatRare', 'appearance.habitatRare', '¿Es difícil encontrarlo en la naturaleza?', 'appearance', 1),
+  makeQuestion('appearance.habitatRoughTerrain', 'appearance.habitatRoughTerrain', '¿Se asocia con terrenos accidentados?', 'appearance', 1),
+  makeQuestion('appearance.habitatSea', 'appearance.habitatSea', '¿Se asocia normalmente con el mar?', 'appearance', 1),
+  makeQuestion('appearance.habitatUrban', 'appearance.habitatUrban', '¿Se asocia normalmente con ciudades?', 'appearance', 1),
+  makeQuestion('appearance.habitatWatersEdge', 'appearance.habitatWatersEdge', '¿Se asocia con la orilla del agua?', 'appearance', 1),
+];
 
 /**
- * The initial Kanto bank contains semantic questions plus exact binary-search
- * cut-offs. The cut-offs guarantee that all 25 current candidates can be
- * distinguished even when two Pokémon share type, body shape and stage.
+ * The Kanto bank deliberately uses questions that a person can answer from a
+ * portrait or from very basic Pokémon knowledge. It never asks for a national
+ * number, a Pokédex range, a weight, a region or a generation.
  */
 export const SINGLE_PLAYER_QUESTION_BANK: readonly SinglePlayerQuestion[] = Object.freeze([
   ...CORE_QUESTIONS,
   ...LINE_QUESTIONS,
-  ...KANTO_DEX_QUESTIONS,
-  ...KANTO_WEIGHT_QUESTIONS,
+  ...DERIVED_VISUAL_QUESTIONS,
 ]);
 
 function addTrait(
@@ -382,17 +481,7 @@ function buildTraits(candidate: PokemonCandidate, semanticTraits: readonly Singl
   traits['evolution.hasMultipleStages'] = lineId ? KANTO_MULTI_STAGE_LINE_IDS.has(lineId) : false;
   traits['special.legendary'] = candidate.legendary;
 
-  // Keep the local Kanto thresholds materialized and also support a future
-  // candidate whose national number is outside the current 1..25 catalog.
-  const dexCutoffLimit = Math.max(candidate.id, KANTO_DEX_CUTOFFS[KANTO_DEX_CUTOFFS.length - 1]);
-  for (let cutoff = 1; cutoff <= dexCutoffLimit; cutoff += 1) {
-    traits[`dex.lte.${cutoff}`] = candidate.id <= cutoff;
-  }
-
-  for (const cutoff of KANTO_WEIGHT_CUTOFFS) {
-    traits[`weight.lte.${cutoff}`] = candidate.weightKg <= cutoff;
-    traits[`weight.gte.${cutoff}`] = candidate.weightKg >= cutoff;
-  }
+  applyDerivedTraits(candidate, traits);
 
   return traits;
 }
@@ -423,7 +512,7 @@ export const SINGLE_PLAYER_KANTO_KNOWLEDGE: readonly SinglePlayerPokemonKnowledg
 
 export const SINGLE_PLAYER_KANTO_CATALOG: SinglePlayerKnowledgeCatalog = Object.freeze({
   id: 'kanto',
-  label: 'Kanto · 25 candidatos',
+  label: 'Kanto · 151 candidatos',
   candidates: SINGLE_PLAYER_KANTO_CANDIDATES,
   knowledge: SINGLE_PLAYER_KANTO_KNOWLEDGE,
 });
@@ -511,25 +600,6 @@ export function chooseBestSinglePlayerQuestion(
   return bestQuestion;
 }
 
-/**
- * Creates National Dex threshold questions for a future catalog. The current
- * bank only materializes 1..24 because the shipped local catalog is Kanto;
- * no motor change is needed to use this helper for a larger Pokédex.
- */
-export function createDexThresholdQuestions(maxDexNumber: number): SinglePlayerQuestion[] {
-  const max = Math.max(1, Math.floor(maxDexNumber));
-  return Array.from({ length: Math.max(0, max - 1) }, (_, index) => {
-    const cutoff = index + 1;
-    return makeQuestion(
-      `dex.lte.${cutoff}`,
-      `dex.lte.${cutoff}`,
-      `¿Su número de Pokédex Nacional es ${cutoff} o menor?`,
-      'dex',
-      0,
-    );
-  });
-}
-
 const NATIONAL_TYPE_QUESTIONS: readonly SinglePlayerQuestion[] = [
   ['normal', 'Normal'], ['fire', 'Fuego'], ['water', 'Agua'], ['electric', 'Eléctrico'],
   ['grass', 'Planta'], ['ice', 'Hielo'], ['fighting', 'Lucha'], ['poison', 'Veneno'],
@@ -538,23 +608,123 @@ const NATIONAL_TYPE_QUESTIONS: readonly SinglePlayerQuestion[] = [
   ['steel', 'Acero'], ['fairy', 'Hada'],
 ].map(([id, label]) => makeQuestion(`type.${id}`, `type.${id}` as SinglePlayerTraitKey, `¿Es de tipo ${label}?`, 'type', 2));
 
-const NATIONAL_WEIGHT_CUTOFFS = [1, 5, 10, 20, 40, 80, 120, 200, 400] as const;
-const NATIONAL_WEIGHT_QUESTIONS: readonly SinglePlayerQuestion[] = NATIONAL_WEIGHT_CUTOFFS.flatMap((cutoff) => [
-  makeQuestion(`weight.lte.${cutoff}`, `weight.lte.${cutoff}`, `¿Pesa ${cutoff} kg o menos?`, 'weight'),
-  makeQuestion(`weight.gte.${cutoff}`, `weight.gte.${cutoff}`, `¿Pesa ${cutoff} kg o más?`, 'weight'),
-]);
+function applyDerivedTraits(
+  candidate: PokemonCandidate,
+  traits: Partial<Record<SinglePlayerTraitKey, boolean>>,
+) {
+  const types = new Set(candidate.types);
+  const has = (...values: string[]) => values.some((value) => types.has(value));
+  const name = candidate.name.toLocaleLowerCase('es-ES');
+  const shape = candidate.shape?.toLocaleLowerCase('es-ES') ?? '';
+  const color = candidate.color?.toLocaleLowerCase('es-ES') ?? '';
+  const shapeIs = (...values: string[]) => values.some((value) => shape === value);
+  const nameHas = (...values: string[]) => values.some((value) => name.includes(value));
+
+  // Rasgos visuales derivados de color dominante y silueta pública de PokéAPI.
+  // No contienen la elección del jugador ni consultan ningún secreto de sala.
+  traits['appearance.aquatic'] = has('Agua') || shapeIs('fish', 'tentacles');
+  traits['appearance.furry'] = has('Normal', 'Fuego', 'Hielo', 'Siniestro', 'Eléctrico');
+  traits['appearance.mechanical'] = has('Acero', 'Eléctrico');
+  traits['appearance.mystical'] = has('Psíquico', 'Fantasma', 'Hada') || candidate.legendary;
+  traits['appearance.armored'] = has('Acero', 'Roca');
+  traits['appearance.spiky'] = has('Roca', 'Acero', 'Eléctrico');
+  traits['appearance.hot'] = has('Fuego');
+  traits['appearance.cold'] = has('Hielo');
+  traits['appearance.goodCompanion'] = has('Normal', 'Hada', 'Eléctrico') || nameHas('pikachu', 'eevee', 'meowth');
+  traits['appearance.cityFriendly'] = has('Normal', 'Eléctrico', 'Acero');
+  traits['appearance.scaryAtNight'] = has('Fantasma', 'Siniestro');
+
+  traits['appearance.plant'] = has('Planta');
+  traits['appearance.insect'] = has('Bicho');
+  traits['appearance.bird'] = has('Volador');
+  traits['appearance.hasWings'] = has('Volador') || shapeIs('wings', 'bug-wings');
+  traits['appearance.dragonLike'] = has('Dragón');
+  traits['appearance.reptile'] = has('Fuego', 'Dragón', 'Veneno', 'Tierra');
+  traits['appearance.quadruped'] = shapeIs('quadruped');
+
+  traits['appearance.colorRed'] = color === 'rojo' || has('Fuego');
+  traits['appearance.colorBlue'] = color === 'azul' || has('Agua', 'Hielo');
+  traits['appearance.colorYellow'] = color === 'amarillo' || has('Eléctrico');
+  traits['appearance.colorGreen'] = color === 'verde' || has('Planta', 'Bicho');
+  traits['appearance.colorBrown'] = color === 'marrón' || has('Tierra', 'Normal');
+  traits['appearance.colorPurple'] = color === 'morado' || has('Veneno', 'Fantasma', 'Psíquico');
+  traits['appearance.colorPink'] = color === 'rosa' || has('Hada');
+  traits['appearance.colorWhite'] = color === 'blanco';
+  traits['appearance.colorBlack'] = color === 'negro' || has('Siniestro');
+  traits['appearance.colorGray'] = color === 'gris' || has('Acero', 'Roca');
+
+  const insectShape = shapeIs('bug-wings', 'insect');
+  const birdShape = shapeIs('wings') || has('Volador');
+  const aquaticShape = shapeIs('fish', 'tentacles') || has('Agua');
+  const reptileShape = has('Fuego', 'Dragón', 'Veneno', 'Tierra') || nameHas('saur', 'izard', 'snake', 'cobra');
+  const mammalShape = shapeIs('quadruped', 'upright', 'legs', 'humanoid') || has('Normal', 'Eléctrico');
+  const humanoidShape = shapeIs('humanoid', 'upright', 'arms');
+  const bipedShape = shapeIs('upright', 'humanoid', 'legs');
+  const hasArmsShape = shapeIs('arms', 'humanoid', 'upright') || has('Lucha');
+  const hasLegsShape = shapeIs('legs', 'quadruped', 'upright', 'humanoid') || has('Lucha', 'Tierra');
+
+  traits['appearance.animalMammal'] = mammalShape;
+  traits['appearance.animalAquatic'] = aquaticShape;
+  traits['appearance.animalReptile'] = reptileShape;
+  traits['appearance.animalBird'] = birdShape;
+  traits['appearance.animalInsect'] = insectShape || has('Bicho');
+  traits['appearance.animalPlant'] = has('Planta');
+  traits['appearance.hasHands'] = hasArmsShape;
+  traits['appearance.hasArms'] = hasArmsShape;
+  traits['appearance.hasLegs'] = hasLegsShape;
+  traits['appearance.biped'] = bipedShape || has('Lucha');
+  traits['appearance.floats'] = has('Volador', 'Fantasma', 'Psíquico', 'Hada') || shapeIs('ball', 'blob', 'tentacles');
+  traits['appearance.humanoid'] = humanoidShape;
+  traits['appearance.round'] = shapeIs('ball', 'blob', 'head') || nameHas('round', 'jiggly', 'voltorb');
+  traits['appearance.cute'] = has('Hada', 'Normal', 'Eléctrico') && !has('Siniestro', 'Fantasma');
+  traits['appearance.scary'] = has('Fantasma', 'Siniestro', 'Veneno') || candidate.legendary && shapeIs('arms', 'tentacles');
+
+  const silhouetteTraits: Readonly<Record<string, SinglePlayerTraitKey>> = {
+    ball: 'appearance.silhouetteBall',
+    blob: 'appearance.silhouetteBlob',
+    fish: 'appearance.silhouetteFish',
+    arms: 'appearance.silhouetteArms',
+    upright: 'appearance.silhouetteUpright',
+    legs: 'appearance.silhouetteLegs',
+    quadruped: 'appearance.silhouetteQuadruped',
+    wings: 'appearance.silhouetteWings',
+    tentacles: 'appearance.silhouetteTentacles',
+    heads: 'appearance.silhouetteHead',
+    humanoid: 'appearance.silhouetteHumanoid',
+    'bug-wings': 'appearance.silhouetteBugWings',
+    armor: 'appearance.silhouetteArmor',
+    squiggle: 'appearance.silhouetteSquiggle',
+  };
+  const silhouetteTrait = silhouetteTraits[shape];
+  if (silhouetteTrait) traits[silhouetteTrait] = true;
+
+  const habitatTraits: Readonly<Record<string, SinglePlayerTraitKey>> = {
+    cueva: 'appearance.habitatCave',
+    bosque: 'appearance.habitatForest',
+    pradera: 'appearance.habitatGrassland',
+    montaña: 'appearance.habitatMountain',
+    raro: 'appearance.habitatRare',
+    'terreno accidentado': 'appearance.habitatRoughTerrain',
+    mar: 'appearance.habitatSea',
+    ciudad: 'appearance.habitatUrban',
+    'orilla del agua': 'appearance.habitatWatersEdge',
+  };
+  const habitatTrait = habitatTraits[candidate.habitat ?? ''];
+  if (habitatTrait) traits[habitatTrait] = true;
+}
 
 /**
- * Banco nacional generado: el corte de Pokédex convierte los 1.025 Pokémon
- * en un árbol de decisión binario. Es grande de forma deliberada, pero los
- * datos se derivan de la PokéAPI y no se repiten en un JSON inmanejable.
+ * Banco nacional semántico: utiliza tipos, evolución, categoría especial y
+ * rasgos visuales básicos. No incluye preguntas de número, rango nacional o
+ * peso, por lo que cada respuesta representa una observación jugable.
  */
 export const SINGLE_PLAYER_NATIONAL_QUESTION_BANK: readonly SinglePlayerQuestion[] = Object.freeze([
   ...NATIONAL_TYPE_QUESTIONS,
   makeQuestion('type.dual', 'type.dual', '¿Tiene dos tipos?', 'type', 2),
   makeQuestion('special.legendary', 'special.legendary', '¿Es legendario?', 'special', 1),
-  ...NATIONAL_WEIGHT_QUESTIONS,
-  ...createDexThresholdQuestions(1025),
+  makeQuestion('special.starter', 'special.starter', '¿Es uno de los Pokémon iniciales?', 'special', 1),
+  makeQuestion('special.mascot', 'special.mascot', '¿Es la mascota más reconocible de la saga?', 'special', 1),
+  ...DERIVED_VISUAL_QUESTIONS,
 ]);
 
 function generationForDex(id: number) {
@@ -577,13 +747,11 @@ function createNationalTraits(candidate: PokemonCandidate) {
   });
   traits['type.dual'] = candidate.types.length > 1;
   traits['special.legendary'] = candidate.legendary;
-  NATIONAL_WEIGHT_CUTOFFS.forEach((cutoff) => {
-    traits[`weight.lte.${cutoff}`] = candidate.weightKg <= cutoff;
-    traits[`weight.gte.${cutoff}`] = candidate.weightKg >= cutoff;
-  });
-  for (let cutoff = 1; cutoff < 1025; cutoff += 1) {
-    traits[`dex.lte.${cutoff}`] = candidate.id <= cutoff;
-  }
+  traits['special.starter'] = NATIONAL_STARTER_IDS.has(candidate.id);
+  traits['special.mascot'] = candidate.id === 25;
+  const lineId = KANTO_LINE_BY_ID[candidate.id];
+  if (lineId) traits[`line.${lineId}`] = true;
+  applyDerivedTraits(candidate, traits);
   return traits;
 }
 

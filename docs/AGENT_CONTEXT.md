@@ -1,6 +1,6 @@
 # Contexto compartido del proyecto
 
-> Documento de coordinación para cualquier persona o agente que trabaje en **Adivina Quién Pokémon**.
+> Documento de coordinación para cualquier persona o agente que trabaje en **PokéQuién**.
 
 ## Objetivo
 
@@ -50,13 +50,14 @@ HOME
 - Si se cambia el estado compartido, actualizar simultáneamente cliente, servidor y `PROJECT_CONTEXT.md`.
 - Comprobar `npm run typecheck`, `npx expo export --platform web` y `git diff --check`.
 - Probar al menos un flujo de sala con dos pestañas y un flujo de solitario.
-- No ampliar la carga de la Pokédex nacional en el arranque: se carga bajo demanda.
+- El catálogo nacional está generado localmente; la selección de 25 sigue siendo ligera y el modo solitario puede usar las 1.025 entradas sin una petición a PokéAPI.
 
 ## Estado de esta iteración
 
 - Fondo local de SpriteCollab incorporado en `assets/spritecollab-background.png`.
 - Fallback de retrato `Happy → Normal → retrato base → PokeAPI` y `Sad → Normal → retrato base → PokeAPI`.
 - Rematch en la misma sala, reconexión de un minuto y estado `abandoned`.
-- Modal de victoria con secretos revelados, descripción, hasta tres curiosidades y `JUGAR DE NUEVO`.
+- Modal de resultado con victoria/derrota, audio específico, sprite y curiosidades únicamente del Pokémon elegido por el jugador local, más `JUGAR DE NUEVO`.
 - Título flotante, Poké Ball de espera con movimiento suave y nombres/Dex en casillas.
-
+- Banco solitario nacional con preguntas de tipos, colores, silueta, animal de inspiración, hábitat y cuerpo; sin preguntas de número nacional, peso, región ni generación.
+- Motor solitario con semilla por ronda, ganancia de información ponderada por creencia, tolerancia a respuestas imperfectas y límite de 30 preguntas; el historial local guarda cada respuesta y resultado.

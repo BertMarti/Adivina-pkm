@@ -36,7 +36,7 @@ import { CROSS_WAV } from './src/audio/sounds';
 import { SinglePlayerScreen } from './src/singlePlayer/SinglePlayerScreen';
 
 type Screen = 'home' | 'room' | 'selection' | 'waiting' | 'game' | 'single-player';
-type SoundKind = 'select' | 'cross' | 'restore' | 'victory';
+type SoundKind = 'select' | 'cross' | 'restore' | 'victory' | 'defeat';
 
 const COLORS = {
   ink: '#111128',
@@ -64,7 +64,7 @@ function createRoomCode() {
 function inviteLinkFor(roomCode: string) {
   const encodedCode = encodeURIComponent(roomCode);
   if (Platform.OS === 'web' && typeof window !== 'undefined') return `${window.location.origin}/?room=${encodedCode}`;
-  return `adivinapokemon://join?room=${encodedCode}`;
+  return `pokequien://join?room=${encodedCode}`;
 }
 
 function roomCodeFromUrl(url: string | null) {
@@ -101,6 +101,7 @@ function useGameSounds() {
   const selectionReferencePlayer = useAudioPlayer(require('./assets/selection-reference.wav'));
   const crossPlayer = useAudioPlayer({ uri: `data:audio/wav;base64,${CROSS_WAV}` });
   const victoryPlayer = useAudioPlayer(require('./assets/victory-reference.wav'));
+  const defeatPlayer = useAudioPlayer(require('./assets/defeat-reference.wav'));
   const webContext = useRef<any>(null);
   const lastVictoryAt = useRef(0);
 
@@ -127,6 +128,22 @@ function useGameSounds() {
       });
       return;
     }
+    if (kind === 'defeat') {
+      [196, 155.56, 130.81].forEach((frequency, index) => {
+        const start = context.currentTime + index * 0.27;
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+        oscillator.type = 'triangle';
+        oscillator.frequency.setValueAtTime(frequency, start);
+        gain.gain.setValueAtTime(0.0001, start);
+        gain.gain.exponentialRampToValueAtTime(0.1, start + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.25);
+        oscillator.connect(gain).connect(context.destination);
+        oscillator.start(start);
+        oscillator.stop(start + 0.26);
+      });
+      return;
+    }
     const oscillator = context.createOscillator();
     const gain = context.createGain();
     const now = context.currentTime;
@@ -144,12 +161,12 @@ function useGameSounds() {
   };
 
   return (kind: SoundKind) => {
-    if (kind === 'victory') {
+    if (kind === 'victory' || kind === 'defeat') {
       const now = Date.now();
-      if (now - lastVictoryAt.current < 1200) return;
+      if (now - lastVictoryAt.current < 1800) return;
       lastVictoryAt.current = now;
     }
-    const player = kind === 'cross' ? crossPlayer : kind === 'victory' ? victoryPlayer : selectionReferencePlayer;
+    const player = kind === 'cross' ? crossPlayer : kind === 'victory' ? victoryPlayer : kind === 'defeat' ? defeatPlayer : selectionReferencePlayer;
     const playNative = () => void player.seekTo(0).catch(() => {}).finally(() => player.play());
     try {
       playNative();
@@ -159,6 +176,8 @@ function useGameSounds() {
     if (Platform.OS === 'web') return;
     if (kind === 'victory') {
       void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
+    } else if (kind === 'defeat') {
+      void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error).catch(() => {});
     } else if (kind === 'select' || kind === 'restore') void Haptics.selectionAsync().catch(() => {});
     else void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning).catch(() => {});
   };
@@ -261,10 +280,14 @@ function HomeScreen({ generation, setGeneration, onCreate, onJoin, onDemo, onCop
   }, [float, reduceMotion]);
   const logoY = float.interpolate({ inputRange: [0, 1], outputRange: [0, -7] });
   return <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
-    <View style={styles.hero}><Animated.Text style={[styles.logo, { transform: [{ translateY: logoY }] }]} accessibilityRole="header">ADIVINA{`\n`}QUIÉN</Animated.Text><Text style={styles.heroSubtitle}>POKÉMON · SALA MULTIJUGADOR</Text></View>
+    <View style={styles.hero}><Animated.Text style={[styles.logo, { transform: [{ translateY: logoY }] }]} accessibilityRole="header">POKÉ{`\n`}QUIÉN</Animated.Text><Text style={styles.heroSubtitle}>ADIVINA EL SECRETO · DUELO PIXEL</Text></View>
     <View style={styles.panel}><RetroPanelHeader title="CREAR PARTIDA" /><Text style={styles.fieldLabel}>Generación:</Text><ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.generationRow}>{GENERATIONS.map((item) => <Pressable key={String(item.id)} accessibilityRole="radio" accessibilityLabel={`Generación ${item.label}`} accessibilityState={{ selected: generation === item.id }} onPress={() => setGeneration(item.id)} style={[styles.generationChip, generation === item.id && styles.generationChipActive]}><Text style={[styles.generationText, generation === item.id && styles.generationTextActive]}>{item.id === 'all' ? '🎲  Todas (Aleatorio)' : item.label}</Text></Pressable>)}</ScrollView><Text style={styles.codeLabel}>TU CÓDIGO DE SALA:</Text><View style={styles.codeInput}><Text selectable style={styles.roomCode}>{inviteCode}</Text></View><Button label="COPIAR ENLACE" onPress={onCopyInvite} variant="orange" disabled={loading} /><Button label={loading ? 'CARGANDO POKÉDEX…' : 'CREAR SALA'} onPress={onCreate} disabled={loading} /></View>
     <View style={styles.panel}><RetroPanelHeader title="UNIRSE A PARTIDA" /><Text style={styles.fieldLabel}>Introduce el código de tu rival:</Text><TextInput accessibilityLabel="Código de sala" autoCapitalize="characters" autoCorrect={false} maxLength={8} onChangeText={(value) => setJoinCode(value.toUpperCase().replace(/[^A-Z2-9]/g, ''))} placeholder="EJ. A1B2C" placeholderTextColor="#777986" style={styles.input} value={joinCode} /><Button label={loading ? 'CONECTANDO…' : 'CONECTAR'} onPress={onJoin} variant="primary" disabled={loading} /></View>
-    <Button label="JUGAR CONTRA LA MÁQUINA" onPress={onSolo} variant="ghost" />
+    <Pressable accessibilityRole="button" accessibilityLabel="Jugar contra la máquina" onPress={onSolo} style={({ pressed }) => [styles.soloCta, pressed && styles.pressed]}>
+      <Text style={styles.soloCtaKicker}>MODO SOLITARIO</Text>
+      <Text style={styles.soloCtaTitle}>JUGAR CONTRA LA MÁQUINA</Text>
+      <Text style={styles.soloCtaText}>Responde solo SÍ o NO y deja que la Pokédex te descubra.</Text>
+    </Pressable>
     <Pressable accessibilityRole="button" onPress={onDemo} style={styles.demoLink}><Text style={styles.demoLinkText}>▶  CREAR SALA DE PRUEBA KANTO</Text><Text style={styles.muted}>Crea una sala rápida para abrirla en dos pestañas.</Text></Pressable>
     {!!error && <Text accessibilityRole="alert" style={styles.error}>{error}</Text>}<Text style={styles.credits}>Inspirado por Checo_512 · Retratos: SpriteCollab PMD{`\n`}Fan project no oficial · Datos: PokéAPI</Text>
   </ScrollView>;
@@ -329,9 +352,8 @@ function ReconnectBanner({ game, player }: { game: RoomGameState; player: Player
 
 function VictoryModal({ game, player, onRematch }: { game: RoomGameState; player: PlayerId; onRematch: () => void }) {
   const winner = game.winner;
-  const targetPlayer = winner === 'p1' ? 'p2' : winner === 'p2' ? 'p1' : null;
-  const targetPokemon = targetPlayer ? getPokemon(game, game.players[targetPlayer].secretId) : undefined;
-  const facts = targetPokemon ? (targetPokemon.facts ?? [targetPokemon.funFact ?? '']).filter(Boolean).slice(0, 3) : [];
+  const ownPokemon = getPokemon(game, game.players[player].secretId);
+  const facts = ownPokemon ? (ownPokemon.facts ?? [ownPokemon.funFact ?? '']).filter(Boolean).slice(0, 3) : [];
   const won = winner === player;
   return <Modal visible={game.phase === 'finished'} transparent animationType="fade" onRequestClose={() => {}}>
     <View style={styles.resultModalBackdrop}>
@@ -339,11 +361,10 @@ function VictoryModal({ game, player, onRematch }: { game: RoomGameState; player
         <View style={styles.resultPanel}>
           <Text style={styles.resultEmoji}>{won ? '✦' : '×'}</Text>
           <Text style={styles.resultTitle}>{won ? 'VICTORIA' : 'HAS PERDIDO'}</Text>
-          <Text style={styles.resultText}>{won ? `El último Pokémon rival era ${targetPokemon?.name ?? 'el secreto'}.` : `El rival encontró antes a ${targetPokemon?.name ?? 'tu Pokémon secreto'}.`}</Text>
-          {targetPokemon && <View style={styles.victoryHero}><Portrait pokemon={targetPokemon} size={118} /><Text style={styles.victoryPokemonName}>{targetPokemon.name}</Text>{facts.map((fact, index) => <Text key={`${targetPokemon.id}-hero-fact-${index}`} style={styles.victoryFact}>{fact}</Text>)}</View>}
-          <Text style={styles.resultText}>Los dos Pokémon secretos quedan revelados.</Text>
-          <View style={styles.revealRow}><PokemonInfo pokemon={getPokemon(game, game.players.p1.secretId)} playerLabel="SECRETO · JUGADOR 1" /><PokemonInfo pokemon={getPokemon(game, game.players.p2.secretId)} playerLabel="SECRETO · JUGADOR 2" /></View>
-          <View style={styles.winnerFact}><Text style={styles.winnerFactTitle}>INFORMACIÓN DEL POKÉMON DESCUBIERTO</Text>{targetPokemon?.description && <Text style={styles.winnerFactText}>{targetPokemon.description}</Text>}{facts.map((fact, index) => <Text key={`${targetPokemon?.id ?? 'winner'}-fact-${index}`} style={styles.winnerFactText}><Text style={styles.winnerFactStrong}>{index === 0 ? 'DATO CURIOSO: ' : '                 '}</Text>{fact}</Text>)}</View>
+          <Text style={styles.resultText}>{won ? 'Has dejado una sola opción válida en tu tablero.' : 'El rival ha dejado una sola opción válida antes que tú.'}</Text>
+          {ownPokemon && <View style={styles.victoryHero}><Portrait pokemon={ownPokemon} size={118} /><Text style={styles.victoryPokemonName}>TU POKÉMON · {ownPokemon.name}</Text>{facts.map((fact, index) => <Text key={`${ownPokemon.id}-hero-fact-${index}`} style={styles.victoryFact}>{fact}</Text>)}</View>}
+          <Text style={styles.resultText}>{won ? 'El secreto rival ha sido descubierto.' : 'Tu Pokémon secreto ha sido descubierto.'}</Text>
+          <View style={styles.winnerFact}><Text style={styles.winnerFactTitle}>DATOS DE TU POKÉMON</Text>{ownPokemon?.description && <Text style={styles.winnerFactText}>{ownPokemon.description}</Text>}{facts.map((fact, index) => <Text key={`${ownPokemon?.id ?? 'own'}-fact-${index}`} style={styles.winnerFactText}><Text style={styles.winnerFactStrong}>{index === 0 ? 'DATO CURIOSO: ' : '                 '}</Text>{fact}</Text>)}</View>
           <Button label="JUGAR DE NUEVO" onPress={onRematch} />
         </View>
       </ScrollView>
@@ -381,6 +402,12 @@ export default function App() {
   const roomClientRef = useRef<RoomClient | null>(null);
   const previousPhaseRef = useRef<RoomGameState['phase'] | null>(null);
 
+  useEffect(() => {
+    if (Platform.OS === 'web' && typeof document !== 'undefined') {
+      document.title = 'PokéQuién · Duelo Pixel';
+    }
+  }, []);
+
   const applyState = (nextGame: RoomGameState, nextPlayer: PlayerId) => {
     setGame(nextGame);
     setPlayer(nextPlayer);
@@ -413,7 +440,9 @@ export default function App() {
 
   useEffect(() => {
     const phase = game?.phase ?? null;
-    if (phase === 'finished' && previousPhaseRef.current !== 'finished') playSound('victory');
+    if (phase === 'finished' && previousPhaseRef.current !== 'finished' && game?.winner && player) {
+      playSound(game.winner === player ? 'victory' : 'defeat');
+    }
     previousPhaseRef.current = phase;
   }, [game?.phase, playSound]);
 
@@ -476,7 +505,7 @@ export default function App() {
 
   const shareRoom = () => {
     if (!game) return;
-    void Share.share({ message: `Únete a mi partida de Adivina Quién Pokémon con el identificador ${game.roomCode}: ${inviteLinkFor(game.roomCode)}` });
+    void Share.share({ message: `Únete a mi partida de PokéQuién con el identificador ${game.roomCode}: ${inviteLinkFor(game.roomCode)}` });
   };
 
   const copyInvite = async () => {
@@ -573,6 +602,10 @@ const styles = StyleSheet.create({
   buttonOrange: { backgroundColor: COLORS.orange, borderColor: '#FF994A', borderBottomColor: '#A94100' },
   buttonGray: { backgroundColor: '#505158', borderColor: '#74757A', borderBottomColor: '#2E2F34' },
   buttonGhost: { backgroundColor: 'transparent', borderColor: '#645B96', borderBottomColor: '#373052' },
+  soloCta: { minHeight: 92, borderRadius: 14, borderWidth: 2, borderBottomWidth: 6, borderColor: '#FFDF44', borderBottomColor: '#9C6500', backgroundColor: 'rgba(17, 21, 48, 0.96)', paddingHorizontal: 16, paddingVertical: 13, gap: 5, shadowColor: COLORS.yellow, shadowOpacity: 0.28, shadowRadius: 9, shadowOffset: { width: 0, height: 0 } },
+  soloCtaKicker: { color: COLORS.success, fontFamily: PIXEL_FONT, fontSize: 8, letterSpacing: 0.9, textAlign: 'center' },
+  soloCtaTitle: { color: COLORS.yellow, fontFamily: PIXEL_FONT, fontSize: 11, lineHeight: 18, textAlign: 'center' },
+  soloCtaText: { color: COLORS.white, fontSize: 11, lineHeight: 16, textAlign: 'center' },
   buttonDisabled: { opacity: 0.42 },
   pressed: { transform: [{ scale: 0.98 }], opacity: 0.86 },
   buttonText: { fontFamily: PIXEL_FONT, fontSize: 9, lineHeight: 16, letterSpacing: 0.2, textAlign: 'center' },

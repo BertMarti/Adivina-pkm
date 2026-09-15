@@ -1,5 +1,5 @@
 const http = require('http');
-const { randomBytes } = require('crypto');
+const { randomBytes, timingSafeEqual } = require('crypto');
 const { WebSocketServer } = require('ws');
 
 const PORT = Number(process.env.ROOM_SERVER_PORT || 8787);
@@ -7,6 +7,12 @@ const rooms = new Map();
 const VALID_GENERATIONS = new Set(['all', 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 const RECONNECT_GRACE_MS = 60_000;
 const ABANDONED_ROOM_RETENTION_MS = 5 * 60_000;
+const ROOM_IDLE_TTL_MS = 30 * 60_000;
+const MAX_ROOMS = 500;
+const MESSAGE_WINDOW_MS = 10_000;
+const MAX_MESSAGES_PER_WINDOW = 40;
+const MAX_TEXT_LENGTH = 512;
+const allowedOrigins = String(process.env.ROOM_SERVER_ALLOWED_ORIGINS || '').split(',').map((value) => value.trim()).filter(Boolean);
 
 function createSessionToken() {
   return randomBytes(24).toString('hex');
@@ -20,15 +26,15 @@ function isValidPokemon(candidate) {
   return Boolean(candidate)
     && Number.isInteger(candidate.id)
     && candidate.id > 0
+    && candidate.id <= 1025
     && typeof candidate.name === 'string'
     && candidate.name.length > 0
+    && candidate.name.length <= MAX_TEXT_LENGTH
     && Array.isArray(candidate.types)
     && candidate.types.length > 0
-    && candidate.types.every((type) => typeof type === 'string')
-    && typeof candidate.portraitUrl === 'string'
-    && typeof candidate.normalUrl === 'string'
-    && typeof candidate.sadUrl === 'string'
-    && typeof candidate.fallbackUrl === 'string';
+    && candidate.types.every((type) => typeof type === 'string' && type.length <= MAX_TEXT_LENGTH)
+    && [candidate.portraitUrl, candidate.normalUrl, candidate.sadUrl, candidate.fallbackUrl]
+      .every((value) => typeof value === 'string' && value.length <= MAX_TEXT_LENGTH && /^(https?:\/\/|data:image\/)/i.test(value));
 }
 
 function isValidBoard(board) {
@@ -45,7 +51,6 @@ function error(socket, message) {
 }
 
 function publicState(room, player) {
-  const finished = room.phase === 'finished';
   return {
     phase: room.phase,
     roomCode: room.roomCode,
@@ -61,11 +66,11 @@ function publicState(room, player) {
     reconnectDeadline: room.reconnectDeadline,
     players: {
       p1: {
-        secretId: player === 'p1' || finished ? room.players.p1.secretId : null,
+        secretId: player === 'p1' ? room.players.p1.secretId : null,
         crossedIds: room.players.p1.crossedIds,
       },
       p2: {
-        secretId: player === 'p2' || finished ? room.players.p2.secretId : null,
+        secretId: player === 'p2' ? room.players.p2.secretId : null,
         crossedIds: room.players.p2.crossedIds,
       },
     },
@@ -108,7 +113,9 @@ function scheduleDisconnect(room, playerId) {
 }
 
 function roomForSocket(socket) {
-  return socket.roomCode ? rooms.get(socket.roomCode) : null;
+  const room = socket.roomCode ? rooms.get(socket.roomCode) : null;
+  if (room) room.lastActivity = Date.now();
+  return room;
 }
 
 // Cada jugador marca candidatos en su propio tablero. La victoria llega cuando
@@ -129,6 +136,7 @@ function handleCreate(socket, message) {
   const roomCode = String(message.roomCode || '').toUpperCase();
   if (socket.roomCode) return error(socket, 'Esta conexión ya está dentro de una sala.');
   if (!/^[A-Z2-9]{8}$/.test(roomCode)) return error(socket, 'El código de sala no es válido.');
+  if (rooms.size >= MAX_ROOMS) return error(socket, 'El servidor está lleno temporalmente. Inténtalo de nuevo en unos minutos.');
   if (rooms.has(roomCode)) return error(socket, 'Ese código de sala ya está ocupado.');
   if (!isValidBoard(message.board)) return error(socket, 'La sala necesita 25 Pokémon válidos y distintos.');
   if (!VALID_GENERATIONS.has(message.generation)) return error(socket, 'La generación de la sala no es válida.');
@@ -147,6 +155,7 @@ function handleCreate(socket, message) {
     disconnectedPlayer: null,
     abandonedPlayer: null,
     reconnectDeadline: null,
+    lastActivity: Date.now(),
   };
   room.players.p1.sessionToken = createSessionToken();
   rooms.set(roomCode, room);
@@ -183,7 +192,10 @@ function handleReconnect(socket, message) {
   if (!room || !isPlayerId(playerId)) return error(socket, 'No se puede recuperar esa sala.');
   if (room.phase === 'abandoned') return error(socket, 'La partida terminó porque el rival abandonó.');
   const player = room.players[playerId];
-  if (typeof message.sessionToken !== 'string' || message.sessionToken !== player.sessionToken) return error(socket, 'La sesión de jugador no es válida.');
+  if (typeof message.sessionToken !== 'string' || typeof player.sessionToken !== 'string' || message.sessionToken.length !== player.sessionToken.length) return error(socket, 'La sesión de jugador no es válida.');
+  const providedToken = Buffer.from(message.sessionToken);
+  const expectedToken = Buffer.from(player.sessionToken);
+  if (providedToken.length !== expectedToken.length || !timingSafeEqual(providedToken, expectedToken)) return error(socket, 'La sesión de jugador no es válida.');
   if (player.socket) return error(socket, 'Ese jugador ya está conectado.');
   if (room.reconnectDeadline && Date.now() >= room.reconnectDeadline) {
     markAbandoned(room, playerId);
@@ -281,14 +293,51 @@ function handleClose(socket) {
 }
 
 const httpServer = http.createServer((request, response) => {
-  response.writeHead(200, { 'Content-Type': 'application/json' });
+  response.writeHead(200, {
+    'Content-Type': 'application/json; charset=utf-8',
+    'Cache-Control': 'no-store',
+    'X-Content-Type-Options': 'nosniff',
+    'Referrer-Policy': 'no-referrer',
+    'Content-Security-Policy': "default-src 'none'; frame-ancestors 'none'",
+  });
   response.end(JSON.stringify({ ok: true, rooms: rooms.size }));
 });
-const wss = new WebSocketServer({ server: httpServer, maxPayload: 64 * 1024 });
+function isAllowedOrigin(origin) {
+  if (!origin || origin === 'null') return true;
+  if (allowedOrigins.includes(origin)) return true;
+  return /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(origin);
+}
+
+const wss = new WebSocketServer({
+  server: httpServer,
+  maxPayload: 64 * 1024,
+  verifyClient: (info, done) => done(isAllowedOrigin(info.origin)),
+});
 wss.on('connection', (socket) => {
-  socket.on('message', (message) => handleMessage(socket, message));
+  socket.messageWindowStartedAt = Date.now();
+  socket.messageCount = 0;
+  socket.on('message', (message) => {
+    const now = Date.now();
+    if (now - socket.messageWindowStartedAt >= MESSAGE_WINDOW_MS) {
+      socket.messageWindowStartedAt = now;
+      socket.messageCount = 0;
+    }
+    socket.messageCount += 1;
+    if (socket.messageCount > MAX_MESSAGES_PER_WINDOW) {
+      socket.close(1008, 'Demasiados mensajes');
+      return;
+    }
+    handleMessage(socket, message);
+  });
   socket.on('close', () => handleClose(socket));
 });
+const cleanupTimer = setInterval(() => {
+  const now = Date.now();
+  for (const [roomCode, room] of rooms) {
+    if (!room.players.p1.socket && !room.players.p2.socket && now - room.lastActivity > ROOM_IDLE_TTL_MS) rooms.delete(roomCode);
+  }
+}, 60_000);
+cleanupTimer.unref?.();
 let startupErrorReported = false;
 function handleStartupError(error) {
   if (startupErrorReported) return;

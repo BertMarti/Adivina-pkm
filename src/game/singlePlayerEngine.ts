@@ -20,6 +20,24 @@
 
 export type CandidateId = string | number;
 
+/** Límite de seguridad y regla de producto del modo solitario. */
+export const SINGLE_PLAYER_MAX_QUESTIONS = 30;
+
+/**
+ * Permite explorar preguntas casi tan informativas como la mejor. Con un
+ * margen demasiado pequeño el banco de Kanto solo ofrecía dos aperturas
+ * (`type.dual` y `appearance.biped`) y la partida parecía seguir un guion.
+ */
+export const SINGLE_PLAYER_QUESTION_EXPLORATION_MARGIN = 0.08;
+
+/** Likelihoods for the binary, noise-tolerant belief update. */
+const BELIEF_MATCH_LIKELIHOOD = 0.9;
+const BELIEF_MISMATCH_LIKELIHOOD = 0.1;
+const ACTIVE_POSTERIOR_RATIO = 0.08;
+const MIN_QUESTIONS_BEFORE_GUESS = 4;
+const GUESS_CONFIDENCE = 0.68;
+const GUESS_MARGIN = 5;
+
 /** Respuestas normalizadas de un candidato: una clave de rasgo y un sí/no. */
 export type TraitAnswers = Readonly<Record<string, boolean>>;
 
@@ -61,14 +79,24 @@ export type ScoredSinglePlayerQuestion = SinglePlayerQuestion & {
   readonly score: number;
 };
 
-export type SinglePlayerPhase = 'playing' | 'won' | 'tie' | 'no-match';
+export type SinglePlayerPhase = 'playing' | 'won' | 'tie' | 'no-match' | 'limit-reached';
 
 export type SinglePlayerAnswerRecord = {
   readonly question: SinglePlayerQuestion;
   readonly answer: boolean;
   readonly remainingCount: number;
+  readonly remainingCandidateIds: readonly CandidateId[];
   readonly yesCountBeforeAnswer: number;
   readonly noCountBeforeAnswer: number;
+};
+
+export type SinglePlayerCandidateScore<
+  TId extends CandidateId = string,
+  TMetadata = unknown,
+> = {
+  readonly candidate: SinglePlayerCandidate<TId, TMetadata>;
+  /** Normalized posterior-like score; scores sum to 1 across non-rejected candidates. */
+  readonly score: number;
 };
 
 export type SinglePlayerOutcome<
@@ -91,6 +119,11 @@ export type SinglePlayerOutcome<
       readonly candidates: readonly SinglePlayerCandidate<TId, TMetadata>[];
     }
   | {
+      readonly phase: 'limit-reached';
+      readonly winner: null;
+      readonly candidates: readonly SinglePlayerCandidate<TId, TMetadata>[];
+    }
+  | {
       readonly phase: 'no-match';
       readonly winner: null;
       readonly candidates: readonly [];
@@ -103,7 +136,12 @@ export type SinglePlayerState<
   readonly candidates: readonly SinglePlayerCandidate<TId, TMetadata>[];
   readonly questions: readonly SinglePlayerQuestion[];
   readonly strategy: QuestionSelectionStrategy;
+  readonly maxQuestions: number;
+  /** Same seed keeps a round reproducible while changing the order between rounds. */
+  readonly questionSelectionSeed: number;
   readonly remainingCandidates: readonly SinglePlayerCandidate<TId, TMetadata>[];
+  readonly candidateScores: readonly SinglePlayerCandidateScore<TId, TMetadata>[];
+  readonly rejectedCandidateIds: readonly TId[];
   readonly askedQuestionIds: readonly string[];
   readonly askedTraits: readonly string[];
   readonly answers: Readonly<Record<string, boolean>>;
@@ -118,6 +156,10 @@ export type SinglePlayerGameOptions = {
   /** Si se omite, se crea una pregunta automáticamente por cada rasgo. */
   readonly questions?: readonly SinglePlayerQuestion[];
   readonly strategy?: QuestionSelectionStrategy;
+  /** Maximum number of yes/no questions before the player wins. */
+  readonly maxQuestions?: number;
+  /** Optional per-round seed used to randomize near-equivalent questions. */
+  readonly questionSelectionSeed?: number;
   /** Personaliza el texto de las preguntas generadas automáticamente. */
   readonly questionText?: (trait: string) => string;
 };
@@ -264,6 +306,82 @@ export function scoreQuestion<TId extends CandidateId, TMetadata>(
   };
 }
 
+function questionHash(seed: number, questionId: string, depth: number): number {
+  let value = (seed >>> 0) ^ Math.imul(depth + 1, 0x9e3779b9);
+  for (let index = 0; index < questionId.length; index += 1) {
+    value = Math.imul(value ^ questionId.charCodeAt(index), 16777619);
+  }
+  return value >>> 0;
+}
+
+/**
+ * Updates the belief state without making one imperfect answer fatal.
+ *
+ * A matching answer receives 0.9 likelihood and a mismatch 0.1. This is a
+ * deliberately small, local Bayesian-style model: it is not pretending that
+ * the PMD portrait metadata is perfect, but it keeps a plausible Pokémon in
+ * play after an accidental SÍ/NO and lets later evidence recover it.
+ */
+function calculateCandidateScores<TId extends CandidateId, TMetadata>(
+  candidates: readonly SinglePlayerCandidate<TId, TMetadata>[],
+  history: readonly SinglePlayerAnswerRecord[],
+  rejectedCandidateIds: readonly TId[],
+): SinglePlayerCandidateScore<TId, TMetadata>[] {
+  const rawScores = candidates
+    .filter((candidate) => !rejectedCandidateIds.some((id) => sameId(id, candidate.id)))
+    .map((candidate) => {
+      let logScore = 0;
+      for (const event of history) {
+        const matches = candidate.answers[event.question.trait] === event.answer;
+        logScore += Math.log(matches ? BELIEF_MATCH_LIKELIHOOD : BELIEF_MISMATCH_LIKELIHOOD);
+      }
+      return { candidate, logScore };
+    });
+
+  if (rawScores.length === 0) return [];
+  const highestLogScore = Math.max(...rawScores.map((item) => item.logScore));
+  const normalizedScores = rawScores.map((item) => ({
+    candidate: item.candidate,
+    score: Math.exp(item.logScore - highestLogScore),
+  }));
+  const total = normalizedScores.reduce((sum, item) => sum + item.score, 0);
+  return normalizedScores.map((item) => ({ ...item, score: item.score / total }));
+}
+
+function selectActiveCandidateScores<TId extends CandidateId, TMetadata>(
+  scores: readonly SinglePlayerCandidateScore<TId, TMetadata>[],
+): SinglePlayerCandidateScore<TId, TMetadata>[] {
+  if (scores.length < 2) return [...scores];
+  const highestScore = Math.max(...scores.map((item) => item.score));
+  const active = scores.filter((item) => item.score >= highestScore * ACTIVE_POSTERIOR_RATIO);
+  if (active.length >= 2) return active;
+  // A low-confidence leader must not become an automatic win just because
+  // the posterior threshold removed its nearest alternative. Keep the two
+  // best candidates available for another question or an explicit guess.
+  return scores.slice(0, Math.min(2, scores.length));
+}
+
+function findConfidentWinner<TId extends CandidateId, TMetadata>(
+  scores: readonly SinglePlayerCandidateScore<TId, TMetadata>[],
+  questionCount: number,
+): SinglePlayerCandidate<TId, TMetadata> | null {
+  if (questionCount < MIN_QUESTIONS_BEFORE_GUESS || scores.length === 0) return null;
+  let best: SinglePlayerCandidateScore<TId, TMetadata> | null = null;
+  let secondBestScore = 0;
+  for (const score of scores) {
+    if (best === null || score.score > best.score) {
+      secondBestScore = best?.score ?? 0;
+      best = score;
+    } else if (score.score > secondBestScore) {
+      secondBestScore = score.score;
+    }
+  }
+  if (best !== null && best.score >= GUESS_CONFIDENCE && best.score >= secondBestScore * GUESS_MARGIN) {
+    return best.candidate;
+  }
+  return null;
+}
+
 /**
  * Selecciona la mejor pregunta disponible.
  *
@@ -276,22 +394,85 @@ export function chooseNextQuestion<TId extends CandidateId, TMetadata>(
   questions: readonly SinglePlayerQuestion[],
   askedQuestionIds: readonly string[] = [],
   strategy: QuestionSelectionStrategy = 'information-gain',
+  questionSelectionSeed = 0,
+  candidateWeights?: readonly number[],
 ): ScoredSinglePlayerQuestion | null {
   const askedIds = new Set(askedQuestionIds);
   const askedTraits = new Set(
     questions.filter((question) => askedIds.has(question.id)).map((question) => question.trait),
   );
 
-  return questions
-    .filter((question) => !askedIds.has(question.id) && !askedTraits.has(question.trait))
-    .map((question) => scoreQuestion(candidates, question, strategy))
-    .filter((question): question is ScoredSinglePlayerQuestion => question !== null)
-    .sort((left, right) => {
-      if (right.score !== left.score) return right.score - left.score;
-      if (right.balance !== left.balance) return right.balance - left.balance;
-      if (right.informationGain !== left.informationGain) return right.informationGain - left.informationGain;
-      return left.id.localeCompare(right.id);
-    })[0] ?? null;
+  // Keep the exact ordering semantics of the previous map/filter/sort chain,
+  // but avoid allocating one scored array per answer. This matters for the
+  // national catalog, where a single solo session can evaluate 1.025
+  // candidates against dozens of questions repeatedly.
+  let bestQuestion: ScoredSinglePlayerQuestion | null = null;
+  const nearBestQuestions: ScoredSinglePlayerQuestion[] = [];
+  const NEAR_BEST_MARGIN = SINGLE_PLAYER_QUESTION_EXPLORATION_MARGIN;
+  const weightedSelection = candidateWeights !== undefined
+    && candidateWeights.length === candidates.length
+    && candidateWeights.every((weight) => Number.isFinite(weight) && weight >= 0)
+    && candidateWeights.some((weight) => weight > 0);
+  const totalWeight = weightedSelection
+    ? candidateWeights!.reduce((sum, weight) => sum + weight, 0)
+    : candidates.length;
+  for (const question of questions) {
+    if (askedIds.has(question.id) || askedTraits.has(question.trait)) continue;
+
+    let yesCount = 0;
+    let yesWeight = 0;
+    for (const candidate of candidates) {
+      if (candidate.answers[question.trait] === true) yesCount += 1;
+    }
+    if (weightedSelection) {
+      for (let index = 0; index < candidates.length; index += 1) {
+        if (candidates[index].answers[question.trait] === true) yesWeight += candidateWeights![index];
+      }
+    }
+    const noCount = candidates.length - yesCount;
+    if (yesCount === 0 || noCount === 0) continue;
+
+    const probabilityYes = weightedSelection ? yesWeight / totalWeight : yesCount / candidates.length;
+    const informationGain = entropy(probabilityYes);
+    const probabilityNo = 1 - probabilityYes;
+    const balance = 1 - Math.abs(probabilityYes - probabilityNo);
+    const expectedRemaining = candidates.length * (probabilityYes * probabilityYes + probabilityNo * probabilityNo);
+    const score = strategy === 'balance' ? balance : informationGain;
+    const scored: ScoredSinglePlayerQuestion = {
+      ...question,
+      yesCount,
+      noCount,
+      informationGain,
+      balance,
+      expectedRemaining,
+      score,
+    };
+
+    const isBetter = bestQuestion === null
+      || scored.score > bestQuestion.score
+      || (scored.score === bestQuestion.score && scored.balance > bestQuestion.balance)
+      || (scored.score === bestQuestion.score && scored.balance === bestQuestion.balance
+        && scored.informationGain > bestQuestion.informationGain)
+      || (scored.score === bestQuestion.score && scored.balance === bestQuestion.balance
+        && scored.informationGain === bestQuestion.informationGain
+        && scored.id.localeCompare(bestQuestion.id) < 0);
+    if (bestQuestion === null || scored.score > bestQuestion.score + NEAR_BEST_MARGIN) {
+      bestQuestion = scored;
+      nearBestQuestions.length = 0;
+      nearBestQuestions.push(scored);
+    } else if (scored.score >= bestQuestion.score - NEAR_BEST_MARGIN) {
+      nearBestQuestions.push(scored);
+      if (isBetter) bestQuestion = scored;
+    }
+  }
+
+  if (bestQuestion === null || questionSelectionSeed === 0) return bestQuestion;
+  const eligibleQuestions = nearBestQuestions.filter(
+    (question) => question.score >= bestQuestion!.score - NEAR_BEST_MARGIN,
+  );
+  if (eligibleQuestions.length < 2) return bestQuestion;
+  const choiceIndex = questionHash(questionSelectionSeed, `${askedQuestionIds.length}:${bestQuestion.id}`, askedQuestionIds.length) % eligibleQuestions.length;
+  return eligibleQuestions[choiceIndex];
 }
 
 /** Filtra candidatos sin mutar la lista original. */
@@ -321,21 +502,39 @@ function buildState<TId extends CandidateId, TMetadata>(
   candidates: readonly SinglePlayerCandidate<TId, TMetadata>[],
   questions: readonly SinglePlayerQuestion[],
   strategy: QuestionSelectionStrategy,
-  remainingCandidates: readonly SinglePlayerCandidate<TId, TMetadata>[],
+  maxQuestions: number,
+  questionSelectionSeed: number,
   askedQuestionIds: readonly string[],
   answers: Readonly<Record<string, boolean>>,
   history: readonly SinglePlayerAnswerRecord[],
+  rejectedCandidateIds: readonly TId[],
 ): SinglePlayerState<TId, TMetadata> {
-  const outcome = evaluateSinglePlayerOutcome(remainingCandidates);
-  const nextQuestion = outcome.phase === 'tie'
-    ? chooseNextQuestion(remainingCandidates, questions, askedQuestionIds, strategy)
+  const candidateScores = calculateCandidateScores(candidates, history, rejectedCandidateIds);
+  const activeCandidateScores = selectActiveCandidateScores(candidateScores);
+  const remainingCandidates = activeCandidateScores.map((item) => item.candidate);
+  const confidentWinner = findConfidentWinner(candidateScores, history.length);
+  const outcome = confidentWinner === null
+    ? evaluateSinglePlayerOutcome(remainingCandidates)
+    : { phase: 'won' as const, winner: confidentWinner, candidates: [confidentWinner] as const };
+  const reachedLimit = history.length >= maxQuestions;
+  const nextQuestion = outcome.phase === 'tie' && !reachedLimit
+    ? chooseNextQuestion(
+      remainingCandidates,
+      questions,
+      askedQuestionIds,
+      strategy,
+      questionSelectionSeed,
+      activeCandidateScores.map((item) => item.score),
+    )
     : null;
 
   // Si quedan varios candidatos pero ninguna pregunta los separa, es un
   // empate real: sus perfiles de respuestas son indistinguibles.
   const phase: SinglePlayerPhase = outcome.phase === 'tie' && nextQuestion !== null
     ? 'playing'
-    : outcome.phase;
+    : outcome.phase === 'tie' && reachedLimit
+      ? 'limit-reached'
+      : outcome.phase;
 
   const askedTraits = questions
     .filter((question) => askedQuestionIds.includes(question.id))
@@ -345,7 +544,11 @@ function buildState<TId extends CandidateId, TMetadata>(
     candidates,
     questions,
     strategy,
+    maxQuestions,
+    questionSelectionSeed,
     remainingCandidates,
+    candidateScores,
+    rejectedCandidateIds,
     askedQuestionIds,
     askedTraits,
     answers,
@@ -374,13 +577,22 @@ export function createSinglePlayerGame<TId extends CandidateId, TMetadata = unkn
   if (strategy !== 'information-gain' && strategy !== 'balance') {
     throw new Error(`Estrategia de preguntas no soportada: ${String(strategy)}.`);
   }
+  const maxQuestions = options.maxQuestions ?? SINGLE_PLAYER_MAX_QUESTIONS;
+  if (!Number.isInteger(maxQuestions) || maxQuestions < 1) {
+    throw new Error('El límite de preguntas debe ser un entero positivo.');
+  }
+  const questionSelectionSeed = options.questionSelectionSeed === undefined
+    ? Math.floor(Math.random() * 0xFFFFFFFF)
+    : options.questionSelectionSeed >>> 0;
   return buildState(
     [...candidates],
     questions,
     strategy,
-    [...candidates],
+    maxQuestions,
+    questionSelectionSeed,
     [],
     {},
+    [],
     [],
   );
 }
@@ -396,7 +608,6 @@ export function answerQuestion<TId extends CandidateId, TMetadata>(
   if (state.phase !== 'playing' || state.currentQuestion === null || typeof answer !== 'boolean') return state;
 
   const question = state.currentQuestion;
-  const remainingCandidates = filterCandidatesByAnswer(state.remainingCandidates, question, answer);
   const askedQuestionIds = [...state.askedQuestionIds, question.id];
   const answers = { ...state.answers, [question.id]: answer };
   const history = [
@@ -408,21 +619,36 @@ export function answerQuestion<TId extends CandidateId, TMetadata>(
         text: question.text,
       },
       answer,
-      remainingCount: remainingCandidates.length,
+      remainingCount: 0,
+      remainingCandidateIds: [],
       yesCountBeforeAnswer: question.yesCount,
       noCountBeforeAnswer: question.noCount,
     },
   ];
 
-  return buildState(
+  const nextState = buildState(
     state.candidates,
     state.questions,
     state.strategy,
-    remainingCandidates,
+    state.maxQuestions,
+    state.questionSelectionSeed,
     askedQuestionIds,
     answers,
     history,
+    state.rejectedCandidateIds,
   );
+  const lastEvent = nextState.history[nextState.history.length - 1];
+  return {
+    ...nextState,
+    history: [
+      ...nextState.history.slice(0, -1),
+      {
+        ...lastEvent,
+        remainingCount: nextState.remainingCandidates.length,
+        remainingCandidateIds: nextState.remainingCandidates.map((candidate) => candidate.id),
+      },
+    ],
+  };
 }
 
 /**
@@ -435,18 +661,22 @@ export function rejectWinner<TId extends CandidateId, TMetadata>(
 ): SinglePlayerState<TId, TMetadata> {
   if (state.phase !== 'won' || state.winner === null) return state;
   const winnerId = state.winner.id;
-  const remainingCandidates = state.remainingCandidates.filter(
-    (candidate) => !sameId(candidate.id, winnerId),
-  );
-  return buildState(
+  const nextState = buildState(
     state.candidates,
     state.questions,
     state.strategy,
-    remainingCandidates,
+    state.maxQuestions,
+    state.questionSelectionSeed,
     state.askedQuestionIds,
     state.answers,
     state.history,
+    [...state.rejectedCandidateIds, winnerId],
   );
+  // A proposal rejected on the final allowed question is a player win: the
+  // machine has used its complete budget and cannot ask another question.
+  return state.history.length >= state.maxQuestions
+    ? { ...nextState, phase: 'limit-reached', currentQuestion: null, winner: null }
+    : nextState;
 }
 
 /** Alias semántico para integraciones que reciben eventos de la interfaz. */
@@ -459,6 +689,8 @@ export function restartSinglePlayerGame<TId extends CandidateId, TMetadata>(
   return createSinglePlayerGame(state.candidates, {
     questions: state.questions,
     strategy: state.strategy,
+    maxQuestions: state.maxQuestions,
+    questionSelectionSeed: state.questionSelectionSeed,
   });
 }
 
@@ -474,6 +706,9 @@ export function getSinglePlayerOutcome<TId extends CandidateId, TMetadata>(
   }
   if (state.phase === 'tie') {
     return { phase: 'tie', winner: null, candidates: state.tiedCandidates };
+  }
+  if (state.phase === 'limit-reached') {
+    return { phase: 'limit-reached', winner: null, candidates: state.remainingCandidates };
   }
   return { phase: 'no-match', winner: null, candidates: [] };
 }

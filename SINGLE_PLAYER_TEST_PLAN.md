@@ -1,6 +1,6 @@
 # Plan técnico de pruebas — modo 1 jugador
 
-**Proyecto:** Adivina Quién Pokémon  
+**Proyecto:** PokéQuién · Duelo Pixel
 **Fecha de referencia:** 14/09/2026  
 **Estado:** plan de regresión para la implementación actual del modo 1 jugador  
 **Alcance:** motor de inferencia, catálogo grande de Pokémon, flujo de preguntas binarias, persistencia local, reinicio y exportación del registro.
@@ -47,7 +47,7 @@ Los casos de este documento se pueden ejecutar contra la aplicación actual. La 
 Las pruebas necesitan una semántica estable. La implementación no debe dejar estas decisiones implícitas:
 
 1. **Unidad de catálogo:** por defecto, una entrada por especie de la Pokédex Nacional. Las formas regionales, megaevoluciones, formas alternativas y variantes de género quedan fuera de la primera versión, salvo que tengan un identificador único explícito.
-2. **Selección secreta:** el usuario selecciona un Pokémon del catálogo o de un tablero generado. Esa selección no se muestra en la pantalla de preguntas hasta el final.
+2. **Selección secreta:** el usuario selecciona un Pokémon del catálogo o de un tablero generado. El Pokémon se muestra como recordatorio únicamente en la pantalla local del jugador; la máquina no recibe su id.
 3. **Tipo dual:** “¿Es de tipo Agua?” responde SÍ si Agua es cualquiera de sus tipos.
 4. **Evolución:** “¿Tiene evolución?” responde SÍ si existe al menos una evolución oficial en el grafo de especies; no se debe inferir solo desde `stage` si el dato no está confirmado.
 5. **Legendario y singular:** legendario, singular/mítico y paradoja son atributos independientes. Una pregunta no debe mezclar categorías.
@@ -125,13 +125,14 @@ Cada registro del catálogo debe tener, como mínimo:
 
 La aplicación debe construir preguntas a partir de predicados binarios versionados. Cada pregunta debe tener `id`, texto, atributo consultado, versión semántica y función que devuelve `true` o `false` para cada candidato válido.
 
-La selección recomendada es la que maximiza la separación del conjunto actual, con este orden determinista:
+La selección recomendada maximiza la separación del conjunto actual y mantiene una semilla por ronda para variar los desempates, con este orden:
 
 1. descartar preguntas ya respondidas;
 2. descartar preguntas que no separen candidatos;
 3. priorizar el reparto más cercano a 50/50;
 4. desempatar por cobertura del atributo;
-5. desempatar por `questionId` estable.
+5. conservar las preguntas a menos de 0,08 puntos de la mejor;
+6. escoger una de esas preguntas con la semilla de la ronda; si no hay semilla, desempatar por `questionId` estable.
 
 No se debe seleccionar una pregunta que deje el mismo conjunto de candidatos tanto para SÍ como para NO. El motor debe incluir un límite de seguridad de preguntas para evitar bucles causados por datos defectuosos.
 
@@ -161,6 +162,8 @@ Los siguientes casos deben existir como tests unitarios del motor y, en los fluj
 | SP-YN-018 | Orden determinista | Ejecutar dos veces el mismo fixture, semilla y respuestas | Misma pregunta siguiente, mismo conjunto y mismo resultado. |
 | SP-YN-019 | Reinicio durante pregunta | Pulsar “Nueva partida” antes de responder | Se crea `sessionId` nuevo y ninguna respuesta de la partida anterior aparece en la nueva. |
 | SP-YN-020 | Reinicio desde resultado | Pulsar “Jugar de nuevo” | Se conserva el historial terminado y se inicia una sesión vacía. |
+| SP-YN-021 | Límite de producto | Contestar 30 veces manteniendo al menos dos candidatos | La fase pasa a `limit-reached`, se registra `player-won`, suena la victoria del jugador y se muestra el Pokémon elegido con sus curiosidades. |
+| SP-YN-022 | Orden entre rondas | Crear dos partidas con semillas distintas y respuestas equivalentes | Las preguntas casi equivalentes pueden aparecer en orden distinto; ninguna se repite dentro de una partida. |
 
 ## 8. Casos de Pokémon ambiguo
 
@@ -184,7 +187,13 @@ Casos obligatorios:
 - Legendario frente a mítico: no intercambiar categorías.
 - Evoluciones regionales o familias con datos incompletos: no preguntar por etapa si `stageKnown` es falso.
 - Nombre traducido frente a nombre canónico: el id es el oráculo; el texto nunca debe causar dos registros para la misma especie.
-- Peso o altura: normalizar unidades antes de comparar; no redondear el valor usado por el motor.
+- Color, silueta y hábitat: usar atributos locales completos y formular pistas amplias que una persona pueda contestar mirando el retrato.
+
+### 8.4 Preguntas deliberadamente excluidas
+
+El banco actual no contiene preguntas sobre número de Pokédex Nacional, rangos
+numéricos, kilogramos, peso, altura ni el nombre exacto del Pokémon. Estas
+familias no deben volver a introducirse al ampliar el catálogo.
 
 ### Oráculo de ambigüedad
 
@@ -222,8 +231,8 @@ Una sesión debe conservar:
 - `sessionId` y `schemaVersion`;
 - fecha/hora de inicio y fin;
 - versión del catálogo y de las preguntas;
-- semilla, si se usa aleatoriedad reproducible;
-- Pokémon elegido, protegido de la UI hasta el final;
+- `maxQuestions` y semilla de selección, si se usa aleatoriedad reproducible;
+- Pokémon elegido, visible solo en el dispositivo del jugador;
 - secuencia ordenada de preguntas y respuestas `yes`/`no`;
 - candidatos antes y después de cada respuesta;
 - propuesta(s) del motor y confirmación del usuario;
@@ -260,7 +269,7 @@ La exportación debe ser reproducible y verificable. JSON será el formato canó
 ```json
 {
   "format": "adivina-pkm-single-player-log",
-  "formatVersion": 1,
+  "formatVersion": 2,
   "exportedAt": "2026-09-14T17:00:00.000Z",
   "catalogueVersion": "national-2026-09-14",
   "sessions": []
