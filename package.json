@@ -1,6 +1,6 @@
 {
   "name": "pokequien",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "index.ts",
   "dependencies": {
     "@expo-google-fonts/press-start-2p": "^0.4.1",

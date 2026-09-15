@@ -2,7 +2,9 @@ const http = require('http');
 const { randomBytes, timingSafeEqual } = require('crypto');
 const { WebSocketServer } = require('ws');
 
-const PORT = Number(process.env.ROOM_SERVER_PORT || 8787);
+// Render, Railway y otros PaaS inyectan PORT. ROOM_SERVER_PORT se conserva
+// para el desarrollo local y para no romper los comandos existentes.
+const PORT = Number(process.env.PORT || process.env.ROOM_SERVER_PORT || 8787);
 const rooms = new Map();
 const VALID_GENERATIONS = new Set(['all', 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 const RECONNECT_GRACE_MS = 60_000;

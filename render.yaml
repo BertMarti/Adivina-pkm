@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: pokequien-rooms
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: node server/room-server.js
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ROOM_SERVER_ALLOWED_ORIGINS
+        value: ""

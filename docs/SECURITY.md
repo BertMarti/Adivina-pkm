@@ -23,6 +23,7 @@ PokéQuién no tiene cuentas, contraseñas ni datos personales. La sala se ident
 ## Puesta en producción pendiente
 
 - Servir el cliente y el WebSocket con HTTPS/WSS; `EXPO_PUBLIC_ROOM_SERVER_URL` debe usar `wss://` fuera de localhost.
+- En un PaaS que inyecte `PORT`, el servidor lo acepta antes de `ROOM_SERVER_PORT`; `render.yaml` deja preparada una instancia única para la beta.
 - Sustituir el `Map` en memoria por almacenamiento efímero y añadir límites por IP/proxy si se publica.
 - Configurar `ROOM_SERVER_ALLOWED_ORIGINS` con el dominio exacto y eliminar la tolerancia a localhost.
 - Añadir heartbeat/ping del proxy, observabilidad sin registrar tokens ni mensajes completos y alertas de abuso.

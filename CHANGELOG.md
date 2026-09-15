@@ -6,6 +6,17 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 
 ---
 
+## [0.1.0] — Beta móvil preparada
+
+### 🚀 Distribución gratuita
+
+- 📦 Perfil EAS `preview` para generar una APK Android instalable mediante enlace.
+- 🌐 Blueprint `render.yaml` para desplegar el servidor de salas en un servicio Node gratuito.
+- 🔐 El servidor acepta el puerto `PORT` de plataformas cloud y mantiene el puerto local `8787` como alternativa.
+- 📘 Guía completa en [`docs/RELEASE_0_1_GRATUITA.md`](./docs/RELEASE_0_1_GRATUITA.md).
+
+> Esta beta usa salas en memoria: un reinicio del hosting termina las salas activas.
+
 ## [Sin publicar]
 
 > Cambios pendientes de incluir en la próxima versión.
