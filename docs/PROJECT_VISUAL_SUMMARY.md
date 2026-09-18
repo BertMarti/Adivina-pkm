@@ -82,6 +82,7 @@ derrota     ──▶ tono de derrota para el jugador perdedor
 - `SOLO_PLAYER_IMPROVEMENT_REPORT.md`: arquitectura del razonamiento adaptativo, historial local, smoke actual y roadmap del modo solitario.
 - `WAITING_SCREEN_MEDIA_REVIEW.md`: tratamiento de los GIF, transparencia, fallback accesible y composición de la pantalla de espera.
 - `APP_ICON_IDENTITY.md`: concepto, variantes y criterios del nuevo icono móvil/web.
+- `ROOM_CONNECTION_AND_HOME_UX_FIX.md`: menú móvil fijo, reintento de sala y fallback WebSocket público.
 
 ## 🧾 Créditos
 
