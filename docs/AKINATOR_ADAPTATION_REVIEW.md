@@ -1,8 +1,14 @@
 # Revisión de la adaptación tipo Akinator para PokéQuién
 
-**Fecha:** 2026-09-15  
-**Alcance:** revisión del modo solitario y propuesta de arquitectura  
-**Restricción de esta revisión:** este trabajo documenta decisiones y riesgos. No modifica código ni otros archivos.
+**Fecha original:** 2026-09-15
+**Actualización:** 2026-09-18
+**Alcance:** revisión del modo solitario, propuesta de arquitectura y contraste
+con la documentación técnica facilitada por el usuario.
+
+> Esta revisión nació como documento de decisiones y riesgos. La actualización
+> del 18/09/2026 se acompaña de cambios implementados en
+> `src/game/singlePlayerEngine.ts` y se detalla también en
+> `docs/SOLO_PLAYER_ALGORITHM_REVIEW.md`.
 
 ## Resumen ejecutivo
 
@@ -602,4 +608,3 @@ Con una distribución de creencia, ganancia de información esperada, exploraci�
 controlada y registro local separado de telemetría, PokéQuién puede ofrecer una
 experiencia con sensación de Akinator sin copiar una implementación propietaria,
 sin usar preguntas excluidas y sin enviar el Pokémon secreto del jugador.
-

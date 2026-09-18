@@ -300,24 +300,27 @@ function RoomScreen({ game, player, onShare, onCopyCode, onBack }: { game: RoomG
 }
 
 function PokeballCapture({ pokemon, reduceMotion }: { pokemon?: PokemonCandidate; reduceMotion: boolean }) {
-  const progress = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    if (reduceMotion) {
-      progress.setValue(0.5);
-      return;
-    }
-    const animation = Animated.loop(Animated.sequence([
-      Animated.timing(progress, { toValue: 1, duration: 1500, easing: Easing.inOut(Easing.cubic), useNativeDriver: Platform.OS !== 'web' }),
-      Animated.timing(progress, { toValue: 0, duration: 1500, easing: Easing.inOut(Easing.cubic), useNativeDriver: Platform.OS !== 'web' }),
-    ]));
-    animation.start();
-    return () => animation.stop();
-  }, [progress, reduceMotion]);
-  const translateX = progress.interpolate({ inputRange: [0, 0.25, 0.5, 0.75, 1], outputRange: [30, 3, -30, 3, 30] });
-  const translateY = progress.interpolate({ inputRange: [0, 0.25, 0.5, 0.75, 1], outputRange: [0, -4, 0, -4, 0] });
-  const rotate = progress.interpolate({ inputRange: [0, 0.5, 1], outputRange: ['0deg', '-360deg', '-720deg'] });
-  const scale = progress.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1, 0.97, 1] });
-  return <View style={styles.captureStage}><View style={styles.captureTarget}><View style={styles.captureTargetGlow} />{pokemon ? <Portrait pokemon={pokemon} variant="normal" size={76} /> : <Text style={styles.captureQuestion}>?</Text>}</View><View style={styles.pokeballTrack}><Animated.View accessibilityLabel="Poké Ball capturando el Pokémon" style={[styles.pokeball, { transform: [{ translateX }, { translateY }, { rotate }, { scale }] }]}><View style={styles.pokeballRed} /><View style={styles.pokeballBand} /><View style={styles.pokeballButton}><View style={styles.pokeballButtonCore} /></View></Animated.View></View></View>;
+  const pokeballSource = reduceMotion
+    ? require('./assets/pokeball-capture-static.png')
+    : require('./assets/pokeball-capture.gif');
+  return <View style={styles.captureStage}>
+    <View style={styles.captureTarget}>
+      <View style={styles.captureTargetGlow} />
+      {pokemon ? <Portrait pokemon={pokemon} variant="normal" size={76} /> : <Text style={styles.captureQuestion}>?</Text>}
+    </View>
+    <View style={styles.captureConnector}>
+      <View style={styles.captureLine} />
+      <Text style={styles.captureArrow}>›</Text>
+    </View>
+    <View style={styles.pokeballTrack}>
+      <Image
+        source={pokeballSource}
+        accessibilityLabel="Poké Ball pixelada esperando al oponente"
+        resizeMode="contain"
+        style={styles.pokeballGif}
+      />
+    </View>
+  </View>;
 }
 
 function SelectionScreen({ game, player, reduceMotion, onSelect }: { game: RoomGameState; player: PlayerId; reduceMotion: boolean; onSelect: (id: number) => void }) {
@@ -326,7 +329,31 @@ function SelectionScreen({ game, player, reduceMotion, onSelect }: { game: RoomG
 
 function WaitingScreen({ game, player, reduceMotion }: { game: RoomGameState; player: PlayerId; reduceMotion: boolean }) {
   const pokemon = getPokemon(game, game.players[player].secretId);
-  return <ScrollView contentContainerStyle={styles.waitingContent}><Text style={styles.waitingTitle}>ESPERANDO AL OPONENTE…</Text><Text style={styles.waitingText}>Tu elección está guardada. El otro jugador todavía debe elegir su Pokémon secreto.</Text><PokeballCapture pokemon={pokemon} reduceMotion={reduceMotion} /><View style={styles.waitingSecret}><Text style={styles.statusLabel}>TU POKÉMON</Text><Text style={styles.waitingSecretName}>{pokemon?.name ?? 'Secreto guardado'}</Text></View><Text style={styles.waitingHint}>La partida empezará automáticamente cuando ambos hayan elegido.</Text></ScrollView>;
+  return <ScrollView contentContainerStyle={styles.waitingContent}>
+    <View style={styles.waitingPanel}>
+      <View style={styles.waitingTopline}>
+        <Text style={styles.waitingEyebrow}>SALA · LISTA</Text>
+        <View style={styles.waitingLivePill}><View style={styles.waitingLiveDot} /><Text style={styles.waitingLiveText}>EN ESPERA</Text></View>
+      </View>
+      <Text style={styles.waitingTitle}>ESPERANDO{`\n`}AL OPONENTE…</Text>
+      <Text style={styles.waitingText}>Tu elección está guardada. El otro jugador todavía debe elegir su Pokémon secreto.</Text>
+      <View style={styles.waitingDivider} />
+      <PokeballCapture pokemon={pokemon} reduceMotion={reduceMotion} />
+      <View style={styles.waitingSecret}>
+        <Text style={styles.statusLabel}>TU POKÉMON SECRETO</Text>
+        <View style={styles.waitingSecretRow}>
+          {pokemon ? <Portrait pokemon={pokemon} variant="normal" size={54} /> : <Text style={styles.captureQuestion}>?</Text>}
+          <Text style={styles.waitingSecretName}>{pokemon?.name ?? 'Secreto guardado'}</Text>
+          <Text accessibilityLabel="Elección guardada" style={styles.waitingSecretCheck}>✓</Text>
+        </View>
+      </View>
+      <View style={styles.waitingTip}>
+        <Text style={styles.waitingTipTitle}>CUANDO AMBOS ESTÉIS LISTOS</Text>
+        <Text style={styles.waitingHint}>La partida comenzará automáticamente.</Text>
+      </View>
+      <Image source={require('./assets/pikachu-flight.gif')} accessibilityLabel="Pikachu volando mientras espera al rival" resizeMode="contain" style={styles.pikachuWaiting} />
+    </View>
+  </ScrollView>;
 }
 
 function PokemonInfo({ pokemon, playerLabel }: { pokemon?: PokemonCandidate; playerLabel: string }) {
@@ -653,22 +680,33 @@ const styles = StyleSheet.create({
   crossLineA: { transform: [{ rotate: '45deg' }] },
   crossLineB: { transform: [{ rotate: '-45deg' }] },
   waitingScreen: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12, backgroundColor: 'rgba(0, 0, 0, 0.78)' },
-  waitingContent: { flexGrow: 1, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 12, backgroundColor: 'rgba(0, 0, 0, 0.78)' },
-  waitingTitle: { color: COLORS.success, fontFamily: PIXEL_FONT, fontSize: 17, lineHeight: 29, textAlign: 'center', textShadowColor: '#0A4A31', textShadowOffset: { width: 3, height: 3 }, textShadowRadius: 0 },
+  waitingContent: { flexGrow: 1, alignItems: 'center', justifyContent: 'center', padding: 16, backgroundColor: 'rgba(0, 0, 0, 0.78)' },
+  waitingPanel: { width: '100%', maxWidth: 460, alignItems: 'center', backgroundColor: 'rgba(17, 18, 29, 0.96)', borderRadius: 16, borderWidth: 3, borderColor: COLORS.yellow, paddingHorizontal: 18, paddingTop: 17, paddingBottom: 12, gap: 11, shadowColor: '#000', shadowOpacity: 0.8, shadowRadius: 12, shadowOffset: { width: 0, height: 8 } },
+  waitingTopline: { width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  waitingEyebrow: { color: COLORS.cyan, fontFamily: PIXEL_FONT, fontSize: 7, letterSpacing: 0.6 },
+  waitingLivePill: { flexDirection: 'row', alignItems: 'center', gap: 5, borderWidth: 1, borderColor: 'rgba(56, 211, 125, 0.65)', borderRadius: 99, paddingHorizontal: 8, paddingVertical: 4, backgroundColor: 'rgba(23, 71, 51, 0.6)' },
+  waitingLiveDot: { width: 7, height: 7, borderRadius: 4, backgroundColor: COLORS.success },
+  waitingLiveText: { color: COLORS.success, fontFamily: PIXEL_FONT, fontSize: 6, letterSpacing: 0.5 },
+  waitingTitle: { color: COLORS.success, fontFamily: PIXEL_FONT, fontSize: 17, lineHeight: 27, textAlign: 'center', textShadowColor: '#0A4A31', textShadowOffset: { width: 3, height: 3 }, textShadowRadius: 0 },
   waitingText: { color: COLORS.white, fontSize: 13, lineHeight: 21, maxWidth: 380, textAlign: 'center' },
-  captureStage: { width: '100%', maxWidth: 360, height: 170, marginTop: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 34 },
+  waitingDivider: { width: '88%', height: 2, backgroundColor: '#4D4D58', marginTop: 1 },
+  captureStage: { width: '100%', maxWidth: 410, minHeight: 146, marginTop: 2, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 3 },
   captureTarget: { width: 104, height: 104, borderRadius: 52, backgroundColor: COLORS.panelLight, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: '#5A538A', overflow: 'visible', shadowColor: COLORS.cyan, shadowOpacity: 0.35, shadowRadius: 12, shadowOffset: { width: 0, height: 0 } },
   captureTargetGlow: { position: 'absolute', width: 86, height: 86, borderRadius: 43, borderWidth: 1, borderColor: 'rgba(121, 162, 255, 0.48)' },
   captureQuestion: { color: COLORS.yellow, fontSize: 42, fontWeight: '900' },
-  pokeballTrack: { width: 92, height: 92, alignItems: 'center', justifyContent: 'center' },
-  pokeball: { width: 58, height: 58, borderRadius: 29, backgroundColor: COLORS.white, borderWidth: 3, borderColor: COLORS.ink, overflow: 'hidden', shadowColor: COLORS.ink, shadowOpacity: 0.46, shadowRadius: 7, shadowOffset: { width: 0, height: 5 } },
-  pokeballRed: { position: 'absolute', top: 0, left: 0, right: 0, height: 27, backgroundColor: COLORS.danger },
-  pokeballBand: { position: 'absolute', left: 0, right: 0, top: 25, height: 6, backgroundColor: COLORS.ink },
-  pokeballButton: { position: 'absolute', width: 23, height: 23, borderRadius: 12, backgroundColor: COLORS.white, borderWidth: 3, borderColor: COLORS.ink, left: 14, top: 15, alignItems: 'center', justifyContent: 'center' },
-  pokeballButtonCore: { width: 8, height: 8, borderRadius: 4, backgroundColor: COLORS.cyan },
-  waitingSecret: { alignItems: 'center', gap: 4, backgroundColor: COLORS.panelLight, borderRadius: 12, paddingHorizontal: 22, paddingVertical: 9 },
-  waitingSecretName: { color: COLORS.white, fontSize: 17, fontWeight: '900' },
+  captureConnector: { flex: 1, minWidth: 28, maxWidth: 84, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 },
+  captureLine: { flex: 1, height: 2, borderTopWidth: 2, borderTopColor: 'rgba(255, 208, 0, 0.7)', borderStyle: 'dashed' },
+  captureArrow: { color: COLORS.yellow, fontSize: 28, lineHeight: 30, marginTop: -2 },
+  pokeballTrack: { width: 112, height: 112, alignItems: 'center', justifyContent: 'center' },
+  pokeballGif: { width: 108, height: 98 },
+  waitingSecret: { width: '100%', maxWidth: 300, alignItems: 'center', gap: 6, backgroundColor: COLORS.panelLight, borderRadius: 12, paddingHorizontal: 17, paddingVertical: 9, borderWidth: 1, borderColor: '#505167' },
+  waitingSecretRow: { flexDirection: 'row', alignItems: 'center', gap: 9 },
+  waitingSecretName: { color: COLORS.white, fontFamily: PIXEL_FONT, fontSize: 10, lineHeight: 18 },
+  waitingSecretCheck: { color: COLORS.success, fontSize: 23, fontWeight: '900' },
+  waitingTip: { alignItems: 'center', gap: 3 },
+  waitingTipTitle: { color: COLORS.yellow, fontFamily: PIXEL_FONT, fontSize: 6, letterSpacing: 0.4, textAlign: 'center' },
   waitingHint: { color: COLORS.muted, fontSize: 11, textAlign: 'center', maxWidth: 340, lineHeight: 17 },
+  pikachuWaiting: { width: 124, height: 72, marginTop: -3 },
   gameTopbar: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', minHeight: 36, paddingHorizontal: 2 },
   gameRoom: { color: COLORS.muted, fontFamily: PIXEL_FONT, fontSize: 7, letterSpacing: 0.4 },
   disconnectBanner: { backgroundColor: 'rgba(96, 50, 29, 0.94)', borderRadius: 8, borderWidth: 2, borderColor: COLORS.orange, padding: 11, gap: 4, alignItems: 'center' },

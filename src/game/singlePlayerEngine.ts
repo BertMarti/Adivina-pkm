@@ -278,6 +278,56 @@ function entropy(probability: number): number {
   return -probability * Math.log2(probability) - (1 - probability) * Math.log2(1 - probability);
 }
 
+function distributionEntropy(weights: readonly number[]): number {
+  const total = weights.reduce((sum, weight) => sum + weight, 0);
+  if (total <= 0) return 0;
+  return weights.reduce((sum, weight) => {
+    if (weight <= 0) return sum;
+    const probability = weight / total;
+    return sum - probability * Math.log2(probability);
+  }, 0);
+}
+
+/**
+ * Calculates the expected posterior entropy for one binary question.
+ *
+ * The player only answers Sí/No, but the knowledge table is not perfect. A
+ * matching trait therefore has a 0.9 likelihood and a mismatch a 0.1
+ * likelihood. Selecting questions with this model is closer to Akinator's
+ * behaviour than treating every trait as an infallible hard split: a useful
+ * question is one that separates the current posterior while still allowing
+ * recovery after an accidental answer.
+ */
+function bayesianQuestionMetrics<TId extends CandidateId, TMetadata>(
+  candidates: readonly SinglePlayerCandidate<TId, TMetadata>[],
+  trait: string,
+  weights: readonly number[],
+): { informationGain: number; probabilityYes: number } {
+  const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+  if (totalWeight <= 0 || weights.length !== candidates.length) {
+    return { informationGain: 0, probabilityYes: 0.5 };
+  }
+
+  const priorEntropy = distributionEntropy(weights);
+  const likelihoods = [true, false].map((answer) => candidates.map((candidate) => (
+    candidate.answers[trait] === answer ? BELIEF_MATCH_LIKELIHOOD : BELIEF_MISMATCH_LIKELIHOOD
+  )));
+  let expectedPosteriorEntropy = 0;
+  let probabilityYes = 0;
+
+  likelihoods.forEach((answerLikelihoods, answerIndex) => {
+    const posteriorWeights = answerLikelihoods.map((likelihood, index) => weights[index] * likelihood);
+    const answerProbability = posteriorWeights.reduce((sum, weight) => sum + weight, 0) / totalWeight;
+    if (answerIndex === 0) probabilityYes = answerProbability;
+    expectedPosteriorEntropy += answerProbability * distributionEntropy(posteriorWeights);
+  });
+
+  return {
+    informationGain: Math.max(0, priorEntropy - expectedPosteriorEntropy),
+    probabilityYes,
+  };
+}
+
 /** Calcula las métricas de una pregunta; devuelve null si no divide el grupo. */
 export function scoreQuestion<TId extends CandidateId, TMetadata>(
   candidates: readonly SinglePlayerCandidate<TId, TMetadata>[],
@@ -443,29 +493,24 @@ export function chooseNextQuestion<TId extends CandidateId, TMetadata>(
     && candidateWeights.length === candidates.length
     && candidateWeights.every((weight) => Number.isFinite(weight) && weight >= 0)
     && candidateWeights.some((weight) => weight > 0);
-  const totalWeight = weightedSelection
-    ? candidateWeights!.reduce((sum, weight) => sum + weight, 0)
-    : candidates.length;
   for (const question of questions) {
     if (askedIds.has(question.id) || askedTraits.has(question.trait)) continue;
     const partition = partitionSignature(candidates, question.trait);
     if (partition === null || askedPartitions.has(partition)) continue;
 
     let yesCount = 0;
-    let yesWeight = 0;
     for (const candidate of candidates) {
       if (candidate.answers[question.trait] === true) yesCount += 1;
-    }
-    if (weightedSelection) {
-      for (let index = 0; index < candidates.length; index += 1) {
-        if (candidates[index].answers[question.trait] === true) yesWeight += candidateWeights![index];
-      }
     }
     const noCount = candidates.length - yesCount;
     if (yesCount === 0 || noCount === 0) continue;
 
-    const probabilityYes = weightedSelection ? yesWeight / totalWeight : yesCount / candidates.length;
-    const informationGain = entropy(probabilityYes);
+    const selectionWeights = weightedSelection
+      ? candidateWeights!
+      : candidates.map(() => 1);
+    const bayesianMetrics = bayesianQuestionMetrics(candidates, question.trait, selectionWeights);
+    const probabilityYes = bayesianMetrics.probabilityYes;
+    const informationGain = bayesianMetrics.informationGain;
     const probabilityNo = 1 - probabilityYes;
     const balance = 1 - Math.abs(probabilityYes - probabilityNo);
     const expectedRemaining = candidates.length * (probabilityYes * probabilityYes + probabilityNo * probabilityNo);

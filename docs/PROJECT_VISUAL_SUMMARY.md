@@ -26,7 +26,8 @@
 
 - Fondo local inspirado en la web de SpriteCollab, con oscurecido y scanlines.
 - Título principal con flotación suave y respeto por movimiento reducido.
-- Poké Ball de espera con desplazamiento lateral, rotación, rebote y escala sutiles.
+- Poké Ball de espera basada en el GIF pixel-art proporcionado, con fondo eliminado, recorte responsive y fallback estático para movimiento reducido.
+- Pikachu animado como compañero visual en la espera del rival.
 - Cuadrículas responsive de cinco columnas, con retrato, nombre y número Dex.
 - X roja grande, animada y visible en toda la casilla.
 - Modal de resultado centrado, desplazable y preparado para pantallas pequeñas.
@@ -65,6 +66,7 @@ derrota     ──▶ tono de derrota para el jugador perdedor
 - La elección secreta permanece fuera del conocimiento de la máquina.
 - Historial local de preguntas, respuestas y resultados.
 - Selector tipo Akinator: creencia probabilística, ganancia de información y exploración reproducible entre preguntas casi equivalentes.
+- Ganancia de información posterior: la siguiente pregunta tiene en cuenta la tolerancia a respuestas imperfectas (`0,9` / `0,1`) y no solo el corte bruto del catálogo.
 - Base de curiosidades para el popup final.
 
 ## 📚 Documentación creada
@@ -78,6 +80,7 @@ derrota     ──▶ tono de derrota para el jugador perdedor
 - `PROJECT_VISUAL_SUMMARY.md`: este resumen visual.
 - `WORK_COMPLETION_REPORT.md`: informe final con métricas, QA, seguridad y próximos pasos.
 - `SOLO_PLAYER_IMPROVEMENT_REPORT.md`: arquitectura del razonamiento adaptativo, historial local, smoke actual y roadmap del modo solitario.
+- `WAITING_SCREEN_MEDIA_REVIEW.md`: tratamiento de los GIF, transparencia, fallback accesible y composición de la pantalla de espera.
 
 ## 🧾 Créditos
 

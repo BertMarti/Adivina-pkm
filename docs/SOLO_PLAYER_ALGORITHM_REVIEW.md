@@ -7,10 +7,41 @@ el jugador piensa en un Pokémon, solo responde **SÍ** o **NO**, y la máquina
 elige la siguiente pregunta según la información que queda disponible. No se
 usan número de Pokédex, peso, región ni generación como atajos.
 
+## Alineación con la documentación técnica de Akinator
+
+La documentación facilitada (`Akinator_funcionamiento_algoritmo_implementacion_tecnica.docx`)
+confirma una limitación importante: el algoritmo comercial de Akinator/Limule no
+es público. PokéQuién implementa por tanto un motor equivalente, auditable y
+adaptado a respuestas binarias, no una copia del código propietario.
+
+La adaptación sigue este flujo:
+
+```text
+catálogo Pokémon + rasgos booleanos
+          ↓
+posterior de candidatos plausibles
+          ↓
+pregunta con mayor ganancia de información esperada
+          ↓
+actualización Bayesiana tolerante a un SÍ/NO equivocado
+          ↓
+propuesta cuando la confianza y la separación son suficientes
+```
+
+El documento propone cinco respuestas (`SÍ`, `PROBABLEMENTE SÍ`, `NO SÉ`,
+`PROBABLEMENTE NO`, `NO`). El producto actual mantiene deliberadamente solo
+`SÍ` y `NO`, porque esa es la experiencia solicitada; la tolerancia se modela
+internamente con probabilidades y nunca se muestra como una respuesta adicional.
+
 ## Cambios aplicados
 
 - 🎯 **Selección por ganancia de información**: cada pregunta se valora por
   cómo divide el conjunto de candidatos que todavía son plausibles.
+- 🧮 **Entropía posterior real**: la puntuación ya no es únicamente el tamaño
+  del corte SÍ/NO. El motor calcula la entropía antes y después de cada respuesta
+  hipotética usando las probabilidades de coincidencia (`0,9`) y discrepancia
+  (`0,1`). Así una pregunta visual dudosa no parece perfecta solo porque divide
+  el catálogo en dos mitades.
 - 🎲 **Aperturas variables**: la partida usa una semilla para escoger entre
   preguntas casi igual de buenas; la misma semilla es reproducible para poder
   depurar una partida.
@@ -27,6 +58,18 @@ usan número de Pokédex, peso, región ni generación como atajos.
   sobrescrita por una inferencia automática.
 - ⏱️ **Límite de 30 preguntas**: si la máquina no puede distinguir el Pokémon
   con los datos disponibles, gana el jugador al terminar el presupuesto.
+
+La ganancia usada por el selector es, en forma resumida:
+
+```text
+IG(q) = H(posterior actual)
+       - Σ respuesta P(respuesta | q) · H(posterior tras esa respuesta)
+```
+
+La función se recalcula en cada turno con los candidatos activos; no existe una
+secuencia fija de preguntas y el Pokémon elegido nunca entra como entrada del
+motor. Solo se usa después, en el dispositivo, para registrar el resultado y
+mostrar la pantalla final al jugador.
 
 ## Banco actual
 
