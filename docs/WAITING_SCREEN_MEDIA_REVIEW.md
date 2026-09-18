@@ -17,6 +17,10 @@ sea comprensible, responsive y agradable en móvil.
   pastilla `EN ESPERA`, título en dos líneas, conector visual entre el Pokémon
   propio y la Poké Ball, tarjeta del secreto guardado y mensaje de arranque
   automático.
+- 🧱 El Pokémon propio ya no aparece sobre un círculo: ahora usa una tarjeta
+  rectangular pixelada con marco interior, etiqueta `TU SECRETO` y nombre.
+- ✨ La flecha amarilla se sustituyó por un indicador neutral de conexión con
+  tres nodos pixelados, evitando una dirección visual tosca o ambigua.
 - ⚡ Se incorporó `assets/pikachu-flight.gif` como acompañante visual de la
   espera, manteniendo el fondo transparente y el estilo pixel.
 

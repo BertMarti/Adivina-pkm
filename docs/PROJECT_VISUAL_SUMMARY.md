@@ -31,7 +31,7 @@
 - Cuadrículas responsive de cinco columnas, con retrato, nombre y número Dex.
 - X roja grande, animada y visible en toda la casilla.
 - Modal de resultado centrado, desplazable y preparado para pantallas pequeñas.
-- Marca `PokéQuién`, título de pestaña actualizado e icono cuadrado pixel-art de mascota eléctrica amarilla.
+- Marca `PokéQuién`, título de pestaña actualizado e icono pixel-art propio: Poké Ball central, dos tarjetas enfrentadas y acento eléctrico amarillo, preparado para máscaras cuadradas o redondeadas.
 - CTA grande y contrastado de `JUGAR CONTRA LA MÁQUINA`, visible desde el menú principal.
 
 ## 🎮 Cambios de jugabilidad
@@ -81,6 +81,7 @@ derrota     ──▶ tono de derrota para el jugador perdedor
 - `WORK_COMPLETION_REPORT.md`: informe final con métricas, QA, seguridad y próximos pasos.
 - `SOLO_PLAYER_IMPROVEMENT_REPORT.md`: arquitectura del razonamiento adaptativo, historial local, smoke actual y roadmap del modo solitario.
 - `WAITING_SCREEN_MEDIA_REVIEW.md`: tratamiento de los GIF, transparencia, fallback accesible y composición de la pantalla de espera.
+- `APP_ICON_IDENTITY.md`: concepto, variantes y criterios del nuevo icono móvil/web.
 
 ## 🧾 Créditos
 

@@ -305,12 +305,18 @@ function PokeballCapture({ pokemon, reduceMotion }: { pokemon?: PokemonCandidate
     : require('./assets/pokeball-capture.gif');
   return <View style={styles.captureStage}>
     <View style={styles.captureTarget}>
-      <View style={styles.captureTargetGlow} />
-      {pokemon ? <Portrait pokemon={pokemon} variant="normal" size={76} /> : <Text style={styles.captureQuestion}>?</Text>}
+      <Text style={styles.captureTargetLabel}>TU SECRETO</Text>
+      <View style={styles.captureSpriteFrame}>
+        {pokemon ? <Portrait pokemon={pokemon} variant="normal" size={64} /> : <Text style={styles.captureQuestion}>?</Text>}
+      </View>
+      <Text numberOfLines={1} style={styles.captureTargetName}>{pokemon?.name ?? 'SECRETO GUARDADO'}</Text>
     </View>
-    <View style={styles.captureConnector}>
-      <View style={styles.captureLine} />
-      <Text style={styles.captureArrow}>›</Text>
+    <View accessibilityLabel="Conexión de sala en espera" style={styles.captureConnector}>
+      <View style={styles.captureSignalLine} />
+      <View style={styles.captureSignalNode} />
+      <View style={[styles.captureSignalNode, styles.captureSignalNodeActive]} />
+      <View style={styles.captureSignalNode} />
+      <View style={styles.captureSignalLine} />
     </View>
     <View style={styles.pokeballTrack}>
       <Image
@@ -690,15 +696,18 @@ const styles = StyleSheet.create({
   waitingTitle: { color: COLORS.success, fontFamily: PIXEL_FONT, fontSize: 17, lineHeight: 27, textAlign: 'center', textShadowColor: '#0A4A31', textShadowOffset: { width: 3, height: 3 }, textShadowRadius: 0 },
   waitingText: { color: COLORS.white, fontSize: 13, lineHeight: 21, maxWidth: 380, textAlign: 'center' },
   waitingDivider: { width: '88%', height: 2, backgroundColor: '#4D4D58', marginTop: 1 },
-  captureStage: { width: '100%', maxWidth: 410, minHeight: 146, marginTop: 2, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 3 },
-  captureTarget: { width: 104, height: 104, borderRadius: 52, backgroundColor: COLORS.panelLight, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: '#5A538A', overflow: 'visible', shadowColor: COLORS.cyan, shadowOpacity: 0.35, shadowRadius: 12, shadowOffset: { width: 0, height: 0 } },
-  captureTargetGlow: { position: 'absolute', width: 86, height: 86, borderRadius: 43, borderWidth: 1, borderColor: 'rgba(121, 162, 255, 0.48)' },
+  captureStage: { width: '100%', maxWidth: 410, minHeight: 148, marginTop: 2, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 3 },
+  captureTarget: { width: 118, height: 126, borderRadius: 12, backgroundColor: '#1B1D2C', alignItems: 'center', justifyContent: 'center', gap: 4, borderWidth: 2, borderColor: '#5A538A', overflow: 'hidden', shadowColor: COLORS.cyan, shadowOpacity: 0.26, shadowRadius: 8, shadowOffset: { width: 0, height: 3 } },
+  captureTargetLabel: { color: COLORS.cyan, fontFamily: PIXEL_FONT, fontSize: 6, letterSpacing: 0.4 },
+  captureSpriteFrame: { width: 72, height: 72, alignItems: 'center', justifyContent: 'center', backgroundColor: '#101322', borderWidth: 1, borderColor: '#69699A', borderRadius: 7 },
   captureQuestion: { color: COLORS.yellow, fontSize: 42, fontWeight: '900' },
-  captureConnector: { flex: 1, minWidth: 28, maxWidth: 84, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 },
-  captureLine: { flex: 1, height: 2, borderTopWidth: 2, borderTopColor: 'rgba(255, 208, 0, 0.7)', borderStyle: 'dashed' },
-  captureArrow: { color: COLORS.yellow, fontSize: 28, lineHeight: 30, marginTop: -2 },
-  pokeballTrack: { width: 112, height: 112, alignItems: 'center', justifyContent: 'center' },
-  pokeballGif: { width: 108, height: 98 },
+  captureTargetName: { width: 102, color: COLORS.white, fontFamily: PIXEL_FONT, fontSize: 6, lineHeight: 10, textAlign: 'center' },
+  captureConnector: { flex: 1, minWidth: 28, maxWidth: 72, height: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 5 },
+  captureSignalLine: { flex: 1, maxWidth: 17, height: 2, backgroundColor: 'rgba(255, 208, 0, 0.7)' },
+  captureSignalNode: { width: 6, height: 6, borderRadius: 1, backgroundColor: '#6D647A' },
+  captureSignalNodeActive: { width: 9, height: 9, backgroundColor: COLORS.yellow, shadowColor: COLORS.yellow, shadowOpacity: 0.55, shadowRadius: 5, shadowOffset: { width: 0, height: 0 } },
+  pokeballTrack: { width: 124, height: 124, alignItems: 'center', justifyContent: 'center' },
+  pokeballGif: { width: 116, height: 106 },
   waitingSecret: { width: '100%', maxWidth: 300, alignItems: 'center', gap: 6, backgroundColor: COLORS.panelLight, borderRadius: 12, paddingHorizontal: 17, paddingVertical: 9, borderWidth: 1, borderColor: '#505167' },
   waitingSecretRow: { flexDirection: 'row', alignItems: 'center', gap: 9 },
   waitingSecretName: { color: COLORS.white, fontFamily: PIXEL_FONT, fontSize: 10, lineHeight: 18 },
