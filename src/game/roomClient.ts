@@ -30,13 +30,19 @@ type RoomSocket = WebSocket & {
   onclose: ((event: CloseEvent) => void) | null;
 };
 
+// The hosted room service is the safe default for physical phones and for
+// release builds. Local development can still override it with
+// EXPO_PUBLIC_ROOM_SERVER_URL=ws://localhost:8787 (or a LAN IP).
+const DEFAULT_ROOM_SERVER_URL = 'wss://pokequien-rooms.onrender.com';
+const ROOM_CONNECTION_TIMEOUT_MS = 45_000;
+
 function getServerUrl() {
   const configured = typeof process !== 'undefined' ? process.env.EXPO_PUBLIC_ROOM_SERVER_URL : undefined;
-  if (configured) return configured;
-  if (Platform.OS === 'web' && typeof window !== 'undefined') {
-    return `ws://${window.location.hostname}:8787`;
-  }
-  return 'ws://10.0.2.2:8787';
+  return configured?.trim() || DEFAULT_ROOM_SERVER_URL;
+}
+
+function connectionError() {
+  return new Error('No se pudo conectar con el servidor de salas. Comprueba tu conexión e inténtalo de nuevo.');
 }
 
 type SavedRoomSession = Readonly<{ roomCode: string; player: PlayerId; sessionToken: string }>;
@@ -126,6 +132,7 @@ export class RoomClient {
   private open(request: Extract<RoomRequest, { type: 'create' | 'join' | 'reconnect' }>) {
     return new Promise<RoomGameState>((resolve, reject) => {
       let settled = false;
+      let connected = false;
       const socket = new WebSocket(getServerUrl()) as RoomSocket;
       this.socket = socket;
       this.intentionalClose = false;
@@ -133,11 +140,14 @@ export class RoomClient {
         if (!settled) {
           settled = true;
           socket.close();
-          reject(new Error('No se pudo conectar con la sala local. Arranca el servidor con npm run room-server.'));
+          reject(connectionError());
         }
-      }, 5000);
+      }, ROOM_CONNECTION_TIMEOUT_MS);
 
-      socket.onopen = () => socket.send(JSON.stringify(request));
+      socket.onopen = () => {
+        connected = true;
+        socket.send(JSON.stringify(request));
+      };
       socket.onmessage = (event) => {
         let message: RoomResponse;
         try {
@@ -171,9 +181,10 @@ export class RoomClient {
         if (!settled) {
           clearTimeout(timeout);
           settled = true;
-          reject(new Error('No se pudo conectar con el servidor de salas.'));
+          reject(connectionError());
+          return;
         }
-        if (settled) this.onError('Se perdió la conexión. Intentando reconectar durante 1 minuto…');
+        if (connected) this.onError('Se perdió la conexión. Intentando reconectar durante 1 minuto…');
       };
       socket.onclose = () => {
         if (!settled) {

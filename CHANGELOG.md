@@ -21,6 +21,16 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 
 > Cambios pendientes de incluir en la próxima versión.
 
+- 📱 **Safe area Android/iOS** — El contenido usa `react-native-safe-area-context`
+  para que VOLVER y los controles superiores queden fuera de la barra de estado.
+- 🌐 **Salas públicas por defecto** — La aplicación usa el servidor WebSocket
+  gratuito desplegado como respaldo, también en teléfonos físicos, y espera
+  hasta 45 segundos para que Render despierte desde suspensión.
+- 🧠 **Preguntas sin particiones repetidas** — El modo solitario detecta
+  preguntas distintas que separan exactamente igual a los candidatos y evita
+  volver a mostrarlas.
+- 🧪 **Revisión del algoritmo** — Documentada en
+  [`docs/SOLO_PLAYER_ALGORITHM_REVIEW.md`](./docs/SOLO_PLAYER_ALGORITHM_REVIEW.md).
 - 🧠 El modo solitario usa una creencia tolerante a respuestas imperfectas,
   semilla por ronda y propuestas de confianza; se elimina la secuencia fija.
 - 🚫 El banco de preguntas excluye Pokédex, peso, región y generación como

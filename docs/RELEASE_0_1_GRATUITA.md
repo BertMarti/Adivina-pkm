@@ -14,6 +14,9 @@ jugar desde redes distintas, ambos móviles deben apuntar a una URL pública
 - `render.yaml` crea el servidor WebSocket como servicio Node gratuito.
 - `server/room-server.js` acepta el `PORT` que asigna el hosting y conserva
   `ROOM_SERVER_PORT` para el desarrollo local.
+- El cliente incluye como respaldo `wss://pokequien-rooms.onrender.com` y
+  espera hasta 45 segundos para que el servicio gratuito despierte. La
+  variable de EAS sigue siendo recomendable si en el futuro cambias de host.
 - El servidor conserva salas en memoria y mantiene la ventana de reconexión
   de 60 segundos. Un reinicio del servicio termina las salas activas; es una
   limitación asumida para esta beta.

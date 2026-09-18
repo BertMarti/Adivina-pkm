@@ -383,11 +383,35 @@ function findConfidentWinner<TId extends CandidateId, TMetadata>(
 }
 
 /**
+ * Firma de la partición SÍ/NO que produce un rasgo sobre el grupo actual.
+ * Canonizar ambos lados detecta también preguntas invertidas con distinto
+ * texto que dejan exactamente los mismos candidatos en cada grupo.
+ */
+function partitionSignature<TId extends CandidateId, TMetadata>(
+  candidates: readonly SinglePlayerCandidate<TId, TMetadata>[],
+  trait: string,
+): string | null {
+  if (candidates.length < 2) return null;
+  const yes = candidates
+    .filter((candidate) => candidate.answers[trait] === true)
+    .map((candidate) => JSON.stringify([typeof candidate.id, candidate.id]))
+    .sort();
+  const no = candidates
+    .filter((candidate) => candidate.answers[trait] !== true)
+    .map((candidate) => JSON.stringify([typeof candidate.id, candidate.id]))
+    .sort();
+  if (yes.length === 0 || no.length === 0) return null;
+  const yesKey = yes.join('|');
+  const noKey = no.join('|');
+  return JSON.stringify(yesKey < noKey ? [yes, no] : [no, yes]);
+}
+
+/**
  * Selecciona la mejor pregunta disponible.
  *
  * Las preguntas que ya usan un rasgo preguntado se descartan, aunque tengan
- * ids distintos. Así una base de datos puede tener variantes de redacción sin
- * hacer que el jugador responda dos veces lo mismo.
+ * ids distintos. También se descartan particiones repetidas: dos redacciones
+ * distintas no aparecen si separan al grupo restante exactamente igual.
  */
 export function chooseNextQuestion<TId extends CandidateId, TMetadata>(
   candidates: readonly SinglePlayerCandidate<TId, TMetadata>[],
@@ -400,6 +424,12 @@ export function chooseNextQuestion<TId extends CandidateId, TMetadata>(
   const askedIds = new Set(askedQuestionIds);
   const askedTraits = new Set(
     questions.filter((question) => askedIds.has(question.id)).map((question) => question.trait),
+  );
+  const askedPartitions = new Set(
+    questions
+      .filter((question) => askedIds.has(question.id))
+      .map((question) => partitionSignature(candidates, question.trait))
+      .filter((signature): signature is string => signature !== null),
   );
 
   // Keep the exact ordering semantics of the previous map/filter/sort chain,
@@ -418,6 +448,8 @@ export function chooseNextQuestion<TId extends CandidateId, TMetadata>(
     : candidates.length;
   for (const question of questions) {
     if (askedIds.has(question.id) || askedTraits.has(question.trait)) continue;
+    const partition = partitionSignature(candidates, question.trait);
+    if (partition === null || askedPartitions.has(partition)) continue;
 
     let yesCount = 0;
     let yesWeight = 0;

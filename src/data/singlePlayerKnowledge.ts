@@ -627,65 +627,71 @@ function applyDerivedTraits(
   const color = candidate.color?.toLocaleLowerCase('es-ES') ?? '';
   const shapeIs = (...values: string[]) => values.some((value) => shape === value);
   const nameHas = (...values: string[]) => values.some((value) => name.includes(value));
+  // Las entradas manuales de Kanto tienen prioridad sobre estas inferencias.
+  // Así una forma visual corregida no vuelve a ser sobrescrita por un proxy de
+  // tipo que solo sirve como aproximación para el catálogo nacional.
+  const setTrait = (trait: SinglePlayerTraitKey, value: boolean) => {
+    if (!Object.prototype.hasOwnProperty.call(traits, trait)) traits[trait] = value;
+  };
 
   // Rasgos visuales derivados de color dominante y silueta pública de PokéAPI.
   // No contienen la elección del jugador ni consultan ningún secreto de sala.
-  traits['appearance.aquatic'] = has('Agua') || shapeIs('fish', 'tentacles');
-  traits['appearance.furry'] = has('Normal', 'Fuego', 'Hielo', 'Siniestro', 'Eléctrico');
-  traits['appearance.mechanical'] = has('Acero', 'Eléctrico');
-  traits['appearance.mystical'] = has('Psíquico', 'Fantasma', 'Hada') || candidate.legendary;
-  traits['appearance.armored'] = has('Acero', 'Roca');
-  traits['appearance.spiky'] = has('Roca', 'Acero', 'Eléctrico');
-  traits['appearance.hot'] = has('Fuego');
-  traits['appearance.cold'] = has('Hielo');
-  traits['appearance.goodCompanion'] = has('Normal', 'Hada', 'Eléctrico') || nameHas('pikachu', 'eevee', 'meowth');
-  traits['appearance.cityFriendly'] = has('Normal', 'Eléctrico', 'Acero');
-  traits['appearance.scaryAtNight'] = has('Fantasma', 'Siniestro');
+  setTrait('appearance.aquatic', has('Agua') || shapeIs('fish', 'tentacles'));
+  setTrait('appearance.furry', shapeIs('quadruped', 'upright', 'humanoid') || nameHas('fur', 'fuzzy'));
+  setTrait('appearance.mechanical', has('Acero', 'Eléctrico'));
+  setTrait('appearance.mystical', has('Psíquico', 'Fantasma', 'Hada') || candidate.legendary);
+  setTrait('appearance.armored', has('Acero', 'Roca'));
+  setTrait('appearance.spiky', has('Roca', 'Acero', 'Eléctrico'));
+  setTrait('appearance.hot', has('Fuego'));
+  setTrait('appearance.cold', has('Hielo'));
+  setTrait('appearance.goodCompanion', has('Normal', 'Hada', 'Eléctrico') || nameHas('pikachu', 'eevee', 'meowth'));
+  setTrait('appearance.cityFriendly', has('Normal', 'Eléctrico', 'Acero'));
+  setTrait('appearance.scaryAtNight', has('Fantasma', 'Siniestro'));
 
-  traits['appearance.plant'] = has('Planta');
-  traits['appearance.insect'] = has('Bicho');
-  traits['appearance.bird'] = has('Volador');
-  traits['appearance.hasWings'] = has('Volador') || shapeIs('wings', 'bug-wings');
-  traits['appearance.dragonLike'] = has('Dragón');
-  traits['appearance.reptile'] = has('Fuego', 'Dragón', 'Veneno', 'Tierra');
-  traits['appearance.quadruped'] = shapeIs('quadruped');
+  setTrait('appearance.plant', has('Planta'));
+  setTrait('appearance.insect', has('Bicho'));
+  setTrait('appearance.bird', has('Volador'));
+  setTrait('appearance.hasWings', has('Volador') || shapeIs('wings', 'bug-wings'));
+  setTrait('appearance.dragonLike', has('Dragón'));
+  setTrait('appearance.reptile', shapeIs('quadruped', 'upright', 'legs') && (has('Fuego', 'Dragón', 'Veneno', 'Tierra') || nameHas('saur', 'izard', 'snake', 'cobra')));
+  setTrait('appearance.quadruped', shapeIs('quadruped'));
 
-  traits['appearance.colorRed'] = color === 'rojo' || has('Fuego');
-  traits['appearance.colorBlue'] = color === 'azul' || has('Agua', 'Hielo');
-  traits['appearance.colorYellow'] = color === 'amarillo' || has('Eléctrico');
-  traits['appearance.colorGreen'] = color === 'verde' || has('Planta', 'Bicho');
-  traits['appearance.colorBrown'] = color === 'marrón' || has('Tierra', 'Normal');
-  traits['appearance.colorPurple'] = color === 'morado' || has('Veneno', 'Fantasma', 'Psíquico');
-  traits['appearance.colorPink'] = color === 'rosa' || has('Hada');
-  traits['appearance.colorWhite'] = color === 'blanco';
-  traits['appearance.colorBlack'] = color === 'negro' || has('Siniestro');
-  traits['appearance.colorGray'] = color === 'gris' || has('Acero', 'Roca');
+  setTrait('appearance.colorRed', color === 'rojo');
+  setTrait('appearance.colorBlue', color === 'azul');
+  setTrait('appearance.colorYellow', color === 'amarillo');
+  setTrait('appearance.colorGreen', color === 'verde');
+  setTrait('appearance.colorBrown', color === 'marrón');
+  setTrait('appearance.colorPurple', color === 'morado');
+  setTrait('appearance.colorPink', color === 'rosa');
+  setTrait('appearance.colorWhite', color === 'blanco');
+  setTrait('appearance.colorBlack', color === 'negro');
+  setTrait('appearance.colorGray', color === 'gris');
 
   const insectShape = shapeIs('bug-wings', 'insect');
   const birdShape = shapeIs('wings') || has('Volador');
   const aquaticShape = shapeIs('fish', 'tentacles') || has('Agua');
-  const reptileShape = has('Fuego', 'Dragón', 'Veneno', 'Tierra') || nameHas('saur', 'izard', 'snake', 'cobra');
-  const mammalShape = shapeIs('quadruped', 'upright', 'legs', 'humanoid') || has('Normal', 'Eléctrico');
+  const reptileShape = shapeIs('quadruped', 'upright', 'legs') && (has('Fuego', 'Dragón', 'Veneno', 'Tierra') || nameHas('saur', 'izard', 'snake', 'cobra'));
+  const mammalShape = shapeIs('quadruped', 'upright', 'legs', 'humanoid');
   const humanoidShape = shapeIs('humanoid', 'upright', 'arms');
   const bipedShape = shapeIs('upright', 'humanoid', 'legs');
-  const hasArmsShape = shapeIs('arms', 'humanoid', 'upright') || has('Lucha');
-  const hasLegsShape = shapeIs('legs', 'quadruped', 'upright', 'humanoid') || has('Lucha', 'Tierra');
+  const hasArmsShape = shapeIs('arms', 'humanoid', 'upright');
+  const hasLegsShape = shapeIs('legs', 'quadruped', 'upright', 'humanoid');
 
-  traits['appearance.animalMammal'] = mammalShape;
-  traits['appearance.animalAquatic'] = aquaticShape;
-  traits['appearance.animalReptile'] = reptileShape;
-  traits['appearance.animalBird'] = birdShape;
-  traits['appearance.animalInsect'] = insectShape || has('Bicho');
-  traits['appearance.animalPlant'] = has('Planta');
-  traits['appearance.hasHands'] = hasArmsShape;
-  traits['appearance.hasArms'] = hasArmsShape;
-  traits['appearance.hasLegs'] = hasLegsShape;
-  traits['appearance.biped'] = bipedShape || has('Lucha');
-  traits['appearance.floats'] = has('Volador', 'Fantasma', 'Psíquico', 'Hada') || shapeIs('ball', 'blob', 'tentacles');
-  traits['appearance.humanoid'] = humanoidShape;
-  traits['appearance.round'] = shapeIs('ball', 'blob', 'head') || nameHas('round', 'jiggly', 'voltorb');
-  traits['appearance.cute'] = has('Hada', 'Normal', 'Eléctrico') && !has('Siniestro', 'Fantasma');
-  traits['appearance.scary'] = has('Fantasma', 'Siniestro', 'Veneno') || candidate.legendary && shapeIs('arms', 'tentacles');
+  setTrait('appearance.animalMammal', mammalShape);
+  setTrait('appearance.animalAquatic', aquaticShape);
+  setTrait('appearance.animalReptile', reptileShape);
+  setTrait('appearance.animalBird', birdShape);
+  setTrait('appearance.animalInsect', insectShape || has('Bicho'));
+  setTrait('appearance.animalPlant', has('Planta'));
+  setTrait('appearance.hasHands', hasArmsShape);
+  setTrait('appearance.hasArms', hasArmsShape);
+  setTrait('appearance.hasLegs', hasLegsShape);
+  setTrait('appearance.biped', bipedShape);
+  setTrait('appearance.floats', has('Volador', 'Fantasma', 'Psíquico', 'Hada') || shapeIs('ball', 'blob', 'tentacles'));
+  setTrait('appearance.humanoid', humanoidShape);
+  setTrait('appearance.round', shapeIs('ball', 'blob', 'head') || nameHas('round', 'jiggly', 'voltorb'));
+  setTrait('appearance.cute', has('Hada', 'Normal', 'Eléctrico') && !has('Siniestro', 'Fantasma'));
+  setTrait('appearance.scary', has('Fantasma', 'Siniestro', 'Veneno') || candidate.legendary && shapeIs('arms', 'tentacles'));
 
   const silhouetteTraits: Readonly<Record<string, SinglePlayerTraitKey>> = {
     ball: 'appearance.silhouetteBall',
@@ -704,7 +710,7 @@ function applyDerivedTraits(
     squiggle: 'appearance.silhouetteSquiggle',
   };
   const silhouetteTrait = silhouetteTraits[shape];
-  if (silhouetteTrait) traits[silhouetteTrait] = true;
+  if (silhouetteTrait) setTrait(silhouetteTrait, true);
 
   const habitatTraits: Readonly<Record<string, SinglePlayerTraitKey>> = {
     cueva: 'appearance.habitatCave',
@@ -718,7 +724,7 @@ function applyDerivedTraits(
     'orilla del agua': 'appearance.habitatWatersEdge',
   };
   const habitatTrait = habitatTraits[candidate.habitat ?? ''];
-  if (habitatTrait) traits[habitatTrait] = true;
+  if (habitatTrait) setTrait(habitatTrait, true);
 }
 
 /**

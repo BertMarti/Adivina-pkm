@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {
   answerQuestion,
+  chooseNextQuestion,
   createSinglePlayerGame,
   SINGLE_PLAYER_MAX_QUESTIONS,
 } from '../src/game/singlePlayerEngine';
@@ -40,6 +41,16 @@ const firstQuestions = new Set(
   }).currentQuestion?.id),
 );
 assert(firstQuestions.size >= 2, 'Las semillas deben variar la primera pregunta.');
+const duplicatePartitionCandidates = fixtureCandidates.map((candidate) => ({
+  ...candidate,
+  answers: { ...candidate.answers, waterCopy: candidate.answers.water },
+}));
+const afterWater = chooseNextQuestion(
+  duplicatePartitionCandidates,
+  [...fixtureQuestions, { id: 'water-copy', trait: 'waterCopy', text: '¿Vive en el agua?' }],
+  ['water'],
+);
+assert.notEqual(afterWater?.id, 'water-copy', 'No se debe repetir una partición con otra redacción.');
 assert.deepEqual(
   playTruthful(123).history.map((event) => event.question.id),
   playTruthful(123).history.map((event) => event.question.id),

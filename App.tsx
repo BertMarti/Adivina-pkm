@@ -3,6 +3,7 @@ import * as Clipboard from 'expo-clipboard';
 import { PressStart2P_400Regular, useFonts } from '@expo-google-fonts/press-start-2p';
 import * as Haptics from 'expo-haptics';
 import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
@@ -14,7 +15,6 @@ import {
   Modal,
   Platform,
   Pressable,
-  SafeAreaView,
   ScrollView,
   Share,
   StyleSheet,
@@ -549,9 +549,9 @@ export default function App() {
 
   const screenTitle = useMemo(() => screen === 'home' ? 'Inicio' : screen === 'room' ? 'Sala' : screen === 'selection' ? 'Elección' : screen === 'waiting' ? 'Esperando' : screen === 'single-player' ? 'Modo 1 jugador' : 'Partida', [screen]);
 
-  if (!fontsLoaded) return <SafeAreaView style={styles.safeArea}><View style={styles.fontLoading}><Text style={styles.fontLoadingText}>CARGANDO…</Text></View></SafeAreaView>;
+  if (!fontsLoaded) return <SafeAreaProvider><SafeAreaView edges={['top', 'bottom']} style={styles.safeArea}><View style={styles.fontLoading}><Text style={styles.fontLoadingText}>CARGANDO…</Text></View></SafeAreaView></SafeAreaProvider>;
 
-  return <SafeAreaView style={styles.safeArea}><StatusBar style="light" /><RetroBackdrop /><View accessible={false} style={styles.appRoot}>
+  return <SafeAreaProvider><SafeAreaView edges={['top', 'bottom']} style={styles.safeArea}><StatusBar style="light" /><RetroBackdrop /><View accessible={false} style={styles.appRoot}>
     {screen === 'home' && <HomeScreen generation={generation} setGeneration={setGeneration} onCreate={() => void createRoom()} onJoin={joinRoom} onDemo={() => void createRoom(1)} onCopyInvite={() => void copyInvite()} onSolo={() => setScreen('single-player')} inviteCode={inviteCode} joinCode={joinCode} setJoinCode={setJoinCode} loading={loading} error={error} reduceMotion={reduceMotion} />}
     {screen === 'room' && game && player && <RoomScreen game={game} player={player} onShare={shareRoom} onCopyCode={copyCode} onBack={leaveRoom} />}
     {screen === 'selection' && game && player && <SelectionScreen game={game} player={player} reduceMotion={reduceMotion} onSelect={select} />}
@@ -559,7 +559,7 @@ export default function App() {
     {screen === 'game' && game && player && <GameScreen game={game} player={player} reduceMotion={reduceMotion} onToggle={toggle} onBack={leaveRoom} onRematch={rematch} />}
     {screen === 'single-player' && <SinglePlayerScreen reduceMotion={reduceMotion} onBack={() => setScreen('home')} onSound={(kind) => playSound(kind)} />}
     <Text style={styles.srOnly}>{screenTitle}</Text>
-  </View></SafeAreaView>;
+  </View></SafeAreaView></SafeAreaProvider>;
 }
 
 const styles = StyleSheet.create({
