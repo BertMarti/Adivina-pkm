@@ -264,7 +264,7 @@ function BoardSection({ game, player, activePlayer, reduceMotion, onToggle }: { 
   return <View style={styles.boardSection}><RetroPanelHeader title={isMine ? 'MI TABLERO' : 'TABLERO RIVAL'} detail={`${remaining} POKÉMON LIBRES`} /><View style={[styles.boardPanel, isMine && styles.boardPanelMine]}><CompactGrid game={game} player={player} activePlayer={activePlayer} reduceMotion={reduceMotion} onToggle={onToggle} /></View><Text style={styles.boardHint}>{isMine ? 'Tacha todos menos el secreto del rival para ganar. Puedes destachar.' : 'El tablero rival solo se puede consultar'}</Text></View>;
 }
 
-function HomeScreen({ generation, setGeneration, onCreate, onJoin, onDemo, onCopyInvite, onSolo, inviteCode, joinCode, setJoinCode, loading, error, reduceMotion }: { generation: GenerationId; setGeneration: (generation: GenerationId) => void; onCreate: () => void; onJoin: () => void; onDemo: () => void; onCopyInvite: () => void; onSolo: () => void; inviteCode: string; joinCode: string; setJoinCode: (value: string) => void; loading: boolean; error: string; reduceMotion: boolean }) {
+function HomeScreen({ generation, setGeneration, onCreate, onJoin, onDemo, onCopyInvite, onSolo, onRetry, inviteCode, joinCode, setJoinCode, loading, error, reduceMotion }: { generation: GenerationId; setGeneration: (generation: GenerationId) => void; onCreate: () => void; onJoin: () => void; onDemo: () => void; onCopyInvite: () => void; onSolo: () => void; onRetry: () => void; inviteCode: string; joinCode: string; setJoinCode: (value: string) => void; loading: boolean; error: string; reduceMotion: boolean }) {
   const float = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     if (reduceMotion) {
@@ -279,7 +279,8 @@ function HomeScreen({ generation, setGeneration, onCreate, onJoin, onDemo, onCop
     return () => animation.stop();
   }, [float, reduceMotion]);
   const logoY = float.interpolate({ inputRange: [0, 1], outputRange: [0, -7] });
-  return <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
+  return <ScrollView stickyHeaderIndices={[0]} contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" contentInsetAdjustmentBehavior="automatic">
+    <View style={styles.homeStickyBar}><Text style={styles.homeStickyTitle}>⚡ POKÉQUIÉN</Text><Text style={styles.homeStickyStatus}>MENÚ PRINCIPAL</Text></View>
     <View style={styles.hero}><Animated.Text style={[styles.logo, { transform: [{ translateY: logoY }] }]} accessibilityRole="header">POKÉ{`\n`}QUIÉN</Animated.Text><Text style={styles.heroSubtitle}>ADIVINA EL SECRETO · DUELO PIXEL</Text></View>
     <View style={styles.panel}><RetroPanelHeader title="CREAR PARTIDA" /><Text style={styles.fieldLabel}>Generación:</Text><ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.generationRow}>{GENERATIONS.map((item) => <Pressable key={String(item.id)} accessibilityRole="radio" accessibilityLabel={`Generación ${item.label}`} accessibilityState={{ selected: generation === item.id }} onPress={() => setGeneration(item.id)} style={[styles.generationChip, generation === item.id && styles.generationChipActive]}><Text style={[styles.generationText, generation === item.id && styles.generationTextActive]}>{item.id === 'all' ? '🎲  Todas (Aleatorio)' : item.label}</Text></Pressable>)}</ScrollView><Text style={styles.codeLabel}>TU CÓDIGO DE SALA:</Text><View style={styles.codeInput}><Text selectable style={styles.roomCode}>{inviteCode}</Text></View><Button label="COPIAR ENLACE" onPress={onCopyInvite} variant="orange" disabled={loading} /><Button label={loading ? 'CARGANDO POKÉDEX…' : 'CREAR SALA'} onPress={onCreate} disabled={loading} /></View>
     <View style={styles.panel}><RetroPanelHeader title="UNIRSE A PARTIDA" /><Text style={styles.fieldLabel}>Introduce el código de tu rival:</Text><TextInput accessibilityLabel="Código de sala" autoCapitalize="characters" autoCorrect={false} maxLength={8} onChangeText={(value) => setJoinCode(value.toUpperCase().replace(/[^A-Z2-9]/g, ''))} placeholder="EJ. A1B2C" placeholderTextColor="#777986" style={styles.input} value={joinCode} /><Button label={loading ? 'CONECTANDO…' : 'CONECTAR'} onPress={onJoin} variant="primary" disabled={loading} /></View>
@@ -289,7 +290,7 @@ function HomeScreen({ generation, setGeneration, onCreate, onJoin, onDemo, onCop
       <Text style={styles.soloCtaText}>Responde solo SÍ o NO y deja que la Pokédex te descubra.</Text>
     </Pressable>
     <Pressable accessibilityRole="button" onPress={onDemo} style={styles.demoLink}><Text style={styles.demoLinkText}>▶  CREAR SALA DE PRUEBA KANTO</Text><Text style={styles.muted}>Crea una sala rápida para abrirla en dos pestañas.</Text></Pressable>
-    {!!error && <Text accessibilityRole="alert" style={styles.error}>{error}</Text>}<Text style={styles.credits}>Inspirado por Checo_512 · Retratos: SpriteCollab PMD{`\n`}Fan project no oficial · Datos: PokéAPI</Text>
+    {!!error && <View style={styles.errorBox}><Text accessibilityRole="alert" style={styles.error}>{error}</Text><Button label="REINTENTAR" onPress={onRetry} variant="gray" disabled={loading} /></View>}<Text style={styles.credits}>Inspirado por Checo_512 · Retratos: SpriteCollab PMD{`\n`}Fan project no oficial · Datos: PokéAPI</Text>
   </ScrollView>;
 }
 
@@ -427,6 +428,7 @@ export default function App() {
   const [joinCode, setJoinCode] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [retryAction, setRetryAction] = useState<'create' | 'join' | null>(null);
   const [game, setGame] = useState<RoomGameState | null>(null);
   const [player, setPlayer] = useState<PlayerId | null>(null);
   const [roster, setRoster] = useState<PokemonCandidate[]>(LOCAL_KANTO_ROSTER);
@@ -481,6 +483,7 @@ export default function App() {
 
   const createRoom = async (nextGeneration = generation): Promise<RoomGameState | null> => {
     setError('');
+    setRetryAction('create');
     setLoading(true);
     try {
       const nextRoster = await loadRoster(nextGeneration);
@@ -488,6 +491,7 @@ export default function App() {
       const nextCode = inviteCode;
       const nextGame = await getClient().create(nextCode, nextGeneration, nextRoster);
       setInviteCode(createRoomCode());
+      setRetryAction(null);
       applyState(nextGame, getClient().playerId ?? 'p1');
       return nextGame;
     } catch (cause) {
@@ -505,10 +509,12 @@ export default function App() {
       return;
     }
     setError('');
+    setRetryAction('join');
     setLoading(true);
     try {
       const nextGame = await getClient().join(code);
       setRoster(nextGame.board);
+      setRetryAction(null);
       applyState(nextGame, getClient().playerId ?? 'p2');
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : 'No se pudo entrar en la sala.');
@@ -585,7 +591,7 @@ export default function App() {
   if (!fontsLoaded) return <SafeAreaProvider><SafeAreaView edges={['top', 'bottom']} style={styles.safeArea}><View style={styles.fontLoading}><Text style={styles.fontLoadingText}>CARGANDO…</Text></View></SafeAreaView></SafeAreaProvider>;
 
   return <SafeAreaProvider><SafeAreaView edges={['top', 'bottom']} style={styles.safeArea}><StatusBar style="light" /><RetroBackdrop /><View accessible={false} style={styles.appRoot}>
-    {screen === 'home' && <HomeScreen generation={generation} setGeneration={setGeneration} onCreate={() => void createRoom()} onJoin={joinRoom} onDemo={() => void createRoom(1)} onCopyInvite={() => void copyInvite()} onSolo={() => setScreen('single-player')} inviteCode={inviteCode} joinCode={joinCode} setJoinCode={setJoinCode} loading={loading} error={error} reduceMotion={reduceMotion} />}
+    {screen === 'home' && <HomeScreen generation={generation} setGeneration={setGeneration} onCreate={() => void createRoom()} onJoin={joinRoom} onDemo={() => void createRoom(1)} onCopyInvite={() => void copyInvite()} onSolo={() => setScreen('single-player')} onRetry={() => retryAction === 'join' ? joinRoom() : void createRoom()} inviteCode={inviteCode} joinCode={joinCode} setJoinCode={setJoinCode} loading={loading} error={error} reduceMotion={reduceMotion} />}
     {screen === 'room' && game && player && <RoomScreen game={game} player={player} onShare={shareRoom} onCopyCode={copyCode} onBack={leaveRoom} />}
     {screen === 'selection' && game && player && <SelectionScreen game={game} player={player} reduceMotion={reduceMotion} onSelect={select} />}
     {screen === 'waiting' && game && player && <WaitingScreen game={game} player={player} reduceMotion={reduceMotion} />}
@@ -605,9 +611,12 @@ const styles = StyleSheet.create({
   scanline: { height: 2, backgroundColor: '#C2D8FF' },
   fontLoading: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   fontLoadingText: { color: COLORS.yellow, fontFamily: PIXEL_FONT, fontSize: 12 },
-  scrollContent: { padding: 18, paddingTop: 30, paddingBottom: 48, gap: 18 },
+  scrollContent: { padding: 18, paddingTop: 16, paddingBottom: 48, gap: 18 },
   selectionContent: { padding: 10, paddingTop: 30, paddingBottom: 48, gap: 16 },
   gameContent: { padding: 12, paddingTop: 20, paddingBottom: 48, gap: 17 },
+  homeStickyBar: { minHeight: 42, marginHorizontal: -18, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'rgba(8, 10, 22, 0.97)', borderBottomWidth: 1, borderBottomColor: '#424867', zIndex: 5 },
+  homeStickyTitle: { color: COLORS.yellow, fontFamily: PIXEL_FONT, fontSize: 9, letterSpacing: 0.7 },
+  homeStickyStatus: { color: COLORS.success, fontFamily: PIXEL_FONT, fontSize: 6, letterSpacing: 0.5 },
   hero: { alignItems: 'center', paddingTop: 8, paddingBottom: 8 },
   logoMark: { display: 'none' },
   logoMarkText: { display: 'none' },
@@ -647,7 +656,8 @@ const styles = StyleSheet.create({
   input: { backgroundColor: '#101116', borderWidth: 2, borderColor: '#67686F', color: COLORS.white, minHeight: 53, borderRadius: 8, paddingHorizontal: 14, fontFamily: PIXEL_FONT, fontSize: 11, letterSpacing: 1.2 },
   demoLink: { alignItems: 'center', gap: 3, paddingVertical: 7 },
   demoLinkText: { color: COLORS.yellow, fontWeight: '900', fontSize: 13, letterSpacing: 0.6 },
-  error: { color: COLORS.white, backgroundColor: '#8D394F', padding: 11, borderRadius: 8, lineHeight: 17 },
+  errorBox: { backgroundColor: 'rgba(76, 25, 45, 0.96)', borderWidth: 2, borderColor: '#D76479', borderRadius: 12, padding: 10, gap: 9 },
+  error: { color: COLORS.white, lineHeight: 17 },
   credits: { color: '#A2A2A9', fontFamily: PIXEL_FONT, fontSize: 7, lineHeight: 15, textAlign: 'center', marginTop: 6 },
   backButton: { alignSelf: 'flex-start', minHeight: 44, justifyContent: 'center', paddingVertical: 6, paddingRight: 14 },
   topbarButton: { minHeight: 44, minWidth: 58, justifyContent: 'center' },

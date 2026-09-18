@@ -34,11 +34,11 @@ type RoomSocket = WebSocket & {
 // release builds. Local development can still override it with
 // EXPO_PUBLIC_ROOM_SERVER_URL=ws://localhost:8787 (or a LAN IP).
 const DEFAULT_ROOM_SERVER_URL = 'wss://pokequien-rooms.onrender.com';
-const ROOM_CONNECTION_TIMEOUT_MS = 45_000;
+const ROOM_CONNECTION_TIMEOUT_MS = 12_000;
 
-function getServerUrl() {
+function getServerUrls() {
   const configured = typeof process !== 'undefined' ? process.env.EXPO_PUBLIC_ROOM_SERVER_URL : undefined;
-  return configured?.trim() || DEFAULT_ROOM_SERVER_URL;
+  return Array.from(new Set([configured?.trim(), DEFAULT_ROOM_SERVER_URL].filter(Boolean))) as string[];
 }
 
 function connectionError() {
@@ -129,19 +129,29 @@ export class RoomClient {
     return this.open(request);
   }
 
-  private open(request: Extract<RoomRequest, { type: 'create' | 'join' | 'reconnect' }>) {
+  private open(request: Extract<RoomRequest, { type: 'create' | 'join' | 'reconnect' }>, serverIndex = 0) {
     return new Promise<RoomGameState>((resolve, reject) => {
       let settled = false;
       let connected = false;
-      const socket = new WebSocket(getServerUrl()) as RoomSocket;
+      const serverUrls = getServerUrls();
+      const serverUrl = serverUrls[Math.min(serverIndex, serverUrls.length - 1)];
+      const socket = new WebSocket(serverUrl) as RoomSocket;
       this.socket = socket;
       this.intentionalClose = false;
-      const timeout = setTimeout(() => {
-        if (!settled) {
-          settled = true;
+      const fallbackOrReject = (cause: Error) => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timeout);
+        if (serverIndex + 1 < serverUrls.length && !this.intentionalClose) {
           socket.close();
-          reject(connectionError());
+          this.open(request, serverIndex + 1).then(resolve, reject);
+          return;
         }
+        reject(cause);
+      };
+      const timeout = setTimeout(() => {
+        fallbackOrReject(connectionError());
+        socket.close();
       }, ROOM_CONNECTION_TIMEOUT_MS);
 
       socket.onopen = () => {
@@ -178,21 +188,12 @@ export class RoomClient {
         this.onState(message.state, message.player);
       };
       socket.onerror = () => {
-        if (!settled) {
-          clearTimeout(timeout);
-          settled = true;
-          reject(connectionError());
-          return;
-        }
+        if (!settled) return fallbackOrReject(connectionError());
         if (connected) this.onError('Se perdió la conexión. Intentando reconectar durante 1 minuto…');
       };
       socket.onclose = () => {
-        if (!settled) {
-          clearTimeout(timeout);
-          settled = true;
-          reject(new Error('El servidor cerró la sala antes de responder.'));
-        }
-        this.socket = null;
+        if (!settled) fallbackOrReject(new Error('El servidor cerró la sala antes de responder.'));
+        if (this.socket === socket) this.socket = null;
         if (this.intentionalClose || !this.sessionToken || !this.playerId || !this.roomCode) return;
         this.reconnectDeadline = this.reconnectDeadline || Date.now() + 60_000;
         this.scheduleReconnect();
