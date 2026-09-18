@@ -34,7 +34,8 @@ type RoomSocket = WebSocket & {
 // release builds. Local development can still override it with
 // EXPO_PUBLIC_ROOM_SERVER_URL=ws://localhost:8787 (or a LAN IP).
 const DEFAULT_ROOM_SERVER_URL = 'wss://pokequien-rooms.onrender.com';
-const ROOM_CONNECTION_TIMEOUT_MS = 12_000;
+const LOCAL_ROOM_CONNECTION_TIMEOUT_MS = 12_000;
+const HOSTED_ROOM_CONNECTION_TIMEOUT_MS = 45_000;
 
 function getServerUrls() {
   const configured = typeof process !== 'undefined' ? process.env.EXPO_PUBLIC_ROOM_SERVER_URL : undefined;
@@ -152,7 +153,7 @@ export class RoomClient {
       const timeout = setTimeout(() => {
         fallbackOrReject(connectionError());
         socket.close();
-      }, ROOM_CONNECTION_TIMEOUT_MS);
+      }, serverUrl === DEFAULT_ROOM_SERVER_URL ? HOSTED_ROOM_CONNECTION_TIMEOUT_MS : LOCAL_ROOM_CONNECTION_TIMEOUT_MS);
 
       socket.onopen = () => {
         connected = true;

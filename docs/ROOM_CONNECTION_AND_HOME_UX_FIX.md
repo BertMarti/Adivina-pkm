@@ -18,8 +18,9 @@
   botón accesible `REINTENTAR`, que repite la última acción de crear o unirse.
 - El cliente WebSocket prueba la URL configurada y, si no responde, utiliza
   automáticamente `wss://pokequien-rooms.onrender.com` como respaldo público.
-- El tiempo de espera por endpoint queda limitado a 12 segundos para que el
-  usuario pueda recuperarse sin quedarse bloqueado durante 45 segundos.
+- Una URL local que no responde falla rápido, en 12 segundos; el servidor
+  público conserva una ventana de hasta 45 segundos para que Render pueda
+  despertar desde su suspensión gratuita.
 
 ## Validación
 
