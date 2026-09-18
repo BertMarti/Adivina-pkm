@@ -14,7 +14,9 @@ const MAX_ROOMS = 500;
 const MESSAGE_WINDOW_MS = 10_000;
 const MAX_MESSAGES_PER_WINDOW = 40;
 const MAX_TEXT_LENGTH = 512;
+const HTTP_SESSION_TTL_MS = 60_000;
 const allowedOrigins = String(process.env.ROOM_SERVER_ALLOWED_ORIGINS || '').split(',').map((value) => value.trim()).filter(Boolean);
+const httpSessions = new Map();
 
 function createSessionToken() {
   return randomBytes(24).toString('hex');
@@ -45,6 +47,14 @@ function isValidBoard(board) {
 }
 
 function send(socket, message) {
+  if (socket.transport === 'http') {
+    socket.lastMessage = message;
+    if (message.sessionToken) {
+      socket.sessionToken = message.sessionToken;
+      httpSessions.set(message.sessionToken, socket);
+    }
+    return;
+  }
   if (socket.readyState === socket.OPEN) socket.send(JSON.stringify(message));
 }
 
@@ -116,7 +126,10 @@ function scheduleDisconnect(room, playerId) {
 
 function roomForSocket(socket) {
   const room = socket.roomCode ? rooms.get(socket.roomCode) : null;
-  if (room) room.lastActivity = Date.now();
+  if (room) {
+    room.lastActivity = Date.now();
+    if (socket.transport === 'http') socket.lastSeen = Date.now();
+  }
   return room;
 }
 
@@ -294,15 +307,156 @@ function handleClose(socket) {
   scheduleDisconnect(room, socket.player);
 }
 
-const httpServer = http.createServer((request, response) => {
-  response.writeHead(200, {
+function makeHttpSession() {
+  return {
+    transport: 'http',
+    readyState: 1,
+    OPEN: 1,
+    roomCode: null,
+    player: null,
+    sessionToken: null,
+    lastSeen: Date.now(),
+    lastMessage: null,
+  };
+}
+
+function httpHeaders(request) {
+  const origin = request.headers.origin;
+  const headers = {
     'Content-Type': 'application/json; charset=utf-8',
     'Cache-Control': 'no-store',
     'X-Content-Type-Options': 'nosniff',
     'Referrer-Policy': 'no-referrer',
     'Content-Security-Policy': "default-src 'none'; frame-ancestors 'none'",
+  };
+  if (origin && isAllowedOrigin(origin)) {
+    headers['Access-Control-Allow-Origin'] = origin;
+    headers.Vary = 'Origin';
+  }
+  return headers;
+}
+
+function sendHttpJson(request, response, statusCode, payload) {
+  response.writeHead(statusCode, httpHeaders(request));
+  response.end(JSON.stringify(payload));
+}
+
+function readHttpJson(request) {
+  return new Promise((resolve, reject) => {
+    let raw = '';
+    request.on('data', (chunk) => {
+      raw += chunk;
+      if (raw.length > 64 * 1024) reject(new Error('Payload demasiado grande.'));
+    });
+    request.on('end', () => {
+      if (!raw) return resolve({});
+      try { resolve(JSON.parse(raw)); } catch { reject(new Error('JSON no válido.')); }
+    });
+    request.on('error', reject);
   });
-  response.end(JSON.stringify({ ok: true, rooms: rooms.size }));
+}
+
+function httpRoomCode(pathname) {
+  const match = pathname.match(/^\/api\/rooms\/([A-Z2-9]{8})(?:\/|$)/i);
+  return match?.[1]?.toUpperCase() ?? '';
+}
+
+function httpSessionFor(request, roomCode) {
+  const room = rooms.get(roomCode);
+  const playerId = String(request.headers['x-player'] || '');
+  const providedToken = String(request.headers['x-session-token'] || '');
+  if (!room || !isPlayerId(playerId) || !providedToken) return null;
+  const player = room.players[playerId];
+  const expectedToken = typeof player.sessionToken === 'string' ? player.sessionToken : '';
+  const provided = Buffer.from(providedToken);
+  const expected = Buffer.from(expectedToken);
+  if (!player.socket || player.socket.transport !== 'http' || provided.length !== expected.length || !timingSafeEqual(provided, expected)) return null;
+  player.socket.lastSeen = Date.now();
+  room.lastActivity = Date.now();
+  return player.socket;
+}
+
+function httpResponseForSession(request, response, session) {
+  const room = rooms.get(session.roomCode);
+  const message = session.lastMessage || (room
+    ? { type: 'state', state: publicState(room, session.player), player: session.player, sessionToken: session.sessionToken }
+    : { type: 'error', message: 'La sala ya no está disponible.' });
+  sendHttpJson(request, response, 200, message);
+}
+
+async function handleHttpRequest(request, response) {
+  const url = new URL(request.url || '/', `http://${request.headers.host || 'localhost'}`);
+  const pathname = url.pathname;
+  if (request.method === 'OPTIONS') {
+    response.writeHead(204, httpHeaders(request));
+    response.end();
+    return;
+  }
+  if (request.method === 'GET' && pathname === '/') {
+    sendHttpJson(request, response, 200, { ok: true, rooms: rooms.size, transports: ['websocket', 'https-polling'] });
+    return;
+  }
+
+  try {
+    if (request.method === 'POST' && pathname === '/api/rooms') {
+      const session = makeHttpSession();
+      handleCreate(session, await readHttpJson(request));
+      httpResponseForSession(request, response, session);
+      return;
+    }
+
+    const roomCode = httpRoomCode(pathname);
+    if (!roomCode) {
+      sendHttpJson(request, response, 404, { type: 'error', message: 'Ruta no encontrada.' });
+      return;
+    }
+
+    const action = pathname.slice(`/api/rooms/${roomCode}`.length).replace(/^\//, '');
+    if (request.method === 'POST' && action === 'join') {
+      const session = makeHttpSession();
+      handleJoin(session, { roomCode });
+      httpResponseForSession(request, response, session);
+      return;
+    }
+    if (request.method === 'POST' && action === 'reconnect') {
+      const message = await readHttpJson(request);
+      const session = makeHttpSession();
+      handleReconnect(session, { ...message, roomCode });
+      httpResponseForSession(request, response, session);
+      return;
+    }
+
+    const session = httpSessionFor(request, roomCode);
+    if (!session) {
+      sendHttpJson(request, response, 401, { type: 'error', message: 'La sesión de sala no es válida o ha caducado.' });
+      return;
+    }
+    session.lastMessage = null;
+
+    if (request.method === 'GET' && action === 'state') {
+      httpResponseForSession(request, response, session);
+      return;
+    }
+    if (request.method === 'DELETE' && action === '') {
+      handleClose(session);
+      if (session.sessionToken) httpSessions.delete(session.sessionToken);
+      sendHttpJson(request, response, 200, { ok: true });
+      return;
+    }
+    if (request.method === 'POST' && ['select', 'toggle', 'rematch'].includes(action)) {
+      const message = await readHttpJson(request);
+      handleMessage(session, JSON.stringify({ ...message, type: action }));
+      httpResponseForSession(request, response, session);
+      return;
+    }
+    sendHttpJson(request, response, 404, { type: 'error', message: 'Acción no reconocida.' });
+  } catch (error) {
+    sendHttpJson(request, response, 400, { type: 'error', message: error instanceof Error ? error.message : 'Solicitud no válida.' });
+  }
+}
+
+const httpServer = http.createServer((request, response) => {
+  void handleHttpRequest(request, response);
 });
 function isAllowedOrigin(origin) {
   if (!origin || origin === 'null') return true;
@@ -335,6 +489,11 @@ wss.on('connection', (socket) => {
 });
 const cleanupTimer = setInterval(() => {
   const now = Date.now();
+  for (const [sessionToken, session] of httpSessions) {
+    if (now - session.lastSeen <= HTTP_SESSION_TTL_MS) continue;
+    if (session.roomCode) handleClose(session);
+    httpSessions.delete(sessionToken);
+  }
   for (const [roomCode, room] of rooms) {
     if (!room.players.p1.socket && !room.players.p2.socket && now - room.lastActivity > ROOM_IDLE_TTL_MS) rooms.delete(roomCode);
   }

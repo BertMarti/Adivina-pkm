@@ -21,6 +21,9 @@
 - Una URL local que no responde falla rápido, en 12 segundos; el servidor
   público conserva una ventana de hasta 45 segundos para que Render pueda
   despertar desde su suspensión gratuita.
+- En Android/iOS, la conexión principal ya no depende de WebSocket: usa la API
+  HTTPS del mismo servicio (`/api/rooms`) y consulta el estado cada 2 segundos.
+  El teléfono solo necesita HTTPS normal; WebSocket queda para la versión web.
 
 ## Validación
 
@@ -28,6 +31,7 @@
 - `git diff --check` ✅
 - `npx expo export --platform web` ✅
 - El endpoint público responde `{"ok":true,"rooms":0}` y acepta WebSocket.
+- El flujo HTTP local `crear → unirse → elegir → estado → tachar → salir` ✅
 
 ## Nota para la APK
 

@@ -17,6 +17,9 @@ jugar desde redes distintas, ambos móviles deben apuntar a una URL pública
 - El cliente incluye como respaldo `wss://pokequien-rooms.onrender.com` y
   espera hasta 45 segundos para que el servicio gratuito despierte. La
   variable de EAS sigue siendo recomendable si en el futuro cambias de host.
+- En Android/iOS, las salas usan preferentemente la API HTTPS con sondeo de
+  estado; esto evita depender de que la red móvil mantenga WebSocket. La web
+  conserva WebSocket.
 - El servidor conserva salas en memoria y mantiene la ventana de reconexión
   de 60 segundos. Un reinicio del servicio termina las salas activas; es una
   limitación asumida para esta beta.

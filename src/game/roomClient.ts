@@ -42,8 +42,19 @@ function getServerUrls() {
   return Array.from(new Set([configured?.trim(), DEFAULT_ROOM_SERVER_URL].filter(Boolean))) as string[];
 }
 
+function toHttpServerUrl(serverUrl: string) {
+  return serverUrl.replace(/^wss:\/\//, 'https://').replace(/^ws:\/\//, 'http://').replace(/\/$/, '');
+}
+
 function connectionError() {
   return new Error('No se pudo conectar con el servidor de salas. Comprueba tu conexión e inténtalo de nuevo.');
+}
+
+class HttpNetworkError extends Error {
+  constructor() {
+    super('No se pudo alcanzar el servidor HTTPS de salas.');
+    this.name = 'HttpNetworkError';
+  }
 }
 
 async function wakeHostedServer(serverUrl: string) {
@@ -118,6 +129,7 @@ async function clearSavedSession(roomCode: string | null) {
 }
 
 export class RoomClient {
+  private readonly transport: 'websocket' | 'http';
   private socket: RoomSocket | null = null;
   private readonly onState: (state: RoomGameState, player: PlayerId) => void;
   private readonly onError: (message: string) => void;
@@ -126,9 +138,14 @@ export class RoomClient {
   private intentionalClose = false;
   private roomCode: string | null = null;
   private sessionToken: string | null = null;
+  private httpBaseUrl: string | null = null;
+  private httpPollTimer: ReturnType<typeof setInterval> | null = null;
+  private httpPollInFlight = false;
+  private httpErrorReported = false;
   playerId: PlayerId | null = null;
 
   constructor(onState: (state: RoomGameState, player: PlayerId) => void, onError: (message: string) => void) {
+    this.transport = Platform.OS === 'web' ? 'websocket' : 'http';
     this.onState = onState;
     this.onError = onError;
   }
@@ -140,9 +157,114 @@ export class RoomClient {
       this.roomCode = saved.roomCode;
       this.playerId = saved.player;
       this.sessionToken = saved.sessionToken;
-      return this.open({ type: 'reconnect', roomCode: saved.roomCode, player: saved.player, sessionToken: saved.sessionToken });
+      const reconnectRequest = { type: 'reconnect' as const, roomCode: saved.roomCode, player: saved.player, sessionToken: saved.sessionToken };
+      return this.transport === 'http' ? this.openHttp(reconnectRequest) : this.open(reconnectRequest);
     }
-    return this.open(request);
+    return this.transport === 'http' ? this.openHttp(request) : this.open(request);
+  }
+
+  private async requestHttp(path: string, method = 'GET', body?: unknown) {
+    if (!this.httpBaseUrl) throw new HttpNetworkError();
+    let response: Response;
+    try {
+      response = await fetch(`${this.httpBaseUrl}${path}`, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+          ...(this.playerId && this.sessionToken ? { 'X-Player': this.playerId, 'X-Session-Token': this.sessionToken } : {}),
+        },
+        ...(body === undefined ? {} : { body: JSON.stringify(body) }),
+      });
+    } catch {
+      throw new HttpNetworkError();
+    }
+    let message: RoomResponse;
+    try {
+      message = await response.json() as RoomResponse;
+    } catch {
+      throw new HttpNetworkError();
+    }
+    if (!response.ok || message.type === 'error') throw new Error(message.type === 'error' ? message.message : 'El servidor HTTPS rechazó la solicitud.');
+    return message;
+  }
+
+  private acceptHttpMessage(message: RoomResponse) {
+    if (message.type === 'error') {
+      this.onError(message.message);
+      throw new Error(message.message);
+    }
+    this.playerId = message.player;
+    this.roomCode = message.state.roomCode;
+    if (message.sessionToken) this.sessionToken = message.sessionToken;
+    if (this.sessionToken && this.playerId) void saveSession({ roomCode: message.state.roomCode, player: this.playerId, sessionToken: this.sessionToken });
+    if (message.state.reconnectDeadline) this.reconnectDeadline = message.state.reconnectDeadline;
+    if (message.state.phase === 'abandoned') void clearSavedSession(message.state.roomCode);
+    this.httpErrorReported = false;
+    this.onError('');
+    this.onState(message.state, message.player);
+    return message.state;
+  }
+
+  private startHttpPolling() {
+    if (this.httpPollTimer) clearInterval(this.httpPollTimer);
+    this.httpPollTimer = setInterval(() => { void this.pollHttpState(); }, 2_000);
+  }
+
+  private stopHttpPolling() {
+    if (this.httpPollTimer) clearInterval(this.httpPollTimer);
+    this.httpPollTimer = null;
+    this.httpPollInFlight = false;
+  }
+
+  private async pollHttpState() {
+    if (this.httpPollInFlight || !this.httpBaseUrl || !this.roomCode || !this.playerId || !this.sessionToken) return;
+    this.httpPollInFlight = true;
+    try {
+      const message = await this.requestHttp(`/api/rooms/${this.roomCode}/state?player=${this.playerId}`);
+      this.acceptHttpMessage(message);
+    } catch (cause) {
+      if (!this.httpErrorReported) {
+        this.httpErrorReported = true;
+        this.onError(cause instanceof Error && !(cause instanceof HttpNetworkError) ? cause.message : 'Se perdió la conexión. Reintentando por HTTPS…');
+      }
+    } finally {
+      this.httpPollInFlight = false;
+    }
+  }
+
+  private async openHttp(request: Extract<RoomRequest, { type: 'create' | 'join' | 'reconnect' }>, serverIndex = 0): Promise<RoomGameState> {
+    const serverUrls = getServerUrls();
+    const serverUrl = serverUrls[Math.min(serverIndex, serverUrls.length - 1)];
+    this.httpBaseUrl = toHttpServerUrl(serverUrl);
+    await wakeHostedServer(serverUrl);
+    try {
+      const path = request.type === 'create'
+        ? '/api/rooms'
+        : request.type === 'join'
+          ? `/api/rooms/${request.roomCode}/join`
+          : `/api/rooms/${request.roomCode}/reconnect`;
+      const message = await this.requestHttp(path, 'POST', request);
+      const state = this.acceptHttpMessage(message);
+      this.startHttpPolling();
+      return state;
+    } catch (cause) {
+      if (cause instanceof HttpNetworkError && serverIndex + 1 < serverUrls.length) return this.openHttp(request, serverIndex + 1);
+      if (cause instanceof Error && cause.message === 'Ruta no encontrada.') return this.open(request);
+      throw cause instanceof Error ? cause : connectionError();
+    }
+  }
+
+  private async httpAction(type: 'select' | 'toggle' | 'rematch', body: Record<string, unknown> = {}) {
+    if (!this.httpBaseUrl || !this.roomCode) {
+      this.onError('La sala no está conectada.');
+      return;
+    }
+    try {
+      const message = await this.requestHttp(`/api/rooms/${this.roomCode}/${type}`, 'POST', body);
+      this.acceptHttpMessage(message);
+    } catch (cause) {
+      this.onError(cause instanceof Error ? cause.message : 'No se pudo enviar la acción.');
+    }
   }
 
   private async open(request: Extract<RoomRequest, { type: 'create' | 'join' | 'reconnect' }>, serverIndex = 0) {
@@ -227,14 +349,26 @@ export class RoomClient {
   }
 
   select(id: number) {
+    if (this.transport === 'http') {
+      void this.httpAction('select', { id });
+      return;
+    }
     this.send({ type: 'select', id });
   }
 
   toggle(id: number) {
+    if (this.transport === 'http') {
+      void this.httpAction('toggle', { id });
+      return;
+    }
     this.send({ type: 'toggle', id });
   }
 
   rematch() {
+    if (this.transport === 'http') {
+      void this.httpAction('rematch');
+      return;
+    }
     this.send({ type: 'rematch' });
   }
 
@@ -242,6 +376,14 @@ export class RoomClient {
     this.intentionalClose = true;
     if (this.reconnectTimer) clearTimeout(this.reconnectTimer);
     this.reconnectTimer = null;
+    this.stopHttpPolling();
+    if (this.transport === 'http' && this.httpBaseUrl && this.roomCode && this.playerId && this.sessionToken) {
+      const roomCode = this.roomCode;
+      const playerId = this.playerId;
+      const sessionToken = this.sessionToken;
+      void fetch(`${this.httpBaseUrl}/api/rooms/${roomCode}`, { method: 'DELETE', headers: { 'X-Player': playerId, 'X-Session-Token': sessionToken } }).catch(() => {});
+    }
+    this.httpBaseUrl = null;
     this.socket?.close();
     this.socket = null;
     if (options.forgetSession) void clearSavedSession(this.roomCode);
