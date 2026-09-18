@@ -46,6 +46,21 @@ function connectionError() {
   return new Error('No se pudo conectar con el servidor de salas. Comprueba tu conexión e inténtalo de nuevo.');
 }
 
+async function wakeHostedServer(serverUrl: string) {
+  if (!serverUrl.startsWith('wss://')) return;
+  const healthUrl = serverUrl.replace(/^wss:\/\//, 'https://');
+  const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+  const timeout = controller ? setTimeout(() => controller.abort(), 8_000) : null;
+  try {
+    await fetch(healthUrl, { method: 'GET', signal: controller?.signal, cache: 'no-store' });
+  } catch {
+    // The WebSocket attempt below remains the source of truth. This warm-up
+    // is best-effort because some native runtimes reject optional fetch flags.
+  } finally {
+    if (timeout) clearTimeout(timeout);
+  }
+}
+
 type SavedRoomSession = Readonly<{ roomCode: string; player: PlayerId; sessionToken: string }>;
 const SESSION_STORAGE_PREFIX = 'adivina-pkm:room-session:';
 
@@ -130,12 +145,13 @@ export class RoomClient {
     return this.open(request);
   }
 
-  private open(request: Extract<RoomRequest, { type: 'create' | 'join' | 'reconnect' }>, serverIndex = 0) {
+  private async open(request: Extract<RoomRequest, { type: 'create' | 'join' | 'reconnect' }>, serverIndex = 0) {
+    const serverUrls = getServerUrls();
+    const serverUrl = serverUrls[Math.min(serverIndex, serverUrls.length - 1)];
+    await wakeHostedServer(serverUrl);
     return new Promise<RoomGameState>((resolve, reject) => {
       let settled = false;
       let connected = false;
-      const serverUrls = getServerUrls();
-      const serverUrl = serverUrls[Math.min(serverIndex, serverUrls.length - 1)];
       const socket = new WebSocket(serverUrl) as RoomSocket;
       this.socket = socket;
       this.intentionalClose = false;
