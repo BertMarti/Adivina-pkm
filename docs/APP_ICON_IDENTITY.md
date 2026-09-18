@@ -11,18 +11,19 @@ El nuevo emblema se ha dibujado como pixel-art propio sobre una cuadrícula de
 
 ```text
 ┌──────────────────┐
-│  ?  tarjeta  ?   │
-│      ◓           │
-│   ⚡ Poké Ball   │
+│                  │
+│       ?          │
+│                  │
+│       ◓          │
 └──────────────────┘
 ```
 
-- ◓ **Poké Ball central:** referencia inmediata al universo Pokémon.
-- 🟦🟪 **Dos tarjetas enfrentadas:** representan J1 contra J2 y la deducción
-  de “¿quién es quién?”.
-- ⚡ **Rayo amarillo:** aporta personalidad eléctrica y ayuda a reconocerlo en
-  una lista de aplicaciones.
-- ❔ **Preguntas laterales:** expresan el misterio sin usar texto pequeño.
+- ❔ **Pregunta amarilla:** representa directamente la deducción de “¿quién es
+  quién?” y se reconoce incluso en 48 px.
+- ◓ **Poké Ball como punto:** conecta la pregunta con el universo Pokémon sin
+  añadir personajes, texto ni ruido visual.
+- 🟦 **Marco azul noche:** mantiene la lectura pixelada y funciona tanto con
+  máscara cuadrada como circular.
 
 ## Variantes generadas
 

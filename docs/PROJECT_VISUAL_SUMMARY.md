@@ -31,7 +31,7 @@
 - Cuadrículas responsive de cinco columnas, con retrato, nombre y número Dex.
 - X roja grande, animada y visible en toda la casilla.
 - Modal de resultado centrado, desplazable y preparado para pantallas pequeñas.
-- Marca `PokéQuién`, título de pestaña actualizado e icono pixel-art propio: Poké Ball central, dos tarjetas enfrentadas y acento eléctrico amarillo, preparado para máscaras cuadradas o redondeadas.
+- Marca `PokéQuién`, título de pestaña actualizado e icono pixel-art minimalista: una pregunta amarilla cuya puntuación es una Poké Ball, preparado para máscaras cuadradas o redondeadas.
 - CTA grande y contrastado de `JUGAR CONTRA LA MÁQUINA`, visible desde el menú principal.
 
 ## 🎮 Cambios de jugabilidad
