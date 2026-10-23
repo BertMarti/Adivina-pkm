@@ -1,6 +1,8 @@
 # Contexto técnico del proyecto
 
 > Estado de referencia comprobado el 14/09/2026. Este documento describe la implementación que existe actualmente en el repositorio, no una arquitectura futura.
+>
+> **Actualización 24/10/2026:** ya hay `npm test` (servidor y motor), CI, build web publicada en GitHub Pages y límites por IP en el servidor. Comandos, variables y despliegue al día en [docs/DESARROLLO.md](docs/DESARROLLO.md); decisiones en [MEMORY.md](MEMORY.md).
 
 ## 1. Objetivo y alcance
 
