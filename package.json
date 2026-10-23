@@ -5,7 +5,7 @@
   "dependencies": {
     "@expo-google-fonts/press-start-2p": "^0.4.1",
     "@react-native-async-storage/async-storage": "^2.2.0",
-    "expo": "~57.0.22",
+    "expo": "~57.0.31",
     "expo-asset": "~57.0.17",
     "expo-audio": "~57.0.5",
     "expo-clipboard": "~57.0.2",
