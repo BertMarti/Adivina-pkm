@@ -17,6 +17,8 @@ Actualizado el 24/10/2026. Prioridad de arriba abajo.
 
 1. **Tras fusionar**: comprobar que Render aplica `ROOM_SERVER_ALLOWED_ORIGINS=https://bertmarti.github.io` y
    `ROOM_SERVER_TRUST_PROXY=1` (si el servicio no está enlazado al Blueprint, ponerlas a mano) y jugar un Duelo desde Pages.
+   Verificar también que las peticiones llegan con la cabecera `CF-Connecting-IP` (si no, los límites por IP usan la
+   primera IP de `X-Forwarded-For`, que el cliente puede falsificar).
 2. **`server/package.json` propio** con solo `ws`, y `rootDir: server` en `render.yaml`, para no instalar Expo en Render
    (despliegues más rápidos y sin los avisos de `@expo/cli` en producción).
 3. **Reglas compartidas**: extraer las transiciones a un módulo JS común (o pruebas de contrato) para que servidor y

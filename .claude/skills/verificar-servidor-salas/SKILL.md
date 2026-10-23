@@ -23,4 +23,4 @@ escucha en `PORT`/`ROOM_SERVER_PORT` (8787 por defecto).
 - Los textos de error son parte de la UX: en español de España y sin datos internos.
 - No registres tokens ni mensajes completos. No metas IPs reales en ejemplos (usa `192.168.1.50`).
 - Los límites por IP se configuran por opciones; en Render `ROOM_SERVER_TRUST_PROXY=1` hace que se use la IP de
-  `X-Forwarded-For`.
+  `CF-Connecting-IP` (o, si falta, la primera de `X-Forwarded-For`).

@@ -15,7 +15,7 @@ PokéQuién no tiene cuentas, contraseñas ni datos personales. La sala se ident
 | Reglas | El servidor valida generación, tablero de 25 candidatos distintos, ids 1–1025 y fase antes de cada selección/tachado. |
 | Entrada | Límite de payload WebSocket de 64 KiB, texto/URLs acotados y JSON parseado sin `eval`. |
 | Abuso | Máximo de 40 mensajes por conexión cada 10 segundos, máximo de 500 salas y limpieza de salas inactivas. |
-| Abuso por IP (24/10/2026) | 300 peticiones HTTP por minuto e IP (429 + `Retry-After`), 20 salas creadas por IP cada 10 minutos, 20 conexiones WebSocket simultáneas por IP. Con `ROOM_SERVER_TRUST_PROXY=1` la IP sale de `X-Forwarded-For`. |
+| Abuso por IP (24/10/2026) | 300 peticiones HTTP por minuto e IP (429 + `Retry-After`), 20 salas creadas por IP cada 10 minutos, 20 conexiones WebSocket simultáneas por IP. Con `ROOM_SERVER_TRUST_PROXY=1` la IP sale de `CF-Connecting-IP` o, si falta, de la primera de `X-Forwarded-For`. |
 | Conexiones muertas (24/10/2026) | Heartbeat ping/pong cada 30 s; los sockets que no responden se cierran. |
 | Cuerpo HTTP (24/10/2026) | Máximo 64 KiB con respuesta 413; el JSON debe ser un objeto y los ids, enteros. |
 | Web (24/10/2026) | La build de Pages lleva CSP (`default-src 'self'`, sin `unsafe-eval`, `object-src 'none'`, imágenes solo de `raw.githubusercontent.com`). |

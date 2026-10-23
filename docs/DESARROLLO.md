@@ -66,7 +66,7 @@ El **Solitario** es 100 % local: la máquina elige preguntas por ganancia de inf
 | `EXPO_PUBLIC_ROOM_SERVER_URL` | Cliente | URL del servidor de salas. Sin ella se usa el servidor público de Render. Se incrusta en el bundle: no es secreta. | `ws://192.168.1.50:8787` (LAN) · `wss://pokequien-rooms.onrender.com` |
 | `PORT` / `ROOM_SERVER_PORT` | Servidor | Puerto. `PORT` (PaaS) tiene prioridad. | `8787`, `18787` para pruebas aisladas |
 | `ROOM_SERVER_ALLOWED_ORIGINS` | Servidor | Orígenes web permitidos, separados por comas. `localhost` y `127.0.0.1` siempre se aceptan; las apps nativas no envían `Origin`. | `https://bertmarti.github.io` |
-| `ROOM_SERVER_TRUST_PROXY` | Servidor | `1` para leer la IP del cliente de `X-Forwarded-For` (detrás de Render). | `1` |
+| `ROOM_SERVER_TRUST_PROXY` | Servidor | `1` para leer la IP del cliente de `CF-Connecting-IP` o, si falta, de `X-Forwarded-For` (detrás de Render). | `1` |
 | `PAGES_BASE_URL` | Build web | Ruta base al exportar; `npm run build:web` pone `/Adivina-pkm` si no se indica. | `/Adivina-pkm` |
 
 Copia `.env.example` a `.env` para desarrollo local. Los archivos `.env*.local` están ignorados por git.

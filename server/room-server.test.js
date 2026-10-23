@@ -448,20 +448,50 @@ test('HTTP: responde 429 con Retry-After al superar httpRateLimit', async (t) =>
   assert.equal(limited.headers['retry-after'], '60');
 });
 
-test('HTTP: trustProxy usa la primera IP de x-forwarded-for para el límite', async (t) => {
+test('HTTP: trustProxy usa x-forwarded-for y da prioridad a cf-connecting-ip', async (t) => {
   const { port } = await startServer(t, { trustProxy: true, httpRateLimit: 1 });
-  const first = await httpRequest(port, {
-    method: 'POST',
-    path: '/api/rooms',
-    headers: { 'Content-Type': 'application/json', 'x-forwarded-for': '203.0.113.10' },
-    body: JSON.stringify({ roomCode: 'PROX2345', generation: 'all', board: makeBoard() }),
+  const post = (headers, roomCode) =>
+    httpRequest(port, {
+      method: 'POST',
+      path: '/api/rooms',
+      headers: { 'Content-Type': 'application/json', ...headers },
+      body: JSON.stringify({ roomCode, generation: 'all', board: makeBoard() }),
+    });
+  // Sin cf-connecting-ip se usa la primera IP de x-forwarded-for.
+  assert.equal((await post({ 'x-forwarded-for': '203.0.113.10' }, 'PROX2345')).statusCode, 200);
+  assert.equal((await post({ 'x-forwarded-for': '203.0.113.11' }, 'PROX2346')).statusCode, 200);
+  // Con cf-connecting-ip, cambiar x-forwarded-for no sirve para esquivar el límite.
+  assert.equal((await post({ 'cf-connecting-ip': '198.51.100.7', 'x-forwarded-for': '203.0.113.20' }, 'PROX2347')).statusCode, 200);
+  assert.equal((await post({ 'cf-connecting-ip': '198.51.100.7', 'x-forwarded-for': '203.0.113.21' }, 'PROX2348')).statusCode, 429);
+  assert.equal((await post({ 'cf-connecting-ip': '198.51.100.8', 'x-forwarded-for': '203.0.113.21' }, 'PROX2349')).statusCode, 200);
+});
+
+test('HTTP: una cabecera Host inválida no tumba el servidor (se atiende y GET / sigue en 200)', async (t) => {
+  const { port } = await startServer(t);
+  const raw = await new Promise((resolve, reject) => {
+    const net = require('node:net');
+    const socket = net.connect(port, '127.0.0.1', () => {
+      socket.write('GET /api/rooms/ABCDEFGH/state HTTP/1.1\r\nHost: a b\r\nConnection: close\r\n\r\n');
+    });
+    let data = '';
+    socket.on('data', (chunk) => (data += chunk));
+    socket.on('end', () => resolve(data));
+    socket.on('error', reject);
   });
-  assert.equal(first.statusCode, 200);
-  const second = await httpRequest(port, {
-    method: 'POST',
-    path: '/api/rooms',
-    headers: { 'Content-Type': 'application/json', 'x-forwarded-for': '203.0.113.11' },
-    body: JSON.stringify({ roomCode: 'PROX2346', generation: 'all', board: makeBoard() }),
-  });
-  assert.equal(second.statusCode, 200);
+  // Antes: TypeError no capturado en new URL() y el proceso moría. Ahora la petición se atiende (401: sin sesión).
+  assert.match(raw, /^HTTP\/1\.1 401/);
+  const health = await httpRequest(port, { method: 'GET', path: '/' });
+  assert.equal(health.statusCode, 200);
+});
+
+test('las conexiones cerradas liberan el cupo por IP', async (t) => {
+  const { port, tracker } = await startServer(t, { maxConnectionsPerIp: 1 });
+  const first = await tracker.open(port);
+  first.terminate();
+  await first.nextClose();
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  const second = await tracker.open(port);
+  second.send({ type: 'join', roomCode: 'ZZZZZZZZ' });
+  const reply = await second.nextMessage();
+  assert.equal(reply.type, 'error');
 });

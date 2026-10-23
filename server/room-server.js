@@ -38,13 +38,18 @@ function createRoomServer(options = {}) {
   let cleanupTimer;
   let closed = false;
 
+  // Detrás de Render+Cloudflare, CF-Connecting-IP la pone Cloudflare y el cliente no puede falsificarla;
+  // X-Forwarded-For queda como respaldo (su primera IP sí la puede inventar el cliente).
   function clientIp(request) {
-    if (trustProxy)
+    if (trustProxy) {
+      const cfIp = String(request.headers['cf-connecting-ip'] || '').trim();
+      if (cfIp) return cfIp;
       return (
         String(request.headers['x-forwarded-for'] || '')
           .split(',')[0]
           .trim() || request.socket.remoteAddress
       );
+    }
     return request.socket.remoteAddress;
   }
 
@@ -317,7 +322,9 @@ function createRoomServer(options = {}) {
   }
   function handleClose(socket) {
     if (socket.clientIp && socket.countedConnection) {
-      connectionCounts.set(socket.clientIp, Math.max(0, (connectionCounts.get(socket.clientIp) || 1) - 1));
+      const remaining = (connectionCounts.get(socket.clientIp) || 1) - 1;
+      if (remaining > 0) connectionCounts.set(socket.clientIp, remaining);
+      else connectionCounts.delete(socket.clientIp);
       socket.countedConnection = false;
     }
     const room = roomForSocket(socket);
@@ -443,7 +450,8 @@ function createRoomServer(options = {}) {
     return entry.count <= httpRateLimit;
   }
   async function handleHttpRequest(request, response) {
-    const url = new URL(request.url || '/', `http://${request.headers.host || 'localhost'}`);
+    // Base fija: una cabecera Host inválida (p. ej. «a b») no debe tumbar el proceso.
+    const url = new URL(request.url || '/', 'http://localhost');
     const pathname = url.pathname;
     if (request.method === 'OPTIONS') {
       response.writeHead(204, httpHeaders(request));
@@ -526,7 +534,11 @@ function createRoomServer(options = {}) {
   }
 
   const httpServer = http.createServer((request, response) => {
-    void handleHttpRequest(request, response);
+    handleHttpRequest(request, response).catch((error) => {
+      logger.error('Error inesperado en una petición HTTP.', error instanceof Error ? error.message : error);
+      if (!response.headersSent) sendHttpJson(request, response, 400, { type: 'error', message: 'Solicitud no válida.' });
+      else response.destroy();
+    });
   });
   const wss = new WebSocketServer({
     server: httpServer,
