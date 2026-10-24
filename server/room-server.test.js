@@ -16,10 +16,10 @@ function makeBoard(size = 25) {
       id,
       name: `Pokémon de prueba ${id}`,
       types: ['normal'],
-      portraitUrl: 'https://example.com/portrait.png',
-      normalUrl: 'https://example.com/normal.png',
-      sadUrl: 'https://example.com/sad.png',
-      fallbackUrl: 'https://example.com/fallback.png',
+      portraitUrl: `https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/${String(id).padStart(4, '0')}/Happy.png`,
+      normalUrl: `https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/${String(id).padStart(4, '0')}/Normal.png`,
+      sadUrl: `https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/${String(id).padStart(4, '0')}/Sad.png`,
+      fallbackUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`,
     };
   });
 }
@@ -494,4 +494,62 @@ test('las conexiones cerradas liberan el cupo por IP', async (t) => {
   second.send({ type: 'join', roomCode: 'ZZZZZZZZ' });
   const reply = await second.nextMessage();
   assert.equal(reply.type, 'error');
+});
+
+test('un marco WebSocket mayor que maxPayload cierra esa conexión con 1009 pero no tumba el servidor', async (t) => {
+  const { port, tracker } = await startServer(t);
+  const client = await tracker.open(port);
+  client.sendRaw('x'.repeat(70 * 1024));
+  const closed = await client.nextClose();
+  assert.equal(closed.code, 1009);
+  const health = await httpRequest(port, { method: 'GET', path: '/' });
+  assert.equal(health.statusCode, 200);
+  const other = await tracker.open(port);
+  other.send({ type: 'join', roomCode: 'ZZZZZZZZ' });
+  assert.equal((await other.nextMessage()).type, 'error');
+});
+
+test('health check: CORS abierto y originAllowed indica si se admite el origen', async (t) => {
+  const { port } = await startServer(t, { allowedOrigins: ['https://bertmarti.github.io'] });
+  const allowed = await httpRequest(port, { headers: { Origin: 'https://bertmarti.github.io' } });
+  assert.equal(allowed.headers['access-control-allow-origin'], '*');
+  assert.equal(JSON.parse(allowed.body).originAllowed, true);
+  const rejected = await httpRequest(port, { headers: { Origin: 'https://otra-web.example' } });
+  assert.equal(rejected.headers['access-control-allow-origin'], '*');
+  assert.equal(JSON.parse(rejected.body).originAllowed, false);
+  const noOrigin = await httpRequest(port);
+  assert.equal(JSON.parse(noOrigin.body).originAllowed, null);
+  // El resto de la API sigue sin CORS para orígenes no permitidos.
+  const api = await httpRequest(port, { method: 'OPTIONS', path: '/api/rooms', headers: { Origin: 'https://otra-web.example' } });
+  assert.equal(api.headers['access-control-allow-origin'], undefined);
+});
+
+test('rechaza tableros con imágenes fuera de SpriteCollab/PokéAPI (evita rastrear al rival)', async (t) => {
+  const { port, tracker } = await startServer(t);
+  const client = await tracker.open(port);
+  const board = makeBoard();
+  board[3] = { ...board[3], portraitUrl: 'https://rastreo.example/pixel.png' };
+  client.send({ type: 'create', roomCode: 'TRAK2345', generation: 'all', board });
+  const reply = await client.nextMessage();
+  assert.equal(reply.type, 'error');
+  assert.match(reply.message, /25 Pokémon válidos/);
+  client.send({ type: 'create', roomCode: 'TRAK2346', generation: 'all', board: makeBoard() });
+  assert.equal((await client.nextMessage()).type, 'state');
+});
+
+test('mensajes de sala claros: código inexistente y sala llena', async (t) => {
+  const { port, tracker } = await startServer(t);
+  const host = await tracker.open(port);
+  host.send({ type: 'create', roomCode: 'LLEN2345', generation: 'all', board: makeBoard() });
+  await host.nextMessage();
+  const guest = await tracker.open(port);
+  guest.send({ type: 'join', roomCode: 'LLEN2345' });
+  await guest.nextMessage();
+  await host.nextMessage();
+  const third = await tracker.open(port);
+  third.send({ type: 'join', roomCode: 'LLEN2345' });
+  assert.match((await third.nextMessage()).message, /La sala está llena/);
+  const lost = await tracker.open(port);
+  lost.send({ type: 'join', roomCode: 'NADA2345' });
+  assert.match((await lost.nextMessage()).message, /No hay ninguna sala con ese código/);
 });
