@@ -4,12 +4,12 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 
 ## Estado actual (24/10/2026)
 
-- Versión **0.2.0**. Web jugable en <https://bertmarti.github.io/Adivina-pkm/> (tras fusionar la rama
+- Versión **0.3.0**. Web jugable en <https://bertmarti.github.io/Adivina-pkm/> (tras fusionar la rama
   `mejoras-2026-10-24` y activar Pages con origen «GitHub Actions»).
 - Solitario: 100 % local, funciona en la web sin servidor.
 - Duelo: servidor de salas en Render (plan gratuito, salas en memoria). La web de Pages conecta por WSS si
   `ROOM_SERVER_ALLOWED_ORIGINS` incluye `https://bertmarti.github.io` en Render.
-- Pruebas: 14 del servidor + 12 del motor (`npm test`), verificación del Solitario y CI en cada PR.
+- Pruebas: 20 del servidor + tests del motor (`npm test`), verificación del Solitario y CI en cada PR.
 
 ## Decisiones y por qué
 
@@ -25,10 +25,15 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 | 24/10/2026 | Expo 57.0.31 + `npm audit fix` (de 11 avisos con 1 crítico a 5 altos) | Los 5 restantes (node-forge, zod) vienen de `@expo/cli`, herramienta de desarrollo; no hay parche dentro del SDK 57 y la «solución» de npm (expo@44) es absurda. |
 | 24/10/2026 | IP LAN real sustituida por `192.168.1.50` en `.env.example` y docs | Privacidad. Sigue en el historial de git (riesgo bajo: IP privada de LAN); no se reescribe historial. |
 | 24/10/2026 | `.gitignore` ignora `.env` y `.env*` salvo `.env.example` | Antes solo ignoraba `.env*.local` y un `.env` real podía subirse. |
+| 24/10/2026 | `ws` se mantiene en `package.json` raíz y en `server/package.json` | La raíz conserva la configuración antigua de Render y el servidor aislado instala solo su dependencia. |
+| 24/10/2026 | `originAllowed` y CORS `*` solo en `GET /` | La web puede diagnosticar si el origen está permitido sin relajar el control de origen del WebSocket. |
+| 24/10/2026 | Lista blanca de imágenes del tablero | Evita que quien crea una sala use una imagen remota para rastrear la IP del rival. |
+| 24/10/2026 | Dependabot ignora saltos de SDK y cambios descoordinados de React/RN | Expo 57 requiere actualizar el conjunto completo, no mezclar versiones. |
+| 24/10/2026 | `connect-src` de la CSP se limita a la web y al servidor configurado | Evita conexiones arbitrarias desde la build publicada. |
 
 ## Trampas conocidas
 
-- **Render gratis se duerme**: la primera conexión puede tardar ~45 s; el cliente hace un *warm-up* HTTP y espera.
+- **Render gratis se duerme**: la primera conexión puede tardar hasta 1 minuto; el cliente hace un *warm-up* HTTP y espera.
 - **Salas en memoria**: un reinicio o redeploy del servidor termina todas las partidas activas.
 - **`npm ci --dry-run` borra `node_modules`**: vuelve a ejecutar `npm ci` después.
 - **Reglas duplicadas**: `server/room-server.js` replica las reglas de `src/game/engine.ts`; cambia ambos y sus tests.
@@ -41,7 +46,7 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
   probabilísticas, no filtrado duro. No es un bug.
 - **Versión de Node**: con Node < 20.19.4, npm da avisos `EBADENGINE` con RN 0.86; en CI se usa Node 22.
 - **Host inválido**: la URL de cada petición se resuelve con base fija `http://localhost` y los errores no capturados de `handleHttpRequest` responden 400; antes una cabecera `Host: a b` tumbaba el proceso.
-- **`render.yaml` instala todo el proyecto** (`npm ci --omit=dev` en la raíz) aunque el servidor solo necesita `ws`.
+- **`/usr/share/nodejs/ws` en la Raspberry** puede hacer que `require('ws')` funcione sin `node_modules`; no sirve para probar el caso de dependencia `ws` ausente.
 
 ## Recursos con derechos
 

@@ -10,6 +10,32 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 
 > Cambios pendientes de incluir en la próxima versión.
 
+## [0.3.0] — 2026-10-24
+
+### 🔐 Seguridad
+
+- El servidor ya maneja marcos WebSocket inválidos o mayores de 64 KiB sin tumbar el proceso.
+- Las imágenes del tablero solo aceptan SpriteCollab, PokéAPI o datos PNG/GIF/WebP/JPEG embebidos.
+- El health `GET /` expone `originAllowed` y CORS abierto para diagnosticar el origen sin abrir el WebSocket a cualquier web.
+- La CSP limita `connect-src` al origen propio y al servidor de salas configurado.
+
+### ✨ Añadido
+
+- Servidor independiente en `server/` con `ws`, `npm start` y `npm test`.
+- Scripts `npm run server` y `npm run server:help`; `npm run room-server` se mantiene como alias.
+- Guía de juego de tres pasos, invitaciones, diagnósticos del servidor y ventana de créditos y licencias.
+- 20 pruebas del servidor.
+
+### 🔄 Cambiado
+
+- Render usa `rootDir: server`, `npm ci --omit=dev` y `node room-server.js`.
+- La app valida los códigos de sala, comparte enlaces desde móvil y espera hasta 60 segundos la reconexión del rival.
+
+### 📦 Dependencias
+
+- Fusionadas las PR de Dependabot #2 (react-native-web 0.21.4) y #3 (ws 8.22.0, @types/ws, tsx); cerradas #4, #5 y #6 (SDK 58 y react-dom fuera del SDK 57).
+- Se ignoran saltos de SDK de Expo y cambios coordinados de react, react-dom y react-native.
+
 ## [0.2.0] — 2026-10-24
 
 ### 🌐 Web en GitHub Pages

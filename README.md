@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/🎮_Pokémon-1025_especies-E3350D?style=for-the-badge&labelColor=1D1E2A" alt="1025 especies" />
   <img src="https://img.shields.io/badge/🕹️_Modos-Duelo_·_Solitario-FFD000?style=for-the-badge&labelColor=1D1E2A" alt="Modos Duelo y Solitario" />
   <img src="https://img.shields.io/badge/📱_Plataforma-Web_·_Android_·_iOS-4C6BE8?style=for-the-badge&labelColor=1D1E2A" alt="Web, Android e iOS" />
-  <a href="LICENSE"><img src="https://img.shields.io/badge/Licencia-MIT-38D37D?style=for-the-badge&labelColor=1D1E2A" alt="Licencia MIT" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/Licencia-MIT-38D37D?style=for-the-badge&labelColor=1D1E2A" alt="Licencia MIT (código)" /></a>
 </p>
 
 <p align="center"><b>Un duelo de deducción pixel-art inspirado en «¿Quién es Quién?»<br>pero con Pokémon. Descubre el secreto de tu rival… ¡antes de que él descubra el tuyo!</b></p>
@@ -43,7 +43,7 @@
 
 - [📸 Capturas de pantalla](#-capturas-de-pantalla)
 - [🌍 ¿Qué es PokéQuién?](#-qué-es-pokéquién)
-- [🚀 Cómo empezar](#-cómo-empezar)
+- [🚀 Tu primera partida en 3 pasos](#-tu-primera-partida-en-3-pasos)
 - [🕹️ Modo Duelo (2 jugadores)](#️-modo-duelo-2-jugadores)
 - [🤖 Modo Solitario (1 jugador)](#-modo-solitario-1-jugador)
 - [🗺️ Generaciones disponibles](#️-generaciones-disponibles)
@@ -52,6 +52,8 @@
 - [📱 Compatibilidad](#-compatibilidad)
 - [❓ Preguntas frecuentes](#-preguntas-frecuentes)
 - [🌟 Créditos](#-créditos)
+- [🛠️ Lo que tienes que hacer tú (quien administra el servidor)](#️-lo-que-tienes-que-hacer-tú-quien-administra-el-servidor)
+- [🖥️ ¿Quieres tu propio servidor de duelos?](#️-quieres-tu-propio-servidor-de-duelos)
 
 ---
 
@@ -67,13 +69,11 @@ La partida se juega sobre un tablero de **25 Pokémon** distribuidos en una cuad
 
 ---
 
-## 🚀 Cómo empezar
+## 🚀 Tu primera partida en 3 pasos
 
-| | En el navegador | En el móvil Android |
-|:--|:--|:--|
-| 1️⃣ | Abre **[bertmarti.github.io/Adivina-pkm](https://bertmarti.github.io/Adivina-pkm/)** | Instala la APK que te pase quien organiza la partida |
-| 2️⃣ | Pulsa **Jugar contra la máquina** para el Solitario… | Abre **PokéQuién** |
-| 3️⃣ | …o **Crear sala** y envía el enlace a un amigo | Crea una sala o pega el código de tu rival |
+1. **Crea una sala y envía el enlace** a tu rival, o pulsa **JUGAR CONTRA LA MÁQUINA** para jugar en Solitario.
+2. En el Duelo, cada jugador **elige en secreto un Pokémon** del mismo tablero de 25.
+3. Haceos **preguntas de sí o no** en persona, por voz o por chat y tachad los descartes. Gana quien deje solo el Pokémon del rival.
 
 > 💡 El modo **Solitario** no necesita el servidor de salas. El **Duelo** necesita internet porque los dos jugadores se conectan a una sala compartida.
 
@@ -340,7 +340,25 @@ Sí. La web se adapta a la pantalla del móvil y además existe una app para And
 <details>
 <summary><b>¿Por qué tarda en conectar el Duelo?</b></summary>
 <br>
-El servidor gratuito «se duerme» cuando nadie juega. La primera conexión puede tardar hasta unos 45 segundos mientras despierta; después va fluido. Si falla, pulsa <b>REINTENTAR</b>.
+El servidor gratuito «se duerme» cuando nadie juega. La primera conexión puede tardar hasta 1 minuto y verás el aviso «Despertando el servidor de duelos…». Si falla, pulsa <b>REINTENTAR</b>.
+</details>
+
+<details>
+<summary><b>Me sale «No hemos podido contactar con el servidor de duelos»</b></summary>
+<br>
+Espera unos segundos y pulsa <b>REINTENTAR</b>. Si sigue sin responder, puedes jugar al <b>Solitario</b>, que no necesita servidor.
+</details>
+
+<details>
+<summary><b>Me sale «El servidor de duelos no admite partidas desde esta web»</b></summary>
+<br>
+El servidor está rechazando la web desde la que juegas. Tiene que arreglarlo quien lo administra; consulta el apartado de administración de abajo.
+</details>
+
+<details>
+<summary><b>El código no funciona</b></summary>
+<br>
+Debe tener 8 caracteres. Las salas que genera la app usan letras y números del 2 al 9, sin <b>0</b>, <b>1</b>, <b>I</b> ni <b>O</b>. Las salas vacías caducan a los 30 minutos: pide a tu rival que genere otra o que te envíe el enlace de invitación.
 </details>
 
 <details>
@@ -364,7 +382,7 @@ El Solitario no usa servidor, así que sigue funcionando con una conexión mala;
 <details>
 <summary><b>¿Es un juego oficial de Pokémon?</b></summary>
 <br>
-No. Es un fan project no oficial y sin ánimo de lucro. Pokémon y sus nombres son marcas de Nintendo, Game Freak y The Pokémon Company.
+No. Es un proyecto de fans no oficial y sin ánimo de lucro. Pokémon y sus nombres son marcas de Nintendo, Creatures Inc. y GAME FREAK inc.
 </details>
 
 ---
@@ -379,9 +397,41 @@ Inspirado por **Checo_512** y su juego [Adivina Quién Pokémon](https://adivina
 
 | Recurso | Fuente |
 |:--------|:-------|
-| 🖼️ Retratos pixel-art | [SpriteCollab (PMD)](https://github.com/PMDCollab/SpriteCollab) |
+| 🖼️ Retratos y fondo | [SpriteCollab (PMD)](https://sprites.pmdcollab.org/) — CC BY-NC 4.0 (no comercial; autoría de cada retrato en la fuente) |
 | 📊 Datos de Pokémon | [PokéAPI](https://pokeapi.co/) |
-| 🔤 Tipografía | [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) |
+| 🔤 Tipografía | [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) — SIL OFL 1.1 |
+| 🎞️ GIF de espera (Poké Ball, Pikachu) y 🔊 sonidos de selección/victoria/derrota | Material de fans/juegos Pokémon, propiedad de sus autores; uso sin ánimo de lucro y retirada si lo piden |
+
+**Proyecto de fans no oficial y sin ánimo de lucro.** Pokémon © Nintendo, Creatures Inc. y GAME FREAK inc. Consulta el detalle de archivos y licencias en [CREDITOS.md](CREDITOS.md).
+
+## 🛠️ Lo que tienes que hacer tú (quien administra el servidor)
+
+Después de fusionar la PR de fase 2, comprueba el servicio `pokequien-rooms` en el panel de [Render](https://dashboard.render.com):
+
+1. En **Settings → Build & Deploy**, pon **Root Directory** en `server`, **Build Command** en `npm ci --omit=dev` y **Start Command** en `node room-server.js`. Si el servicio se creó desde el Blueprint, basta con **Blueprints → Sync**, porque `render.yaml` ya lo trae.
+2. En **Environment**, comprueba `ROOM_SERVER_ALLOWED_ORIGINS` = `https://bertmarti.github.io` y `ROOM_SERVER_TRUST_PROXY` = `1` (a 24/10/2026 ya parecían puestas) y pulsa **Save Changes**.
+3. Ve a **Manual Deploy → Deploy latest commit**. En los logs debe aparecer `✔ Servidor de salas escuchando…`.
+4. Abre `https://pokequien-rooms.onrender.com/`: debe devolver `"ok":true`. Comprueba también `curl -H "Origin: https://bertmarti.github.io" https://pokequien-rooms.onrender.com/`: debe devolver `"originAllowed":true` (este campo solo aparece cuando Render ya ejecuta la versión 0.3.0; con la anterior, basta con que la respuesta traiga la cabecera `access-control-allow-origin: https://bertmarti.github.io`).
+5. Haz una prueba real: abre <https://bertmarti.github.io/Adivina-pkm/>, pulsa **CREAR SALA**, usa **INVITAR (ENLACE)** y abre el enlace en otro dispositivo.
+
+Si algo falla:
+
+- **No hemos podido contactar con el servidor de duelos**: Render puede estar despertando o el servicio no responde. Espera y pulsa **REINTENTAR**.
+- **El servidor de duelos no admite partidas desde esta web**: revisa `ROOM_SERVER_ALLOWED_ORIGINS` y vuelve a desplegar.
+- **Código inexistente, sala llena o partida terminada**: comprueba el enlace y el estado de la sala; las salas vacías caducan a los 30 minutos.
+
+## 🖥️ ¿Quieres tu propio servidor de duelos?
+
+Necesitas **Node.js 22 LTS**:
+
+```bash
+git clone https://github.com/BertMarti/Adivina-pkm
+cd Adivina-pkm
+npm install
+npm run server
+```
+
+Para instalar y arrancar solo el servidor: `cd server && npm ci && npm start`. Consulta la ayuda con `npm run server:help`. Para conectar la app en desarrollo, sigue [docs/DESARROLLO.md](docs/DESARROLLO.md); por ejemplo: `EXPO_PUBLIC_ROOM_SERVER_URL=ws://192.168.1.50:8787 npm run web`.
 
 ---
 
