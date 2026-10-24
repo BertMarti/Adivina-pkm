@@ -1,6 +1,28 @@
 const http = require('http');
 const { randomBytes, timingSafeEqual } = require('crypto');
-const { WebSocketServer } = require('ws');
+
+const MIN_NODE_MAJOR = 20;
+if (require.main === module && Number(process.versions.node.split('.')[0]) < MIN_NODE_MAJOR) {
+  console.error(
+    `✖ El servidor de salas necesita Node.js ${MIN_NODE_MAJOR} o superior y tienes ${process.versions.node}.\n` +
+      '  Instala la versión LTS desde https://nodejs.org/es/download y vuelve a probar.',
+  );
+  process.exit(1);
+}
+
+let WebSocketServer;
+try {
+  ({ WebSocketServer } = require('ws'));
+} catch (cause) {
+  if (cause && cause.code === 'MODULE_NOT_FOUND') {
+    console.error(
+      '✖ Falta la dependencia «ws».\n' +
+        '  Desde la raíz del proyecto: npm install   (o solo el servidor: npm ci --prefix server)',
+    );
+    process.exit(1);
+  }
+  throw cause;
+}
 
 const PORT = Number(process.env.PORT || process.env.ROOM_SERVER_PORT || 8787);
 const VALID_GENERATIONS = new Set(['all', 1, 2, 3, 4, 5, 6, 7, 8, 9]);
@@ -9,6 +31,10 @@ const ROOM_IDLE_TTL_MS = 30 * 60_000;
 const MAX_TEXT_LENGTH = 512;
 const HTTP_SESSION_TTL_MS = 60_000;
 const MAX_HTTP_BODY = 64 * 1024;
+const ALLOWED_IMAGE_PREFIXES = [
+  'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/',
+];
 
 function createRoomServer(options = {}) {
   const rooms = new Map();
@@ -59,6 +85,22 @@ function createRoomServer(options = {}) {
   function isPlayerId(value) {
     return value === 'p1' || value === 'p2';
   }
+  // Solo se aceptan imágenes de los repositorios que usa la app (SpriteCollab y sprites de PokéAPI) o PNG/GIF/WebP
+  // embebidos. Así quien crea una sala no puede hacer que el móvil del rival cargue URLs arbitrarias (rastreo de IP).
+  // Se valida la URL normalizada (resuelve «..», «%2e%2e», etc.), sin usuario ni query, para que no se pueda salir
+  // del repositorio permitido con «…/SpriteCollab/../../otro/repo/x.png».
+  function isAllowedImageUrl(value) {
+    if (typeof value !== 'string' || value.length > MAX_TEXT_LENGTH) return false;
+    if (/^data:image\/(png|gif|webp|jpeg);base64,/i.test(value)) return true;
+    let url;
+    try {
+      url = new URL(value);
+    } catch {
+      return false;
+    }
+    if (url.username || url.password || url.search || url.hash) return false;
+    return ALLOWED_IMAGE_PREFIXES.some((prefix) => url.href.startsWith(prefix));
+  }
   function isValidPokemon(candidate) {
     return (
       Boolean(candidate) &&
@@ -71,9 +113,7 @@ function createRoomServer(options = {}) {
       Array.isArray(candidate.types) &&
       candidate.types.length > 0 &&
       candidate.types.every((type) => typeof type === 'string' && type.length <= MAX_TEXT_LENGTH) &&
-      [candidate.portraitUrl, candidate.normalUrl, candidate.sadUrl, candidate.fallbackUrl].every(
-        (value) => typeof value === 'string' && value.length <= MAX_TEXT_LENGTH && /^(https?:\/\/|data:image\/)/i.test(value),
-      )
+      [candidate.portraitUrl, candidate.normalUrl, candidate.sadUrl, candidate.fallbackUrl].every(isAllowedImageUrl)
     );
   }
   function isValidBoard(board) {
@@ -209,11 +249,11 @@ function createRoomServer(options = {}) {
     const roomCode = String(message.roomCode || '').toUpperCase();
     if (socket.roomCode) return error(socket, 'Esta conexión ya está dentro de una sala.');
     const room = rooms.get(roomCode);
-    if (!room) return error(socket, 'No existe una sala con ese código.');
-    if (room.phase === 'finished') return error(socket, 'Esa partida ya ha terminado.');
-    if (room.phase === 'abandoned') return error(socket, 'Esa partida terminó porque un jugador abandonó.');
-    if (room.players.p2.socket) return error(socket, 'La sala ya tiene dos jugadores.');
-    if (room.players.p2.sessionToken && room.disconnectedPlayer === 'p2') return error(socket, 'El jugador 2 tiene 1 minuto para reconectarse.');
+    if (!room) return error(socket, 'No hay ninguna sala con ese código. Revisa que esté bien escrito o pide a tu rival un enlace nuevo (las salas vacías caducan a los 30 minutos).');
+    if (room.phase === 'finished') return error(socket, 'Esa partida ya ha terminado. Crea una sala nueva para jugar otra.');
+    if (room.phase === 'abandoned') return error(socket, 'Esa partida terminó porque un jugador abandonó. Crea una sala nueva para jugar otra.');
+    if (room.players.p2.socket) return error(socket, 'La sala está llena: ya hay dos jugadores dentro. Pide a tu rival un código nuevo o crea tu propia sala.');
+    if (room.players.p2.sessionToken && room.disconnectedPlayer === 'p2') return error(socket, 'El jugador 2 se ha desconectado y tiene 1 minuto para volver. Inténtalo de nuevo en un momento.');
     room.players.p2.socket = socket;
     room.players.p2.sessionToken = createSessionToken();
     clearDisconnectTimer(room, 'p2');
@@ -459,7 +499,16 @@ function createRoomServer(options = {}) {
       return;
     }
     if (request.method === 'GET' && pathname === '/') {
-      sendHttpJson(request, response, 200, { ok: true, rooms: rooms.size, transports: ['websocket', 'https-polling'] });
+      // Comprobación pública: cualquier web puede leerla (CORS *) para saber si el servidor está vivo y si admite su
+      // origen, y así explicar el problema al jugador en vez de mostrar un error genérico.
+      const origin = request.headers.origin;
+      sendHttpJson(
+        request,
+        response,
+        200,
+        { ok: true, rooms: rooms.size, transports: ['websocket', 'https-polling'], originAllowed: origin ? isAllowedOrigin(origin) : null },
+        { 'Access-Control-Allow-Origin': '*', Vary: 'Origin' },
+      );
       return;
     }
     if (!rateLimitHttp(clientIp(request))) {
@@ -546,6 +595,11 @@ function createRoomServer(options = {}) {
     verifyClient: (info, done) => done(isAllowedOrigin(info.origin)),
   });
   wss.on('connection', (socket, request) => {
+    // PRIMERO el manejador de errores: sin él, un marco WebSocket inválido o mayor que maxPayload emite 'error' sin
+    // oyentes y tumba el proceso, también en las conexiones que se rechazan por cupo justo debajo.
+    socket.on('error', (error) => {
+      logger.warn?.('Conexión WebSocket cerrada por un marco no válido.', error instanceof Error ? error.message : error);
+    });
     socket.clientIp = clientIp(request);
     const count = connectionCounts.get(socket.clientIp) || 0;
     if (count >= maxConnectionsPerIp) {
@@ -607,6 +661,15 @@ function createRoomServer(options = {}) {
       if (!room.players.p1.socket && !room.players.p2.socket && now - room.lastActivity > ROOM_IDLE_TTL_MS) rooms.delete(roomCode);
   }, 60_000);
   cleanupTimer.unref?.();
+  // Los errores de listen (p. ej. puerto ocupado) ya los explica listen(); aquí solo el resto.
+  wss.on('error', (error) => {
+    if (error && error.syscall === 'listen') return;
+    logger.error('Error del servidor WebSocket.', error instanceof Error ? error.message : error);
+  });
+  httpServer.on('clientError', (error, socket) => {
+    if (socket.writable) socket.end('HTTP/1.1 400 Bad Request\r\nConnection: close\r\n\r\n');
+    else socket.destroy();
+  });
   wss.on('close', () => {
     if (heartbeatTimer) clearInterval(heartbeatTimer);
   });
@@ -618,7 +681,7 @@ function createRoomServer(options = {}) {
         httpServer.off('listening', onListening);
         if (error && error.code === 'EADDRINUSE')
           logger.error(
-            `El puerto ${actualPort} ya está en uso. Cierra la instancia anterior o, en PowerShell, usa $env:ROOM_SERVER_PORT=18787; npm run room-server.`,
+            `El puerto ${actualPort} ya está en uso. Cierra la instancia anterior o, en PowerShell, usa $env:ROOM_SERVER_PORT=18787; npm run server (en Linux/macOS: ROOM_SERVER_PORT=18787 npm run server).`,
           );
         else logger.error('No se pudo iniciar el servidor de salas.', error);
         if (require.main === module) process.exitCode = 1;
@@ -656,10 +719,36 @@ function createRoomServer(options = {}) {
 
 module.exports = { createRoomServer };
 
+const HELP = `PokéQuién · servidor de salas para el modo Duelo
+
+Uso:
+  npm run server                 (desde la raíz del proyecto)
+  node server/room-server.js     (equivalente)
+  npm start                      (dentro de la carpeta server/)
+
+Variables de entorno (todas opcionales):
+  PORT o ROOM_SERVER_PORT        Puerto de escucha (por defecto 8787).
+  ROOM_SERVER_ALLOWED_ORIGINS    Webs que pueden conectarse, separadas por comas
+                                 (p. ej. https://bertmarti.github.io). localhost siempre está permitido.
+  ROOM_SERVER_TRUST_PROXY=1      Solo detrás de un proxy (Render, Cloudflare): usa la IP real del cliente.
+
+Para que la app use este servidor, arráncala con
+  EXPO_PUBLIC_ROOM_SERVER_URL=ws://192.168.1.50:8787 npm run web
+cambiando 192.168.1.50 por la IP de este ordenador en tu red.`;
+
 if (require.main === module) {
+  if (process.argv.includes('--help') || process.argv.includes('-h')) {
+    console.log(HELP);
+    process.exit(0);
+  }
   const server = createRoomServer();
   server
     .listen()
-    .then((port) => console.log(`Room server listening on ws://0.0.0.0:${port}`))
+    .then((port) => {
+      const origins = String(process.env.ROOM_SERVER_ALLOWED_ORIGINS || '').trim();
+      console.log(`✔ Servidor de salas escuchando en ws://0.0.0.0:${port} (comprobación: http://localhost:${port}/)`);
+      console.log(`  Webs permitidas: localhost${origins ? `, ${origins}` : ' (añade más con ROOM_SERVER_ALLOWED_ORIGINS)'}`);
+      console.log('  Ayuda: node server/room-server.js --help · Para pararlo: Ctrl+C');
+    })
     .catch(() => {});
 }

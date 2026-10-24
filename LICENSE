@@ -1,6 +1,7 @@
 The MIT License (MIT)
 
-Copyright (c) 2015-present 650 Industries, Inc. (aka Expo)
+Copyright (c) 2026 BertMarti
+Copyright (c) 2015-present 650 Industries, Inc. (aka Expo) — plantilla inicial de Expo
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +20,16 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---------------------------------------------------------------------------
+
+Esta licencia MIT cubre SOLO el código fuente de PokéQuién. NO cubre los recursos de
+terceros que usa la app, que conservan sus propias licencias y titulares:
+
+- Pokémon, sus nombres y personajes: © Nintendo, Creatures Inc. y GAME FREAK inc.
+  PokéQuién es un proyecto de fans no oficial, sin ánimo de lucro y sin afiliación.
+- Retratos y fondo pixel-art de SpriteCollab (PMD Collab): CC BY-NC 4.0, uso no comercial.
+- Animaciones GIF y sonidos de referencia de assets/: propiedad de sus autores.
+- Tipografía Press Start 2P: SIL Open Font License 1.1.
+
+Detalle completo en CREDITOS.md.

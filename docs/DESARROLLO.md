@@ -24,9 +24,13 @@ npm ci
 | `npm start` | Expo interactivo (QR para Expo Go, atajos para web/Android/iOS). |
 | `npm run web` | Previsualización web en local (sin ruta base). |
 | `npm run android` / `npm run ios` | Expo apuntando a emulador o dispositivo. |
-| `npm run room-server` | Servidor de salas en `ws://0.0.0.0:8787` (health check en `http://localhost:8787`). |
+| `npm run server` | Servidor de salas en `ws://0.0.0.0:8787` (health check en `http://localhost:8787`). |
+| `npm run room-server` | Alias de `npm run server`. |
+| `npm run server:help` | Ayuda del servidor en español. |
 | `npm run typecheck` | `tsc --noEmit` con TypeScript estricto. |
-| `npm test` | Pruebas del servidor de salas (`server/room-server.test.js`, `node:test`) y del motor (`src/game/engine.test.ts`, `tsx --test`). |
+| `npm test` | Pruebas del servidor de salas y de los tests `src/game/*.test.ts`. |
+| `cd server && npm start` | Arranca solo el servidor con su `server/package.json`. |
+| `cd server && npm test` | Ejecuta los tests del servidor. |
 | `npm run single-player:verify` | Verificación determinista del modo Solitario. |
 | `npm run single-player:soak` / `:merge` / `:fleet` | Campañas largas de resistencia del Solitario (ver [SINGLE_PLAYER_TEST_PLAN.md](../SINGLE_PLAYER_TEST_PLAN.md)). |
 | `npm run build:web` | Exporta la web a `dist/` con ruta base `/Adivina-pkm` y añade la CSP (igual que en GitHub Pages). |
@@ -69,12 +73,12 @@ El **Solitario** es 100 % local: la máquina elige preguntas por ganancia de inf
 | `ROOM_SERVER_TRUST_PROXY` | Servidor | `1` para leer la IP del cliente de `CF-Connecting-IP` o, si falta, de `X-Forwarded-For` (detrás de Render). | `1` |
 | `PAGES_BASE_URL` | Build web | Ruta base al exportar; `npm run build:web` pone `/Adivina-pkm` si no se indica. | `/Adivina-pkm` |
 
-Copia `.env.example` a `.env` para desarrollo local. Los archivos `.env*.local` están ignorados por git.
+Copia `.env.example` a `.env` para desarrollo local. No necesitas `.env` para usar el servidor público; los archivos `.env*.local` están ignorados por git.
 
 ## Jugar un Duelo en local
 
 ```bash
-npm run room-server                                   # terminal 1
+npm run server                                        # terminal 1
 EXPO_PUBLIC_ROOM_SERVER_URL=ws://localhost:8787 npm run web   # terminal 2
 ```
 
@@ -115,10 +119,17 @@ cd /tmp/pk-serve && python3 -m http.server 8931
 La CSP se inyecta solo en `dist/index.html` (`scripts/add-web-csp.mjs`); no está en `public/index.html` porque
 bloquearía Metro y las IP de la LAN en desarrollo.
 
+### Servidor de salas propio
+
+El servidor necesita Node.js 22 LTS (mínimo `>=20.19.4`) y la dependencia `ws`. En la raíz, `npm run server` y `npm run room-server` son equivalentes; para aislarlo, usa `cd server && npm ci && npm start`. Al arrancar comprueba la versión de Node y que `ws` esté instalada.
+
+El health check `GET /` devuelve JSON con `ok`, `rooms`, `transports` (`websocket` y `https-polling`) y `originAllowed`: `true` o `false` si recibe `Origin`, `null` si no lo recibe. Esta ruta responde con CORS `*` para que la web pueda diagnosticar el servidor; el resto de la API mantiene la lista de orígenes.
+
 ### Servidor de salas (Render)
 
-`render.yaml` define un servicio Node gratuito (`node server/room-server.js`). El plan gratuito se duerme sin
-tráfico: el cliente lo despierta y espera hasta 45 s. Las salas viven en memoria y se pierden al reiniciar.
+`render.yaml` define un servicio Node gratuito con `rootDir: server`, `npm ci --omit=dev` y `node room-server.js`. El plan gratuito se duerme sin tráfico: el cliente lo despierta y espera hasta 1 minuto. Las salas viven en memoria y se pierden al reiniciar.
+
+La CSP de la web limita `connect-src` a `'self'` y al servidor de salas configurado (Render o `EXPO_PUBLIC_ROOM_SERVER_URL`); no permite cualquier `https:` o `wss:`.
 
 ### Android (EAS)
 

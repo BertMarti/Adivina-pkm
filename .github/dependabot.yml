@@ -15,9 +15,33 @@ updates:
         exclude-patterns: ["expo", "expo-*", "@expo/*", "react", "react-dom", "react-native", "react-native-*", "@react-native-async-storage/*"]
         update-types: ["minor", "patch"]
     ignore:
-      # Los saltos de SDK de Expo se hacen a mano con `npx expo install --fix`.
+      # Los saltos de SDK de Expo (57 → 58…) se hacen a mano y de una vez con `npx expo install expo@^58 --fix`:
+      # un paquete expo-* suelto de otro SDK rompe la build web (PR #4 y #6 cerradas el 24/10/2026).
       - dependency-name: "expo"
         update-types: ["version-update:semver-major"]
+      - dependency-name: "expo-*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@expo/*"
+        update-types: ["version-update:semver-major"]
+      # react, react-dom y react-native van fijados por el SDK de Expo (bundledNativeModules.json); se suben con el SDK
+      # (PR #5 cerrada: react-dom 19.3.1 exige react 19.3.1 y npm ci falla con ERESOLVE).
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: "react-native"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: "@types/react"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+  - package-ecosystem: npm
+    directory: /server
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      servidor:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
   - package-ecosystem: github-actions
     directory: /
     schedule:

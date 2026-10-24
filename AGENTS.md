@@ -31,9 +31,13 @@ Android, iOS) con dos modos: **Duelo** (2 jugadores, servidor de salas Node + We
 npm ci                          # instalar (Node 22; RN 0.86 pide >= 20.19.4)
 npm start                       # Expo interactivo
 npm run web                     # web en local
-npm run room-server             # servidor de salas en 8787
+npm run server                  # servidor de salas en 8787
+npm run server:help             # ayuda del servidor en español
+npm run room-server             # alias de server
+npm --prefix server start       # solo el servidor
+npm --prefix server test        # tests del servidor
 npm run typecheck               # tsc --noEmit
-npm test                        # node --test server/room-server.test.js && tsx --test src/game/engine.test.ts
+npm test                        # node --test server/room-server.test.js && tsx --test src/game/*.test.ts
 npm run single-player:verify    # verificación del Solitario
 npm run build:web               # dist/ con ruta base /Adivina-pkm + CSP (como Pages)
 ```

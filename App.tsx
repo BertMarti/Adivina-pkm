@@ -34,23 +34,14 @@ import { getPokemon, getRemainingCount, PlayerId } from './src/game/engine';
 import { RoomClient, RoomGameState } from './src/game/roomClient';
 import { CROSS_WAV } from './src/audio/sounds';
 import { SinglePlayerScreen } from './src/singlePlayer/SinglePlayerScreen';
+import { COLORS, PIXEL_FONT } from './src/ui/theme';
+import { HowToPlay } from './src/ui/HowToPlay';
+import { CreditsLink } from './src/ui/CreditsModal';
+import { isRoomServerError, normalizeRoomCodeInput, roomCodeFromUrl, validateRoomCode } from './src/game/roomErrors';
 
 type Screen = 'home' | 'room' | 'selection' | 'waiting' | 'game' | 'single-player';
 type SoundKind = 'select' | 'cross' | 'restore' | 'victory' | 'defeat';
 
-const COLORS = {
-  ink: '#111128',
-  background: '#05070B',
-  panel: '#1D1E2A',
-  panelLight: '#262736',
-  yellow: '#FFD000',
-  orange: '#F06B00',
-  cyan: '#4C6BE8',
-  white: '#F6F5EF',
-  muted: '#A7A8B2',
-  danger: '#FF5F67',
-  success: '#38D37D',
-};
 
 const ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 
@@ -68,12 +59,6 @@ function inviteLinkFor(roomCode: string) {
   return `pokequien://join?room=${encodedCode}`;
 }
 
-function roomCodeFromUrl(url: string | null) {
-  if (!url) return '';
-  const match = url.match(/[?&]room=([A-Za-z0-9]+)/i);
-  return match?.[1]?.toUpperCase() ?? '';
-}
-
 function getScreenForState(state: RoomGameState, player: PlayerId): Screen {
   if (state.phase === 'abandoned') return 'home';
   if (state.phase === 'waiting-for-player') return 'room';
@@ -82,7 +67,6 @@ function getScreenForState(state: RoomGameState, player: PlayerId): Screen {
   return 'game';
 }
 
-const PIXEL_FONT = 'PressStart2P_400Regular';
 
 function useReduceMotion() {
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -265,7 +249,7 @@ function BoardSection({ game, player, activePlayer, reduceMotion, onToggle }: { 
   return <View style={styles.boardSection}><RetroPanelHeader title={isMine ? 'MI TABLERO' : 'TABLERO RIVAL'} detail={`${remaining} POKÉMON LIBRES`} /><View style={[styles.boardPanel, isMine && styles.boardPanelMine]}><CompactGrid game={game} player={player} activePlayer={activePlayer} reduceMotion={reduceMotion} onToggle={onToggle} /></View><Text style={styles.boardHint}>{isMine ? 'Tacha todos menos el secreto del rival para ganar. Puedes destachar.' : 'El tablero rival solo se puede consultar'}</Text></View>;
 }
 
-function HomeScreen({ generation, setGeneration, onCreate, onJoin, onDemo, onCopyInvite, onSolo, onRetry, inviteCode, joinCode, setJoinCode, loading, error, reduceMotion }: { generation: GenerationId; setGeneration: (generation: GenerationId) => void; onCreate: () => void; onJoin: () => void; onDemo: () => void; onCopyInvite: () => void; onSolo: () => void; onRetry: () => void; inviteCode: string; joinCode: string; setJoinCode: (value: string) => void; loading: boolean; error: string; reduceMotion: boolean }) {
+function HomeScreen({ generation, setGeneration, onCreate, onJoin, onDemo, onCopyInvite, onSolo, onRetry, inviteCode, joinCode, setJoinCode, loading, loadingLabel, error, offerSolo, progress, notice, retryAction, reduceMotion }: { generation: GenerationId; setGeneration: (generation: GenerationId) => void; onCreate: () => void; onJoin: () => void; onDemo: () => void; onCopyInvite: () => void; onSolo: () => void; onRetry: () => void; inviteCode: string; joinCode: string; setJoinCode: (value: string) => void; loading: boolean; loadingLabel: string; error: string; offerSolo: boolean; progress: string; notice: string; retryAction: 'create' | 'join' | null; reduceMotion: boolean }) {
   const float = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     if (reduceMotion) {
@@ -283,22 +267,23 @@ function HomeScreen({ generation, setGeneration, onCreate, onJoin, onDemo, onCop
   return <ScrollView stickyHeaderIndices={[0]} contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" contentInsetAdjustmentBehavior="automatic">
     <View style={styles.homeStickyBar}><Text style={styles.homeStickyTitle}>⚡ POKÉQUIÉN</Text><Text style={styles.homeStickyStatus}>MENÚ PRINCIPAL</Text></View>
     <View style={styles.hero}><Animated.Text style={[styles.logo, { transform: [{ translateY: logoY }] }]} accessibilityRole="header">POKÉ{`\n`}QUIÉN</Animated.Text><Text style={styles.heroSubtitle}>ADIVINA EL SECRETO · DUELO PIXEL</Text></View>
-    <View style={styles.panel}><RetroPanelHeader title="CREAR PARTIDA" /><Text style={styles.fieldLabel}>Generación:</Text><ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.generationRow}>{GENERATIONS.map((item) => <Pressable key={String(item.id)} accessibilityRole="radio" accessibilityLabel={`Generación ${item.label}`} accessibilityState={{ selected: generation === item.id }} onPress={() => setGeneration(item.id)} style={[styles.generationChip, generation === item.id && styles.generationChipActive]}><Text style={[styles.generationText, generation === item.id && styles.generationTextActive]}>{item.id === 'all' ? '🎲  Todas (Aleatorio)' : item.label}</Text></Pressable>)}</ScrollView><Text style={styles.codeLabel}>TU CÓDIGO DE SALA:</Text><View style={styles.codeInput}><Text selectable style={styles.roomCode}>{inviteCode}</Text></View><Button label="COPIAR ENLACE" onPress={onCopyInvite} variant="orange" disabled={loading} /><Button label={loading ? 'CARGANDO POKÉDEX…' : 'CREAR SALA'} onPress={onCreate} disabled={loading} /></View>
-    <View style={styles.panel}><RetroPanelHeader title="UNIRSE A PARTIDA" /><Text style={styles.fieldLabel}>Introduce el código de tu rival:</Text><TextInput accessibilityLabel="Código de sala" autoCapitalize="characters" autoCorrect={false} maxLength={8} onChangeText={(value) => setJoinCode(value.toUpperCase().replace(/[^A-Z2-9]/g, ''))} placeholder="EJ. K7XQ2MPA" placeholderTextColor="#777986" style={styles.input} value={joinCode} /><Button label={loading ? 'CONECTANDO…' : 'CONECTAR'} onPress={onJoin} variant="primary" disabled={loading} /></View>
+    <HowToPlay />
+    <View style={styles.panel}><RetroPanelHeader title="CREAR PARTIDA" /><Text style={styles.fieldLabel}>Generación:</Text><ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.generationRow}>{GENERATIONS.map((item) => <Pressable key={String(item.id)} accessibilityRole="radio" accessibilityLabel={`Generación ${item.label}`} accessibilityState={{ selected: generation === item.id }} onPress={() => setGeneration(item.id)} style={[styles.generationChip, generation === item.id && styles.generationChipActive]}><Text style={[styles.generationText, generation === item.id && styles.generationTextActive]}>{item.id === 'all' ? '🎲  Todas (Aleatorio)' : item.label}</Text></Pressable>)}</ScrollView><Text style={styles.codeLabel}>TU CÓDIGO DE SALA:</Text><View style={styles.codeInput}><Text selectable style={styles.roomCode}>{inviteCode}</Text></View><Button label="COPIAR ENLACE" onPress={onCopyInvite} variant="orange" disabled={loading} /><Button label={loading ? 'CARGANDO POKÉDEX…' : 'CREAR SALA'} onPress={onCreate} disabled={loading} />{!!notice && <Text accessibilityLiveRegion="polite" style={styles.notice}>{notice}</Text>}{loading && !!progress && retryAction !== 'join' && <Text accessibilityLiveRegion="polite" style={styles.notice}>{progress}</Text>}</View>
+    <View style={styles.panel}><RetroPanelHeader title="UNIRSE A PARTIDA" /><Text style={styles.fieldLabel}>Introduce el código de tu rival:</Text><TextInput accessibilityLabel="Código de sala" accessibilityHint="8 letras o números" autoCapitalize="characters" autoCorrect={false} maxLength={8} onChangeText={(value) => setJoinCode(normalizeRoomCodeInput(value))} onSubmitEditing={onJoin} returnKeyType="go" placeholder="EJ. K7XQ2MPA" placeholderTextColor="#777986" style={styles.input} value={joinCode} /><Button label={loading ? (loadingLabel || 'CONECTANDO…') : 'CONECTAR'} onPress={onJoin} variant="primary" disabled={loading} />{loading && !!progress && retryAction === 'join' && <Text accessibilityLiveRegion="polite" style={styles.notice}>{progress}</Text>}</View>
     <Pressable accessibilityRole="button" accessibilityLabel="Jugar contra la máquina" onPress={onSolo} style={({ pressed }) => [styles.soloCta, pressed && styles.pressed]}>
       <Text style={styles.soloCtaKicker}>MODO SOLITARIO</Text>
       <Text style={styles.soloCtaTitle}>JUGAR CONTRA LA MÁQUINA</Text>
       <Text style={styles.soloCtaText}>Responde solo SÍ o NO y deja que la Pokédex te descubra.</Text>
     </Pressable>
     <Pressable accessibilityRole="button" onPress={onDemo} style={styles.demoLink}><Text style={styles.demoLinkText}>▶  CREAR SALA DE PRUEBA KANTO</Text><Text style={styles.muted}>Crea una sala rápida para abrirla en dos pestañas.</Text></Pressable>
-    {!!error && <View style={styles.errorBox}><Text accessibilityRole="alert" style={styles.error}>{error}</Text><Button label="REINTENTAR" onPress={onRetry} variant="gray" disabled={loading} /></View>}<Text style={styles.credits}>Inspirado por Checo_512 · Retratos: SpriteCollab PMD{`\n`}Fan project no oficial · Datos: PokéAPI</Text>
+    {!!error && <View style={styles.errorBox}><Text accessibilityRole="alert" accessibilityLiveRegion="assertive" style={styles.error}>{error}</Text><Button label="REINTENTAR" onPress={onRetry} variant="gray" disabled={loading} />{offerSolo && <Button label="JUGAR AL SOLITARIO" onPress={onSolo} variant="orange" />}</View>}<CreditsLink />
   </ScrollView>;
 }
 
-function RoomScreen({ game, player, onShare, onCopyCode, onBack }: { game: RoomGameState; player: PlayerId; onShare: () => void; onCopyCode: () => void; onBack: () => void }) {
+function RoomScreen({ game, player, onShare, onCopyCode, onBack, notice }: { game: RoomGameState; player: PlayerId; onShare: () => void; onCopyCode: () => void; onBack: () => void; notice: string }) {
   const generationLabel = GENERATIONS.find((item) => item.id === game.generation)?.label ?? 'Todas';
   const ready = game.playerCount === 2;
-  return <ScrollView contentContainerStyle={styles.scrollContent}><Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}><Text style={styles.backText}>‹  VOLVER</Text></Pressable><View style={styles.panel}><RetroPanelHeader title={ready ? 'PARTIDA LISTA' : 'CREAR PARTIDA'} /><Text style={styles.fieldLabel}>Generación: {generationLabel}</Text><Text style={styles.codeLabel}>TU CÓDIGO DE SALA:</Text><View style={styles.codeInput}><Text selectable style={styles.roomCode}>{game.roomCode}</Text></View><View style={styles.roomActions}><Button label="COPIAR CÓDIGO" onPress={onCopyCode} variant="gray" /><Button label="COPIAR ENLACE" onPress={onShare} variant="orange" /></View></View>{ready ? <View style={styles.readyPanel}><Text style={styles.readyTitle}>¡SALA COMPLETA!</Text><Text style={styles.readyText}>Los dos jugadores verán ahora la misma cuadrícula 5×5 y elegirán directamente su secreto.</Text></View> : <View style={styles.waitRoomPanel}><Text style={styles.waitRoomTitle}>ESPERANDO AL OPONENTE…</Text><Text style={styles.waitRoomText}>Comparte el código con tu rival. Cuando entre, ambos pasaréis automáticamente a la elección.</Text><View style={styles.waitDots}><Text style={styles.waitDotGlyph}>●</Text><Text style={styles.waitDotGlyph}>●</Text><Text style={styles.waitDotGlyph}>●</Text></View></View>}<Text style={styles.mutedCenter}>JUGADOR {player === 'p1' ? '1' : '2'} · {ready ? '2 / 2 CONECTADOS' : '1 / 2 CONECTADOS'}</Text></ScrollView>;
+  return <ScrollView contentContainerStyle={styles.scrollContent}><Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}><Text style={styles.backText}>‹  VOLVER</Text></Pressable><View style={styles.panel}><RetroPanelHeader title={ready ? 'PARTIDA LISTA' : 'CREAR PARTIDA'} /><Text style={styles.fieldLabel}>Generación: {generationLabel}</Text><Text style={styles.codeLabel}>TU CÓDIGO DE SALA:</Text><View style={styles.codeInput}><Text selectable style={styles.roomCode}>{game.roomCode}</Text></View><View style={styles.roomActions}><Button label="INVITAR (ENLACE)" onPress={onShare} variant="orange" /><Button label="COPIAR CÓDIGO" onPress={onCopyCode} variant="gray" /></View>{!!notice && <Text accessibilityLiveRegion="polite" style={styles.notice}>{notice}</Text>}</View>{ready ? <View style={styles.readyPanel}><Text style={styles.readyTitle}>¡SALA COMPLETA!</Text><Text style={styles.readyText}>Los dos jugadores verán ahora la misma cuadrícula 5×5 y elegirán directamente su secreto.</Text></View> : <View style={styles.waitRoomPanel}><Text style={styles.waitRoomTitle}>ESPERANDO AL OPONENTE…</Text><Text style={styles.waitRoomText}>Pulsa INVITAR y envía el enlace a tu rival: al abrirlo entrará directamente. Cuando entre, ambos pasaréis solos a la elección.</Text><View style={styles.waitDots}><Text style={styles.waitDotGlyph}>●</Text><Text style={styles.waitDotGlyph}>●</Text><Text style={styles.waitDotGlyph}>●</Text></View></View>}<Text style={styles.mutedCenter}>JUGADOR {player === 'p1' ? '1' : '2'} · {ready ? '2 / 2 CONECTADOS' : '1 / 2 CONECTADOS'}</Text></ScrollView>;
 }
 
 function PokeballCapture({ pokemon, reduceMotion }: { pokemon?: PokemonCandidate; reduceMotion: boolean }) {
@@ -381,8 +366,8 @@ function ReconnectBanner({ game, player }: { game: RoomGameState; player: Player
     return () => clearInterval(timer);
   }, [game.reconnectDeadline, game.disconnectedPlayer]);
   if (!game.disconnectedPlayer || game.abandonedPlayer || game.phase === 'finished') return null;
-  const disconnectedLabel = game.disconnectedPlayer === player ? 'TÚ' : 'EL RIVAL';
-  return <View accessibilityLiveRegion="polite" style={styles.disconnectBanner}><Text style={styles.disconnectTitle}>{disconnectedLabel} DESCONECTADO</Text><Text style={styles.disconnectText}>Esperando una reconexión… {seconds}s</Text></View>;
+  const self = game.disconnectedPlayer === player;
+  return <View accessibilityLiveRegion="polite" accessibilityRole="alert" style={styles.disconnectBanner}><Text style={styles.disconnectTitle}>{self ? 'TE HAS DESCONECTADO' : 'EL RIVAL SE HA DESCONECTADO'}</Text><Text style={styles.disconnectText}>{self ? `Reconectando… ${seconds} s` : `Le esperamos ${seconds} s. Si vuelve, la partida sigue donde estaba.`}</Text></View>;
 }
 
 function VictoryModal({ game, player, onRematch }: { game: RoomGameState; player: PlayerId; onRematch: () => void }) {
@@ -415,7 +400,7 @@ function GameScreen({ game, player, reduceMotion, onToggle, onBack, onRematch }:
       <BoardSection game={game} player={player} activePlayer={player} reduceMotion={reduceMotion} onToggle={(id) => onToggle(player, id)} />
       <VersusStrip game={game} activePlayer={player} />
       <BoardSection game={game} player={player === 'p1' ? 'p2' : 'p1'} activePlayer={player} reduceMotion={reduceMotion} onToggle={(id) => onToggle(player === 'p1' ? 'p2' : 'p1', id)} />
-      <Text style={styles.credits}>Tachado: sonido local · Retratos: SpriteCollab PMD · No oficial</Text>
+      <CreditsLink />
     </ScrollView>
     <VictoryModal game={game} player={player} onRematch={onRematch} />
   </>;
@@ -429,6 +414,11 @@ export default function App() {
   const [joinCode, setJoinCode] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [offerSolo, setOfferSolo] = useState(false);
+  const [progress, setProgress] = useState('');
+  const [notice, setNotice] = useState('');
+  const [loadingLabel, setLoadingLabel] = useState('');
+  const noticeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [retryAction, setRetryAction] = useState<'create' | 'join' | null>(null);
   const [game, setGame] = useState<RoomGameState | null>(null);
   const [player, setPlayer] = useState<PlayerId | null>(null);
@@ -455,24 +445,41 @@ export default function App() {
     if (!roomClientRef.current) {
       roomClientRef.current = new RoomClient((nextGame, nextPlayer) => {
         setError(nextGame.phase === 'abandoned'
-          ? `La partida terminó: ${nextGame.abandonedPlayer === nextPlayer ? 'has abandonado la sala' : 'el rival abandonó la partida'}.`
+          ? `La partida terminó: ${nextGame.abandonedPlayer === nextPlayer ? 'has abandonado la sala' : 'el rival abandonó la partida'}. Crea otra sala o juega al Solitario.`
           : '');
+        setOfferSolo(nextGame.phase === 'abandoned');
         applyState(nextGame, nextPlayer);
       }, (message) => {
         setError(message);
+        if (!message) setOfferSolo(false);
         if (message.includes('no se reconectó') || message.includes('reconexión ha terminado')) {
           roomClientRef.current?.close({ forgetSession: true });
           roomClientRef.current = null;
           setGame(null);
           setPlayer(null);
           setScreen('home');
+          setOfferSolo(true);
         }
-      });
+      }, setProgress);
     }
     return roomClientRef.current;
   };
 
-  useEffect(() => () => roomClientRef.current?.close(), []);
+  useEffect(() => () => {
+    roomClientRef.current?.close();
+    if (noticeTimerRef.current) clearTimeout(noticeTimerRef.current);
+  }, []);
+
+  const showNotice = (message: string) => {
+    setNotice(message);
+    if (noticeTimerRef.current) clearTimeout(noticeTimerRef.current);
+    noticeTimerRef.current = setTimeout(() => setNotice(''), 3_500);
+  };
+
+  const showFailure = (cause: unknown, fallback: string, extra = '') => {
+    setOfferSolo(isRoomServerError(cause));
+    setError(`${cause instanceof Error && cause.message ? cause.message : fallback}${extra}`);
+  };
 
   useEffect(() => {
     const phase = game?.phase ?? null;
@@ -484,6 +491,8 @@ export default function App() {
 
   const createRoom = async (nextGeneration = generation): Promise<RoomGameState | null> => {
     setError('');
+    setOfferSolo(false);
+    setLoadingLabel('');
     setRetryAction('create');
     setLoading(true);
     try {
@@ -496,21 +505,24 @@ export default function App() {
       applyState(nextGame, getClient().playerId ?? 'p1');
       return nextGame;
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : 'No se pudo crear la sala.');
+      showFailure(cause, 'No se pudo crear la sala.');
       return null;
     } finally {
       setLoading(false);
     }
   };
 
-  const joinRoomByCode = async (rawCode: string) => {
-    const code = rawCode.trim().toUpperCase();
-    if (code.length < 4) {
-      setError('Escribe un identificador de sala de al menos 4 caracteres.');
+  const joinRoomByCode = async (rawCode: string, fromLink = false) => {
+    const code = normalizeRoomCodeInput(rawCode);
+    const invalid = validateRoomCode(code);
+    setOfferSolo(false);
+    if (invalid) {
+      setError(invalid);
       return;
     }
     setError('');
     setRetryAction('join');
+    setLoadingLabel(`ENTRANDO EN ${code}…`);
     setLoading(true);
     try {
       const nextGame = await getClient().join(code);
@@ -518,9 +530,11 @@ export default function App() {
       setRetryAction(null);
       applyState(nextGame, getClient().playerId ?? 'p2');
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : 'No se pudo entrar en la sala.');
+      const missing = cause instanceof Error && cause.message.startsWith('No hay ninguna sala');
+      showFailure(cause, 'No se pudo entrar en la sala.', missing && fromLink ? ' Puede que el enlace haya caducado: pide a tu rival uno nuevo.' : '');
     } finally {
       setLoading(false);
+      setLoadingLabel('');
     }
   };
 
@@ -531,10 +545,15 @@ export default function App() {
       const code = roomCodeFromUrl(url);
       if (!code) return;
       setJoinCode(code);
-      void joinRoomByCode(code);
+      void joinRoomByCode(code, true);
     };
     if (Platform.OS === 'web' && typeof window !== 'undefined') {
-      joinFromUrl(window.location.href);
+      const href = window.location.href;
+      // Se quita ?room= de la barra (conservando /Adivina-pkm/) para que recargar no reintente una sala vieja.
+      if (/[?&]room=/i.test(window.location.search)) {
+        try { window.history.replaceState(null, '', `${window.location.pathname}${window.location.hash}`); } catch { /* best effort */ }
+      }
+      joinFromUrl(href);
       return;
     }
     let active = true;
@@ -543,20 +562,57 @@ export default function App() {
     return () => { active = false; subscription.remove(); };
   }, []);
 
-  const shareRoom = () => {
+  const LINK_COPIED = '¡Enlace copiado! Pégalo en WhatsApp, Telegram o donde habléis.';
+
+  const copyLink = async (roomCode: string) => {
+    try {
+      await Clipboard.setStringAsync(inviteLinkFor(roomCode));
+      showNotice(LINK_COPIED);
+    } catch {
+      showNotice(`No se pudo copiar. Envía este enlace: ${inviteLinkFor(roomCode)}`);
+    }
+  };
+
+  // En móvil abre el menú de compartir; en un navegador sin navigator.share copia el enlace. Siempre hay aviso visible.
+  const inviteRival = async () => {
     if (!game) return;
-    void Share.share({ message: `Únete a mi partida de PokéQuién con el identificador ${game.roomCode}: ${inviteLinkFor(game.roomCode)}` });
+    const link = inviteLinkFor(game.roomCode);
+    const message = `¡Te reto a un duelo de PokéQuién! Entra con este enlace (sala ${game.roomCode}): ${link}`;
+    if (Platform.OS === 'web') {
+      const nav = typeof navigator !== 'undefined' ? navigator as Navigator & { share?: (data: { title?: string; text?: string; url?: string }) => Promise<void> } : undefined;
+      if (nav?.share) {
+        try {
+          await nav.share({ title: 'PokéQuién', text: message, url: link });
+          showNotice('Invitación lista. Cuando tu rival abra el enlace, entraréis los dos.');
+          return;
+        } catch (cause) {
+          if (cause instanceof Error && cause.name === 'AbortError') return;
+        }
+      }
+      await copyLink(game.roomCode);
+      return;
+    }
+    try {
+      await Share.share({ message });
+    } catch {
+      await copyLink(game.roomCode);
+    }
   };
 
   const copyInvite = async () => {
     if (loading) return;
     const room = game ?? await createRoom();
-    if (room) await Clipboard.setStringAsync(inviteLinkFor(room.roomCode));
+    if (room) await copyLink(room.roomCode);
   };
 
-  const copyCode = () => {
+  const copyCode = async () => {
     if (!game) return;
-    void Clipboard.setStringAsync(game.roomCode);
+    try {
+      await Clipboard.setStringAsync(game.roomCode);
+      showNotice(`Código ${game.roomCode} copiado.`);
+    } catch {
+      showNotice(`Tu código es ${game.roomCode}.`);
+    }
   };
 
   const leaveRoom = () => {
@@ -566,6 +622,7 @@ export default function App() {
     setPlayer(null);
     setScreen('home');
     setError('');
+    setOfferSolo(false);
   };
 
   const select = (id: number) => {
@@ -592,8 +649,8 @@ export default function App() {
   if (!fontsLoaded) return <SafeAreaProvider><SafeAreaView edges={['top', 'bottom']} style={styles.safeArea}><View style={styles.fontLoading}><Text style={styles.fontLoadingText}>CARGANDO…</Text></View></SafeAreaView></SafeAreaProvider>;
 
   return <SafeAreaProvider><SafeAreaView edges={['top', 'bottom']} style={styles.safeArea}><StatusBar style="light" /><RetroBackdrop /><View accessible={false} style={styles.appRoot}>
-    {screen === 'home' && <HomeScreen generation={generation} setGeneration={setGeneration} onCreate={() => void createRoom()} onJoin={joinRoom} onDemo={() => void createRoom(1)} onCopyInvite={() => void copyInvite()} onSolo={() => setScreen('single-player')} onRetry={() => retryAction === 'join' ? joinRoom() : void createRoom()} inviteCode={inviteCode} joinCode={joinCode} setJoinCode={setJoinCode} loading={loading} error={error} reduceMotion={reduceMotion} />}
-    {screen === 'room' && game && player && <RoomScreen game={game} player={player} onShare={shareRoom} onCopyCode={copyCode} onBack={leaveRoom} />}
+    {screen === 'home' && <HomeScreen generation={generation} setGeneration={setGeneration} onCreate={() => void createRoom()} onJoin={joinRoom} onDemo={() => void createRoom(1)} onCopyInvite={() => void copyInvite()} onSolo={() => { setError(''); setOfferSolo(false); setScreen('single-player'); }} onRetry={() => retryAction === 'join' ? joinRoom() : void createRoom()} inviteCode={inviteCode} joinCode={joinCode} setJoinCode={setJoinCode} loading={loading} loadingLabel={loadingLabel} error={error} offerSolo={offerSolo} progress={progress} notice={notice} retryAction={retryAction} reduceMotion={reduceMotion} />}
+    {screen === 'room' && game && player && <RoomScreen game={game} player={player} onShare={() => void inviteRival()} onCopyCode={() => void copyCode()} onBack={leaveRoom} notice={notice} />}
     {screen === 'selection' && game && player && <SelectionScreen game={game} player={player} reduceMotion={reduceMotion} onSelect={select} />}
     {screen === 'waiting' && game && player && <WaitingScreen game={game} player={player} reduceMotion={reduceMotion} />}
     {screen === 'game' && game && player && <GameScreen game={game} player={player} reduceMotion={reduceMotion} onToggle={toggle} onBack={leaveRoom} onRematch={rematch} />}
@@ -659,6 +716,7 @@ const styles = StyleSheet.create({
   demoLinkText: { color: COLORS.yellow, fontWeight: '900', fontSize: 13, letterSpacing: 0.6 },
   errorBox: { backgroundColor: 'rgba(76, 25, 45, 0.96)', borderWidth: 2, borderColor: '#D76479', borderRadius: 12, padding: 10, gap: 9 },
   error: { color: COLORS.white, lineHeight: 17 },
+  notice: { color: COLORS.success, fontSize: 13, lineHeight: 19, textAlign: 'center', fontWeight: '700' },
   credits: { color: '#A2A2A9', fontFamily: PIXEL_FONT, fontSize: 7, lineHeight: 15, textAlign: 'center', marginTop: 6 },
   backButton: { alignSelf: 'flex-start', minHeight: 44, justifyContent: 'center', paddingVertical: 6, paddingRight: 14 },
   topbarButton: { minHeight: 44, minWidth: 58, justifyContent: 'center' },

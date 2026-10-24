@@ -2,6 +2,7 @@ import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 import { GenerationId, PokemonCandidate } from '../data/pokemon';
 import { LocalGameState, PlayerId } from './engine';
+import { RoomServerError, interpretHealth } from './roomErrors';
 
 export type RoomGameState = LocalGameState & {
   generation: GenerationId;
@@ -47,7 +48,11 @@ function toHttpServerUrl(serverUrl: string) {
 }
 
 function connectionError() {
-  return new Error('No se pudo conectar con el servidor de salas. Comprueba tu conexión e inténtalo de nuevo.');
+  return new RoomServerError('unreachable');
+}
+
+function currentWebOrigin() {
+  return Platform.OS === 'web' && typeof window !== 'undefined' ? window.location?.origin : undefined;
 }
 
 class HttpNetworkError extends Error {
@@ -57,19 +62,33 @@ class HttpNetworkError extends Error {
   }
 }
 
-async function wakeHostedServer(serverUrl: string) {
-  if (!serverUrl.startsWith('wss://')) return;
-  const healthUrl = serverUrl.replace(/^wss:\/\//, 'https://');
+const WAKING_MESSAGE = 'Despertando el servidor de duelos… la primera vez puede tardar hasta 1 minuto.';
+
+/**
+ * Comprueba GET <servidor>/ (también lo despierta si el plan gratuito de Render está dormido).
+ * En web lee `originAllowed` para explicar si el servidor no admite esta web; si la petición falla
+ * (red o servidor antiguo sin CORS), el intento por WebSocket sigue siendo la fuente de verdad.
+ */
+async function checkServer(serverUrl: string, onProgress?: (message: string) => void): Promise<'ok' | 'unknown'> {
+  const isWeb = Platform.OS === 'web';
+  if (!isWeb && !serverUrl.startsWith('wss://')) return 'unknown';
+  const healthUrl = `${toHttpServerUrl(serverUrl)}/`;
   const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
-  const timeout = controller ? setTimeout(() => controller.abort(), 8_000) : null;
+  const timeout = controller ? setTimeout(() => controller.abort(), serverUrl.startsWith('wss://') ? 45_000 : 8_000) : null;
+  const slowNotice = onProgress ? setTimeout(() => onProgress(WAKING_MESSAGE), 3_000) : null;
+  let verdict: 'ok' | 'origin-rejected' | 'unknown' = 'unknown';
   try {
-    await fetch(healthUrl, { method: 'GET', signal: controller?.signal, cache: 'no-store' });
+    const response = await fetch(healthUrl, { method: 'GET', signal: controller?.signal, cache: 'no-store' });
+    verdict = isWeb ? interpretHealth(await response.json()) : 'unknown';
   } catch {
-    // The WebSocket attempt below remains the source of truth. This warm-up
-    // is best-effort because some native runtimes reject optional fetch flags.
+    // Best effort: algunos runtimes nativos rechazan opciones de fetch y los servidores antiguos no mandan CORS.
   } finally {
     if (timeout) clearTimeout(timeout);
+    if (slowNotice) clearTimeout(slowNotice);
+    onProgress?.('');
   }
+  if (verdict === 'origin-rejected') throw new RoomServerError('origin-rejected', currentWebOrigin());
+  return verdict === 'ok' ? 'ok' : 'unknown';
 }
 
 type SavedRoomSession = Readonly<{ roomCode: string; player: PlayerId; sessionToken: string }>;
@@ -133,6 +152,7 @@ export class RoomClient {
   private socket: RoomSocket | null = null;
   private readonly onState: (state: RoomGameState, player: PlayerId) => void;
   private readonly onError: (message: string) => void;
+  private readonly onProgress?: (message: string) => void;
   private reconnectTimer: ReturnType<typeof setTimeout> | null = null;
   private reconnectDeadline = 0;
   private intentionalClose = false;
@@ -144,10 +164,15 @@ export class RoomClient {
   private httpErrorReported = false;
   playerId: PlayerId | null = null;
 
-  constructor(onState: (state: RoomGameState, player: PlayerId) => void, onError: (message: string) => void) {
+  constructor(
+    onState: (state: RoomGameState, player: PlayerId) => void,
+    onError: (message: string) => void,
+    onProgress?: (message: string) => void,
+  ) {
     this.transport = Platform.OS === 'web' ? 'websocket' : 'http';
     this.onState = onState;
     this.onError = onError;
+    this.onProgress = onProgress;
   }
 
   async connect(request: Extract<RoomRequest, { type: 'create' | 'join' }>) {
@@ -236,7 +261,7 @@ export class RoomClient {
     const serverUrls = getServerUrls();
     const serverUrl = serverUrls[Math.min(serverIndex, serverUrls.length - 1)];
     this.httpBaseUrl = toHttpServerUrl(serverUrl);
-    await wakeHostedServer(serverUrl);
+    await checkServer(serverUrl, this.onProgress);
     try {
       const path = request.type === 'create'
         ? '/api/rooms'
@@ -250,6 +275,7 @@ export class RoomClient {
     } catch (cause) {
       if (cause instanceof HttpNetworkError && serverIndex + 1 < serverUrls.length) return this.openHttp(request, serverIndex + 1);
       if (cause instanceof Error && cause.message === 'Ruta no encontrada.') return this.open(request);
+      if (cause instanceof HttpNetworkError) throw connectionError();
       throw cause instanceof Error ? cause : connectionError();
     }
   }
@@ -270,7 +296,8 @@ export class RoomClient {
   private async open(request: Extract<RoomRequest, { type: 'create' | 'join' | 'reconnect' }>, serverIndex = 0) {
     const serverUrls = getServerUrls();
     const serverUrl = serverUrls[Math.min(serverIndex, serverUrls.length - 1)];
-    await wakeHostedServer(serverUrl);
+    // Solo en el primer intento de conexión: en las reconexiones automáticas no se vuelve a comprobar.
+    if (request.type !== 'reconnect' || serverIndex > 0) await checkServer(serverUrl, request.type === 'reconnect' ? undefined : this.onProgress);
     return new Promise<RoomGameState>((resolve, reject) => {
       let settled = false;
       let connected = false;
@@ -331,7 +358,7 @@ export class RoomClient {
         if (connected) this.onError('Se perdió la conexión. Intentando reconectar durante 1 minuto…');
       };
       socket.onclose = () => {
-        if (!settled) fallbackOrReject(new Error('El servidor cerró la sala antes de responder.'));
+        if (!settled) fallbackOrReject(connected ? new Error('El servidor cerró la sala antes de responder.') : connectionError());
         if (this.socket === socket) this.socket = null;
         if (this.intentionalClose || !this.sessionToken || !this.playerId || !this.roomCode) return;
         this.reconnectDeadline = this.reconnectDeadline || Date.now() + 60_000;
