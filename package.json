@@ -1,6 +1,6 @@
 {
   "name": "pokequien",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "index.ts",
   "dependencies": {
     "@expo-google-fonts/press-start-2p": "^0.4.1",
@@ -17,23 +17,25 @@
     "react-dom": "19.2.3",
     "react-native": "0.86.3",
     "react-native-safe-area-context": "~5.7.0",
-    "react-native-web": "^0.21.4",
-    "ws": "^8.22.0"
+    "react-native-web": "^0.21.4"
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
     "@types/ws": "^8.18.2",
     "tsx": "^4.23.15",
-    "typescript": "~6.0.3"
+    "typescript": "~6.0.3",
+    "ws": "^8.22.0"
   },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "server": "node server/room-server.js",
+    "server:help": "node server/room-server.js --help",
     "room-server": "node server/room-server.js",
     "typecheck": "tsc --noEmit",
-    "test": "node --test server/room-server.test.js && tsx --test src/game/engine.test.ts",
+    "test": "node --test server/room-server.test.js && tsx --test src/game/*.test.ts",
     "build:web": "node scripts/build-web.mjs",
     "single-player:soak": "tsx scripts/single-player-soak-test.ts",
     "single-player:merge": "tsx scripts/merge-single-player-soak.ts",

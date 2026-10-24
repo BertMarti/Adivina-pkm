@@ -1,10 +1,13 @@
+# Blueprint de Render para el servidor de salas del modo Duelo (plan gratuito).
+# rootDir: server → Render instala SOLO server/package.json (ws), no Expo ni React Native.
 services:
   - type: web
     name: pokequien-rooms
     runtime: node
     plan: free
+    rootDir: server
     buildCommand: npm ci --omit=dev
-    startCommand: node server/room-server.js
+    startCommand: node room-server.js
     healthCheckPath: /
     envVars:
       - key: NODE_ENV

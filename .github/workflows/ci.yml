@@ -48,6 +48,17 @@ jobs:
       - run: npm ci
       - name: Comprobar sintaxis del servidor de salas
         run: node --check server/room-server.js
+      - name: Servidor de salas solo con sus dependencias (como en Render)
+        run: |
+          tmp="$(mktemp -d)"
+          cp server/package.json server/package-lock.json server/room-server.js "$tmp/"
+          cd "$tmp"
+          npm ci --omit=dev --no-audit --no-fund
+          test ! -d node_modules/expo
+          PORT=18787 ROOM_SERVER_ALLOWED_ORIGINS=https://bertmarti.github.io node room-server.js &
+          for i in $(seq 1 20); do curl -fsS -H 'Origin: https://bertmarti.github.io' http://127.0.0.1:18787/ && break; sleep 0.5; done | tee health.json
+          grep -q '"originAllowed":true' health.json
+          kill %1
       - name: Tipos (tsc --noEmit)
         run: npm run typecheck
       - name: Pruebas
