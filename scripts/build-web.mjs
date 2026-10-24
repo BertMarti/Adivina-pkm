@@ -9,5 +9,6 @@ const run = (command, args) => {
   if (result.status !== 0) process.exit(result.status ?? 1);
 };
 
-run('npx', ['expo', 'export', '--platform', 'web', '--output-dir', 'dist']);
+// --clear: sin él, Metro reutiliza su caché y puede dejar dentro un EXPO_PUBLIC_ROOM_SERVER_URL de una build anterior.
+run('npx', ['expo', 'export', '--platform', 'web', '--output-dir', 'dist', '--clear']);
 run(process.execPath, ['scripts/add-web-csp.mjs', 'dist']);

@@ -47,6 +47,7 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 - **Versión de Node**: con Node < 20.19.4, npm da avisos `EBADENGINE` con RN 0.86; en CI se usa Node 22.
 - **Host inválido**: la URL de cada petición se resuelve con base fija `http://localhost` y los errores no capturados de `handleHttpRequest` responden 400; antes una cabecera `Host: a b` tumbaba el proceso.
 - **`/usr/share/nodejs/ws` en la Raspberry** puede hacer que `require('ws')` funcione sin `node_modules`; no sirve para probar el caso de dependencia `ws` ausente.
+- **Caché de Metro y `EXPO_PUBLIC_*`**: sin `--clear`, `expo export` reutilizaba una build anterior con otra `EXPO_PUBLIC_ROOM_SERVER_URL` (la CSP nueva bloqueaba la URL vieja). `npm run build:web` ya pasa `--clear`.
 
 ## Recursos con derechos
 

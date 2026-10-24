@@ -23,9 +23,9 @@
 ## 📸 Capturas de pantalla
 
 <p align="center">
-  <img src="docs/img/captura-inicio.png" width="640" alt="Pantalla de inicio en el ordenador: crear partida con selector de generación, código de sala y botones Copiar enlace y Crear sala sobre un mapa pixel-art" />
+  <img src="docs/img/captura-inicio.png" width="640" alt="Pantalla de inicio en el ordenador: guía Cómo se juega en 3 pasos y, debajo, crear partida con selector de generación, código de sala y botones Copiar enlace y Crear sala sobre un mapa pixel-art" />
 </p>
-<p align="center"><sub>🏠 Inicio: crea una sala, elige generación o únete con el código de tu rival.</sub></p>
+<p align="center"><sub>🏠 Inicio: la primera vez te explica cómo se juega en 3 pasos; luego crea una sala o únete con el código de tu rival.</sub></p>
 
 <p align="center">
   <img src="docs/img/captura-solitario.png" width="640" alt="Modo solitario: la máquina pregunta si el Pokémon tiene una silueta parecida a la humana, con botones Sí y No y el Pokémon secreto elegido arriba" />
@@ -33,7 +33,7 @@
 <p align="center"><sub>🤖 Solitario: piensa en un Pokémon y responde Sí o No; la máquina intenta adivinarlo.</sub></p>
 
 <p align="center">
-  <img src="docs/img/captura-movil.png" width="280" alt="Pantalla de inicio en un móvil, con los paneles Crear partida y Unirse a partida" />
+  <img src="docs/img/captura-movil.png" width="280" alt="Pantalla de inicio en un móvil, con la guía de 3 pasos y el panel Crear partida" />
 </p>
 <p align="center"><sub>📱 Pensado primero para el móvil.</sub></p>
 

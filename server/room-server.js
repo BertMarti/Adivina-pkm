@@ -653,7 +653,11 @@ function createRoomServer(options = {}) {
       if (!room.players.p1.socket && !room.players.p2.socket && now - room.lastActivity > ROOM_IDLE_TTL_MS) rooms.delete(roomCode);
   }, 60_000);
   cleanupTimer.unref?.();
-  wss.on('error', (error) => logger.error('Error del servidor WebSocket.', error instanceof Error ? error.message : error));
+  // Los errores de listen (p. ej. puerto ocupado) ya los explica listen(); aquí solo el resto.
+  wss.on('error', (error) => {
+    if (error && error.syscall === 'listen') return;
+    logger.error('Error del servidor WebSocket.', error instanceof Error ? error.message : error);
+  });
   httpServer.on('clientError', (error, socket) => {
     if (socket.writable) socket.end('HTTP/1.1 400 Bad Request\r\nConnection: close\r\n\r\n');
     else socket.destroy();
