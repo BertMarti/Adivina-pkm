@@ -1,11 +1,11 @@
 {
   "name": "pokequien",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "index.ts",
   "dependencies": {
     "@expo-google-fonts/press-start-2p": "^0.4.1",
     "@react-native-async-storage/async-storage": "^2.2.0",
-    "expo": "~57.0.22",
+    "expo": "~57.0.31",
     "expo-asset": "~57.0.17",
     "expo-audio": "~57.0.5",
     "expo-clipboard": "~57.0.2",
@@ -28,15 +28,20 @@
   },
   "scripts": {
     "start": "expo start",
-    "room-server": "node server/room-server.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "room-server": "node server/room-server.js",
     "typecheck": "tsc --noEmit",
+    "test": "node --test server/room-server.test.js && tsx --test src/game/engine.test.ts",
+    "build:web": "node scripts/build-web.mjs",
     "single-player:soak": "tsx scripts/single-player-soak-test.ts",
     "single-player:merge": "tsx scripts/merge-single-player-soak.ts",
     "single-player:fleet": "tsx scripts/single-player-national-fleet.ts",
     "single-player:verify": "tsx scripts/verify-single-player.ts"
   },
-  "private": true
+  "private": true,
+  "engines": {
+    "node": ">=20.19.4"
+  }
 }

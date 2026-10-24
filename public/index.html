@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
+    <!-- La CSP se añade solo en la build de Pages (scripts/add-web-csp.mjs) para no romper el modo desarrollo. -->
+    <meta name="referrer" content="no-referrer" />
+    <meta name="description" content="PokéQuién: duelo de deducción pixel-art al estilo «¿Quién es Quién?» con Pokémon. Juega contra la máquina o reta a un amigo con un código de sala." />
+    <meta name="theme-color" content="#10162C" />
+    <meta name="color-scheme" content="dark" />
+    <meta property="og:title" content="PokéQuién · Duelo Pixel" />
+    <meta property="og:description" content="Adivina el Pokémon secreto antes que tu rival. Fan project no oficial." />
+    <meta property="og:type" content="website" />
+    <title>PokéQuién · Duelo Pixel</title>
+    <!-- Reinicio de estilos recomendado por react-native-web. -->
+    <style id="expo-reset">
+      html,
+      body {
+        height: 100%;
+        background-color: #10162C;
+      }
+      body {
+        overflow: hidden;
+      }
+      #root {
+        display: flex;
+        height: 100%;
+        flex: 1;
+      }
+      /* Foco visible al navegar con teclado (accesibilidad). */
+      :focus-visible {
+        outline: 3px solid #FFD000 !important;
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <noscript>
+      PokéQuién necesita JavaScript para funcionar. Actívalo en tu navegador para jugar.
+    </noscript>
+    <div id="root"></div>
+  </body>
+</html>

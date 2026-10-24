@@ -6,20 +6,38 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 
 ---
 
-## [0.1.0] — Beta móvil preparada
-
-### 🚀 Distribución gratuita
-
-- 📦 Perfil EAS `preview` para generar una APK Android instalable mediante enlace.
-- 🌐 Blueprint `render.yaml` para desplegar el servidor de salas en un servicio Node gratuito.
-- 🔐 El servidor acepta el puerto `PORT` de plataformas cloud y mantiene el puerto local `8787` como alternativa.
-- 📘 Guía completa en [`docs/RELEASE_0_1_GRATUITA.md`](./docs/RELEASE_0_1_GRATUITA.md).
-
-> Esta beta usa salas en memoria: un reinicio del hosting termina las salas activas.
-
 ## [Sin publicar]
 
 > Cambios pendientes de incluir en la próxima versión.
+
+## [0.2.0] — 2026-10-24
+
+### 🌐 Web en GitHub Pages
+
+- 🎮 La app se puede jugar en el navegador en https://bertmarti.github.io/Adivina-pkm/ (Solitario sin servidor;
+  Duelo contra el servidor de salas).
+- 🔗 El enlace de invitación conserva la ruta `/Adivina-pkm/` y el campo de código muestra un ejemplo válido.
+- 🛡️ HTML en español, metadatos, foco visible al navegar con teclado y Content-Security-Policy en la build.
+
+### 🔐 Seguridad
+
+- 🚦 Servidor de salas con límites por IP (peticiones HTTP, salas creadas, conexiones simultáneas), heartbeat,
+  respuesta 413 para cuerpos grandes y validación estricta de mensajes.
+- 📦 Expo 57.0.31 y `npm audit fix`: sin avisos críticos.
+- 🙈 Fuera una IP de red local real de los ejemplos; `.env` ignorado por git.
+- 🤖 CI con gitleaks, tipos, pruebas y build web; Dependabot semanal; `SECURITY.md`.
+
+### 🧪 Calidad
+
+- ✅ 14 pruebas del servidor de salas y 12 del motor del juego (`npm test`).
+
+### 📘 Documentación
+
+- README para jugadores con banner, capturas reales y preguntas frecuentes; guía técnica en `docs/DESARROLLO.md`;
+  `AGENTS.md`, `CLAUDE.md`, `MEMORY.md`, `PLAN.md`, subagentes y skills para asistentes de IA.
+
+### Incluido también en esta versión (antes «Sin publicar»)
+
 
 - 📱 **Safe area Android/iOS** — El contenido usa `react-native-safe-area-context`
   para que VOLVER y los controles superiores queden fuera de la barra de estado.
@@ -41,6 +59,19 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
   genéricas para reducir empates como Paras/Parasect.
 - ⏱️ El motor impide configurar partidas de más de 30 preguntas; los límites
   inferiores quedan disponibles para pruebas controladas.
+
+---
+
+## [0.1.0] — Beta móvil preparada
+
+### 🚀 Distribución gratuita
+
+- 📦 Perfil EAS `preview` para generar una APK Android instalable mediante enlace.
+- 🌐 Blueprint `render.yaml` para desplegar el servidor de salas en un servicio Node gratuito.
+- 🔐 El servidor acepta el puerto `PORT` de plataformas cloud y mantiene el puerto local `8787` como alternativa.
+- 📘 Guía completa en [`docs/RELEASE_0_1_GRATUITA.md`](./docs/RELEASE_0_1_GRATUITA.md).
+
+> Esta beta usa salas en memoria: un reinicio del hosting termina las salas activas.
 
 ---
 

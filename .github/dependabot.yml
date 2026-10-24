@@ -1,0 +1,28 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      expo-y-react-native:
+        patterns: ["expo", "expo-*", "@expo/*", "react", "react-dom", "react-native", "react-native-*", "@react-native-async-storage/*"]
+        update-types: ["patch"]
+      resto:
+        patterns: ["*"]
+        exclude-patterns: ["expo", "expo-*", "@expo/*", "react", "react-dom", "react-native", "react-native-*", "@react-native-async-storage/*"]
+        update-types: ["minor", "patch"]
+    ignore:
+      # Los saltos de SDK de Expo se hacen a mano con `npx expo install --fix`.
+      - dependency-name: "expo"
+        update-types: ["version-update:semver-major"]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      acciones:
+        patterns: ["*"]

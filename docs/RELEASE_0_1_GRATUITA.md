@@ -113,7 +113,7 @@ No uses estos valores en una APK pública:
 ```text
 ws://localhost:8787
 ws://10.0.2.2:8787
-ws://192.168.0.98:8787
+ws://192.168.1.50:8787
 ```
 
 ## 5. Coste y límites

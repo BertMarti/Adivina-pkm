@@ -1,6 +1,6 @@
 # 🛡️ Seguridad de PokéQuién
 
-Estado: revisión aplicada el 14/09/2026.
+Estado: revisión aplicada el 14/09/2026 y ampliada el 24/10/2026.
 
 ## Modelo de amenaza
 
@@ -15,6 +15,11 @@ PokéQuién no tiene cuentas, contraseñas ni datos personales. La sala se ident
 | Reglas | El servidor valida generación, tablero de 25 candidatos distintos, ids 1–1025 y fase antes de cada selección/tachado. |
 | Entrada | Límite de payload WebSocket de 64 KiB, texto/URLs acotados y JSON parseado sin `eval`. |
 | Abuso | Máximo de 40 mensajes por conexión cada 10 segundos, máximo de 500 salas y limpieza de salas inactivas. |
+| Abuso por IP (24/10/2026) | 300 peticiones HTTP por minuto e IP (429 + `Retry-After`), 20 salas creadas por IP cada 10 minutos, 20 conexiones WebSocket simultáneas por IP. Con `ROOM_SERVER_TRUST_PROXY=1` la IP sale de `CF-Connecting-IP` o, si falta, de la primera de `X-Forwarded-For`. |
+| Conexiones muertas (24/10/2026) | Heartbeat ping/pong cada 30 s; los sockets que no responden se cierran. |
+| Cuerpo HTTP (24/10/2026) | Máximo 64 KiB con respuesta 413; el JSON debe ser un objeto y los ids, enteros. |
+| Web (24/10/2026) | La build de Pages lleva CSP (`default-src 'self'`, sin `unsafe-eval`, `object-src 'none'`, imágenes solo de `raw.githubusercontent.com`). |
+| Repositorio (24/10/2026) | CI con gitleaks sobre todo el historial, Dependabot semanal y `.env` ignorado. |
 | CSWSH | Allowlist de orígenes configurable con `ROOM_SERVER_ALLOWED_ORIGINS`; en local se permiten `localhost` y `127.0.0.1`. Las apps nativas sin `Origin` siguen funcionando. |
 | Sesiones | Comparación constante del token de reconexión, una conexión por jugador y ventana de reconexión de 60 segundos. |
 | Recursos | TTL de salas desconectadas y retención corta del estado abandonado. |
@@ -24,19 +29,22 @@ PokéQuién no tiene cuentas, contraseñas ni datos personales. La sala se ident
 
 - Servir el cliente y el WebSocket con HTTPS/WSS; `EXPO_PUBLIC_ROOM_SERVER_URL` debe usar `wss://` fuera de localhost.
 - En un PaaS que inyecte `PORT`, el servidor lo acepta antes de `ROOM_SERVER_PORT`; `render.yaml` deja preparada una instancia única para la beta.
-- Sustituir el `Map` en memoria por almacenamiento efímero y añadir límites por IP/proxy si se publica.
+- Sustituir el `Map` en memoria por almacenamiento efímero (los límites por IP/proxy ya están desde el 24/10/2026).
 - Configurar `ROOM_SERVER_ALLOWED_ORIGINS` con el dominio exacto y eliminar la tolerancia a localhost.
-- Añadir heartbeat/ping del proxy, observabilidad sin registrar tokens ni mensajes completos y alertas de abuso.
-- Entregar el cliente web con CSP, `frame-ancestors 'none'`, `object-src 'none'` y cabeceras de seguridad del hosting; la [CSP de MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP) sirve como referencia de configuración.
+- Añadir observabilidad sin registrar tokens ni mensajes completos y alertas de abuso (el heartbeat ya existe).
+- La web de GitHub Pages ya lleva CSP por `<meta>`; Pages no permite cabeceras propias, así que `frame-ancestors` no se puede aplicar ahí. Referencia: [CSP de MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP).
 - Revisar licencias/atribuciones de retratos, audios y fondo antes de distribuir públicamente.
 
 ## Verificación
 
 ```text
 npm run typecheck
+npm test
 node --check server/room-server.js
 git diff --check
 ```
+
+Dependencias (24/10/2026): `npm audit` deja 5 avisos altos en `node-forge` y `zod`, ambos dentro de `@expo/cli` (solo herramienta de desarrollo, no llegan a la APK ni a la web). No hay parche dentro del SDK 57; se revisará al subir de SDK.
 
 Las decisiones siguen la [guía de seguridad WebSocket de OWASP](https://cheatsheetseries.owasp.org/cheatsheets/WebSocket_Security_Cheat_Sheet.html): allowlist de `Origin`, validación de cada mensaje, límites de tamaño, rate limiting y limpieza de conexiones. `expo-secure-store` se usa solo para el token pequeño de sesión, siguiendo su almacenamiento seguro en [Android/iOS](https://docs.expo.dev/versions/v54.0.0/sdk/securestore/); el historial local de partidas sigue siendo deliberadamente no sensible.
 

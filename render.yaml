@@ -10,4 +10,6 @@ services:
       - key: NODE_ENV
         value: production
       - key: ROOM_SERVER_ALLOWED_ORIGINS
-        value: ""
+        value: "https://bertmarti.github.io"
+      - key: ROOM_SERVER_TRUST_PROXY
+        value: "1"
