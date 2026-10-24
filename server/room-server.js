@@ -87,12 +87,19 @@ function createRoomServer(options = {}) {
   }
   // Solo se aceptan imágenes de los repositorios que usa la app (SpriteCollab y sprites de PokéAPI) o PNG/GIF/WebP
   // embebidos. Así quien crea una sala no puede hacer que el móvil del rival cargue URLs arbitrarias (rastreo de IP).
+  // Se valida la URL normalizada (resuelve «..», «%2e%2e», etc.), sin usuario ni query, para que no se pueda salir
+  // del repositorio permitido con «…/SpriteCollab/../../otro/repo/x.png».
   function isAllowedImageUrl(value) {
-    return (
-      typeof value === 'string' &&
-      value.length <= MAX_TEXT_LENGTH &&
-      (ALLOWED_IMAGE_PREFIXES.some((prefix) => value.startsWith(prefix)) || /^data:image\/(png|gif|webp|jpeg);base64,/i.test(value))
-    );
+    if (typeof value !== 'string' || value.length > MAX_TEXT_LENGTH) return false;
+    if (/^data:image\/(png|gif|webp|jpeg);base64,/i.test(value)) return true;
+    let url;
+    try {
+      url = new URL(value);
+    } catch {
+      return false;
+    }
+    if (url.username || url.password || url.search || url.hash) return false;
+    return ALLOWED_IMAGE_PREFIXES.some((prefix) => url.href.startsWith(prefix));
   }
   function isValidPokemon(candidate) {
     return (
@@ -588,6 +595,11 @@ function createRoomServer(options = {}) {
     verifyClient: (info, done) => done(isAllowedOrigin(info.origin)),
   });
   wss.on('connection', (socket, request) => {
+    // PRIMERO el manejador de errores: sin él, un marco WebSocket inválido o mayor que maxPayload emite 'error' sin
+    // oyentes y tumba el proceso, también en las conexiones que se rechazan por cupo justo debajo.
+    socket.on('error', (error) => {
+      logger.warn?.('Conexión WebSocket cerrada por un marco no válido.', error instanceof Error ? error.message : error);
+    });
     socket.clientIp = clientIp(request);
     const count = connectionCounts.get(socket.clientIp) || 0;
     if (count >= maxConnectionsPerIp) {
@@ -600,10 +612,6 @@ function createRoomServer(options = {}) {
     socket.isAlive = true;
     socket.messageWindowStartedAt = Date.now();
     socket.messageCount = 0;
-    // Sin este manejador, un marco WebSocket inválido o mayor que maxPayload emite 'error' sin oyentes y tumba el proceso.
-    socket.on('error', (error) => {
-      logger.warn?.('Conexión WebSocket cerrada por un marco no válido.', error instanceof Error ? error.message : error);
-    });
     socket.on('pong', () => {
       socket.isAlive = true;
     });

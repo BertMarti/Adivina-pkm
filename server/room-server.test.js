@@ -553,3 +553,50 @@ test('mensajes de sala claros: código inexistente y sala llena', async (t) => {
   lost.send({ type: 'join', roomCode: 'NADA2345' });
   assert.match((await lost.nextMessage()).message, /No hay ninguna sala con ese código/);
 });
+
+test('una conexión rechazada por cupo que envía un marco inválido no tumba el servidor', async (t) => {
+  const { port, tracker } = await startServer(t, { maxConnectionsPerIp: 1 });
+  await tracker.open(port);
+  const net = require('node:net');
+  // Handshake WebSocket a mano y, a continuación, un marco con los bits RSV activos (inválido).
+  await new Promise((resolve, reject) => {
+    const socket = net.connect(port, '127.0.0.1', () => {
+      socket.write(
+        'GET / HTTP/1.1\r\nHost: 127.0.0.1\r\nUpgrade: websocket\r\nConnection: Upgrade\r\n' +
+          `Sec-WebSocket-Key: ${require('node:crypto').randomBytes(16).toString('base64')}\r\nSec-WebSocket-Version: 13\r\n\r\n`,
+      );
+    });
+    let upgraded = false;
+    socket.on('data', (chunk) => {
+      if (!upgraded && String(chunk).startsWith('HTTP/1.1 101')) {
+        upgraded = true;
+        socket.write(Buffer.from([0xf1, 0x80, 0, 0, 0, 0]));
+      }
+    });
+    socket.on('close', resolve);
+    socket.on('error', () => resolve());
+    setTimeout(() => reject(new Error('El servidor no cerró la conexión.')), 5000).unref();
+  });
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  const health = await httpRequest(port, { method: 'GET', path: '/' });
+  assert.equal(health.statusCode, 200);
+});
+
+test('rechaza imágenes que salen del repositorio permitido con «..», query o usuario', async (t) => {
+  const { port, tracker } = await startServer(t);
+  const client = await tracker.open(port);
+  const base = 'https://raw.githubusercontent.com/PMDCollab/SpriteCollab/';
+  const bad = [
+    `${base}../../otro/repo/x.png`,
+    `${base}%2e%2e/%2e%2e/otro/repo/x.png`,
+    `${base}master/portrait/0001/Happy.png?rastreo=1`,
+    'https://raw.githubusercontent.com@rastreo.example/PMDCollab/SpriteCollab/x.png',
+  ];
+  for (const [index, url] of bad.entries()) {
+    const board = makeBoard();
+    board[0] = { ...board[0], portraitUrl: url };
+    client.send({ type: 'create', roomCode: `PUNT234${index + 2}`, generation: 'all', board });
+    const reply = await client.nextMessage();
+    assert.equal(reply.type, 'error', url);
+  }
+});

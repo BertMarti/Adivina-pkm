@@ -26,11 +26,11 @@ updates:
       # react, react-dom y react-native van fijados por el SDK de Expo (bundledNativeModules.json); se suben con el SDK
       # (PR #5 cerrada: react-dom 19.3.1 exige react 19.3.1 y npm ci falla con ERESOLVE).
       - dependency-name: "react"
-        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
       - dependency-name: "react-dom"
-        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
       - dependency-name: "react-native"
-        update-types: ["version-update:semver-major", "version-update:semver-minor", "version-update:semver-patch"]
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
       - dependency-name: "@types/react"
         update-types: ["version-update:semver-major", "version-update:semver-minor"]
   - package-ecosystem: npm

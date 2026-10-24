@@ -9,7 +9,7 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 - Solitario: 100 % local, funciona en la web sin servidor.
 - Duelo: servidor de salas en Render (plan gratuito, salas en memoria). La web de Pages conecta por WSS si
   `ROOM_SERVER_ALLOWED_ORIGINS` incluye `https://bertmarti.github.io` en Render.
-- Pruebas: 20 del servidor + tests del motor (`npm test`), verificación del Solitario y CI en cada PR.
+- Pruebas: 22 del servidor + 20 del motor y utilidades (`npm test`), verificación del Solitario y CI en cada PR.
 
 ## Decisiones y por qué
 

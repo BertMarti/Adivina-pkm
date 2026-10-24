@@ -14,13 +14,13 @@ PokéQuién no tiene cuentas, contraseñas ni datos personales. La sala se ident
 | Privacidad | `publicState()` solo envía el secreto propio; el secreto rival se queda en `null` hasta el final. El popup final solo muestra curiosidades del Pokémon elegido por ese jugador. |
 | Reglas | El servidor valida generación, tablero de 25 candidatos distintos, ids 1–1025 y fase antes de cada selección/tachado. |
 | Entrada | Límite de payload WebSocket de 64 KiB, texto/URLs acotados y JSON parseado sin `eval`. |
-| WebSocket (24/10/2026) | El servidor maneja errores de parseo y marcos inválidos o mayores de 64 KiB para cerrar la conexión sin tumbar el proceso. |
+| WebSocket (24/10/2026) | El manejador de errores se registra al principio de cada conexión (también las rechazadas por cupo de IP): un marco inválido o mayor de 64 KiB cierra esa conexión sin tumbar el proceso. |
 | Abuso | Máximo de 40 mensajes por conexión cada 10 segundos, máximo de 500 salas y limpieza de salas inactivas. |
 | Abuso por IP (24/10/2026) | 300 peticiones HTTP por minuto e IP (429 + `Retry-After`), 20 salas creadas por IP cada 10 minutos, 20 conexiones WebSocket simultáneas por IP. Con `ROOM_SERVER_TRUST_PROXY=1` la IP sale de `CF-Connecting-IP` o, si falta, de la primera de `X-Forwarded-For`. |
 | Conexiones muertas (24/10/2026) | Heartbeat ping/pong cada 30 s; los sockets que no responden se cierran. |
 | Cuerpo HTTP (24/10/2026) | Máximo 64 KiB con respuesta 413; el JSON debe ser un objeto y los ids, enteros. |
 | Web (24/10/2026) | La build de Pages lleva CSP (`default-src 'self'`, sin `unsafe-eval`, `object-src 'none'`, imágenes solo de `raw.githubusercontent.com`). |
-| Imágenes (24/10/2026) | Las fuentes remotas del tablero se limitan a `raw.githubusercontent.com/PMDCollab/SpriteCollab/` y `raw.githubusercontent.com/PokeAPI/sprites/`; también se aceptan PNG/GIF/WebP/JPEG embebidos. |
+| Imágenes (24/10/2026) | Las fuentes remotas del tablero se limitan a `raw.githubusercontent.com/PMDCollab/SpriteCollab/` y `raw.githubusercontent.com/PokeAPI/sprites/`, comprobadas sobre la URL normalizada (sin `..`, query ni usuario); también se aceptan PNG/GIF/WebP/JPEG embebidos. |
 | Health (24/10/2026) | `GET /` devuelve CORS `*` y `originAllowed` (`true`, `false` o `null`) para que la web diagnostique su origen; no relaja el control del WebSocket. |
 | CSP (24/10/2026) | `connect-src` permite solo `'self'` y el servidor de salas configurado, no cualquier `https:` o `wss:`. |
 | Repositorio (24/10/2026) | CI con gitleaks sobre todo el historial, Dependabot semanal y `.env` ignorado. |

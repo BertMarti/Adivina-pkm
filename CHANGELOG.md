@@ -14,8 +14,8 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 
 ### 🔐 Seguridad
 
-- El servidor ya maneja marcos WebSocket inválidos o mayores de 64 KiB sin tumbar el proceso.
-- Las imágenes del tablero solo aceptan SpriteCollab, PokéAPI o datos PNG/GIF/WebP/JPEG embebidos.
+- El servidor ya maneja marcos WebSocket inválidos o mayores de 64 KiB sin tumbar el proceso (también en conexiones rechazadas por cupo de IP).
+- Las imágenes del tablero solo aceptan SpriteCollab, PokéAPI (validado sobre la URL normalizada: sin `..`, query ni usuario) o datos PNG/GIF/WebP/JPEG embebidos.
 - El health `GET /` expone `originAllowed` y CORS abierto para diagnosticar el origen sin abrir el WebSocket a cualquier web.
 - La CSP limita `connect-src` al origen propio y al servidor de salas configurado.
 
@@ -24,7 +24,7 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 - Servidor independiente en `server/` con `ws`, `npm start` y `npm test`.
 - Scripts `npm run server` y `npm run server:help`; `npm run room-server` se mantiene como alias.
 - Guía de juego de tres pasos, invitaciones, diagnósticos del servidor y ventana de créditos y licencias.
-- 20 pruebas del servidor.
+- 22 pruebas del servidor.
 
 ### 🔄 Cambiado
 
@@ -34,7 +34,7 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 ### 📦 Dependencias
 
 - Fusionadas las PR de Dependabot #2 (react-native-web 0.21.4) y #3 (ws 8.22.0, @types/ws, tsx); cerradas #4, #5 y #6 (SDK 58 y react-dom fuera del SDK 57).
-- Se ignoran saltos de SDK de Expo y cambios coordinados de react, react-dom y react-native.
+- Se ignoran saltos de SDK de Expo y las subidas mayores/menores de react, react-dom y react-native (fijados por el SDK); los parches, incluidos los de seguridad, siguen llegando.
 
 ## [0.2.0] — 2026-10-24
 
