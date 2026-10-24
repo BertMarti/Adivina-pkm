@@ -6,6 +6,18 @@ import { join } from 'node:path';
 
 const distDir = process.argv[2] ?? 'dist';
 const indexPath = join(distDir, 'index.html');
+
+// connect-src solo permite el servidor de salas (el de Render y, si se define, EXPO_PUBLIC_ROOM_SERVER_URL),
+// en WebSocket y en HTTP(S) para la comprobación de estado. Así la web no puede enviar datos a ningún otro sitio.
+const DEFAULT_ROOM_SERVER_URL = 'wss://pokequien-rooms.onrender.com';
+const roomServerSources = new Set();
+for (const raw of [DEFAULT_ROOM_SERVER_URL, process.env.EXPO_PUBLIC_ROOM_SERVER_URL]) {
+  if (!raw?.trim()) continue;
+  const url = new URL(raw.trim());
+  const secure = url.protocol === 'wss:' || url.protocol === 'https:';
+  roomServerSources.add(`${secure ? 'wss' : 'ws'}://${url.host}`);
+  roomServerSources.add(`${secure ? 'https' : 'http'}://${url.host}`);
+}
 const csp = [
   "default-src 'self'",
   "script-src 'self'",
@@ -13,7 +25,7 @@ const csp = [
   "img-src 'self' data: blob: https://raw.githubusercontent.com",
   "font-src 'self' data:",
   "media-src 'self' data: blob:",
-  "connect-src 'self' https: wss:",
+  `connect-src 'self' ${[...roomServerSources].join(' ')}`,
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'none'",
