@@ -17,14 +17,14 @@
     "react-dom": "19.2.3",
     "react-native": "0.86.3",
     "react-native-safe-area-context": "~5.7.0",
-    "react-native-web": "^0.21.4"
+    "react-native-web": "^0.21.4",
+    "ws": "^8.22.0"
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
     "@types/ws": "^8.18.2",
     "tsx": "^4.23.15",
-    "typescript": "~6.0.3",
-    "ws": "^8.22.0"
+    "typescript": "~6.0.3"
   },
   "scripts": {
     "start": "expo start",
