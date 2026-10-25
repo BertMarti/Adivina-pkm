@@ -1,6 +1,6 @@
 # PLAN.md — Hoja de ruta de PokéQuién
 
-Actualizado el 24/10/2026. Prioridad de arriba abajo.
+Actualizado el 25/10/2026. Prioridad de arriba abajo.
 
 ## ✅ Hecho hoy (24/10/2026, v0.2.0)
 
@@ -20,6 +20,14 @@ Actualizado el 24/10/2026. Prioridad de arriba abajo.
 - Guía de tres pasos, invitaciones, mensajes de error, créditos y documentación de administración.
 - Dependabot actualizado y reglas para evitar saltos parciales de SDK.
 
+## ✅ Hecho en la fase 3 (25/10/2026, v0.4.0)
+
+- Expo SDK 58 completo; `zod` corregido; `node-forge` sin parche publicado (solo herramienta de desarrollo).
+- `App.tsx` troceado por pantallas; regiones vivas para fases, turno y resultado; objetivos táctiles ≥ 44 px.
+- Fuente PokeQuien Pixel con mayúsculas acentuadas legibles.
+- Prueba de humo de la web con Chromium sin cabeza (local y CI).
+- PWA instalable: Solitario sin red y caché de retratos.
+
 ## ⏭️ Siguiente
 
 1. **Tras fusionar**: comprobar que Render aplica `rootDir: server`, `ROOM_SERVER_ALLOWED_ORIGINS=https://bertmarti.github.io` y
@@ -27,18 +35,14 @@ Actualizado el 24/10/2026. Prioridad de arriba abajo.
    Verificar también que las peticiones llegan con la cabecera `CF-Connecting-IP` (si no, los límites por IP usan la
    primera IP de `X-Forwarded-For`, que el cliente puede falsificar).
 2. **Licencias**: sustituir GIF y sonidos de terceros por recursos propios antes de publicar en tiendas o con anuncios.
-3. **SDK**: subir a Expo SDK 58 entero con `npx expo install expo@^58 --fix`.
+3. **node-forge**: cuando salga una versión corregida de GHSA-86w9-cpqp-85rv, actualizar (Dependabot la propondrá).
 4. **Reglas compartidas**: extraer las transiciones a un módulo JS común (o pruebas de contrato) para que servidor y
    motor no diverjan.
-5. **Trocear `App.tsx`** (790 líneas con JSX en una sola línea) en componentes por pantalla, sin cambiar el aspecto.
-6. **Accesibilidad**: anunciar cambios de fase con `accessibilityLiveRegion`, revisar chips de generación (≥ 44 px) y
-   probar con lector de pantalla en Android.
-7. **Fuente**: sustituir las vocales acentuadas en mayúscula por una variante legible o usar otra fuente pixel con «Á É Í Ó Ú».
-8. **Pruebas de UI** de humo con Chromium sin cabeza sobre la build web (cargar, entrar en Solitario, responder).
+5. **Accesibilidad**: probar con TalkBack (Android) y VoiceOver (iOS) en un móvil real; en web ya se anuncian las fases.
+6. **Pruebas de UI del Duelo**: ampliar `npm run test:web` con un Duelo entre dos pestañas contra un servidor local.
 
 ## 💡 Ideas
 
 - Almacenamiento efímero gratuito (p. ej. Redis/Upstash free) para que las salas sobrevivan a un reinicio.
 - Ajustes de sonido y vibración; modo daltónico extra para el tachado.
-- PWA instalable con caché de retratos para jugar el Solitario sin red.
 - Estadísticas del Solitario (preguntas medias, Pokémon más difíciles) exportables.

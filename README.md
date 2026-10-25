@@ -374,9 +374,15 @@ No hay cuentas ni datos personales. En un Duelo tu dispositivo guarda solo un c�
 </details>
 
 <details>
+<summary><b>¿Puedo instalarla como una app?</b></summary>
+<br>
+Sí. En el móvil, abre la web y elige <b>Añadir a pantalla de inicio</b> (o <b>Instalar app</b>) en el menú del navegador; en el ordenador, pulsa el icono de instalar de la barra de direcciones. Se abre a pantalla completa con su propio icono y no ocupa casi nada.
+</details>
+
+<details>
 <summary><b>¿Puedo jugar sin internet?</b></summary>
 <br>
-El Solitario no usa servidor, así que sigue funcionando con una conexión mala; eso sí, los retratos se descargan de internet y sin red puede que no se vean. El Duelo necesita conexión.
+Sí, al Solitario. La primera vez abre la web con conexión: el navegador guarda el juego y, a partir de ahí, PokéQuién se abre y se juega aunque no tengas red. Los retratos que ya hayas visto también se guardan; los que no, se verán vacíos hasta que vuelva la conexión, pero puedes jugar igual. El Duelo sí necesita internet.
 </details>
 
 <details>
