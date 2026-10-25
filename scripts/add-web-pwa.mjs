@@ -15,7 +15,7 @@ if (!/^\/[A-Za-z0-9._-]+\/$/.test(basePath)) throw new Error(`Ruta base no váli
 const indexPath = join(distDir, 'index.html');
 if (!existsSync(indexPath)) throw new Error(`No encuentro ${indexPath}: ejecuta antes expo export`);
 
-// Iconos: Expo copia public/ a dist/, pero no lo damos por hecho.
+// Iconos: `expo export` (sin expo-router) no copia public/pwa a dist/, así que se copian aquí.
 if (!existsSync(join(distDir, 'pwa', 'icon-512.png'))) cpSync('public/pwa', join(distDir, 'pwa'), { recursive: true });
 
 const manifest = {
