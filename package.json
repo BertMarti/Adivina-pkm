@@ -37,6 +37,7 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test server/room-server.test.js && tsx --test src/game/*.test.ts",
     "build:web": "node scripts/build-web.mjs",
+    "test:web": "node scripts/smoke-web.mjs",
     "single-player:soak": "tsx scripts/single-player-soak-test.ts",
     "single-player:merge": "tsx scripts/merge-single-player-soak.ts",
     "single-player:fleet": "tsx scripts/single-player-national-fleet.ts",
