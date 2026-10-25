@@ -13,4 +13,5 @@ export const COLORS = {
   success: '#38D37D',
 };
 
-export const PIXEL_FONT = 'PressStart2P_400Regular';
+// PokeQuien Pixel = Press Start 2P (OFL) con «Á É Í Ó Ú Ü Ñ» a altura completa (scripts/generate-pixel-font.py).
+export const PIXEL_FONT = 'PokeQuienPixel';

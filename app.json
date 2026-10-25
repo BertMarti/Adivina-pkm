@@ -3,7 +3,7 @@
     "name": "PokéQuién",
     "slug": "pokequien",
     "scheme": "pokequien",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -34,7 +34,8 @@
       "expo-audio",
       "expo-asset",
       "expo-font",
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-status-bar"
     ],
     "extra": {
       "eas": {

@@ -15,8 +15,8 @@ updates:
         exclude-patterns: ["expo", "expo-*", "@expo/*", "react", "react-dom", "react-native", "react-native-*", "@react-native-async-storage/*"]
         update-types: ["minor", "patch"]
     ignore:
-      # Los saltos de SDK de Expo (57 → 58…) se hacen a mano y de una vez con `npx expo install expo@^58 --fix`:
-      # un paquete expo-* suelto de otro SDK rompe la build web (PR #4 y #6 cerradas el 24/10/2026).
+      # Los saltos de SDK de Expo (58 → 59…) se hacen a mano y de una vez con `npx expo install expo@^59 --fix`:
+      # un paquete expo-* suelto de otro SDK rompe la build web (PR #4 y #6 cerradas el 24/10/2026; SDK 58 el 25/10/2026).
       - dependency-name: "expo"
         update-types: ["version-update:semver-major"]
       - dependency-name: "expo-*"
@@ -33,6 +33,16 @@ updates:
         update-types: ["version-update:semver-major", "version-update:semver-minor"]
       - dependency-name: "@types/react"
         update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      # Módulos nativos cuya versión fija el SDK (node_modules/expo/bundledNativeModules.json): solo parches por
+      # Dependabot; el resto llega con el siguiente SDK (PR #10 y #11 cerradas el 25/10/2026: el SDK 58 pide
+      # safe-area-context ~5.10.1 y async-storage 2.2.0, no la 3.x).
+      - dependency-name: "react-native-*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      - dependency-name: "@react-native-async-storage/*"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      # TypeScript 7 (compilador nuevo en Go) aún no es la versión que acompaña al SDK 58 (PR #9 cerrada el 25/10/2026).
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: npm
     directory: /server
     schedule:

@@ -21,7 +21,7 @@ const CREDITS: Credit[] = [
     title: 'ANIMACIONES Y SONIDOS',
     text: 'Las animaciones de espera (Poké Ball y Pikachu) y los sonidos de selección, victoria y derrota son material de fans y de los juegos Pokémon, propiedad de sus autores. Se usan sin ánimo de lucro y se retirarán si lo piden sus titulares.',
   },
-  { title: 'TIPOGRAFÍA', text: 'Press Start 2P (CodeMan38), SIL Open Font License 1.1.' },
+  { title: 'TIPOGRAFÍA', text: 'PokeQuien Pixel, derivada de Press Start 2P (CodeMan38) con las mayúsculas acentuadas redibujadas. SIL Open Font License 1.1.' },
   {
     title: 'IDEA',
     text: 'Inspirado en «Adivina Quién Pokémon» de Checo_512.',
@@ -111,7 +111,16 @@ const styles = StyleSheet.create({
   item: { gap: 4 },
   itemTitle: { color: COLORS.yellow, fontFamily: PIXEL_FONT, fontSize: 8, lineHeight: 14 },
   itemText: { color: COLORS.white, fontSize: 13, lineHeight: 19 },
-  link: { color: '#9DB6FF', fontSize: 13, lineHeight: 22, textDecorationLine: 'underline' },
+  // Relleno con margen negativo: zona táctil de 44 px sin mover el texto.
+  link: {
+    alignSelf: 'flex-start',
+    color: '#9DB6FF',
+    fontSize: 13,
+    lineHeight: 22,
+    paddingVertical: 11,
+    marginVertical: -11,
+    textDecorationLine: 'underline',
+  },
   close: {
     minHeight: 48,
     borderRadius: 8,

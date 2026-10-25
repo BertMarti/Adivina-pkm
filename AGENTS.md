@@ -15,20 +15,25 @@ Android, iOS) con dos modos: **Duelo** (2 jugadores, servidor de salas Node + We
 
 | Ruta | Qué hay |
 | --- | --- |
-| `App.tsx` | Pantallas y orquestación (inicio, sala, selección, espera, partida) y entrada al Solitario |
+| `App.tsx` | Orquestación del Duelo: estado, cliente de salas, manejadores y qué pantalla se ve; anuncios de fase |
+| `src/screens/` | Pantallas del Duelo: `HomeScreen`, `RoomScreen`, `SelectionScreen`, `WaitingScreen`, `GameScreen` (+ victoria) |
+| `src/ui/components.tsx`, `src/ui/appStyles.ts`, `src/ui/theme.ts` | Piezas comunes, estilos del Duelo, paleta y `PIXEL_FONT` |
+| `src/hooks/` | `useReduceMotion` y `useGameSounds` |
+| `src/game/roomNavigation.ts` | Códigos de sala, enlace de invitación y pantalla según el estado |
 | `src/game/engine.ts` | Motor puro del Duelo (+ `engine.test.ts`) |
 | `src/game/roomClient.ts` | Cliente de salas: WebSocket en web, sondeo HTTPS en móvil, reconexión |
 | `src/game/singlePlayerEngine.ts`, `src/singlePlayer/` | Motor y pantalla del Solitario |
 | `src/data/` | Catálogo local de 1.025 Pokémon y banco de preguntas (generados; no editar a mano sin regenerar) |
 | `server/room-server.js` | Servidor de salas: `createRoomServer(opciones)` (+ `room-server.test.js`) |
-| `public/index.html`, `app.config.js`, `scripts/build-web.mjs`, `scripts/add-web-csp.mjs` | Build web para Pages |
+| `public/index.html`, `app.config.js`, `scripts/build-web.mjs`, `scripts/add-web-csp.mjs`, `scripts/add-web-pwa.mjs` | Build web para Pages (CSP y PWA) |
+| `scripts/smoke-web.mjs` | Prueba de humo de la web (`npm run test:web`) |
 | `.github/workflows/` | `ci.yml` (gitleaks, tipos, pruebas, build) y `pages.yml` (despliegue) |
 | `docs/` | Guías: `DESARROLLO.md` (técnica), `SECURITY.md`, `USER_GUIDE.md`, `RELEASE_0_1_GRATUITA.md`, revisiones |
 
 ## Comandos exactos
 
 ```bash
-npm ci                          # instalar (Node 22; RN 0.86 pide >= 20.19.4)
+npm ci                          # instalar (Node 22.13+ o 24.3+; lo exige el SDK 58 de Expo)
 npm start                       # Expo interactivo
 npm run web                     # web en local
 npm run server                  # servidor de salas en 8787
@@ -39,11 +44,12 @@ npm --prefix server test        # tests del servidor
 npm run typecheck               # tsc --noEmit
 npm test                        # node --test server/room-server.test.js && tsx --test src/game/*.test.ts
 npm run single-player:verify    # verificación del Solitario
-npm run build:web               # dist/ con ruta base /Adivina-pkm + CSP (como Pages)
+npm run build:web               # dist/ con ruta base /Adivina-pkm + CSP + PWA (como Pages)
+npm run test:web                # prueba de humo de dist/ con Chromium sin cabeza (Solitario y sin red)
 ```
 
 Antes de dar algo por terminado: `npm run typecheck && npm test && npm run single-player:verify`; si tocas la web,
-también `npm run build:web` y pruébala servida bajo `/Adivina-pkm/`.
+también `npm run build:web && npm run test:web`.
 
 ## Convenciones
 
@@ -52,8 +58,12 @@ también `npm run build:web` y pruébala servida bajo `/Adivina-pkm/`.
 - El servidor JS **replica** reglas del motor TS: si cambias una regla, cambia ambos y añade la prueba en los dos tests.
 - Mensajes de error del servidor: cortos, en español y sin datos internos. Son parte de la UX.
 - Estética: paleta de `COLORS` en `App.tsx` (fondo `#05070B`, panel `#1D1E2A`, amarillo `#FFD000`, azul `#4C6BE8`,
-  naranja `#F06B00`) y fuente Press Start 2P (no tiene mayúsculas acentuadas: se ven como minúscula).
+  naranja `#F06B00`) y fuente PokeQuien Pixel (`PIXEL_FONT`, Press Start 2P con mayúsculas acentuadas redibujadas; se regenera con `scripts/generate-pixel-font.py`).
 - No hay framework de UI ni router: navegación por estado en `App.tsx`. No cambiar de framework.
+- Accesibilidad: los cambios de fase se anuncian con `accessibilityLiveRegion` + `aria-live` (web/Android) y
+  `AccessibilityInfo.announceForAccessibility` (iOS). Todo control táctil mide ≥ 44 px.
+- Service worker: solo en la build (`scripts/add-web-pwa.mjs`), scope `/Adivina-pkm/` y cachés `pokequien-*`; nunca
+  intercepta rutas ni borra cachés de otras webs del origen compartido `bertmarti.github.io`.
 
 ## Seguridad y privacidad
 

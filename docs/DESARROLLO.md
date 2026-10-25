@@ -5,7 +5,7 @@ el detalle de arquitectura, fases y reglas está en [PROJECT_CONTEXT.md](../PROJ
 
 ## Requisitos
 
-- **Node.js 22 LTS** (React Native 0.86 pide Node ≥ 20.19.4) y npm.
+- **Node.js 22 LTS** (el SDK 58 de Expo pide Node ≥ 22.13 o ≥ 24.3; los impares, 23 y 25, no valen) y npm.
 - Para Android: Expo Go o una build con EAS (ver [RELEASE_0_1_GRATUITA.md](RELEASE_0_1_GRATUITA.md)).
 - Para iOS: macOS con Xcode.
 
@@ -33,12 +33,18 @@ npm ci
 | `cd server && npm test` | Ejecuta los tests del servidor. |
 | `npm run single-player:verify` | Verificación determinista del modo Solitario. |
 | `npm run single-player:soak` / `:merge` / `:fleet` | Campañas largas de resistencia del Solitario (ver [SINGLE_PLAYER_TEST_PLAN.md](../SINGLE_PLAYER_TEST_PLAN.md)). |
-| `npm run build:web` | Exporta la web a `dist/` con ruta base `/Adivina-pkm` y añade la CSP (igual que en GitHub Pages). |
+| `npm run build:web` | Exporta la web a `dist/` con ruta base `/Adivina-pkm` y añade la CSP y la PWA (igual que en GitHub Pages). |
+| `npm run test:web` | Prueba de humo sobre `dist/`: Chromium sin cabeza carga la web bajo `/Adivina-pkm/`, entra en el Solitario, responde «SÍ» y comprueba que la PWA carga sin red. Variables: `CHROME_PATH`, `SMOKE_DIST`, `SMOKE_SCREENSHOT`. |
 
 ## Estructura
 
 ```text
-App.tsx                      Pantallas y orquestación (inicio, sala, selección, espera, partida, solitario)
+App.tsx                      Orquestación del Duelo (estado, salas, manejadores) y anuncios de fase
+src/screens/                 Pantallas del Duelo: inicio, sala, elección, espera, partida (+ victoria)
+src/ui/                      Componentes comunes, estilos, tema (COLORS, PIXEL_FONT), guía y créditos
+src/hooks/                   useReduceMotion y useGameSounds
+assets/fonts/                PokeQuien Pixel (Press Start 2P con mayúsculas acentuadas) + OFL.txt
+public/pwa/                  Iconos de la PWA
 index.ts                     Punto de entrada de Expo
 app.json / app.config.js     Configuración de Expo; app.config.js solo añade la ruta base de Pages
 public/index.html            Plantilla HTML de la web (idioma, metadatos, foco visible)
@@ -49,7 +55,7 @@ src/singlePlayer/            Pantalla del Solitario
 src/data/                    Catálogo local de 1.025 Pokémon y banco de preguntas
 src/audio/                   Sonidos embebidos
 server/room-server.js        Servidor de salas (Node + ws) + room-server.test.js
-scripts/                     Build web, CSP, generadores de catálogo/iconos/audio, pruebas del Solitario
+scripts/                     Build web, CSP, PWA, prueba de humo, generadores de catálogo/iconos/audio/fuente, Solitario
 .github/workflows/           CI (ci.yml) y despliegue en Pages (pages.yml)
 render.yaml / eas.json       Despliegue del servidor (Render) y builds móviles (EAS)
 ```
@@ -94,9 +100,10 @@ minuto e IP (429 + `Retry-After`), 20 salas creadas por IP cada 10 min, 20 conex
 
 ## Pruebas y CI
 
-- Local: `npm run typecheck && npm test && npm run single-player:verify`.
+- Local: `npm run typecheck && npm test && npm run single-player:verify` y, si tocas la web, `npm run build:web && npm run test:web`.
 - CI (`.github/workflows/ci.yml`, en cada PR y push a `master`): gitleaks (historial y árbol), comprobación de sintaxis
-  del servidor, tipos, pruebas, verificación del Solitario, build web y `npm audit --audit-level=critical`.
+  del servidor, tipos, pruebas, verificación del Solitario, build web, prueba de humo con Chrome sin cabeza y
+  `npm audit --audit-level=critical`.
 - Dependabot (`.github/dependabot.yml`) propone actualizaciones semanales agrupadas. Los saltos de SDK de Expo se hacen
   a mano con `npx expo install --fix`.
 
@@ -119,9 +126,28 @@ cd /tmp/pk-serve && python3 -m http.server 8931
 La CSP se inyecta solo en `dist/index.html` (`scripts/add-web-csp.mjs`); no está en `public/index.html` porque
 bloquearía Metro y las IP de la LAN en desarrollo.
 
+**PWA** (`scripts/add-web-pwa.mjs`, también solo en la build): `manifest.webmanifest`, iconos de `public/pwa/`,
+`registrar-sw.js` (archivo aparte porque la CSP no admite scripts en línea) y `sw.js` generado con la lista de archivos
+de la build. El service worker:
+
+- se registra con `scope` `/Adivina-pkm/` y no intercepta nada fuera de esa carpeta (el origen
+  `bertmarti.github.io` es compartido con otras webs);
+- precachea la build entera (≈ 3,5 MB) con una caché versionada por hash (`pokequien-app-<hash>`) y borra solo sus
+  propias cachés antiguas;
+- navegación: primero red y, sin red, la copia guardada; archivos de la build: primero caché (llevan hash en el nombre);
+- retratos: solo `PMDCollab/SpriteCollab/.../portrait/` y `PokeAPI/sprites/.../official-artwork/` de
+  raw.githubusercontent.com, pedidos en modo CORS, en `pokequien-retratos-v1` (máx. 400).
+
+Para depurarlo: DevTools → Application → Service workers / Cache storage. Si algo se queda «pegado», «Unregister» y
+recarga.
+
+**Fuente**: `assets/fonts/PokeQuienPixel-Regular.ttf` se genera con
+`python3 scripts/generate-pixel-font.py node_modules/@expo-google-fonts/press-start-2p/400Regular/PressStart2P_400Regular.ttf assets/fonts/PokeQuienPixel-Regular.ttf`
+(necesita `fonttools`). Solo cambia «Á É Í Ó Ú Ü Ñ»; el resto es Press Start 2P.
+
 ### Servidor de salas propio
 
-El servidor necesita Node.js 22 LTS (mínimo `>=20.19.4`) y la dependencia `ws`. En la raíz, `npm run server` y `npm run room-server` son equivalentes; para aislarlo, usa `cd server && npm ci && npm start`. Al arrancar comprueba la versión de Node y que `ws` esté instalada.
+El servidor de salas, por separado, funciona con Node.js ≥ 20.19.4 (recomendado 22 LTS) y la dependencia `ws`. En la raíz, `npm run server` y `npm run room-server` son equivalentes; para aislarlo, usa `cd server && npm ci && npm start`. Al arrancar comprueba la versión de Node y que `ws` esté instalada.
 
 El health check `GET /` devuelve JSON con `ok`, `rooms`, `transports` (`websocket` y `https-polling`) y `originAllowed`: `true` o `false` si recibe `Origin`, `null` si no lo recibe. Esta ruta responde con CORS `*` para que la web pueda diagnosticar el servidor; el resto de la API mantiene la lista de orígenes.
 

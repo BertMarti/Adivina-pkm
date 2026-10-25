@@ -1,27 +1,27 @@
 {
   "name": "pokequien",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "index.ts",
   "dependencies": {
     "@expo-google-fonts/press-start-2p": "^0.4.1",
     "@react-native-async-storage/async-storage": "^2.2.0",
-    "expo": "~57.0.31",
-    "expo-asset": "~57.0.17",
-    "expo-audio": "~57.0.5",
-    "expo-clipboard": "~57.0.2",
-    "expo-font": "~57.0.4",
-    "expo-haptics": "~57.0.3",
-    "expo-secure-store": "~57.0.4",
-    "expo-status-bar": "~57.0.1",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "react-native": "0.86.3",
-    "react-native-safe-area-context": "~5.7.0",
+    "expo": "~58.0.19",
+    "expo-asset": "~58.0.18",
+    "expo-audio": "~58.0.10",
+    "expo-clipboard": "~58.0.4",
+    "expo-font": "~58.0.10",
+    "expo-haptics": "~58.0.7",
+    "expo-secure-store": "~58.0.2",
+    "expo-status-bar": "~58.0.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-native": "0.88.0",
+    "react-native-safe-area-context": "~5.10.1",
     "react-native-web": "^0.21.4",
     "ws": "^8.22.0"
   },
   "devDependencies": {
-    "@types/react": "~19.2.2",
+    "@types/react": "~19.3.0",
     "@types/ws": "^8.18.2",
     "tsx": "^4.23.15",
     "typescript": "~6.0.3"
@@ -37,6 +37,7 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test server/room-server.test.js && tsx --test src/game/*.test.ts",
     "build:web": "node scripts/build-web.mjs",
+    "test:web": "node scripts/smoke-web.mjs",
     "single-player:soak": "tsx scripts/single-player-soak-test.ts",
     "single-player:merge": "tsx scripts/merge-single-player-soak.ts",
     "single-player:fleet": "tsx scripts/single-player-national-fleet.ts",
@@ -44,6 +45,11 @@
   },
   "private": true,
   "engines": {
-    "node": ">=20.19.4"
+    "node": ">=22.13.0"
+  },
+  "overrides": {
+    "@expo/cli": {
+      "zod": "^4.6.7"
+    }
   }
 }

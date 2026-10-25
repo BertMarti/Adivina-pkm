@@ -1,4 +1,4 @@
-// Exporta la versión web para GitHub Pages (ruta base /Adivina-pkm) y le añade la CSP.
+// Exporta la versión web para GitHub Pages (ruta base /Adivina-pkm) y le añade la CSP y la PWA.
 // Multiplataforma: funciona igual en Linux, macOS y PowerShell.
 import { spawnSync } from 'node:child_process';
 
@@ -12,3 +12,5 @@ const run = (command, args) => {
 // --clear: sin él, Metro reutiliza su caché y puede dejar dentro un EXPO_PUBLIC_ROOM_SERVER_URL de una build anterior.
 run('npx', ['expo', 'export', '--platform', 'web', '--output-dir', 'dist', '--clear']);
 run(process.execPath, ['scripts/add-web-csp.mjs', 'dist']);
+// PWA instalable (manifest + service worker limitado a la ruta base) para jugar al Solitario sin red.
+run(process.execPath, ['scripts/add-web-pwa.mjs', 'dist']);

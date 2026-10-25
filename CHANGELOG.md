@@ -10,6 +10,30 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 
 > Cambios pendientes de incluir en la próxima versión.
 
+## [0.4.0] — 2026-10-25
+
+### 🔐 Seguridad
+
+- Expo SDK 58 completo (React Native 0.88, React 19.3) con `npx expo install expo@^58 --fix`; `expo-doctor` 20/20.
+- `zod` forzado a `^4.6.7` dentro de `@expo/cli` (GHSA-mrhx-c7xc-m3w5, alta). `node-forge` 1.4.0 sigue
+  (GHSA-86w9-cpqp-85rv): no hay versión corregida publicada y solo lo usa la herramienta de desarrollo.
+- Service worker limitado a `/Adivina-pkm/` y a cachés propias (`pokequien-`), sin scripts en línea.
+
+### ✨ Añadido
+
+- PWA instalable: se abre y se juega al Solitario sin red; guarda los retratos ya vistos.
+- Prueba de humo de la web (`npm run test:web`) con Chromium/Chrome sin cabeza, también en CI.
+- Fuente PokeQuien Pixel: «SÍ», «CÓDIGO» y «POKÉMON» con la mayúscula entera (antes la vocal parecía minúscula).
+- Cambios de pantalla, turno y resultado anunciados a lectores de pantalla (regiones vivas y anuncios en iOS).
+
+### 🔄 Cambiado
+
+- `App.tsx` troceado en pantallas (`src/screens/`), componentes (`src/ui/components.tsx`), estilos y hooks, sin
+  cambiar el aspecto.
+- Node.js ≥ 22.13 para la app (requisito del SDK 58); el servidor de salas sigue aceptando Node ≥ 20.19.4.
+- Dependabot ignora los saltos menores de módulos nativos fijados por el SDK y TypeScript 7.
+- `ImageBackground` (obsoleto en RN 0.88) sustituido por `Image`.
+
 ## [0.3.0] — 2026-10-24
 
 ### 🔐 Seguridad

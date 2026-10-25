@@ -1,15 +1,16 @@
 # MEMORY.md — PokéQuién
 
-Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y estado. Última actualización: **24/10/2026**.
+Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y estado. Última actualización: **25/10/2026**.
 
-## Estado actual (24/10/2026)
+## Estado actual (25/10/2026)
 
-- Versión **0.3.0**. Web jugable en <https://bertmarti.github.io/Adivina-pkm/> (tras fusionar la rama
-  `mejoras-2026-10-24` y activar Pages con origen «GitHub Actions»).
+- Versión **0.4.0** con Expo SDK 58 (React Native 0.88, React 19.3). Web jugable en
+  <https://bertmarti.github.io/Adivina-pkm/>, instalable como PWA; el Solitario funciona sin red.
 - Solitario: 100 % local, funciona en la web sin servidor.
 - Duelo: servidor de salas en Render (plan gratuito, salas en memoria). La web de Pages conecta por WSS si
   `ROOM_SERVER_ALLOWED_ORIGINS` incluye `https://bertmarti.github.io` en Render.
-- Pruebas: 22 del servidor + 20 del motor y utilidades (`npm test`), verificación del Solitario y CI en cada PR.
+- Pruebas: 22 del servidor + 20 del motor y utilidades (`npm test`), verificación del Solitario, prueba de humo de la
+  web (`npm run test:web`) y CI en cada PR.
 
 ## Decisiones y por qué
 
@@ -31,7 +32,19 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 | 24/10/2026 | Dependabot ignora saltos de SDK y cambios descoordinados de React/RN | Expo 57 requiere actualizar el conjunto completo, no mezclar versiones. |
 | 24/10/2026 | `connect-src` de la CSP se limita a la web y al servidor configurado | Evita conexiones arbitrarias desde la build publicada. |
 
+| 25/10/2026 | Expo SDK 58 completo de una vez | Cerraba las alertas pendientes del SDK 57 que sí tenían arreglo y Dependabot no puede subir el SDK por piezas. |
+| 25/10/2026 | `overrides` de `zod` ^4.6.7 solo dentro de `@expo/cli` | El CLI usa zod solo para validar complementos de DevTools/MCP con API que zod 4 mantiene; `expo-doctor`, `expo export` y `expo start` funcionan. Quitar el override cuando `@expo/cli` dependa de zod ≥ 4.6.6. |
+| 25/10/2026 | `node-forge` 1.4.0 se deja (alerta abierta) | No existe versión corregida; solo lo usa `@expo/cli` para certificados de firma (iOS y expo-updates), que este proyecto no usa. |
+| 25/10/2026 | Fuente derivada «PokeQuien Pixel» | Press Start 2P encoge las mayúsculas acentuadas. La OFL permite modificarla, pero con otro nombre (nombre reservado). |
+| 25/10/2026 | PWA generada en la build (`scripts/add-web-pwa.mjs`), no en `public/` | La lista de precaché depende de los nombres con hash de cada build; y en `expo start --web` no debe haber service worker. |
+| 25/10/2026 | Service worker con scope `/Adivina-pkm/` y cachés `pokequien-*` | El origen `bertmarti.github.io` es común a todas las webs de BertMarti: no puede tocar rutas ni cachés ajenas. |
+| 25/10/2026 | Prueba de humo sin dependencias (CDP por WebSocket de Node 22) | Evita instalar Puppeteer/Playwright (cientos de MB) en la Raspberry y en CI. |
+
 ## Trampas conocidas
+
+- **Service worker en desarrollo**: si abres la build de `dist/` en `localhost` y luego `npm run web` en el mismo
+  puerto, el service worker de la build puede servir la versión vieja. DevTools → Application → «Unregister».
+- **Node 20 en la Raspberry**: el sistema trae Node 20.19; para el SDK 58 hace falta Node ≥ 22.13 (en CI ya es 22).
 
 - **Render gratis se duerme**: la primera conexión puede tardar hasta 1 minuto; el cliente hace un *warm-up* HTTP y espera.
 - **Salas en memoria**: un reinicio o redeploy del servidor termina todas las partidas activas.
@@ -39,12 +52,12 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 - **Reglas duplicadas**: `server/room-server.js` replica las reglas de `src/game/engine.ts`; cambia ambos y sus tests.
 - **Ruta base**: solo se aplica con `PAGES_BASE_URL`. En Pages, el enlace de invitación debe conservar
   `/Adivina-pkm/` (arreglado en `inviteLinkFor` usando `window.location.pathname`).
-- **Fuente Press Start 2P**: no tiene mayúsculas acentuadas; «SÍ» o «CÓDIGO» se ven con la vocal en minúscula.
+- **Fuente**: Press Start 2P encoge «Á É Í Ó Ú Ü Ñ» y se leían como minúsculas. Desde el 25/10/2026 la app usa PokeQuien Pixel (`assets/fonts/`, generada con `scripts/generate-pixel-font.py`), con el acento 250 unidades por encima de la altura de mayúsculas: si un texto con mayúsculas acentuadas queda recortado arriba, dale algo más de `lineHeight` o de margen superior.
 - **Autoplay en web**: `expo-audio` no captura el rechazo de `play()` si no hubo interacción; aparece un
   `NotAllowedError` en consola solo en navegadores sin gesto del usuario (p. ej. pruebas automáticas). Es inofensivo.
 - **Solitario tolerante a errores**: «Quedan N» no baja siempre tras cada respuesta; el motor usa creencias
   probabilísticas, no filtrado duro. No es un bug.
-- **Versión de Node**: con Node < 20.19.4, npm da avisos `EBADENGINE` con RN 0.86; en CI se usa Node 22.
+- **Versión de Node**: la app (SDK 58) pide Node ≥ 22.13 (o ≥ 24.3); con Node 20 Expo CLI avisa de que no está soportado. El servidor de salas (`server/`) sigue aceptando Node ≥ 20.19.4. En CI se usa Node 22.
 - **Host inválido**: la URL de cada petición se resuelve con base fija `http://localhost` y los errores no capturados de `handleHttpRequest` responden 400; antes una cabecera `Host: a b` tumbaba el proceso.
 - **`/usr/share/nodejs/ws` en la Raspberry** puede hacer que `require('ws')` funcione sin `node_modules`; no sirve para probar el caso de dependencia `ws` ausente.
 - **Caché de Metro y `EXPO_PUBLIC_*`**: sin `--clear`, `expo export` reutilizaba una build anterior con otra `EXPO_PUBLIC_ROOM_SERVER_URL` (la CSP nueva bloqueaba la URL vieja). `npm run build:web` ya pasa `--clear`.

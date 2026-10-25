@@ -41,6 +41,7 @@ import {
   SinglePlayerSessionRecord,
   upsertSinglePlayerSession,
 } from '../game/singlePlayerStorage';
+import { PIXEL_FONT } from '../ui/theme';
 
 type SinglePlayerStep = 'pick' | 'questions' | 'guess' | 'result';
 type SinglePlayerSound = 'select' | 'victory';
@@ -147,7 +148,7 @@ function SoloSelection({ entries, questionCount, catalogLabel, nationalLoading, 
     return entries.filter((entry) => [entry.candidate.name, ...entry.aliases].some((value) => value.toLocaleLowerCase('es-ES').includes(query)));
   }, [entries, search]);
   return <ScrollView contentContainerStyle={soloStyles.content} keyboardShouldPersistTaps="handled">
-    <Pressable accessibilityRole="button" onPress={onBack} style={soloStyles.back}><Text style={soloStyles.backText}>‹ VOLVER</Text></Pressable>
+    <Pressable accessibilityRole="button" accessibilityLabel="Volver" onPress={onBack} style={soloStyles.back}><Text style={soloStyles.backText}>‹ VOLVER</Text></Pressable>
     <View style={soloStyles.header}>
       <Text accessibilityRole="header" style={soloStyles.title}>MODO 1 JUGADOR</Text>
       <Text style={soloStyles.subtitle}>ELIGE UN POKÉMON EN SECRETO</Text>
@@ -164,7 +165,7 @@ function SoloSelection({ entries, questionCount, catalogLabel, nationalLoading, 
       value={search}
     />
     <View style={soloStyles.catalogBadge}><Text style={soloStyles.catalogText}>BANCO {catalogLabel.toUpperCase()} · {entries.length} POKÉMON · {questionCount} PREGUNTAS</Text></View>
-    {entries.length < 1025 && <Pressable accessibilityRole="button" accessibilityState={{ disabled: nationalLoading }} disabled={nationalLoading} onPress={onLoadNational} style={({ pressed }) => [soloStyles.nationalButton, pressed && soloStyles.pressed, nationalLoading && soloStyles.disabled]}><Text style={soloStyles.nationalButtonText}>{nationalLoading ? 'PREPARANDO 1.025 POKÉMON…' : 'USAR POKÉDEX NACIONAL · 1.025'}</Text></Pressable>}
+    {entries.length < 1025 && <Pressable accessibilityRole="button" accessibilityLabel="Usar Pokédex Nacional de 1.025 Pokémon" accessibilityState={{ disabled: nationalLoading }} disabled={nationalLoading} onPress={onLoadNational} style={({ pressed }) => [soloStyles.nationalButton, pressed && soloStyles.pressed, nationalLoading && soloStyles.disabled]}><Text style={soloStyles.nationalButtonText}>{nationalLoading ? 'PREPARANDO 1.025 POKÉMON…' : 'USAR POKÉDEX NACIONAL · 1.025'}</Text></Pressable>}
     <View style={soloStyles.grid}>{filtered.map((entry) => <SoloPokemonTile key={entry.candidate.id} entry={entry} onPress={() => onPick(entry)} />)}</View>
     {filtered.length === 0 && <Text style={soloStyles.empty}>No hay Pokémon con ese nombre.</Text>}
   </ScrollView>;
@@ -181,14 +182,14 @@ function QuestionView({ state, selectedPokemon, onAnswer, onBack, onNewGame }: {
   const question = state.currentQuestion;
   const currentIndex = state.history.length + 1;
   return <ScrollView contentContainerStyle={soloStyles.content}>
-    <Pressable accessibilityRole="button" onPress={onBack} style={soloStyles.back}><Text style={soloStyles.backText}>‹ SALIR</Text></Pressable>
+    <Pressable accessibilityRole="button" accessibilityLabel="Salir de la partida" onPress={onBack} style={soloStyles.back}><Text style={soloStyles.backText}>‹ SALIR</Text></Pressable>
     <View style={soloStyles.header}><Text accessibilityRole="header" style={soloStyles.title}>PIENSO Y ADIVINO</Text><Text style={soloStyles.subtitle}>RESPONDE SOLO SÍ O NO</Text></View>
     <View accessibilityLiveRegion="polite" style={soloStyles.progressCard}><Text style={soloStyles.progressText}>PREGUNTA {currentIndex} / {SINGLE_PLAYER_MAX_QUESTIONS}</Text><Text style={soloStyles.remaining}>QUEDAN {state.remainingCandidates.length} POKÉMON</Text></View>
     <View accessibilityLabel={`Tu Pokémon secreto es ${selectedPokemon.name}, número ${selectedPokemon.id}`} style={soloStyles.secretCard}><MiniPortrait pokemon={selectedPokemon} size={82} /><View style={soloStyles.secretCopy}><Text style={soloStyles.secretKicker}>TU POKÉMON SECRETO</Text><Text style={soloStyles.secretName}>{selectedPokemon.name}</Text><Text style={soloStyles.secretDex}>POKÉDEX NACIONAL #{String(selectedPokemon.id).padStart(3, '0')}</Text></View></View>
     {!!question && <View accessibilityLiveRegion="polite" style={soloStyles.questionCard}><Text style={soloStyles.questionKicker}>MI PREGUNTA ES…</Text><Text accessibilityRole="header" style={soloStyles.questionText}>{question.text}</Text><QuestionActions onAnswer={onAnswer} disabled={false} /></View>}
     <View style={soloStyles.tipCard}><Text style={soloStyles.tipTitle}>CÓMO JUGAR</Text><Text style={soloStyles.body}>Contesta pensando en el Pokémon que acabas de elegir. Si te equivocas, podrás volver a empezar sin perder el registro.</Text></View>
     {state.history.length > 0 && <View style={soloStyles.historyCard}><Text style={soloStyles.tipTitle}>ÚLTIMA RESPUESTA</Text><Text style={soloStyles.body}>{state.history[state.history.length - 1].question.text}</Text><Text style={soloStyles.lastAnswer}>{state.history[state.history.length - 1].answer ? 'SÍ' : 'NO'} · QUEDAN {state.remainingCandidates.length}</Text></View>}
-    <Pressable accessibilityRole="button" onPress={onNewGame} style={soloStyles.secondaryAction}><Text style={soloStyles.secondaryActionText}>ABANDONAR Y EMPEZAR OTRA</Text></Pressable>
+    <Pressable accessibilityRole="button" accessibilityLabel="Abandonar y empezar otra partida" onPress={onNewGame} style={soloStyles.secondaryAction}><Text style={soloStyles.secondaryActionText}>ABANDONAR Y EMPEZAR OTRA</Text></Pressable>
   </ScrollView>;
 }
 
@@ -209,7 +210,7 @@ function ResultView({ state, selectedPokemonId, onNewGame, onBack }: { state: Si
   return <ScrollView contentContainerStyle={soloStyles.content}>
     <Pressable accessibilityRole="button" onPress={onBack} style={soloStyles.back}><Text style={soloStyles.backText}>‹ SALIR</Text></Pressable>
     <View style={[soloStyles.resultCard, state.phase === 'won' || state.phase === 'limit-reached' ? soloStyles.resultWin : soloStyles.resultOther]}>
-      <Text accessibilityRole="header" style={soloStyles.resultTitle}>{title}</Text>
+      <Text accessibilityRole="header" accessibilityLiveRegion="polite" style={soloStyles.resultTitle}>{title}</Text>
       {state.phase === 'won' && state.winner && <><MiniPortrait pokemon={state.winner.metadata?.candidate ?? target?.candidate ?? SINGLE_PLAYER_KANTO_KNOWLEDGE[0].candidate} size={142} /><Text style={soloStyles.resultPokemon}>{state.winner.name}</Text><Text style={soloStyles.bodyCenter}>¡He encontrado tu Pokémon!</Text><Text style={soloStyles.fact}>{(state.winner.metadata?.shortFacts ?? [state.winner.metadata?.candidate.funFact ?? '']).slice(0, 3).map((fact, index) => <Text key={`${state.winner?.id ?? 'winner'}-fact-${index}`}>{index > 0 ? '\n' : ''}{index + 1}. {fact}</Text>)}</Text></>}
       {state.phase === 'limit-reached' && target && <><MiniPortrait pokemon={target.candidate} size={142} /><Text style={soloStyles.resultPokemon}>{target.candidate.name}</Text><Text style={soloStyles.bodyCenter}>La máquina no lo ha descubierto en {SINGLE_PLAYER_MAX_QUESTIONS} preguntas. ¡El punto es para ti!</Text><Text style={soloStyles.fact}>{target.shortFacts.slice(0, 3).map((fact, index) => <Text key={`${target.candidate.id}-fact-${index}`}>{index > 0 ? '\n' : ''}{index + 1}. {fact}</Text>)}</Text></>}
       {state.phase === 'no-match' && <Text style={soloStyles.bodyCenter}>Alguna respuesta no encaja con la base de conocimiento. Puedes corregirlo empezando otra partida.</Text>}
@@ -238,6 +239,10 @@ export function SinglePlayerScreen({ reduceMotion: _reduceMotion, onBack, onSoun
     void readSinglePlayerLog().then((sessions) => setSessionCount(sessions.length));
     void AccessibilityInfo.announceForAccessibility?.('Modo 1 jugador preparado');
   }, []);
+
+  useEffect(() => {
+    if (step === 'guess') void AccessibilityInfo.announceForAccessibility?.('¿Lo he adivinado?');
+  }, [step]);
 
   const refreshSessionCount = () => {
     void readSinglePlayerLog().then((sessions) => setSessionCount(sessions.length));
@@ -368,18 +373,18 @@ const soloStyles = StyleSheet.create({
   root: { flex: 1 },
   content: { padding: 16, paddingTop: 22, paddingBottom: 54, gap: 15 },
   back: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start', paddingRight: 18 },
-  backText: { color: '#FFD000', fontFamily: 'PressStart2P_400Regular', fontSize: 9, letterSpacing: 0.8 },
+  backText: { color: '#FFD000', fontFamily: PIXEL_FONT, fontSize: 9, letterSpacing: 0.8 },
   header: { alignItems: 'center', gap: 8, paddingVertical: 6 },
-  title: { color: '#FFD000', fontFamily: 'PressStart2P_400Regular', fontSize: 18, lineHeight: 27, textAlign: 'center', textShadowColor: '#453A00', textShadowOffset: { width: 3, height: 3 }, textShadowRadius: 0 },
-  subtitle: { color: '#38D37D', fontFamily: 'PressStart2P_400Regular', fontSize: 8, textAlign: 'center', letterSpacing: 0.6 },
+  title: { color: '#FFD000', fontFamily: PIXEL_FONT, fontSize: 18, lineHeight: 27, textAlign: 'center', textShadowColor: '#453A00', textShadowOffset: { width: 3, height: 3 }, textShadowRadius: 0 },
+  subtitle: { color: '#38D37D', fontFamily: PIXEL_FONT, fontSize: 8, textAlign: 'center', letterSpacing: 0.6 },
   body: { color: '#F6F5EF', fontSize: 13, lineHeight: 20 },
   machineHint: { color: '#9FE7B8', backgroundColor: 'rgba(24, 81, 58, 0.56)', borderRadius: 7, padding: 10, fontSize: 12, lineHeight: 18, textAlign: 'center' },
   bodyCenter: { color: '#F6F5EF', fontSize: 13, lineHeight: 20, textAlign: 'center' },
   search: { minHeight: 52, borderRadius: 8, borderWidth: 2, borderColor: '#67686F', backgroundColor: '#101116', color: '#F6F5EF', paddingHorizontal: 14, fontSize: 15 },
   catalogBadge: { backgroundColor: 'rgba(5, 11, 24, 0.9)', borderRadius: 8, borderWidth: 2, borderColor: '#4B4B4F', padding: 11 },
-  catalogText: { color: '#FFD000', fontFamily: 'PressStart2P_400Regular', fontSize: 7, lineHeight: 13, textAlign: 'center' },
+  catalogText: { color: '#FFD000', fontFamily: PIXEL_FONT, fontSize: 7, lineHeight: 13, textAlign: 'center' },
   nationalButton: { minHeight: 48, borderRadius: 8, borderWidth: 2, borderColor: '#79A2FF', backgroundColor: '#4059D2', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 },
-  nationalButtonText: { color: '#111128', fontFamily: 'PressStart2P_400Regular', fontSize: 8, lineHeight: 14, textAlign: 'center' },
+  nationalButtonText: { color: '#111128', fontFamily: PIXEL_FONT, fontSize: 8, lineHeight: 14, textAlign: 'center' },
   error: { color: '#F6F5EF', backgroundColor: '#8D394F', borderRadius: 8, padding: 12, fontSize: 12, lineHeight: 18 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', rowGap: 7, backgroundColor: 'rgba(0, 0, 0, 0.68)', borderRadius: 10, borderWidth: 3, borderColor: '#292B33', padding: 8 },
   tile: { width: '18.4%', aspectRatio: 0.9, minHeight: 58, alignItems: 'center', justifyContent: 'center', gap: 1, backgroundColor: '#FFF3D2', borderRadius: 7, borderWidth: 3, borderColor: '#454650', paddingHorizontal: 1, overflow: 'hidden' },
@@ -388,46 +393,46 @@ const soloStyles = StyleSheet.create({
   tileName: { color: '#111128', fontSize: 6, fontWeight: '900', textAlign: 'center', maxWidth: '100%' },
   empty: { color: '#F6F5EF', textAlign: 'center', padding: 20 },
   progressCard: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'rgba(5, 11, 24, 0.94)', borderRadius: 8, borderWidth: 2, borderColor: '#4B4B4F', padding: 13 },
-  progressText: { color: '#38D37D', fontFamily: 'PressStart2P_400Regular', fontSize: 8 },
-  remaining: { color: '#FFD000', fontFamily: 'PressStart2P_400Regular', fontSize: 7 },
+  progressText: { color: '#38D37D', fontFamily: PIXEL_FONT, fontSize: 8 },
+  remaining: { color: '#FFD000', fontFamily: PIXEL_FONT, fontSize: 7 },
   secretCard: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 13, backgroundColor: 'rgba(17, 18, 24, 0.95)', borderRadius: 11, borderWidth: 2, borderColor: '#FFD000', paddingHorizontal: 14, paddingVertical: 8, shadowColor: '#FFD000', shadowOpacity: 0.18, shadowRadius: 7, shadowOffset: { width: 0, height: 0 } },
   secretCopy: { flex: 1, gap: 5 },
-  secretKicker: { color: '#38D37D', fontFamily: 'PressStart2P_400Regular', fontSize: 7, lineHeight: 12 },
-  secretName: { color: '#FFD000', fontFamily: 'PressStart2P_400Regular', fontSize: 14, lineHeight: 21 },
-  secretDex: { color: '#A7A8B2', fontFamily: 'PressStart2P_400Regular', fontSize: 6, lineHeight: 11 },
+  secretKicker: { color: '#38D37D', fontFamily: PIXEL_FONT, fontSize: 7, lineHeight: 12 },
+  secretName: { color: '#FFD000', fontFamily: PIXEL_FONT, fontSize: 14, lineHeight: 21 },
+  secretDex: { color: '#A7A8B2', fontFamily: PIXEL_FONT, fontSize: 6, lineHeight: 11 },
   questionCard: { backgroundColor: 'rgba(29, 30, 42, 0.97)', borderRadius: 14, borderWidth: 3, borderColor: '#FFD000', padding: 17, gap: 14, alignItems: 'center', shadowColor: '#FFD000', shadowOpacity: 0.22, shadowRadius: 8, shadowOffset: { width: 0, height: 0 } },
-  questionKicker: { color: '#F06B00', fontFamily: 'PressStart2P_400Regular', fontSize: 8 },
+  questionKicker: { color: '#F06B00', fontFamily: PIXEL_FONT, fontSize: 8 },
   questionText: { color: '#F6F5EF', fontSize: 22, fontWeight: '900', lineHeight: 31, textAlign: 'center' },
   answerRow: { flexDirection: 'row', width: '100%', gap: 10, marginTop: 4 },
   answerButton: { flex: 1, minHeight: 62, borderRadius: 9, borderWidth: 3, borderBottomWidth: 6, alignItems: 'center', justifyContent: 'center' },
   yesButton: { backgroundColor: '#226B45', borderColor: '#7BEEA8', borderBottomColor: '#123D29' },
   noButton: { backgroundColor: '#8D394F', borderColor: '#FF9AA0', borderBottomColor: '#4F1E2B' },
-  answerText: { color: '#F6F5EF', fontFamily: 'PressStart2P_400Regular', fontSize: 14 },
+  answerText: { color: '#F6F5EF', fontFamily: PIXEL_FONT, fontSize: 14 },
   pressed: { transform: [{ scale: 0.97 }], opacity: 0.86 },
   disabled: { opacity: 0.45 },
   tipCard: { backgroundColor: 'rgba(29, 30, 42, 0.92)', borderRadius: 9, padding: 13, gap: 6 },
-  tipTitle: { color: '#FFD000', fontFamily: 'PressStart2P_400Regular', fontSize: 8, lineHeight: 14 },
+  tipTitle: { color: '#FFD000', fontFamily: PIXEL_FONT, fontSize: 8, lineHeight: 14 },
   historyCard: { backgroundColor: 'rgba(29, 30, 42, 0.92)', borderRadius: 9, borderLeftWidth: 4, borderLeftColor: '#4C6BE8', padding: 13, gap: 7 },
-  lastAnswer: { color: '#38D37D', fontFamily: 'PressStart2P_400Regular', fontSize: 8 },
+  lastAnswer: { color: '#38D37D', fontFamily: PIXEL_FONT, fontSize: 8 },
   secondaryAction: { minHeight: 48, borderRadius: 7, borderWidth: 2, borderColor: '#645B96', backgroundColor: 'rgba(17, 18, 24, 0.75)', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 },
-  secondaryActionText: { color: '#C7C5FF', fontFamily: 'PressStart2P_400Regular', fontSize: 7, textAlign: 'center' },
+  secondaryActionText: { color: '#C7C5FF', fontFamily: PIXEL_FONT, fontSize: 7, textAlign: 'center' },
   guessCard: { alignItems: 'center', gap: 12, backgroundColor: '#FFF3D2', borderRadius: 12, borderWidth: 3, borderColor: '#FFD000', padding: 16 },
-  guessName: { color: '#111128', fontFamily: 'PressStart2P_400Regular', fontSize: 13 },
+  guessName: { color: '#111128', fontFamily: PIXEL_FONT, fontSize: 13 },
   resultCard: { alignItems: 'center', gap: 12, borderRadius: 13, borderWidth: 3, padding: 18 },
   resultWin: { backgroundColor: 'rgba(24, 81, 58, 0.96)', borderColor: '#38D37D' },
   resultOther: { backgroundColor: 'rgba(29, 30, 42, 0.97)', borderColor: '#FFD000' },
-  resultTitle: { color: '#FFD000', fontFamily: 'PressStart2P_400Regular', fontSize: 19, textAlign: 'center', lineHeight: 28 },
-  resultPokemon: { color: '#FFD000', fontFamily: 'PressStart2P_400Regular', fontSize: 13, textAlign: 'center' },
+  resultTitle: { color: '#FFD000', fontFamily: PIXEL_FONT, fontSize: 19, textAlign: 'center', lineHeight: 28 },
+  resultPokemon: { color: '#FFD000', fontFamily: PIXEL_FONT, fontSize: 13, textAlign: 'center' },
   fact: { color: '#F6F5EF', backgroundColor: 'rgba(0, 0, 0, 0.23)', borderRadius: 8, padding: 12, textAlign: 'center', fontSize: 12, lineHeight: 18 },
   miniPortraitFrame: { position: 'relative', alignItems: 'center', justifyContent: 'center' },
-  miniDexBadge: { position: 'absolute', right: 0, bottom: 0, color: '#F6F5EF', backgroundColor: 'rgba(5, 7, 11, 0.84)', fontFamily: 'PressStart2P_400Regular', fontSize: 6, lineHeight: 9, paddingHorizontal: 2, borderRadius: 2 },
-  tieNames: { color: '#FFD000', fontFamily: 'PressStart2P_400Regular', fontSize: 8, lineHeight: 15, textAlign: 'center' },
+  miniDexBadge: { position: 'absolute', right: 0, bottom: 0, color: '#F6F5EF', backgroundColor: 'rgba(5, 7, 11, 0.84)', fontFamily: PIXEL_FONT, fontSize: 6, lineHeight: 9, paddingHorizontal: 2, borderRadius: 2 },
+  tieNames: { color: '#FFD000', fontFamily: PIXEL_FONT, fontSize: 8, lineHeight: 15, textAlign: 'center' },
   newGameButton: { minHeight: 54, borderRadius: 8, borderWidth: 2, borderBottomWidth: 5, borderColor: '#79A2FF', borderBottomColor: '#283B9D', backgroundColor: '#4059D2', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16, width: '100%' },
-  newGameText: { color: '#111128', fontFamily: 'PressStart2P_400Regular', fontSize: 9, textAlign: 'center' },
+  newGameText: { color: '#111128', fontFamily: PIXEL_FONT, fontSize: 9, textAlign: 'center' },
   historyFooter: { borderTopWidth: 2, borderTopColor: '#4B4B4F', margin: 16, paddingTop: 13, gap: 8 },
-  historyTitle: { color: '#FFD000', fontFamily: 'PressStart2P_400Regular', fontSize: 8, textAlign: 'center' },
+  historyTitle: { color: '#FFD000', fontFamily: PIXEL_FONT, fontSize: 8, textAlign: 'center' },
   historyActions: { flexDirection: 'row', gap: 8 },
   smallAction: { flex: 1, minHeight: 44, borderRadius: 7, borderWidth: 2, borderColor: '#67686F', backgroundColor: '#171820', alignItems: 'center', justifyContent: 'center' },
-  smallActionText: { color: '#F6F5EF', fontFamily: 'PressStart2P_400Regular', fontSize: 7 },
+  smallActionText: { color: '#F6F5EF', fontFamily: PIXEL_FONT, fontSize: 7 },
   historyHint: { color: '#A7A8B2', fontSize: 11, lineHeight: 16, textAlign: 'center' },
 });

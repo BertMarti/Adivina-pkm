@@ -48,7 +48,7 @@ node --check server/room-server.js
 git diff --check
 ```
 
-Dependencias (24/10/2026): `npm audit` deja 5 avisos altos en `node-forge` y `zod`, ambos dentro de `@expo/cli` (solo herramienta de desarrollo, no llegan a la APK ni a la web). No hay parche dentro del SDK 57; se revisará al subir de SDK.
+Dependencias (25/10/2026, SDK 58): `zod` se fuerza a `^4.6.7` dentro de `@expo/cli` con `overrides` en `package.json` (aviso GHSA-mrhx-c7xc-m3w5 resuelto; el CLI solo usa API compatible con zod 4). Queda `node-forge` ≤ 1.4.0 (GHSA-86w9-cpqp-85rv), **sin versión corregida publicada**: solo lo usa `@expo/cli` (herramienta de desarrollo) para leer certificados de firma de iOS y de expo-updates, funciones que este proyecto no usa; no llega a la APK, a la web ni al servidor de salas. Se quitará cuando salga una versión corregida (Dependabot la propondrá).
 
 Las decisiones siguen la [guía de seguridad WebSocket de OWASP](https://cheatsheetseries.owasp.org/cheatsheets/WebSocket_Security_Cheat_Sheet.html): allowlist de `Origin`, validación de cada mensaje, límites de tamaño, rate limiting y limpieza de conexiones. `expo-secure-store` se usa solo para el token pequeño de sesión, siguiendo su almacenamiento seguro en [Android/iOS](https://docs.expo.dev/versions/v54.0.0/sdk/securestore/); el historial local de partidas sigue siendo deliberadamente no sensible.
 
