@@ -44,7 +44,7 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
   `NotAllowedError` en consola solo en navegadores sin gesto del usuario (p. ej. pruebas automáticas). Es inofensivo.
 - **Solitario tolerante a errores**: «Quedan N» no baja siempre tras cada respuesta; el motor usa creencias
   probabilísticas, no filtrado duro. No es un bug.
-- **Versión de Node**: con Node < 20.19.4, npm da avisos `EBADENGINE` con RN 0.86; en CI se usa Node 22.
+- **Versión de Node**: la app (SDK 58) pide Node ≥ 22.13 (o ≥ 24.3); con Node 20 Expo CLI avisa de que no está soportado. El servidor de salas (`server/`) sigue aceptando Node ≥ 20.19.4. En CI se usa Node 22.
 - **Host inválido**: la URL de cada petición se resuelve con base fija `http://localhost` y los errores no capturados de `handleHttpRequest` responden 400; antes una cabecera `Host: a b` tumbaba el proceso.
 - **`/usr/share/nodejs/ws` en la Raspberry** puede hacer que `require('ws')` funcione sin `node_modules`; no sirve para probar el caso de dependencia `ws` ausente.
 - **Caché de Metro y `EXPO_PUBLIC_*`**: sin `--clear`, `expo export` reutilizaba una build anterior con otra `EXPO_PUBLIC_ROOM_SERVER_URL` (la CSP nueva bloqueaba la URL vieja). `npm run build:web` ya pasa `--clear`.

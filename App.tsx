@@ -10,7 +10,6 @@ import {
   Animated,
   Easing,
   Image,
-  ImageBackground,
   Linking,
   Modal,
   Platform,
@@ -169,7 +168,7 @@ function useGameSounds() {
 }
 
 function RetroBackdrop() {
-  return <View pointerEvents="none" style={styles.backdrop}><ImageBackground source={require('./assets/spritecollab-background.png')} style={styles.backdropImage} resizeMode="cover" /><View style={styles.backdropTint} /><View style={styles.scanlines}>{Array.from({ length: 80 }, (_, index) => <View key={index} style={styles.scanline} />)}</View></View>;
+  return <View pointerEvents="none" style={styles.backdrop}><Image source={require('./assets/spritecollab-background.png')} style={styles.backdropImage} resizeMode="cover" accessible={false} /><View style={styles.backdropTint} /><View style={styles.scanlines}>{Array.from({ length: 80 }, (_, index) => <View key={index} style={styles.scanline} />)}</View></View>;
 }
 
 function Portrait({ pokemon, variant = 'happy', size = 52 }: { pokemon: PokemonCandidate; variant?: 'happy' | 'sad' | 'normal'; size?: number }) {
@@ -557,7 +556,7 @@ export default function App() {
       return;
     }
     let active = true;
-    void Linking.getInitialURL().then((url) => { if (active) joinFromUrl(url); }).catch(() => {});
+    void Linking.getInitialURL().then((url) => { if (active) joinFromUrl(url ?? null); }).catch(() => {});
     const subscription = Linking.addEventListener('url', ({ url }) => joinFromUrl(url));
     return () => { active = false; subscription.remove(); };
   }, []);

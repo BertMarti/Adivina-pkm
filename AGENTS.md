@@ -28,7 +28,7 @@ Android, iOS) con dos modos: **Duelo** (2 jugadores, servidor de salas Node + We
 ## Comandos exactos
 
 ```bash
-npm ci                          # instalar (Node 22; RN 0.86 pide >= 20.19.4)
+npm ci                          # instalar (Node 22.13+ o 24.3+; lo exige el SDK 58 de Expo)
 npm start                       # Expo interactivo
 npm run web                     # web en local
 npm run server                  # servidor de salas en 8787

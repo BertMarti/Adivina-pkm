@@ -5,7 +5,7 @@ el detalle de arquitectura, fases y reglas está en [PROJECT_CONTEXT.md](../PROJ
 
 ## Requisitos
 
-- **Node.js 22 LTS** (React Native 0.86 pide Node ≥ 20.19.4) y npm.
+- **Node.js 22 LTS** (el SDK 58 de Expo pide Node ≥ 22.13 o ≥ 24.3; los impares, 23 y 25, no valen) y npm.
 - Para Android: Expo Go o una build con EAS (ver [RELEASE_0_1_GRATUITA.md](RELEASE_0_1_GRATUITA.md)).
 - Para iOS: macOS con Xcode.
 
@@ -121,7 +121,7 @@ bloquearía Metro y las IP de la LAN en desarrollo.
 
 ### Servidor de salas propio
 
-El servidor necesita Node.js 22 LTS (mínimo `>=20.19.4`) y la dependencia `ws`. En la raíz, `npm run server` y `npm run room-server` son equivalentes; para aislarlo, usa `cd server && npm ci && npm start`. Al arrancar comprueba la versión de Node y que `ws` esté instalada.
+El servidor de salas, por separado, funciona con Node.js ≥ 20.19.4 (recomendado 22 LTS) y la dependencia `ws`. En la raíz, `npm run server` y `npm run room-server` son equivalentes; para aislarlo, usa `cd server && npm ci && npm start`. Al arrancar comprueba la versión de Node y que `ws` esté instalada.
 
 El health check `GET /` devuelve JSON con `ok`, `rooms`, `transports` (`websocket` y `https-polling`) y `originAllowed`: `true` o `false` si recibe `Origin`, `null` si no lo recibe. Esta ruta responde con CORS `*` para que la web pueda diagnosticar el servidor; el resto de la API mantiene la lista de orígenes.
 
