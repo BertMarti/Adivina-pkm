@@ -321,7 +321,10 @@ export default function App() {
       firstScreenRef.current = false;
       return;
     }
-    if (Platform.OS === 'ios') AccessibilityInfo.announceForAccessibility(`${screenTitle}. ${PHASE_HINTS[screen]}`);
+    // El Solitario ya anuncia «Modo 1 jugador preparado»: no se duplica.
+    if (Platform.OS === 'ios' && screen !== 'single-player') {
+      AccessibilityInfo.announceForAccessibility(`${screenTitle}. ${PHASE_HINTS[screen]}`);
+    }
   }, [screen, screenTitle]);
 
   if (!fontsLoaded)
