@@ -111,7 +111,16 @@ const styles = StyleSheet.create({
   item: { gap: 4 },
   itemTitle: { color: COLORS.yellow, fontFamily: PIXEL_FONT, fontSize: 8, lineHeight: 14 },
   itemText: { color: COLORS.white, fontSize: 13, lineHeight: 19 },
-  link: { color: '#9DB6FF', fontSize: 13, lineHeight: 22, textDecorationLine: 'underline' },
+  // Relleno con margen negativo: zona táctil de 44 px sin mover el texto.
+  link: {
+    alignSelf: 'flex-start',
+    color: '#9DB6FF',
+    fontSize: 13,
+    lineHeight: 22,
+    paddingVertical: 11,
+    marginVertical: -11,
+    textDecorationLine: 'underline',
+  },
   close: {
     minHeight: 48,
     borderRadius: 8,

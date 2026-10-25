@@ -39,7 +39,12 @@ npm ci
 ## Estructura
 
 ```text
-App.tsx                      Pantallas y orquestación (inicio, sala, selección, espera, partida, solitario)
+App.tsx                      Orquestación del Duelo (estado, salas, manejadores) y anuncios de fase
+src/screens/                 Pantallas del Duelo: inicio, sala, elección, espera, partida (+ victoria)
+src/ui/                      Componentes comunes, estilos, tema (COLORS, PIXEL_FONT), guía y créditos
+src/hooks/                   useReduceMotion y useGameSounds
+assets/fonts/                PokeQuien Pixel (Press Start 2P con mayúsculas acentuadas) + OFL.txt
+public/pwa/                  Iconos de la PWA
 index.ts                     Punto de entrada de Expo
 app.json / app.config.js     Configuración de Expo; app.config.js solo añade la ruta base de Pages
 public/index.html            Plantilla HTML de la web (idioma, metadatos, foco visible)
@@ -50,7 +55,7 @@ src/singlePlayer/            Pantalla del Solitario
 src/data/                    Catálogo local de 1.025 Pokémon y banco de preguntas
 src/audio/                   Sonidos embebidos
 server/room-server.js        Servidor de salas (Node + ws) + room-server.test.js
-scripts/                     Build web, CSP, generadores de catálogo/iconos/audio, pruebas del Solitario
+scripts/                     Build web, CSP, PWA, prueba de humo, generadores de catálogo/iconos/audio/fuente, Solitario
 .github/workflows/           CI (ci.yml) y despliegue en Pages (pages.yml)
 render.yaml / eas.json       Despliegue del servidor (Render) y builds móviles (EAS)
 ```

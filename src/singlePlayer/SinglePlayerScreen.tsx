@@ -148,7 +148,7 @@ function SoloSelection({ entries, questionCount, catalogLabel, nationalLoading, 
     return entries.filter((entry) => [entry.candidate.name, ...entry.aliases].some((value) => value.toLocaleLowerCase('es-ES').includes(query)));
   }, [entries, search]);
   return <ScrollView contentContainerStyle={soloStyles.content} keyboardShouldPersistTaps="handled">
-    <Pressable accessibilityRole="button" onPress={onBack} style={soloStyles.back}><Text style={soloStyles.backText}>‹ VOLVER</Text></Pressable>
+    <Pressable accessibilityRole="button" accessibilityLabel="Volver" onPress={onBack} style={soloStyles.back}><Text style={soloStyles.backText}>‹ VOLVER</Text></Pressable>
     <View style={soloStyles.header}>
       <Text accessibilityRole="header" style={soloStyles.title}>MODO 1 JUGADOR</Text>
       <Text style={soloStyles.subtitle}>ELIGE UN POKÉMON EN SECRETO</Text>
@@ -165,7 +165,7 @@ function SoloSelection({ entries, questionCount, catalogLabel, nationalLoading, 
       value={search}
     />
     <View style={soloStyles.catalogBadge}><Text style={soloStyles.catalogText}>BANCO {catalogLabel.toUpperCase()} · {entries.length} POKÉMON · {questionCount} PREGUNTAS</Text></View>
-    {entries.length < 1025 && <Pressable accessibilityRole="button" accessibilityState={{ disabled: nationalLoading }} disabled={nationalLoading} onPress={onLoadNational} style={({ pressed }) => [soloStyles.nationalButton, pressed && soloStyles.pressed, nationalLoading && soloStyles.disabled]}><Text style={soloStyles.nationalButtonText}>{nationalLoading ? 'PREPARANDO 1.025 POKÉMON…' : 'USAR POKÉDEX NACIONAL · 1.025'}</Text></Pressable>}
+    {entries.length < 1025 && <Pressable accessibilityRole="button" accessibilityLabel="Usar Pokédex Nacional de 1.025 Pokémon" accessibilityState={{ disabled: nationalLoading }} disabled={nationalLoading} onPress={onLoadNational} style={({ pressed }) => [soloStyles.nationalButton, pressed && soloStyles.pressed, nationalLoading && soloStyles.disabled]}><Text style={soloStyles.nationalButtonText}>{nationalLoading ? 'PREPARANDO 1.025 POKÉMON…' : 'USAR POKÉDEX NACIONAL · 1.025'}</Text></Pressable>}
     <View style={soloStyles.grid}>{filtered.map((entry) => <SoloPokemonTile key={entry.candidate.id} entry={entry} onPress={() => onPick(entry)} />)}</View>
     {filtered.length === 0 && <Text style={soloStyles.empty}>No hay Pokémon con ese nombre.</Text>}
   </ScrollView>;
@@ -182,14 +182,14 @@ function QuestionView({ state, selectedPokemon, onAnswer, onBack, onNewGame }: {
   const question = state.currentQuestion;
   const currentIndex = state.history.length + 1;
   return <ScrollView contentContainerStyle={soloStyles.content}>
-    <Pressable accessibilityRole="button" onPress={onBack} style={soloStyles.back}><Text style={soloStyles.backText}>‹ SALIR</Text></Pressable>
+    <Pressable accessibilityRole="button" accessibilityLabel="Salir de la partida" onPress={onBack} style={soloStyles.back}><Text style={soloStyles.backText}>‹ SALIR</Text></Pressable>
     <View style={soloStyles.header}><Text accessibilityRole="header" style={soloStyles.title}>PIENSO Y ADIVINO</Text><Text style={soloStyles.subtitle}>RESPONDE SOLO SÍ O NO</Text></View>
     <View accessibilityLiveRegion="polite" style={soloStyles.progressCard}><Text style={soloStyles.progressText}>PREGUNTA {currentIndex} / {SINGLE_PLAYER_MAX_QUESTIONS}</Text><Text style={soloStyles.remaining}>QUEDAN {state.remainingCandidates.length} POKÉMON</Text></View>
     <View accessibilityLabel={`Tu Pokémon secreto es ${selectedPokemon.name}, número ${selectedPokemon.id}`} style={soloStyles.secretCard}><MiniPortrait pokemon={selectedPokemon} size={82} /><View style={soloStyles.secretCopy}><Text style={soloStyles.secretKicker}>TU POKÉMON SECRETO</Text><Text style={soloStyles.secretName}>{selectedPokemon.name}</Text><Text style={soloStyles.secretDex}>POKÉDEX NACIONAL #{String(selectedPokemon.id).padStart(3, '0')}</Text></View></View>
     {!!question && <View accessibilityLiveRegion="polite" style={soloStyles.questionCard}><Text style={soloStyles.questionKicker}>MI PREGUNTA ES…</Text><Text accessibilityRole="header" style={soloStyles.questionText}>{question.text}</Text><QuestionActions onAnswer={onAnswer} disabled={false} /></View>}
     <View style={soloStyles.tipCard}><Text style={soloStyles.tipTitle}>CÓMO JUGAR</Text><Text style={soloStyles.body}>Contesta pensando en el Pokémon que acabas de elegir. Si te equivocas, podrás volver a empezar sin perder el registro.</Text></View>
     {state.history.length > 0 && <View style={soloStyles.historyCard}><Text style={soloStyles.tipTitle}>ÚLTIMA RESPUESTA</Text><Text style={soloStyles.body}>{state.history[state.history.length - 1].question.text}</Text><Text style={soloStyles.lastAnswer}>{state.history[state.history.length - 1].answer ? 'SÍ' : 'NO'} · QUEDAN {state.remainingCandidates.length}</Text></View>}
-    <Pressable accessibilityRole="button" onPress={onNewGame} style={soloStyles.secondaryAction}><Text style={soloStyles.secondaryActionText}>ABANDONAR Y EMPEZAR OTRA</Text></Pressable>
+    <Pressable accessibilityRole="button" accessibilityLabel="Abandonar y empezar otra partida" onPress={onNewGame} style={soloStyles.secondaryAction}><Text style={soloStyles.secondaryActionText}>ABANDONAR Y EMPEZAR OTRA</Text></Pressable>
   </ScrollView>;
 }
 
@@ -210,7 +210,7 @@ function ResultView({ state, selectedPokemonId, onNewGame, onBack }: { state: Si
   return <ScrollView contentContainerStyle={soloStyles.content}>
     <Pressable accessibilityRole="button" onPress={onBack} style={soloStyles.back}><Text style={soloStyles.backText}>‹ SALIR</Text></Pressable>
     <View style={[soloStyles.resultCard, state.phase === 'won' || state.phase === 'limit-reached' ? soloStyles.resultWin : soloStyles.resultOther]}>
-      <Text accessibilityRole="header" style={soloStyles.resultTitle}>{title}</Text>
+      <Text accessibilityRole="header" accessibilityLiveRegion="polite" style={soloStyles.resultTitle}>{title}</Text>
       {state.phase === 'won' && state.winner && <><MiniPortrait pokemon={state.winner.metadata?.candidate ?? target?.candidate ?? SINGLE_PLAYER_KANTO_KNOWLEDGE[0].candidate} size={142} /><Text style={soloStyles.resultPokemon}>{state.winner.name}</Text><Text style={soloStyles.bodyCenter}>¡He encontrado tu Pokémon!</Text><Text style={soloStyles.fact}>{(state.winner.metadata?.shortFacts ?? [state.winner.metadata?.candidate.funFact ?? '']).slice(0, 3).map((fact, index) => <Text key={`${state.winner?.id ?? 'winner'}-fact-${index}`}>{index > 0 ? '\n' : ''}{index + 1}. {fact}</Text>)}</Text></>}
       {state.phase === 'limit-reached' && target && <><MiniPortrait pokemon={target.candidate} size={142} /><Text style={soloStyles.resultPokemon}>{target.candidate.name}</Text><Text style={soloStyles.bodyCenter}>La máquina no lo ha descubierto en {SINGLE_PLAYER_MAX_QUESTIONS} preguntas. ¡El punto es para ti!</Text><Text style={soloStyles.fact}>{target.shortFacts.slice(0, 3).map((fact, index) => <Text key={`${target.candidate.id}-fact-${index}`}>{index > 0 ? '\n' : ''}{index + 1}. {fact}</Text>)}</Text></>}
       {state.phase === 'no-match' && <Text style={soloStyles.bodyCenter}>Alguna respuesta no encaja con la base de conocimiento. Puedes corregirlo empezando otra partida.</Text>}
@@ -239,6 +239,10 @@ export function SinglePlayerScreen({ reduceMotion: _reduceMotion, onBack, onSoun
     void readSinglePlayerLog().then((sessions) => setSessionCount(sessions.length));
     void AccessibilityInfo.announceForAccessibility?.('Modo 1 jugador preparado');
   }, []);
+
+  useEffect(() => {
+    if (step === 'guess') void AccessibilityInfo.announceForAccessibility?.('¿Lo he adivinado?');
+  }, [step]);
 
   const refreshSessionCount = () => {
     void readSinglePlayerLog().then((sessions) => setSessionCount(sessions.length));
