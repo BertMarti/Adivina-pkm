@@ -26,7 +26,7 @@ export function RoomScreen({
   return (
     <ScrollView contentContainerStyle={styles.scrollContent}>
       <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-        <Text style={styles.backText}>‹ VOLVER</Text>
+        <Text style={styles.backText}>{'‹  VOLVER'}</Text>
       </Pressable>
       <View style={styles.panel}>
         <RetroPanelHeader title={ready ? 'PARTIDA LISTA' : 'CREAR PARTIDA'} />

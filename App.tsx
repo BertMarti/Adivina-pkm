@@ -28,7 +28,7 @@ const PHASE_HINTS: Record<Screen, string> = {
   selection: 'Elige tu Pokémon secreto.',
   waiting: 'Esperando a que tu rival elija.',
   game: 'Partida en curso: tacha los Pokémon que descartes.',
-  'single-player': 'Modo 1 jugador.',
+  'single-player': '', // El Solitario anuncia su propia entrada («Modo 1 jugador preparado»).
 };
 
 export default function App() {
@@ -406,7 +406,8 @@ export default function App() {
           )}
           {/* Región viva: lectores de pantalla en web y Android anuncian cada cambio de fase. */}
           <Text accessibilityLiveRegion="polite" aria-live="polite" style={styles.srOnly}>
-            {`${screenTitle}. ${PHASE_HINTS[screen]}`}
+            {/* Vacía en el Solitario (se anuncia él mismo); el Text sigue montado para no perder la región. */}
+            {screen === 'single-player' ? '' : `${screenTitle}. ${PHASE_HINTS[screen]}`}
           </Text>
         </View>
       </SafeAreaView>

@@ -68,7 +68,10 @@ const PRECACHE = ${JSON.stringify(precache)};
 const PORTRAIT_PREFIXES = ${JSON.stringify(PORTRAIT_PREFIXES)};
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(APP_CACHE).then((cache) => cache.addAll(PRECACHE)).then(() => self.skipWaiting()));
+  // cache: 'reload' salta la caché HTTP de Pages (max-age=600): si no, la versión nueva guardaría el index viejo.
+  event.waitUntil(caches.open(APP_CACHE)
+    .then((cache) => cache.addAll(PRECACHE.map((url) => new Request(url, { cache: 'reload' }))))
+    .then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (event) => {
@@ -100,8 +103,12 @@ async function portrait(request) {
 
 async function navigation(request) {
   try {
-    const response = await fetch(request);
-    if (response.ok) {
+    const response = await fetch(request, { cache: 'no-cache' });
+    // Solo la entrada de la app (BASE o BASE + index.html) y solo si es HTML: navegar a /pwa/icon-512.png no debe
+    // sustituir la app guardada por un PNG.
+    const { pathname } = new URL(request.url);
+    const isAppEntry = pathname === BASE || pathname === BASE + 'index.html';
+    if (response.ok && isAppEntry && (response.headers.get('content-type') || '').includes('text/html')) {
       const cache = await caches.open(APP_CACHE);
       await cache.put(BASE, response.clone());
     }
@@ -121,6 +128,8 @@ async function appFile(request) {
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   if (request.method !== 'GET') return;
+  // Peticiones con Range (audio en Safari): exigen 206 y la caché guarda 200; se dejan pasar a la red.
+  if (request.headers.has('range')) return;
   const url = new URL(request.url);
   if (PORTRAIT_PREFIXES.some((prefix) => request.url.startsWith(prefix))) {
     event.respondWith(portrait(request).catch(() => fetch(request)));

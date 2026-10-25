@@ -176,9 +176,12 @@ async function main() {
   currentStep = 'f';
   // PWA: espera a que el service worker controle la página, apaga el servidor (sin red) y recarga.
   await waitFor(socket, `Promise.race([navigator.serviceWorker.ready.then(() => !!navigator.serviceWorker.controller), new Promise((ok) => setTimeout(() => ok(false), 1000))])`, 'service worker activo');
+  // Navegar a un recurso que no es la app (un PNG) no debe sustituir la copia guardada de la app.
+  await socket.command('Page.navigate', { url: `http://127.0.0.1:${port}${prefix}pwa/icon-512.png` });
+  await waitFor(socket, `document.contentType === 'image/png'`, 'navegación a un PNG');
   server.closeAllConnections();
   await new Promise((resolvePromise) => server.close(resolvePromise));
-  await socket.command('Page.reload', { ignoreCache: false });
+  await socket.command('Page.navigate', { url: `http://127.0.0.1:${port}${prefix}` });
   await waitFor(socket, `(document.body.innerText || '').toLocaleUpperCase('es-ES').includes('JUGAR CONTRA LA MÁQUINA')`, 'carga sin red');
   await clickText(socket, 'JUGAR CONTRA LA MÁQUINA');
   await waitFor(socket, `(document.body.innerText || '').toLocaleUpperCase('es-ES').includes('MODO 1 JUGADOR')`, 'Solitario sin red');

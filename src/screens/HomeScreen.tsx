@@ -161,7 +161,7 @@ export function HomeScreen({
         <Text style={styles.soloCtaText}>Responde solo SÍ o NO y deja que la Pokédex te descubra.</Text>
       </Pressable>
       <Pressable accessibilityRole="button" onPress={onDemo} style={styles.demoLink}>
-        <Text style={styles.demoLinkText}>▶ CREAR SALA DE PRUEBA KANTO</Text>
+        <Text style={styles.demoLinkText}>{'▶  CREAR SALA DE PRUEBA KANTO'}</Text>
         <Text style={styles.muted}>Crea una sala rápida para abrirla en dos pestañas.</Text>
       </Pressable>
       {!!error && (

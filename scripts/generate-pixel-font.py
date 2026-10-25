@@ -41,7 +41,7 @@ for rec in list(name.names):
     elif rec.nameID == 4:
         rec.string = FAMILY + ' Regular' if 'Regular' in str(rec) else FAMILY
     elif rec.nameID in (3,):
-        rec.string = FAMILY + ' Regular; derivado de Press Start 2P'
+        rec.string = FAMILY + ' Regular'  # sin el nombre reservado; la derivación consta en nameID 0
     elif rec.nameID == 6:
         rec.string = 'PokeQuienPixel-Regular'
     elif rec.nameID == 5:
