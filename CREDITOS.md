@@ -10,7 +10,7 @@ El código de PokéQuién se distribuye bajo la [licencia MIT](LICENSE). La lice
 | --- | --- |
 | Retratos y fondo de SpriteCollab | [SpriteCollab](https://sprites.pmdcollab.org/), CC BY-NC 4.0. La autoría de cada retrato se conserva en su fuente. |
 | Datos de Pokémon | [PokéAPI](https://pokeapi.co/). |
-| Press Start 2P | [Google Fonts](https://fonts.google.com/specimen/Press+Start+2P), SIL Open Font License 1.1. |
+| PokeQuien Pixel (`assets/fonts/`) | Derivada de [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) (CodeMan38) con «Á É Í Ó Ú Ü Ñ» a altura completa (`scripts/generate-pixel-font.py`). SIL Open Font License 1.1 (`assets/fonts/OFL.txt`); se renombra porque «Press Start 2P» es nombre reservado. |
 | GIF de espera y sonidos de selección, victoria y derrota | Material de fans o de juegos Pokémon, propiedad de sus autores. Uso sin ánimo de lucro; se retirarán si sus autores lo solicitan. |
 
 ## Archivos de `assets/`

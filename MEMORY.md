@@ -39,7 +39,7 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 - **Reglas duplicadas**: `server/room-server.js` replica las reglas de `src/game/engine.ts`; cambia ambos y sus tests.
 - **Ruta base**: solo se aplica con `PAGES_BASE_URL`. En Pages, el enlace de invitación debe conservar
   `/Adivina-pkm/` (arreglado en `inviteLinkFor` usando `window.location.pathname`).
-- **Fuente Press Start 2P**: no tiene mayúsculas acentuadas; «SÍ» o «CÓDIGO» se ven con la vocal en minúscula.
+- **Fuente**: Press Start 2P encoge «Á É Í Ó Ú Ü Ñ» y se leían como minúsculas. Desde el 25/10/2026 la app usa PokeQuien Pixel (`assets/fonts/`, generada con `scripts/generate-pixel-font.py`), con el acento 250 unidades por encima de la altura de mayúsculas: si un texto con mayúsculas acentuadas queda recortado arriba, dale algo más de `lineHeight` o de margen superior.
 - **Autoplay en web**: `expo-audio` no captura el rechazo de `play()` si no hubo interacción; aparece un
   `NotAllowedError` en consola solo en navegadores sin gesto del usuario (p. ej. pruebas automáticas). Es inofensivo.
 - **Solitario tolerante a errores**: «Quedan N» no baja siempre tras cada respuesta; el motor usa creencias

@@ -1,6 +1,6 @@
 import { useAudioPlayer } from 'expo-audio';
 import * as Clipboard from 'expo-clipboard';
-import { PressStart2P_400Regular, useFonts } from '@expo-google-fonts/press-start-2p';
+import { useFonts } from 'expo-font';
 import * as Haptics from 'expo-haptics';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
@@ -406,7 +406,7 @@ function GameScreen({ game, player, reduceMotion, onToggle, onBack, onRematch }:
 }
 
 export default function App() {
-  const [fontsLoaded] = useFonts({ PressStart2P_400Regular });
+  const [fontsLoaded] = useFonts({ [PIXEL_FONT]: require('./assets/fonts/PokeQuienPixel-Regular.ttf') });
   const [screen, setScreen] = useState<Screen>('home');
   const [generation, setGeneration] = useState<GenerationId>('all');
   const [inviteCode, setInviteCode] = useState(() => createRoomCode());

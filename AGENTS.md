@@ -52,7 +52,7 @@ también `npm run build:web` y pruébala servida bajo `/Adivina-pkm/`.
 - El servidor JS **replica** reglas del motor TS: si cambias una regla, cambia ambos y añade la prueba en los dos tests.
 - Mensajes de error del servidor: cortos, en español y sin datos internos. Son parte de la UX.
 - Estética: paleta de `COLORS` en `App.tsx` (fondo `#05070B`, panel `#1D1E2A`, amarillo `#FFD000`, azul `#4C6BE8`,
-  naranja `#F06B00`) y fuente Press Start 2P (no tiene mayúsculas acentuadas: se ven como minúscula).
+  naranja `#F06B00`) y fuente PokeQuien Pixel (`PIXEL_FONT`, Press Start 2P con mayúsculas acentuadas redibujadas; se regenera con `scripts/generate-pixel-font.py`).
 - No hay framework de UI ni router: navegación por estado en `App.tsx`. No cambiar de framework.
 
 ## Seguridad y privacidad

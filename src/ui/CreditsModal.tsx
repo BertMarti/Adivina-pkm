@@ -21,7 +21,7 @@ const CREDITS: Credit[] = [
     title: 'ANIMACIONES Y SONIDOS',
     text: 'Las animaciones de espera (Poké Ball y Pikachu) y los sonidos de selección, victoria y derrota son material de fans y de los juegos Pokémon, propiedad de sus autores. Se usan sin ánimo de lucro y se retirarán si lo piden sus titulares.',
   },
-  { title: 'TIPOGRAFÍA', text: 'Press Start 2P (CodeMan38), SIL Open Font License 1.1.' },
+  { title: 'TIPOGRAFÍA', text: 'PokeQuien Pixel, derivada de Press Start 2P (CodeMan38) con las mayúsculas acentuadas redibujadas. SIL Open Font License 1.1.' },
   {
     title: 'IDEA',
     text: 'Inspirado en «Adivina Quién Pokémon» de Checo_512.',
