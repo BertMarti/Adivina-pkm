@@ -38,6 +38,8 @@ cerrarlo: que el Duelo nunca deje al jugador colgado aunque el servidor no respo
   anterior).
 - Prueba de humo con dos pasos nuevos (servidor dormido → CANCELAR; servidor caído → mensaje, REINTENTAR y Solitario) y
   prueba que comprueba que la versión coincide en todos los manifiestos.
+- Pruebas unitarias de las reglas de conexión del Duelo (`src/game/roomSession.ts`): plazo de reconexión propio, código
+  ocupado e intentos cancelados.
 
 ### 🐛 Corregido
 
@@ -46,6 +48,12 @@ cerrarlo: que el Duelo nunca deje al jugador colgado aunque el servidor no respo
   junto al panel que los provoca (o arriba, si se entra con un enlace de invitación).
 - El botón de crear sala decía «CARGANDO POKÉDEX…» también mientras se intentaba unirse a otra sala.
 - El mensaje de servidor inaccesible contempla también que esté en mantenimiento.
+- Tras el abandono del rival, el cliente de la sala seguía vivo y había guardado el plazo de reconexión **del rival**:
+  un corte posterior terminaba «la partida» al instante y sacaba al jugador del Solitario. Ahora el cliente se cierra al
+  abandonarse la partida, solo cuenta el plazo propio, entrar en el Solitario cierra cualquier conexión pendiente y ese
+  aviso ya no cambia de pantalla si se está en el Solitario.
+- CANCELAR con la sala ya pedida dejaba ocupado el código y **REINTENTAR** fallaba siempre con «ya está ocupado»; ahora
+  se genera un código nuevo al cancelar y ante ese error. Cancelar también aborta la comprobación del servidor en curso.
 - Solitario: **BORRAR** el historial lo eliminaba con una sola pulsación; ahora pide confirmación. **COPIAR JSON** no
   avisaba en la web (ni si fallaba); ahora lo confirma o explica el error.
 
