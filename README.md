@@ -6,7 +6,7 @@
   <a href="https://bertmarti.github.io/Adivina-pkm/"><img src="https://img.shields.io/badge/▶_Jugar_en_la_web-gratis-FFD000?style=for-the-badge&labelColor=1D1E2A" alt="Jugar en la web" /></a>
   <img src="https://img.shields.io/badge/🎮_Pokémon-1025_especies-E3350D?style=for-the-badge&labelColor=1D1E2A" alt="1025 especies" />
   <img src="https://img.shields.io/badge/🕹️_Modos-Duelo_·_Solitario-FFD000?style=for-the-badge&labelColor=1D1E2A" alt="Modos Duelo y Solitario" />
-  <img src="https://img.shields.io/badge/📱_Plataforma-Web_·_Android_·_iOS-4C6BE8?style=for-the-badge&labelColor=1D1E2A" alt="Web, Android e iOS" />
+  <img src="https://img.shields.io/badge/📱_Plataforma-Web_·_instalable_en_el_móvil-4C6BE8?style=for-the-badge&labelColor=1D1E2A" alt="Web, instalable en el móvil" />
   <a href="LICENSE"><img src="https://img.shields.io/badge/Licencia-MIT-38D37D?style=for-the-badge&labelColor=1D1E2A" alt="Licencia MIT (código)" /></a>
 </p>
 
@@ -16,7 +16,7 @@
   🎮 <a href="https://bertmarti.github.io/Adivina-pkm/">Jugar ahora en el navegador →</a>
 </h2>
 
-<p align="center"><sub>Sin instalar nada y sin cuenta. Funciona en el ordenador y en el móvil.</sub></p>
+<p align="center"><sub>Sin instalar nada y sin cuenta. Funciona en el ordenador y en el móvil, y el Solitario también sin conexión.</sub></p>
 
 ---
 
@@ -28,7 +28,7 @@
 <p align="center"><sub>🏠 Inicio: la primera vez te explica cómo se juega en 3 pasos; luego crea una sala o únete con el código de tu rival.</sub></p>
 
 <p align="center">
-  <img src="docs/img/captura-solitario.png" width="640" alt="Modo solitario: la máquina pregunta si el Pokémon tiene una silueta parecida a la humana, con botones Sí y No y el Pokémon secreto elegido arriba" />
+  <img src="docs/img/captura-solitario.png" width="420" alt="Modo solitario: la máquina pregunta si el Pokémon tiene brazos visibles, con botones SÍ y NO y el Pokémon secreto elegido (Bulbasaur) arriba" />
 </p>
 <p align="center"><sub>🤖 Solitario: piensa en un Pokémon y responde Sí o No; la máquina intenta adivinarlo.</sub></p>
 
@@ -284,11 +284,12 @@ Elige con qué Pokémon jugar en el modo Duelo:
 PokéQuién está diseñado con una estética **pixel-art retro** inspirada en Pokémon Mystery Dungeon:
 
 - 🖥️ **Fondo CRT** con scanlines horizontales y mapa pixel-art
-- 🔤 **Tipografía arcade** `Press Start 2P` en toda la interfaz
+- 🔤 **Tipografía arcade propia**, PokeQuien Pixel (basada en Press Start 2P), con las mayúsculas acentuadas enteras: «SÍ», «CÓDIGO», «POKÉMON»
 - 🟡 **Colores clásicos**: amarillos, azules, naranjas sobre fondo oscuro
 - 🖼️ **Marcos gruesos** con sombras y botones con relieve
 - 😊→😢 Los retratos cambian de expresión al tachar (Happy → Sad)
 - ✨ Animaciones suaves que se reducen si el dispositivo pide menos movimiento
+- 🦻 Con lector de pantalla, la app anuncia cada fase de la partida y qué tienes que hacer, y los botones pequeños tienen una zona táctil cómoda
 
 ---
 
@@ -334,7 +335,7 @@ No. Para jugar un Duelo solo compartes un código de sala de 8 caracteres o el e
 <details>
 <summary><b>¿Funciona en el móvil?</b></summary>
 <br>
-Sí. La web se adapta a la pantalla del móvil y además existe una app para Android. Toda la interfaz está pensada primero para pantallas pequeñas y dedos (botones grandes).
+Sí. La web se adapta a la pantalla del móvil y puedes instalarla como una app desde el navegador (mira «¿Puedo instalarla como una app?»). Toda la interfaz está pensada primero para pantallas pequeñas y dedos (botones grandes). La app nativa de Android no está en ninguna tienda: de momento solo se reparte en privado, por enlace.
 </details>
 
 <details>
@@ -405,19 +406,19 @@ Inspirado por **Checo_512** y su juego [Adivina Quién Pokémon](https://adivina
 |:--------|:-------|
 | 🖼️ Retratos y fondo | [SpriteCollab (PMD)](https://sprites.pmdcollab.org/) — CC BY-NC 4.0 (no comercial; autoría de cada retrato en la fuente) |
 | 📊 Datos de Pokémon | [PokéAPI](https://pokeapi.co/) |
-| 🔤 Tipografía | [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) — SIL OFL 1.1 |
+| 🔤 Tipografía | PokeQuien Pixel, derivada de [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) — SIL OFL 1.1 |
 | 🎞️ GIF de espera (Poké Ball, Pikachu) y 🔊 sonidos de selección/victoria/derrota | Material de fans/juegos Pokémon, propiedad de sus autores; uso sin ánimo de lucro y retirada si lo piden |
 
 **Proyecto de fans no oficial y sin ánimo de lucro.** Pokémon © Nintendo, Creatures Inc. y GAME FREAK inc. Consulta el detalle de archivos y licencias en [CREDITOS.md](CREDITOS.md).
 
 ## 🛠️ Lo que tienes que hacer tú (quien administra el servidor)
 
-Después de fusionar la PR de fase 2, comprueba el servicio `pokequien-rooms` en el panel de [Render](https://dashboard.render.com):
+Queda un ajuste en el servicio `pokequien-rooms` del panel de [Render](https://dashboard.render.com), para que deje de instalar la app entera (Expo) y solo instale el servidor:
 
 1. En **Settings → Build & Deploy**, pon **Root Directory** en `server`, **Build Command** en `npm ci --omit=dev` y **Start Command** en `node room-server.js`. Si el servicio se creó desde el Blueprint, basta con **Blueprints → Sync**, porque `render.yaml` ya lo trae.
 2. En **Environment**, comprueba `ROOM_SERVER_ALLOWED_ORIGINS` = `https://bertmarti.github.io` y `ROOM_SERVER_TRUST_PROXY` = `1` (a 24/10/2026 ya parecían puestas) y pulsa **Save Changes**.
 3. Ve a **Manual Deploy → Deploy latest commit**. En los logs debe aparecer `✔ Servidor de salas escuchando…`.
-4. Abre `https://pokequien-rooms.onrender.com/`: debe devolver `"ok":true`. Comprueba también `curl -H "Origin: https://bertmarti.github.io" https://pokequien-rooms.onrender.com/`: debe devolver `"originAllowed":true` (este campo solo aparece cuando Render ya ejecuta la versión 0.3.0; con la anterior, basta con que la respuesta traiga la cabecera `access-control-allow-origin: https://bertmarti.github.io`).
+4. Abre `https://pokequien-rooms.onrender.com/`: debe devolver `"ok":true`. Comprueba también `curl -H "Origin: https://bertmarti.github.io" https://pokequien-rooms.onrender.com/`: debe devolver `"originAllowed":true` (el 26/10/2026 ya respondía así, con la versión 0.3.0 del servidor; el paso pendiente es el **Root Directory** del punto 1).
 5. Haz una prueba real: abre <https://bertmarti.github.io/Adivina-pkm/>, pulsa **CREAR SALA**, usa **INVITAR (ENLACE)** y abre el enlace en otro dispositivo.
 
 Si algo falla:
@@ -428,7 +429,7 @@ Si algo falla:
 
 ## 🖥️ ¿Quieres tu propio servidor de duelos?
 
-Necesitas **Node.js 22 LTS**:
+Necesitas **Node.js 22.13 o superior** (el servidor solo, sin la app, funciona desde Node 20.19):
 
 ```bash
 git clone https://github.com/BertMarti/Adivina-pkm
