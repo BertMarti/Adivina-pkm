@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Linking, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { APP_VERSION } from '../version';
 import { COLORS, PIXEL_FONT } from './theme';
 
 type Credit = { title: string; text: string; url?: string; linkLabel?: string };
@@ -36,18 +37,19 @@ const CREDITS: Credit[] = [
   },
 ];
 
-/** Enlace del pie que abre la ventana de créditos y licencias. */
+/** Enlace del pie que abre «Acerca de»: versión, créditos y licencias. */
 export function CreditsLink() {
   const [visible, setVisible] = useState(false);
   return (
     <>
       <Pressable
         accessibilityRole="button"
-        accessibilityLabel="Créditos y licencias. Proyecto fan no oficial"
+        accessibilityLabel={`Acerca de, créditos y licencias. PokéQuién versión ${APP_VERSION}. Proyecto fan no oficial`}
         onPress={() => setVisible(true)}
         style={({ pressed }) => [styles.footerLink, pressed && styles.pressed]}
       >
-        <Text style={styles.footerText}>CRÉDITOS Y LICENCIAS · PROYECTO FAN NO OFICIAL</Text>
+        <Text style={styles.footerText}>ACERCA DE · CRÉDITOS Y LICENCIAS</Text>
+        <Text style={styles.footerVersion}>{`POKÉQUIÉN v${APP_VERSION} · PROYECTO FAN NO OFICIAL`}</Text>
       </Pressable>
       <CreditsModal visible={visible} onClose={() => setVisible(false)} />
     </>
@@ -59,7 +61,8 @@ export function CreditsModal({ visible, onClose }: { visible: boolean; onClose: 
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
       <View style={styles.backdrop}>
         <View style={styles.panel} accessibilityViewIsModal>
-          <Text accessibilityRole="header" style={styles.title}>CRÉDITOS Y LICENCIAS</Text>
+          <Text accessibilityRole="header" style={styles.title}>ACERCA DE POKÉQUIÉN</Text>
+          <Text style={styles.version}>{`VERSIÓN ${APP_VERSION} · CRÉDITOS Y LICENCIAS`}</Text>
           <ScrollView contentContainerStyle={styles.list}>
             {CREDITS.map((credit) => (
               <View key={credit.title} style={styles.item}>
@@ -79,7 +82,7 @@ export function CreditsModal({ visible, onClose }: { visible: boolean; onClose: 
           </ScrollView>
           <Pressable
             accessibilityRole="button"
-            accessibilityLabel="Cerrar créditos"
+            accessibilityLabel="Cerrar acerca de"
             onPress={onClose}
             style={({ pressed }) => [styles.close, pressed && styles.pressed]}
           >
@@ -94,6 +97,7 @@ export function CreditsModal({ visible, onClose }: { visible: boolean; onClose: 
 const styles = StyleSheet.create({
   footerLink: { alignSelf: 'center', minHeight: 44, justifyContent: 'center', paddingHorizontal: 10, marginTop: 4 },
   footerText: { color: '#C9C9D1', fontFamily: PIXEL_FONT, fontSize: 7, lineHeight: 15, textAlign: 'center', textDecorationLine: 'underline' },
+  footerVersion: { color: '#A2A2A9', fontFamily: PIXEL_FONT, fontSize: 7, lineHeight: 15, textAlign: 'center' },
   backdrop: { flex: 1, backgroundColor: 'rgba(2, 4, 10, 0.86)', alignItems: 'center', justifyContent: 'center', padding: 16 },
   panel: {
     width: '100%',
@@ -107,6 +111,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   title: { color: COLORS.yellow, fontFamily: PIXEL_FONT, fontSize: 11, lineHeight: 18, textAlign: 'center' },
+  version: { color: '#C9C9D1', fontFamily: PIXEL_FONT, fontSize: 8, lineHeight: 14, textAlign: 'center', marginTop: -6 },
   list: { gap: 14, paddingBottom: 4 },
   item: { gap: 4 },
   itemTitle: { color: COLORS.yellow, fontFamily: PIXEL_FONT, fontSize: 8, lineHeight: 14 },

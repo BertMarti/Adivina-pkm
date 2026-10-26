@@ -24,6 +24,8 @@ try {
   throw cause;
 }
 
+// Versión del servidor (la de server/package.json); sale en GET / y en el arranque para saber qué hay desplegado.
+const SERVER_VERSION = require('./package.json').version;
 const PORT = Number(process.env.PORT || process.env.ROOM_SERVER_PORT || 8787);
 const VALID_GENERATIONS = new Set(['all', 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 const ABANDONED_ROOM_RETENTION_MS = 5 * 60_000;
@@ -506,7 +508,13 @@ function createRoomServer(options = {}) {
         request,
         response,
         200,
-        { ok: true, rooms: rooms.size, transports: ['websocket', 'https-polling'], originAllowed: origin ? isAllowedOrigin(origin) : null },
+        {
+          ok: true,
+          version: SERVER_VERSION,
+          rooms: rooms.size,
+          transports: ['websocket', 'https-polling'],
+          originAllowed: origin ? isAllowedOrigin(origin) : null,
+        },
         { 'Access-Control-Allow-Origin': '*', Vary: 'Origin' },
       );
       return;
@@ -746,7 +754,7 @@ if (require.main === module) {
     .listen()
     .then((port) => {
       const origins = String(process.env.ROOM_SERVER_ALLOWED_ORIGINS || '').trim();
-      console.log(`✔ Servidor de salas escuchando en ws://0.0.0.0:${port} (comprobación: http://localhost:${port}/)`);
+      console.log(`✔ Servidor de salas ${SERVER_VERSION} escuchando en ws://0.0.0.0:${port} (comprobación: http://localhost:${port}/)`);
       console.log(`  Webs permitidas: localhost${origins ? `, ${origins}` : ' (añade más con ROOM_SERVER_ALLOWED_ORIGINS)'}`);
       console.log('  Ayuda: node server/room-server.js --help · Para pararlo: Ctrl+C');
     })
