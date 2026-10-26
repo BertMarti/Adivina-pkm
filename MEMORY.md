@@ -1,15 +1,15 @@
 # MEMORY.md — PokéQuién
 
-Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y estado. Última actualización: **25/10/2026**.
+Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y estado. Última actualización: **26/10/2026**.
 
-## Estado actual (25/10/2026)
+## Estado actual (26/10/2026)
 
-- Versión **0.4.0** con Expo SDK 58 (React Native 0.88, React 19.3). Web jugable en
+- Versión **1.0.0** con Expo SDK 58 (React Native 0.88, React 19.3). Web jugable en
   <https://bertmarti.github.io/Adivina-pkm/>, instalable como PWA; el Solitario funciona sin red.
 - Solitario: 100 % local, funciona en la web sin servidor.
 - Duelo: servidor de salas en Render (plan gratuito, salas en memoria). La web de Pages conecta por WSS si
   `ROOM_SERVER_ALLOWED_ORIGINS` incluye `https://bertmarti.github.io` en Render.
-- Pruebas: 22 del servidor + 20 del motor y utilidades (`npm test`), verificación del Solitario, prueba de humo de la
+- Pruebas: 22 del servidor + 21 de la app (`npm test`), verificación del Solitario, prueba de humo de la
   web (`npm run test:web`) y CI en cada PR.
 
 ## Decisiones y por qué
@@ -39,6 +39,9 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 | 25/10/2026 | PWA generada en la build (`scripts/add-web-pwa.mjs`), no en `public/` | La lista de precaché depende de los nombres con hash de cada build; y en `expo start --web` no debe haber service worker. |
 | 25/10/2026 | Service worker con scope `/Adivina-pkm/` y cachés `pokequien-*` | El origen `bertmarti.github.io` es común a todas las webs de BertMarti: no puede tocar rutas ni cachés ajenas. |
 | 25/10/2026 | Prueba de humo sin dependencias (CDP por WebSocket de Node 22) | Evita instalar Puppeteer/Playwright (cientos de MB) en la Raspberry y en CI. |
+| 26/10/2026 | Versión en el health sin que el cliente dependa de ella | Render puede ir por detrás; el cliente no bloquea el Duelo por una versión del servidor antigua. |
+| 26/10/2026 | Cancelación de conexiones con un contador en `RoomClient` y en `App` | Una conexión tardía ya no saca al jugador del Solitario. |
+| 26/10/2026 | Estado y errores del Duelo junto al panel que los provoca | El jugador identifica si el problema corresponde a CREAR PARTIDA, UNIRSE A PARTIDA o al enlace de invitación. |
 
 ## Trampas conocidas
 

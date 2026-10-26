@@ -1,5 +1,7 @@
 # Plan técnico de pruebas — modo 1 jugador
 
+> Documento histórico (14/09/2026). El estado de la versión 1.0.0 está en README.md, CHANGELOG.md y docs/DESARROLLO.md. La persistencia local ya existe en `src/game/singlePlayerStorage.ts` mediante AsyncStorage.
+
 **Proyecto:** PokéQuién · Duelo Pixel
 **Fecha de referencia:** 14/09/2026  
 **Estado:** plan de regresión para la implementación actual del modo 1 jugador  

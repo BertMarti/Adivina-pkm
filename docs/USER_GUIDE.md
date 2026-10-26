@@ -7,11 +7,17 @@
 3. Pulsa **Copiar enlace** y envíaselo a tu rival.
 4. Cuando el segundo jugador abra el enlace, entrará directamente en la sala.
 
+## Si el Duelo no conecta
+
+Si el servidor gratuito está dormido verás «Despertando el servidor de duelos…»: la primera conexión puede tardar hasta 1 minuto. Mientras creas la sala o te unes puedes pulsar **CANCELAR**. Si el servidor no responde, aparece un aviso junto al botón que pulsaste con **REINTENTAR** y **JUGAR AL SOLITARIO**, que no necesita servidor.
+
 ## Elegir Pokémon
 
 Cada jugador ve la misma cuadrícula de 25 Pokémon. Toca una casilla para elegir tu Pokémon secreto. La elección queda guardada al instante.
 
 Si el rival todavía no ha elegido, verás tu Pokémon y una espera con una Poké Ball animada. Cuando ambos terminéis, la partida comienza sola. Kanto ofrece 151 candidatos locales y `Todas` usa el catálogo nacional de 1.025.
+
+En la elección y en la espera puedes salir con **‹ SALIR DE LA SALA**.
 
 ## Jugar
 
@@ -44,4 +50,12 @@ La máquina no recibe tu elección secreta. Solo trabaja con las respuestas que 
 
 ## Si alguien se desconecta
 
-La sala espera hasta un minuto para que ese jugador vuelva. Si reconecta a tiempo, conserva su tablero. Si no vuelve, la partida termina y se muestra el abandono.
+La sala espera hasta un minuto para que ese jugador vuelva. Si reconecta a tiempo, conserva su tablero. Si no vuelve, la partida termina y se muestra el abandono. Durante la espera aparece **EL RIVAL SE HA DESCONECTADO · Le esperamos N s…**.
+
+## Salir de una sala
+
+En la sala puedes pulsar **‹ VOLVER**. Durante la elección y la espera usa **‹ SALIR DE LA SALA**; durante la partida, **‹ SALIR**.
+
+## Versión y créditos
+
+Consulta el pie de la pantalla de inicio y pulsa **ACERCA DE** para ver la versión, los créditos y las licencias.

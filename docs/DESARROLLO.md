@@ -28,13 +28,13 @@ npm ci
 | `npm run room-server` | Alias de `npm run server`. |
 | `npm run server:help` | Ayuda del servidor en español. |
 | `npm run typecheck` | `tsc --noEmit` con TypeScript estricto. |
-| `npm test` | Pruebas del servidor de salas y de los tests `src/game/*.test.ts`. |
+| `npm test` | Pruebas del servidor, `src/version.test.ts` y los tests `src/*.test.ts` y `src/game/*.test.ts`. |
 | `cd server && npm start` | Arranca solo el servidor con su `server/package.json`. |
 | `cd server && npm test` | Ejecuta los tests del servidor. |
 | `npm run single-player:verify` | Verificación determinista del modo Solitario. |
 | `npm run single-player:soak` / `:merge` / `:fleet` | Campañas largas de resistencia del Solitario (ver [SINGLE_PLAYER_TEST_PLAN.md](../SINGLE_PLAYER_TEST_PLAN.md)). |
 | `npm run build:web` | Exporta la web a `dist/` con ruta base `/Adivina-pkm` y añade la CSP y la PWA (igual que en GitHub Pages). |
-| `npm run test:web` | Prueba de humo sobre `dist/`: Chromium sin cabeza carga la web bajo `/Adivina-pkm/`, entra en el Solitario, responde «SÍ» y comprueba que la PWA carga sin red. Variables: `CHROME_PATH`, `SMOKE_DIST`, `SMOKE_SCREENSHOT`. |
+| `npm run test:web` | Prueba de humo sobre `dist/`: Chromium sin cabeza carga la web bajo `/Adivina-pkm/`, prueba el Solitario, el Duelo con servidor dormido (paso f) y caído (paso g), y comprueba que la PWA carga sin red. Variables: `CHROME_PATH`, `SMOKE_DIST`, `SMOKE_SCREENSHOT`. |
 
 ## Estructura
 
@@ -100,7 +100,7 @@ minuto e IP (429 + `Retry-After`), 20 salas creadas por IP cada 10 min, 20 conex
 
 ## Pruebas y CI
 
-- Local: `npm run typecheck && npm test && npm run single-player:verify` y, si tocas la web, `npm run build:web && npm run test:web`.
+- Local: `npm run typecheck && npm test && npm run single-player:verify` y, si tocas la web, `npm run build:web && npm run test:web`. `npm test` incluye `src/version.test.ts` (versión igual en todos los manifiestos); los pasos f y g de `npm run test:web` usan un servidor de salas falso local (dormido y caído), sin red real.
 - CI (`.github/workflows/ci.yml`, en cada PR y push a `master`): gitleaks (historial y árbol), comprobación de sintaxis
   del servidor, tipos, pruebas, verificación del Solitario, build web, prueba de humo con Chrome sin cabeza y
   `npm audit --audit-level=critical`.

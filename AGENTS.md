@@ -23,6 +23,7 @@ Android, iOS) con dos modos: **Duelo** (2 jugadores, servidor de salas Node + We
 | `src/game/engine.ts` | Motor puro del Duelo (+ `engine.test.ts`) |
 | `src/game/roomClient.ts` | Cliente de salas: WebSocket en web, sondeo HTTPS en móvil, reconexión |
 | `src/game/singlePlayerEngine.ts`, `src/singlePlayer/` | Motor y pantalla del Solitario |
+| `src/version.ts` | Versión visible; `src/version.test.ts` la compara con los manifiestos |
 | `src/data/` | Catálogo local de 1.025 Pokémon y banco de preguntas (generados; no editar a mano sin regenerar) |
 | `server/room-server.js` | Servidor de salas: `createRoomServer(opciones)` (+ `room-server.test.js`) |
 | `public/index.html`, `app.config.js`, `scripts/build-web.mjs`, `scripts/add-web-csp.mjs`, `scripts/add-web-pwa.mjs` | Build web para Pages (CSP y PWA) |
@@ -42,10 +43,10 @@ npm run room-server             # alias de server
 npm --prefix server start       # solo el servidor
 npm --prefix server test        # tests del servidor
 npm run typecheck               # tsc --noEmit
-npm test                        # node --test server/room-server.test.js && tsx --test src/game/*.test.ts
+npm test                        # node --test server/room-server.test.js && tsx --test src/*.test.ts src/game/*.test.ts
 npm run single-player:verify    # verificación del Solitario
 npm run build:web               # dist/ con ruta base /Adivina-pkm + CSP + PWA (como Pages)
-npm run test:web                # prueba de humo de dist/ con Chromium sin cabeza (Solitario y sin red)
+npm run test:web                # prueba de humo de dist/ con Chromium sin cabeza (Solitario, Duelo con servidor dormido/caído y sin red)
 ```
 
 Antes de dar algo por terminado: `npm run typecheck && npm test && npm run single-player:verify`; si tocas la web,
@@ -56,6 +57,7 @@ también `npm run build:web && npm run test:web`.
 - Textos de la app, comentarios, commits y documentación en **español de España**.
 - TypeScript estricto. Sin dependencias nuevas sin motivo; para paquetes de Expo usa `npx expo install`.
 - El servidor JS **replica** reglas del motor TS: si cambias una regla, cambia ambos y añade la prueba en los dos tests.
+- **Versionado:** al subir de versión se cambian a la vez `package.json`, `package-lock.json` (2 sitios), `app.json`, `server/package.json`, `server/package-lock.json` (2 sitios) y `src/version.ts`, además de añadir la entrada correspondiente en `CHANGELOG.md`.
 - Mensajes de error del servidor: cortos, en español y sin datos internos. Son parte de la UX.
 - Estética: paleta de `COLORS` en `App.tsx` (fondo `#05070B`, panel `#1D1E2A`, amarillo `#FFD000`, azul `#4C6BE8`,
   naranja `#F06B00`) y fuente PokeQuien Pixel (`PIXEL_FONT`, Press Start 2P con mayúsculas acentuadas redibujadas; se regenera con `scripts/generate-pixel-font.py`).

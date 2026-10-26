@@ -1,5 +1,7 @@
 # ⚡ Informe de trabajo · PokéQuién
 
+> Documento histórico (14/09/2026). El estado de la versión 1.0.0 está en README.md, CHANGELOG.md y docs/DESARROLLO.md.
+
 > Estado de la revisión: 14/09/2026 · primera versión jugable verificada en local.
 
 ## Resultado en una pantalla
@@ -75,12 +77,12 @@ del límite y 0 preguntas prohibidas.
 4. Para dos jugadores, crea una sala, copia el enlace y ábrelo en otra pestaña; elige un secreto en cada pantalla.
 5. En la partida, cada cliente solo puede tachar/destachar su tablero. Deja como última casilla el secreto del rival para ver el resultado.
 
-## Pendientes antes de publicar
+## Pendientes que había antes de publicar
 
-- Usar HTTPS/WSS y configurar `ROOM_SERVER_ALLOWED_ORIGINS` con dominios exactos.
-- Sustituir el `Map` en memoria por almacenamiento efímero si se publica el servidor.
-- Configurar CSP y cabeceras de seguridad del hosting web.
-- Revisar licencias y atribuciones de retratos, audios y fondo antes de distribución pública.
+- HTTPS/WSS y `ROOM_SERVER_ALLOWED_ORIGINS` con dominios exactos: **hecho**.
+- Sustituir el `Map` en memoria por almacenamiento efímero: **sigue pendiente; limitación conocida**.
+- Configurar CSP y cabeceras de seguridad del hosting web: **CSP hecha en Pages**; Pages no permite cabeceras propias.
+- Revisar licencias y atribuciones de retratos, audios y fondo: **pendiente antes de publicar en tiendas**.
 
 ## Créditos
 
