@@ -17,6 +17,8 @@ export function HomeScreen({
   onCopyInvite,
   onSolo,
   onRetry,
+  onCancel,
+  errorSlot,
   inviteCode,
   joinCode,
   setJoinCode,
@@ -37,6 +39,8 @@ export function HomeScreen({
   onCopyInvite: () => void;
   onSolo: () => void;
   onRetry: () => void;
+  onCancel: () => void;
+  errorSlot: 'create' | 'join' | 'top';
   inviteCode: string;
   joinCode: string;
   setJoinCode: (value: string) => void;
@@ -65,6 +69,31 @@ export function HomeScreen({
     return () => animation.stop();
   }, [float, reduceMotion]);
   const logoY = float.interpolate({ inputRange: [0, 1], outputRange: [0, -7] });
+  // El error aparece junto al panel que lo provocó para que se vea sin desplazarse (sobre todo en el móvil).
+  const errorBox = !!error && (
+    <View style={styles.errorBox}>
+      <Text accessibilityRole="alert" accessibilityLiveRegion="assertive" style={styles.error}>
+        {error}
+      </Text>
+      {retryAction && <Button label="REINTENTAR" onPress={onRetry} variant="gray" disabled={loading} />}
+      {offerSolo && <Button label="JUGAR AL SOLITARIO" onPress={onSolo} variant="orange" />}
+    </View>
+  );
+  // Estado de la conexión (aviso de servidor dormido, CANCELAR y error) junto a lo que la provocó: el panel de crear,
+  // el de unirse o arriba del todo si se entra con un enlace de invitación. Mientras se conecta (hasta 1 minuto si el
+  // servidor gratuito está dormido) siempre se puede cancelar.
+  const status = (
+    <>
+      {loading && errorSlot === 'top' && !!loadingLabel && <Text style={styles.notice}>{loadingLabel}</Text>}
+      {loading && !!progress && (
+        <Text accessibilityLiveRegion="polite" style={styles.notice}>
+          {progress}
+        </Text>
+      )}
+      {loading && <Button label="CANCELAR" onPress={onCancel} variant="gray" />}
+      {errorBox}
+    </>
+  );
   return (
     <ScrollView
       stickyHeaderIndices={[0]}
@@ -82,6 +111,7 @@ export function HomeScreen({
         </Animated.Text>
         <Text style={styles.heroSubtitle}>ADIVINA EL SECRETO · DUELO PIXEL</Text>
       </View>
+      {errorSlot === 'top' && (loading ? <View style={styles.panel}>{status}</View> : errorBox)}
       <HowToPlay />
       <View style={styles.panel}>
         <RetroPanelHeader title="CREAR PARTIDA" />
@@ -109,17 +139,17 @@ export function HomeScreen({
           </Text>
         </View>
         <Button label="COPIAR ENLACE" onPress={onCopyInvite} variant="orange" disabled={loading} />
-        <Button label={loading ? 'CARGANDO POKÉDEX…' : 'CREAR SALA'} onPress={onCreate} disabled={loading} />
+        <Button
+          label={loading && errorSlot === 'create' ? loadingLabel || 'CREANDO SALA…' : 'CREAR SALA'}
+          onPress={onCreate}
+          disabled={loading}
+        />
         {!!notice && (
           <Text accessibilityLiveRegion="polite" style={styles.notice}>
             {notice}
           </Text>
         )}
-        {loading && !!progress && retryAction !== 'join' && (
-          <Text accessibilityLiveRegion="polite" style={styles.notice}>
-            {progress}
-          </Text>
-        )}
+        {errorSlot === 'create' && status}
       </View>
       <View style={styles.panel}>
         <RetroPanelHeader title="UNIRSE A PARTIDA" />
@@ -139,16 +169,12 @@ export function HomeScreen({
           value={joinCode}
         />
         <Button
-          label={loading ? loadingLabel || 'CONECTANDO…' : 'CONECTAR'}
+          label={loading && errorSlot !== 'create' ? loadingLabel || 'CONECTANDO…' : 'CONECTAR'}
           onPress={onJoin}
           variant="primary"
           disabled={loading}
         />
-        {loading && !!progress && retryAction === 'join' && (
-          <Text accessibilityLiveRegion="polite" style={styles.notice}>
-            {progress}
-          </Text>
-        )}
+        {errorSlot === 'join' && status}
       </View>
       <Pressable
         accessibilityRole="button"
@@ -164,15 +190,6 @@ export function HomeScreen({
         <Text style={styles.demoLinkText}>{'▶  CREAR SALA DE PRUEBA KANTO'}</Text>
         <Text style={styles.muted}>Crea una sala rápida para abrirla en dos pestañas.</Text>
       </Pressable>
-      {!!error && (
-        <View style={styles.errorBox}>
-          <Text accessibilityRole="alert" accessibilityLiveRegion="assertive" style={styles.error}>
-            {error}
-          </Text>
-          <Button label="REINTENTAR" onPress={onRetry} variant="gray" disabled={loading} />
-          {offerSolo && <Button label="JUGAR AL SOLITARIO" onPress={onSolo} variant="orange" />}
-        </View>
-      )}
       <CreditsLink />
     </ScrollView>
   );

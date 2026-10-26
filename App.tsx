@@ -45,6 +45,10 @@ export default function App() {
   const [loadingLabel, setLoadingLabel] = useState('');
   const noticeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [retryAction, setRetryAction] = useState<'create' | 'join' | null>(null);
+  // Dónde se ve el error en el inicio: junto al panel que lo provocó (si no, en móvil quedaba fuera de pantalla).
+  const [errorSlot, setErrorSlot] = useState<'create' | 'join' | 'top'>('top');
+  // Cada intento de crear/unirse lleva un número; cancelar lo invalida y su resultado tardío se descarta.
+  const attemptRef = useRef(0);
   const [game, setGame] = useState<RoomGameState | null>(null);
   const [player, setPlayer] = useState<PlayerId | null>(null);
   const [roster, setRoster] = useState<PokemonCandidate[]>(LOCAL_KANTO_ROSTER);
@@ -68,8 +72,11 @@ export default function App() {
 
   const getClient = () => {
     if (!roomClientRef.current) {
-      roomClientRef.current = new RoomClient(
+      // Los avisos de un cliente ya cerrado (cancelado o de una sala abandonada) no deben cambiar la pantalla.
+      const client: RoomClient = new RoomClient(
         (nextGame, nextPlayer) => {
+          if (roomClientRef.current !== client) return;
+          setErrorSlot('top');
           setError(
             nextGame.phase === 'abandoned'
               ? `La partida terminó: ${nextGame.abandonedPlayer === nextPlayer ? 'has abandonado la sala' : 'el rival abandonó la partida'}. Crea otra sala o juega al Solitario.`
@@ -79,6 +86,7 @@ export default function App() {
           applyState(nextGame, nextPlayer);
         },
         (message) => {
+          if (roomClientRef.current !== client) return;
           setError(message);
           if (!message) setOfferSolo(false);
           if (message.includes('no se reconectó') || message.includes('reconexión ha terminado')) {
@@ -87,13 +95,28 @@ export default function App() {
             setGame(null);
             setPlayer(null);
             setScreen('home');
+            setErrorSlot('top');
             setOfferSolo(true);
           }
         },
-        setProgress,
+        (message) => {
+          if (roomClientRef.current === client) setProgress(message);
+        },
       );
+      roomClientRef.current = client;
     }
     return roomClientRef.current;
+  };
+
+  // CANCELAR mientras se conecta (o ir al Solitario): cierra el cliente y descarta lo que llegue después.
+  const cancelConnection = () => {
+    attemptRef.current += 1;
+    roomClientRef.current?.close({ forgetSession: true });
+    roomClientRef.current = null;
+    setLoading(false);
+    setLoadingLabel('');
+    setProgress('');
+    setRetryAction(null);
   };
 
   useEffect(
@@ -124,25 +147,37 @@ export default function App() {
   }, [game?.phase, playSound]);
 
   const createRoom = async (nextGeneration = generation): Promise<RoomGameState | null> => {
+    const attempt = ++attemptRef.current;
     setError('');
+    setErrorSlot('create');
     setOfferSolo(false);
-    setLoadingLabel('');
+    setLoadingLabel('CARGANDO POKÉDEX…');
     setRetryAction('create');
     setLoading(true);
     try {
       const nextRoster = await loadRoster(nextGeneration);
+      if (attempt !== attemptRef.current) return null;
+      setLoadingLabel('CREANDO SALA…');
       setRoster(nextRoster);
       const nextCode = inviteCode;
-      const nextGame = await getClient().create(nextCode, nextGeneration, nextRoster);
+      const client = getClient();
+      const nextGame = await client.create(nextCode, nextGeneration, nextRoster);
+      if (attempt !== attemptRef.current) {
+        client.close({ forgetSession: true });
+        return null;
+      }
       setInviteCode(createRoomCode());
       setRetryAction(null);
-      applyState(nextGame, getClient().playerId ?? 'p1');
+      applyState(nextGame, client.playerId ?? 'p1');
       return nextGame;
     } catch (cause) {
-      showFailure(cause, 'No se pudo crear la sala.');
+      if (attempt === attemptRef.current) showFailure(cause, 'No se pudo crear la sala.');
       return null;
     } finally {
-      setLoading(false);
+      if (attempt === attemptRef.current) {
+        setLoading(false);
+        setLoadingLabel('');
+      }
     }
   };
 
@@ -150,20 +185,30 @@ export default function App() {
     const code = normalizeRoomCodeInput(rawCode);
     const invalid = validateRoomCode(code);
     setOfferSolo(false);
+    // Con un enlace de invitación el panel de unirse queda fuera de la pantalla: el estado se ve arriba.
+    setErrorSlot(fromLink ? 'top' : 'join');
     if (invalid) {
+      setRetryAction(null);
       setError(invalid);
       return;
     }
+    const attempt = ++attemptRef.current;
     setError('');
     setRetryAction('join');
     setLoadingLabel(`ENTRANDO EN ${code}…`);
     setLoading(true);
     try {
-      const nextGame = await getClient().join(code);
+      const client = getClient();
+      const nextGame = await client.join(code);
+      if (attempt !== attemptRef.current) {
+        client.close({ forgetSession: true });
+        return;
+      }
       setRoster(nextGame.board);
       setRetryAction(null);
-      applyState(nextGame, getClient().playerId ?? 'p2');
+      applyState(nextGame, client.playerId ?? 'p2');
     } catch (cause) {
+      if (attempt !== attemptRef.current) return;
       const missing = cause instanceof Error && cause.message.startsWith('No hay ninguna sala');
       showFailure(
         cause,
@@ -171,8 +216,10 @@ export default function App() {
         missing && fromLink ? ' Puede que el enlace haya caducado: pide a tu rival uno nuevo.' : '',
       );
     } finally {
-      setLoading(false);
-      setLoadingLabel('');
+      if (attempt === attemptRef.current) {
+        setLoading(false);
+        setLoadingLabel('');
+      }
     }
   };
 
@@ -353,11 +400,14 @@ export default function App() {
               onDemo={() => void createRoom(1)}
               onCopyInvite={() => void copyInvite()}
               onSolo={() => {
+                if (loading) cancelConnection();
                 setError('');
                 setOfferSolo(false);
                 setScreen('single-player');
               }}
               onRetry={() => (retryAction === 'join' ? joinRoom() : void createRoom())}
+              onCancel={cancelConnection}
+              errorSlot={errorSlot}
               inviteCode={inviteCode}
               joinCode={joinCode}
               setJoinCode={setJoinCode}
@@ -382,10 +432,10 @@ export default function App() {
             />
           )}
           {screen === 'selection' && game && player && (
-            <SelectionScreen game={game} player={player} reduceMotion={reduceMotion} onSelect={select} />
+            <SelectionScreen game={game} player={player} reduceMotion={reduceMotion} onSelect={select} onLeave={leaveRoom} />
           )}
           {screen === 'waiting' && game && player && (
-            <WaitingScreen game={game} player={player} reduceMotion={reduceMotion} />
+            <WaitingScreen game={game} player={player} reduceMotion={reduceMotion} onLeave={leaveRoom} />
           )}
           {screen === 'game' && game && player && (
             <GameScreen

@@ -1,22 +1,29 @@
 // Espera a que el rival elija.
-import { Image, ScrollView, Text, View } from 'react-native';
+import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import { getPokemon, PlayerId } from '../game/engine';
 import { RoomGameState } from '../game/roomClient';
-import { PokeballCapture, Portrait } from '../ui/components';
+import { PokeballCapture, Portrait, ReconnectBanner } from '../ui/components';
 import { styles } from '../ui/appStyles';
 
 export function WaitingScreen({
   game,
   player,
   reduceMotion,
+  onLeave,
 }: {
   game: RoomGameState;
   player: PlayerId;
   reduceMotion: boolean;
+  onLeave: () => void;
 }) {
   const pokemon = getPokemon(game, game.players[player].secretId);
   return (
     <ScrollView contentContainerStyle={styles.waitingContent}>
+      {/* Si el rival no llega a elegir, siempre se puede salir (el rival verá que has abandonado). */}
+      <Pressable accessibilityRole="button" accessibilityLabel="Salir de la sala" onPress={onLeave} style={styles.backButton}>
+        <Text style={styles.backText}>{'‹  SALIR DE LA SALA'}</Text>
+      </Pressable>
+      <ReconnectBanner game={game} player={player} />
       <View style={styles.waitingPanel}>
         <View style={styles.waitingTopline}>
           <Text style={styles.waitingEyebrow}>SALA · LISTA</Text>

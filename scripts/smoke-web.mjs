@@ -1,12 +1,14 @@
 import { createServer, request as httpRequest } from 'node:http';
+import { createServer as createTcpServer } from 'node:net';
 import { existsSync, readFileSync, rmSync, statSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { extname, join, resolve, sep } from 'node:path';
 import { spawn } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 
-// Prueba de humo de la web (build de Pages): carga, entra en el Solitario, responde «SÍ» y, si la build trae
-// service worker, comprueba que vuelve a cargar y deja jugar sin red. Sin dependencias: Chromium + CDP.
+// Prueba de humo de la web (build de Pages): carga, entra en el Solitario, responde «SÍ», comprueba que el Duelo
+// se puede cancelar y explica que el servidor no responde (sin colgarse) y, si la build trae service worker,
+// comprueba que vuelve a cargar y deja jugar sin red. Sin dependencias: Chromium + CDP.
 // Uso: npm run build:web && npm run test:web   (SMOKE_DIST=carpeta, CHROME_PATH=ejecutable, SMOKE_SCREENSHOT=png)
 const root = resolve(process.env.SMOKE_DIST ?? fileURLToPath(new URL('../dist/', import.meta.url)));
 const prefix = '/Adivina-pkm/';
@@ -20,6 +22,7 @@ const sleep = (ms) => new Promise((resolvePromise) => setTimeout(resolvePromise,
 const textOf = (value) => String(value ?? '');
 const normalise = (value) => textOf(value).toLocaleUpperCase('es-ES');
 let server;
+let roomServerStub;
 let browser;
 let profile;
 let socket;
@@ -57,9 +60,28 @@ function findChrome() {
   throw new Error('No se ha encontrado Chromium');
 }
 
-function launchChrome(executable) {
+// Servidor de salas falso: el dominio de Render se redirige aquí (--host-resolver-rules) para no depender de la red.
+// En modo «colgado» acepta la conexión y no contesta nunca (servidor dormido); en modo «caído» la corta al momento.
+const ROOM_SERVER_HOST = 'pokequien-rooms.onrender.com';
+let roomServerMode = 'hang';
+const roomServerSockets = new Set();
+function startRoomServerStub() {
+  roomServerStub = createTcpServer((connection) => {
+    if (roomServerMode === 'down') return connection.destroy();
+    roomServerSockets.add(connection);
+    connection.on('error', () => {});
+    connection.on('close', () => roomServerSockets.delete(connection));
+  });
+  return new Promise((resolvePromise) => roomServerStub.listen(0, '127.0.0.1', () => resolvePromise(roomServerStub.address().port)));
+}
+function setRoomServerDown() {
+  roomServerMode = 'down';
+  for (const connection of roomServerSockets) connection.destroy();
+}
+
+function launchChrome(executable, roomServerPort) {
   profile = mkdtempSync(join(tmpdir(), 'adivina-pkm-smoke-'));
-  const args = ['--headless=new', '--disable-gpu', '--no-first-run', '--no-default-browser-check', `--user-data-dir=${profile}`, '--remote-debugging-port=0', '--window-size=390,844', 'about:blank'];
+  const args = ['--headless=new', '--disable-gpu', '--no-first-run', '--no-default-browser-check', `--user-data-dir=${profile}`, '--remote-debugging-port=0', '--window-size=390,844', `--host-resolver-rules=MAP ${ROOM_SERVER_HOST} 127.0.0.1:${roomServerPort}`, 'about:blank'];
   return new Promise((resolvePromise, reject) => {
     // En Linux, con prioridad mínima de CPU y disco (la Raspberry de desarrollo tiene poca memoria).
     const lowPriority = process.platform === 'linux' && existsSync('/usr/bin/ionice');
@@ -129,6 +151,7 @@ function innerText(cdp) { return evaluate(cdp, 'document.body?.innerText || ""')
 
 async function stopBrowser() {
   if (socket) socket.close();
+  if (roomServerStub) { setRoomServerDown(); roomServerStub.close(); roomServerStub = undefined; }
   if (browser?.pid) { try { process.kill(-browser.pid, 'SIGTERM'); } catch {} await new Promise((resolvePromise) => { browser.once('exit', resolvePromise); setTimeout(resolvePromise, 3000); }); }
   if (profile) rmSync(profile, { recursive: true, force: true });
 }
@@ -138,7 +161,7 @@ async function main() {
   server = createServer(sendFile);
   await new Promise((resolvePromise) => server.listen(0, '127.0.0.1', resolvePromise));
   const port = server.address().port;
-  const devtools = await launchChrome(findChrome());
+  const devtools = await launchChrome(findChrome(), await startRoomServerStub());
   const targetList = await httpJson(new URL(devtools).port, '/json/list');
   const target = targetList.find((item) => item.type === 'page');
   if (!target?.webSocketDebuggerUrl) throw new Error('No se ha encontrado la página de Chromium');
@@ -172,8 +195,27 @@ async function main() {
   if (process.env.SMOKE_SCREENSHOT) { const shot = await socket.command('Page.captureScreenshot', { format: 'png' }); writeFileSync(process.env.SMOKE_SCREENSHOT, Buffer.from(shot.data, 'base64')); }
   if (consoleErrors.some((error) => !normalise(error).includes('NOTALLOWEDERROR'))) throw new Error('errores de consola');
   console.log('✔ paso e: captura y consola');
-  if (!existsSync(join(root, 'sw.js'))) return;
   currentStep = 'f';
+  // Duelo con el servidor dormido: el enlace de invitación intenta entrar, avisa y se puede CANCELAR sin esperar.
+  await socket.command('Page.navigate', { url: `http://127.0.0.1:${port}${prefix}?room=K7XQ2MPA` });
+  await waitFor(socket, `document.body && document.body.innerText.length > 0`, 'recarga con enlace de invitación');
+  if (await evaluate(socket, `!![...document.querySelectorAll('[role="button"]')].find((node) => (node.innerText || '').toLocaleUpperCase('es-ES').includes('ENTENDIDO'))`)) await clickText(socket, 'ENTENDIDO');
+  await waitFor(socket, `(document.body.innerText || '').toLocaleUpperCase('es-ES').includes('DESPERTANDO EL SERVIDOR')`, 'aviso de servidor dormido');
+  await clickText(socket, 'CANCELAR');
+  await waitFor(socket, `(() => { const text = (document.body.innerText || '').toLocaleUpperCase('es-ES'); return !text.includes('CANCELAR') && !text.includes('ENTRANDO EN') && !text.includes('NO HEMOS PODIDO'); })()`, 'cancelación del intento de conexión');
+  console.log('✔ paso f: el Duelo avisa de que el servidor despierta y se puede cancelar');
+  currentStep = 'g';
+  // Servidor caído: el error lo explica junto al panel, ofrece REINTENTAR y el Solitario funciona.
+  setRoomServerDown();
+  await clickText(socket, 'CONECTAR');
+  await waitFor(socket, `(document.body.innerText || '').toLocaleUpperCase('es-ES').includes('NO HEMOS PODIDO CONTACTAR CON EL SERVIDOR DE DUELOS')`, 'mensaje de servidor inaccesible');
+  if (!await evaluate(socket, `['REINTENTAR', 'JUGAR AL SOLITARIO'].every((wanted) => [...document.querySelectorAll('[role="button"]')].some((node) => (node.innerText || '').toLocaleUpperCase('es-ES').includes(wanted)))`)) throw new Error('faltan REINTENTAR o JUGAR AL SOLITARIO');
+  await clickText(socket, 'JUGAR AL SOLITARIO');
+  await waitFor(socket, `(document.body.innerText || '').toLocaleUpperCase('es-ES').includes('MODO 1 JUGADOR')`, 'Solitario tras el fallo del Duelo');
+  if (consoleErrors.some((error) => !normalise(error).includes('NOTALLOWEDERROR'))) throw new Error('errores de consola');
+  console.log('✔ paso g: servidor caído explicado, sin colgarse, y Solitario disponible');
+  if (!existsSync(join(root, 'sw.js'))) return;
+  currentStep = 'h';
   // PWA: espera a que el service worker controle la página, apaga el servidor (sin red) y recarga.
   await waitFor(socket, `Promise.race([navigator.serviceWorker.ready.then(() => !!navigator.serviceWorker.controller), new Promise((ok) => setTimeout(() => ok(false), 1000))])`, 'service worker activo');
   // Navegar a un recurso que no es la app (un PNG) no debe sustituir la copia guardada de la app.
@@ -185,7 +227,7 @@ async function main() {
   await waitFor(socket, `(document.body.innerText || '').toLocaleUpperCase('es-ES').includes('JUGAR CONTRA LA MÁQUINA')`, 'carga sin red');
   await clickText(socket, 'JUGAR CONTRA LA MÁQUINA');
   await waitFor(socket, `(document.body.innerText || '').toLocaleUpperCase('es-ES').includes('MODO 1 JUGADOR')`, 'Solitario sin red');
-  console.log('✔ paso f: sin red, la PWA carga y abre el Solitario');
+  console.log('✔ paso h: sin red, la PWA carga y abre el Solitario');
 }
 
 const globalTimeout = setTimeout(() => { void stopBrowser().finally(() => process.exit(1)); }, 120000);
