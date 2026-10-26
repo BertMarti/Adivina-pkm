@@ -282,11 +282,24 @@ export class RoomClient {
         : request.type === 'join'
           ? `/api/rooms/${request.roomCode}/join`
           : `/api/rooms/${request.roomCode}/reconnect`;
+      const baseUrl = this.httpBaseUrl;
       const message = await this.requestHttp(path, 'POST', request);
+      if (ticket !== this.closeCount) {
+        // Cancelado con la petición en vuelo: si el servidor ya creó la sala o nos dio plaza, se libera al momento.
+        if (message.type === 'state' && message.sessionToken && baseUrl) {
+          void fetch(`${baseUrl}/api/rooms/${message.state.roomCode}`, {
+            method: 'DELETE',
+            headers: { 'X-Player': message.player, 'X-Session-Token': message.sessionToken },
+          }).catch(() => {});
+        }
+        throw new RoomConnectionCancelled();
+      }
       const state = this.acceptHttpMessage(message);
       this.startHttpPolling();
       return state;
     } catch (cause) {
+      // Tras cancelar no se prueba otro servidor ni se recurre al WebSocket.
+      if (cause instanceof RoomConnectionCancelled || ticket !== this.closeCount) throw new RoomConnectionCancelled();
       if (cause instanceof HttpNetworkError && serverIndex + 1 < serverUrls.length) return this.openHttp(request, serverIndex + 1);
       if (cause instanceof Error && cause.message === 'Ruta no encontrada.') return this.open(request);
       if (cause instanceof HttpNetworkError) throw connectionError();
