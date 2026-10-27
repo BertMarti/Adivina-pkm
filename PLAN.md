@@ -1,6 +1,6 @@
 # PLAN.md — Hoja de ruta de PokéQuién
 
-Actualizado el 25/10/2026. Prioridad de arriba abajo.
+Actualizado el 26/10/2026 (versión 1.0.0). Prioridad de arriba abajo.
 
 ## ✅ Hecho hoy (24/10/2026, v0.2.0)
 
@@ -28,18 +28,31 @@ Actualizado el 25/10/2026. Prioridad de arriba abajo.
 - Prueba de humo de la web con Chromium sin cabeza (local y CI).
 - PWA instalable: Solitario sin red y caché de retratos.
 
-## ⏭️ Siguiente
+## ✅ Versión 1.0.0 (26/10/2026)
 
-1. **Tras fusionar**: comprobar que Render aplica `rootDir: server`, `ROOM_SERVER_ALLOWED_ORIGINS=https://bertmarti.github.io` y
-   `ROOM_SERVER_TRUST_PROXY=1` (si el servicio no está enlazado al Blueprint, ponerlas a mano) y jugar un Duelo desde Pages.
-   Verificar también que las peticiones llegan con la cabecera `CF-Connecting-IP` (si no, los límites por IP usan la
-   primera IP de `X-Forwarded-For`, que el cliente puede falsificar).
-2. **Licencias**: sustituir GIF y sonidos de terceros por recursos propios antes de publicar en tiendas o con anuncios.
-3. **node-forge**: cuando salga una versión corregida de GHSA-86w9-cpqp-85rv, actualizar (Dependabot la propondrá).
-4. **Reglas compartidas**: extraer las transiciones a un módulo JS común (o pruebas de contrato) para que servidor y
+- Versión 1.0.0 en la app, el servidor de salas y la pantalla «Acerca de»; el servidor informa de su versión en `GET /`.
+- Duelo sin bloqueos: botón CANCELAR mientras conecta, errores junto al panel que los provoca (o arriba con un enlace de
+  invitación), salida de la sala en la elección y la espera, y aviso de rival desconectado en todas las fases.
+- Solitario: el historial confirma antes de borrar y avisa al copiarlo.
+- Prueba de humo con servidor de salas dormido y caído; prueba de coherencia de versiones.
+- Documentación de usuario y de seguridad al día; documentos de fases anteriores marcados como históricos.
+
+## ⏭️ Después de la 1.0
+
+1. **Render (Alberto)**: poner Root Directory `server` (o Blueprints → Sync), volver a desplegar y comprobar que
+   `GET /` devuelve `"version":"1.0.0"`. Verificar también que llega `CF-Connecting-IP` (si no, los límites por IP usan
+   la primera IP de `X-Forwarded-For`, que el cliente puede falsificar).
+2. **Licencias antes de tiendas o anuncios**: sustituir los GIF de espera y los sonidos de terceros por recursos propios.
+3. **node-forge**: cuando salga una versión corregida de GHSA-86w9-cpqp-85rv, aceptar la PR de Dependabot y quitar el
+   `overrides` de zod si @expo/cli ya trae zod 4.
+4. **Duelo en CI**: ampliar `npm run test:web` con un Duelo completo entre dos pestañas contra un servidor local
+   (hoy se prueba a mano y con el script de la revisión).
+5. **Reglas compartidas**: extraer las transiciones a un módulo JS común (o pruebas de contrato) para que servidor y
    motor no diverjan.
-5. **Accesibilidad**: probar con TalkBack (Android) y VoiceOver (iOS) en un móvil real; en web ya se anuncian las fases.
-6. **Pruebas de UI del Duelo**: ampliar `npm run test:web` con un Duelo entre dos pestañas contra un servidor local.
+6. **Accesibilidad en móvil real**: TalkBack (Android) y VoiceOver (iOS); en web ya se anuncian las fases.
+7. **Avisar al rival al salir a propósito**: hoy, al pulsar SALIR por WebSocket, el rival espera 60 s como si fuera
+   una desconexión; un mensaje `leave` permitiría cerrar la partida al momento.
+8. **APK de Android 1.0.0**: generarla con EAS (`docs/RELEASE_0_1_GRATUITA.md`) cuando se resuelva el punto 2.
 
 ## 💡 Ideas
 

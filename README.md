@@ -6,6 +6,7 @@
   <a href="https://bertmarti.github.io/Adivina-pkm/"><img src="https://img.shields.io/badge/▶_Jugar_en_la_web-gratis-FFD000?style=for-the-badge&labelColor=1D1E2A" alt="Jugar en la web" /></a>
   <img src="https://img.shields.io/badge/🎮_Pokémon-1025_especies-E3350D?style=for-the-badge&labelColor=1D1E2A" alt="1025 especies" />
   <img src="https://img.shields.io/badge/🕹️_Modos-Duelo_·_Solitario-FFD000?style=for-the-badge&labelColor=1D1E2A" alt="Modos Duelo y Solitario" />
+  <img src="https://img.shields.io/badge/🏷️_Versión-1.0.0-38D37D?style=for-the-badge&labelColor=1D1E2A" alt="Versión 1.0.0" />
   <img src="https://img.shields.io/badge/📱_Plataforma-Web_·_instalable_en_el_móvil-4C6BE8?style=for-the-badge&labelColor=1D1E2A" alt="Web, instalable en el móvil" />
   <a href="LICENSE"><img src="https://img.shields.io/badge/Licencia-MIT-38D37D?style=for-the-badge&labelColor=1D1E2A" alt="Licencia MIT (código)" /></a>
 </p>
@@ -132,8 +133,9 @@ Cuando ambos jugadores están dentro, aparece la cuadrícula **5×5** con 25 Pok
 ```
 
 - **Toca una casilla** para elegir tu secreto — ¡la elección es instantánea e irreversible!
-- Si tu rival aún no eligió, verás tu Pokémon y una **Poké Ball animada** de espera
-- Nadie puede ver el secreto del otro
+- Si tu rival aún no eligió, verás tu Pokémon y una **Poké Ball animada** de espera.
+- Mientras esperas al rival o eliges, tienes el botón **‹ SALIR DE LA SALA**.
+- Nadie puede ver el secreto del otro.
 
 ---
 
@@ -183,11 +185,11 @@ Al finalizar:
 
 <img align="right" src="https://raw.githubusercontent.com/PMDCollab/SpriteCollab/master/portrait/0092/Happy.png" width="48" alt="Gastly" />
 
-Si un jugador se desconecta durante la partida:
+Si un jugador se desconecta (eligiendo, esperando o durante la partida):
 
-- ⏳ La sala **espera 60 segundos** para que vuelva
-- ✅ Si reconecta a tiempo → recupera su tablero y continúa
-- ❌ Si no vuelve → la partida se marca como **abandono** y se vuelve al menú
+- ⏳ La sala **espera 60 segundos** para que vuelva y verás el aviso «EL RIVAL SE HA DESCONECTADO · Le esperamos...».
+- ✅ Si reconecta a tiempo → recupera su tablero y continúa.
+- ❌ Si no vuelve → la partida se marca como **abandono** y se vuelve al menú.
 
 ---
 
@@ -341,13 +343,19 @@ Sí. La web se adapta a la pantalla del móvil y puedes instalarla como una app 
 <details>
 <summary><b>¿Por qué tarda en conectar el Duelo?</b></summary>
 <br>
-El servidor gratuito «se duerme» cuando nadie juega. La primera conexión puede tardar hasta 1 minuto y verás el aviso «Despertando el servidor de duelos…». Si falla, pulsa <b>REINTENTAR</b>.
+El servidor gratuito «se duerme» cuando nadie juega. La primera conexión puede tardar hasta 1 minuto y verás el aviso «Despertando el servidor de duelos…». Mientras conecta, puedes pulsar <b>CANCELAR</b>. Si falla, pulsa <b>REINTENTAR</b>.
 </details>
 
 <details>
 <summary><b>Me sale «No hemos podido contactar con el servidor de duelos»</b></summary>
 <br>
-Espera unos segundos y pulsa <b>REINTENTAR</b>. Si sigue sin responder, puedes jugar al <b>Solitario</b>, que no necesita servidor.
+Puede que esté despertando (el plan gratuito tarda hasta 1 minuto la primera vez), que esté en mantenimiento o que no tengas conexión. Espera unos segundos y pulsa <b>REINTENTAR</b>. Si sigue sin responder, puedes jugar al <b>Solitario</b>, que no necesita servidor.
+</details>
+
+<details>
+<summary><b>¿Qué versión tengo?</b></summary>
+<br>
+Puedes ver la versión en el pie de la pantalla de inicio, en el apartado <b>ACERCA DE</b>. PokéQuién 1.0.0 es la versión estable actual.
 </details>
 
 <details>
@@ -417,8 +425,8 @@ Queda un ajuste en el servicio `pokequien-rooms` del panel de [Render](https://d
 
 1. En **Settings → Build & Deploy**, pon **Root Directory** en `server`, **Build Command** en `npm ci --omit=dev` y **Start Command** en `node room-server.js`. Si el servicio se creó desde el Blueprint, basta con **Blueprints → Sync**, porque `render.yaml` ya lo trae.
 2. En **Environment**, comprueba `ROOM_SERVER_ALLOWED_ORIGINS` = `https://bertmarti.github.io` y `ROOM_SERVER_TRUST_PROXY` = `1` (a 24/10/2026 ya parecían puestas) y pulsa **Save Changes**.
-3. Ve a **Manual Deploy → Deploy latest commit**. En los logs debe aparecer `✔ Servidor de salas escuchando…`.
-4. Abre `https://pokequien-rooms.onrender.com/`: debe devolver `"ok":true`. Comprueba también `curl -H "Origin: https://bertmarti.github.io" https://pokequien-rooms.onrender.com/`: debe devolver `"originAllowed":true` (el 26/10/2026 ya respondía así, con la versión 0.3.0 del servidor; el paso pendiente es el **Root Directory** del punto 1).
+3. Ve a **Manual Deploy → Deploy latest commit**. En los logs debe aparecer `✔ Servidor de salas 1.0.0 escuchando…`.
+4. Abre `https://pokequien-rooms.onrender.com/`: debe devolver `"ok":true` y, con la 1.0.0 ya desplegada, `"version":"1.0.0"` (el 26/10/2026 respondía sin `version`: señal de que Render aún ejecutaba un servidor anterior). Comprueba también `curl -H "Origin: https://bertmarti.github.io" https://pokequien-rooms.onrender.com/`: debe devolver `"originAllowed":true` (el 26/10/2026 ya respondía así).
 5. Haz una prueba real: abre <https://bertmarti.github.io/Adivina-pkm/>, pulsa **CREAR SALA**, usa **INVITAR (ENLACE)** y abre el enlace en otro dispositivo.
 
 Si algo falla:

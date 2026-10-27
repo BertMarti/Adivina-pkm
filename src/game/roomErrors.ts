@@ -44,7 +44,7 @@ export function describeServerProblem(kind: RoomServerProblem, origin?: string):
     const where = origin ? `desde esta web (${origin})` : 'desde esta web';
     return `El servidor de duelos no admite partidas ${where}. Quien lo administra debe añadir esta dirección en ROOM_SERVER_ALLOWED_ORIGINS. Mientras tanto puedes jugar al Solitario.`;
   }
-  return 'No hemos podido contactar con el servidor de duelos. Puede que esté despertando (el plan gratuito tarda hasta 1 minuto la primera vez) o que no tengas conexión. Pulsa REINTENTAR en unos segundos o juega al Solitario, que no necesita servidor.';
+  return 'No hemos podido contactar con el servidor de duelos. Puede que esté despertando (el plan gratuito tarda hasta 1 minuto la primera vez), que esté en mantenimiento o que no tengas conexión. Pulsa REINTENTAR en unos segundos o juega al Solitario, que no necesita servidor.';
 }
 
 export class RoomServerError extends Error {

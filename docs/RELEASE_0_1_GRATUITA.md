@@ -1,6 +1,8 @@
 # 🚀 PokéQuién 0.1 — release móvil gratuita
 
-Esta guía convierte el proyecto en una beta instalable en teléfonos Android.
+> Documento histórico. Esta es la guía para generar la APK de Android y sigue valiendo para la versión 1.0.0.
+
+Esta guía convierte el proyecto en una versión instalable en teléfonos Android.
 La APK es el cliente y el servidor de salas es un servicio separado. Para
 jugar desde redes distintas, ambos móviles deben apuntar a una URL pública
 `wss://`; la IP `192.168.x.x` solo sirve dentro de la red de casa.

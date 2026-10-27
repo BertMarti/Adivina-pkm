@@ -146,6 +146,8 @@ test('el servidor responde al health check GET / con {ok:true}', async (t) => {
   assert.equal(response.statusCode, 200);
   const payload = JSON.parse(response.body);
   assert.equal(payload.ok, true);
+  // La versión ayuda a saber qué hay desplegado en Render; el cliente no depende de ella.
+  assert.equal(payload.version, require('./package.json').version);
 });
 
 test('flujo completo por WebSocket: crear, unirse, elegir, jugar y ganar', async (t) => {

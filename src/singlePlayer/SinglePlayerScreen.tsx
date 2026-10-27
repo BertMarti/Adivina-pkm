@@ -233,6 +233,22 @@ export function SinglePlayerScreen({ reduceMotion: _reduceMotion, onBack, onSoun
   const [selectedPokemonId, setSelectedPokemonId] = useState<number | null>(null);
   const [rejectedGuessIds, setRejectedGuessIds] = useState<number[]>([]);
   const [sessionCount, setSessionCount] = useState(0);
+  // Aviso del historial (copiado, borrado, error) y confirmación de BORRAR en dos pulsaciones.
+  const [historyNotice, setHistoryNotice] = useState('');
+  const [confirmClear, setConfirmClear] = useState(false);
+  const historyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (historyTimerRef.current) clearTimeout(historyTimerRef.current);
+  }, []);
+  const flashHistory = (message: string, confirm = false) => {
+    setHistoryNotice(message);
+    setConfirmClear(confirm);
+    if (historyTimerRef.current) clearTimeout(historyTimerRef.current);
+    historyTimerRef.current = setTimeout(() => {
+      setHistoryNotice('');
+      setConfirmClear(false);
+    }, 4_000);
+  };
   const sessionRef = useRef<{ id: string; startedAt: string; catalogId: string; knowledgeVersion: string } | null>(null);
 
   useEffect(() => {
@@ -346,17 +362,32 @@ export function SinglePlayerScreen({ reduceMotion: _reduceMotion, onBack, onSoun
   };
 
   const exportLog = async () => {
-    const content = JSON.stringify(await exportSinglePlayerLog(), null, 2);
-    if (Platform.OS === 'web') {
-      await Clipboard.setStringAsync(content);
-      return;
+    try {
+      const content = JSON.stringify(await exportSinglePlayerLog(), null, 2);
+      if (Platform.OS === 'web') {
+        await Clipboard.setStringAsync(content);
+        flashHistory(`Historial copiado en JSON (${sessionCount} ${sessionCount === 1 ? 'partida' : 'partidas'}).`);
+        return;
+      }
+      await Share.share({ message: content });
+    } catch {
+      flashHistory('No se pudo copiar el historial. Inténtalo de nuevo.');
     }
-    await Share.share({ message: content });
   };
 
+  // Borrar es irreversible: la primera pulsación pide confirmación y la segunda (en 4 s) borra.
   const clearLog = async () => {
-    await clearSinglePlayerLog();
-    setSessionCount(0);
+    if (!confirmClear) {
+      flashHistory('Pulsa otra vez BORRAR para eliminar el historial de este dispositivo.', true);
+      return;
+    }
+    try {
+      await clearSinglePlayerLog();
+      setSessionCount(0);
+      flashHistory('Historial borrado.');
+    } catch {
+      flashHistory('No se pudo borrar el historial. Inténtalo de nuevo.');
+    }
   };
 
   return <View style={soloStyles.root}>
@@ -365,7 +396,7 @@ export function SinglePlayerScreen({ reduceMotion: _reduceMotion, onBack, onSoun
     {step === 'questions' && state && selectedPokemonId !== null && entries.find((entry) => entry.candidate.id === selectedPokemonId) && <QuestionView state={state} selectedPokemon={entries.find((entry) => entry.candidate.id === selectedPokemonId)!.candidate} onAnswer={answer} onBack={back} onNewGame={newGame} />}
     {step === 'guess' && state && <GuessView state={state} onGuessAnswer={answerGuess} onBack={back} />}
     {step === 'result' && state && selectedPokemonId !== null && <ResultView state={state} selectedPokemonId={selectedPokemonId} onNewGame={newGame} onBack={onBack} />}
-    {step === 'pick' && <View style={soloStyles.historyFooter}><Text style={soloStyles.historyTitle}>HISTORIAL LOCAL: {sessionCount}</Text><View style={soloStyles.historyActions}><Pressable accessibilityRole="button" onPress={() => void exportLog()} style={soloStyles.smallAction}><Text style={soloStyles.smallActionText}>COPIAR JSON</Text></Pressable><Pressable accessibilityRole="button" onPress={() => void clearLog()} style={soloStyles.smallAction}><Text style={soloStyles.smallActionText}>BORRAR</Text></Pressable></View><Text style={soloStyles.historyHint}>Se guardan preguntas, respuestas, candidatos restantes y resultados. Sin servidor.</Text></View>}
+    {step === 'pick' && <View style={soloStyles.historyFooter}><Text style={soloStyles.historyTitle}>HISTORIAL LOCAL: {sessionCount}</Text><View style={soloStyles.historyActions}><Pressable accessibilityRole="button" onPress={() => void exportLog()} style={soloStyles.smallAction}><Text style={soloStyles.smallActionText}>COPIAR JSON</Text></Pressable><Pressable accessibilityRole="button" accessibilityLabel={confirmClear ? 'Confirmar: borrar el historial' : 'Borrar el historial'} onPress={() => void clearLog()} style={[soloStyles.smallAction, confirmClear && soloStyles.smallActionDanger]}><Text style={soloStyles.smallActionText}>{confirmClear ? '¿SEGURO? BORRAR' : 'BORRAR'}</Text></Pressable></View>{!!historyNotice && <Text accessibilityLiveRegion="polite" style={soloStyles.historyNotice}>{historyNotice}</Text>}<Text style={soloStyles.historyHint}>Se guardan preguntas, respuestas, candidatos restantes y resultados. Sin servidor.</Text></View>}
   </View>;
 }
 
@@ -434,5 +465,7 @@ const soloStyles = StyleSheet.create({
   historyActions: { flexDirection: 'row', gap: 8 },
   smallAction: { flex: 1, minHeight: 44, borderRadius: 7, borderWidth: 2, borderColor: '#67686F', backgroundColor: '#171820', alignItems: 'center', justifyContent: 'center' },
   smallActionText: { color: '#F6F5EF', fontFamily: PIXEL_FONT, fontSize: 7 },
+  smallActionDanger: { borderColor: '#F06B00', backgroundColor: '#3A1B0C' },
+  historyNotice: { color: '#7CE0A3', fontSize: 12, lineHeight: 17, textAlign: 'center', fontWeight: '700' },
   historyHint: { color: '#A7A8B2', fontSize: 11, lineHeight: 16, textAlign: 'center' },
 });

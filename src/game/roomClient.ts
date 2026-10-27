@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import { GenerationId, PokemonCandidate } from '../data/pokemon';
 import { LocalGameState, PlayerId } from './engine';
 import { RoomServerError, interpretHealth } from './roomErrors';
+import { ownReconnectDeadline } from './roomSession';
 
 export type RoomGameState = LocalGameState & {
   generation: GenerationId;
@@ -55,6 +56,14 @@ function currentWebOrigin() {
   return Platform.OS === 'web' && typeof window !== 'undefined' ? window.location?.origin : undefined;
 }
 
+/** El jugador canceló (o salió) mientras se conectaba: no es un error que haya que mostrar. */
+export class RoomConnectionCancelled extends Error {
+  constructor() {
+    super('Conexión cancelada.');
+    this.name = 'RoomConnectionCancelled';
+  }
+}
+
 class HttpNetworkError extends Error {
   constructor() {
     super('No se pudo alcanzar el servidor HTTPS de salas.');
@@ -69,11 +78,14 @@ const WAKING_MESSAGE = 'Despertando el servidor de duelos… la primera vez pued
  * En web lee `originAllowed` para explicar si el servidor no admite esta web; si la petición falla
  * (red o servidor antiguo sin CORS), el intento por WebSocket sigue siendo la fuente de verdad.
  */
-async function checkServer(serverUrl: string, onProgress?: (message: string) => void): Promise<'ok' | 'unknown'> {
+async function checkServer(serverUrl: string, onProgress?: (message: string) => void, cancel?: AbortSignal): Promise<'ok' | 'unknown'> {
   const isWeb = Platform.OS === 'web';
   if (!isWeb && !serverUrl.startsWith('wss://')) return 'unknown';
   const healthUrl = `${toHttpServerUrl(serverUrl)}/`;
   const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+  // close() del cliente aborta la comprobación: no se queda una petición de hasta 45 s colgando tras CANCELAR.
+  if (cancel?.aborted) controller?.abort();
+  else cancel?.addEventListener('abort', () => controller?.abort());
   const timeout = controller ? setTimeout(() => controller.abort(), serverUrl.startsWith('wss://') ? 45_000 : 8_000) : null;
   const slowNotice = onProgress ? setTimeout(() => onProgress(WAKING_MESSAGE), 3_000) : null;
   let verdict: 'ok' | 'origin-rejected' | 'unknown' = 'unknown';
@@ -162,6 +174,9 @@ export class RoomClient {
   private httpPollTimer: ReturnType<typeof setInterval> | null = null;
   private httpPollInFlight = false;
   private httpErrorReported = false;
+  // Sube con cada close(): una conexión que estaba comprobando el servidor sabe que ya no debe abrir nada.
+  private closeCount = 0;
+  private checkAbort: AbortController | null = null;
   playerId: PlayerId | null = null;
 
   constructor(
@@ -177,7 +192,9 @@ export class RoomClient {
 
   async connect(request: Extract<RoomRequest, { type: 'create' | 'join' }>) {
     this.close({ forgetSession: false });
+    const ticket = this.closeCount;
     const saved = request.type === 'join' ? await readSavedSession(request.roomCode) : null;
+    if (ticket !== this.closeCount) throw new RoomConnectionCancelled();
     if (saved) {
       this.roomCode = saved.roomCode;
       this.playerId = saved.player;
@@ -222,7 +239,7 @@ export class RoomClient {
     this.roomCode = message.state.roomCode;
     if (message.sessionToken) this.sessionToken = message.sessionToken;
     if (this.sessionToken && this.playerId) void saveSession({ roomCode: message.state.roomCode, player: this.playerId, sessionToken: this.sessionToken });
-    if (message.state.reconnectDeadline) this.reconnectDeadline = message.state.reconnectDeadline;
+    this.reconnectDeadline = ownReconnectDeadline(message.state, message.player);
     if (message.state.phase === 'abandoned') void clearSavedSession(message.state.roomCode);
     this.httpErrorReported = false;
     this.onError('');
@@ -261,18 +278,34 @@ export class RoomClient {
     const serverUrls = getServerUrls();
     const serverUrl = serverUrls[Math.min(serverIndex, serverUrls.length - 1)];
     this.httpBaseUrl = toHttpServerUrl(serverUrl);
-    await checkServer(serverUrl, this.onProgress);
+    const ticket = this.closeCount;
+    await checkServer(serverUrl, this.onProgress, this.newCheckSignal());
+    if (ticket !== this.closeCount) throw new RoomConnectionCancelled();
     try {
       const path = request.type === 'create'
         ? '/api/rooms'
         : request.type === 'join'
           ? `/api/rooms/${request.roomCode}/join`
           : `/api/rooms/${request.roomCode}/reconnect`;
+      const baseUrl = this.httpBaseUrl;
       const message = await this.requestHttp(path, 'POST', request);
+      if (ticket !== this.closeCount) {
+        // Cancelado con la petición en vuelo: si el servidor ya creó la sala o nos dio plaza, se libera al momento.
+        if (message.type === 'state' && message.sessionToken && baseUrl) {
+          void fetch(`${baseUrl}/api/rooms/${message.state.roomCode}`, {
+            method: 'DELETE',
+            headers: { 'X-Player': message.player, 'X-Session-Token': message.sessionToken },
+          }).catch(() => {});
+        }
+        throw new RoomConnectionCancelled();
+      }
       const state = this.acceptHttpMessage(message);
-      this.startHttpPolling();
+      // onState puede haber cerrado el cliente (sala abandonada): entonces no se vuelve a sondear.
+      if (ticket === this.closeCount) this.startHttpPolling();
       return state;
     } catch (cause) {
+      // Tras cancelar no se prueba otro servidor ni se recurre al WebSocket.
+      if (cause instanceof RoomConnectionCancelled || ticket !== this.closeCount) throw new RoomConnectionCancelled();
       if (cause instanceof HttpNetworkError && serverIndex + 1 < serverUrls.length) return this.openHttp(request, serverIndex + 1);
       if (cause instanceof Error && cause.message === 'Ruta no encontrada.') return this.open(request);
       if (cause instanceof HttpNetworkError) throw connectionError();
@@ -296,8 +329,11 @@ export class RoomClient {
   private async open(request: Extract<RoomRequest, { type: 'create' | 'join' | 'reconnect' }>, serverIndex = 0) {
     const serverUrls = getServerUrls();
     const serverUrl = serverUrls[Math.min(serverIndex, serverUrls.length - 1)];
+    const ticket = this.closeCount;
     // Solo en el primer intento de conexión: en las reconexiones automáticas no se vuelve a comprobar.
-    if (request.type !== 'reconnect' || serverIndex > 0) await checkServer(serverUrl, request.type === 'reconnect' ? undefined : this.onProgress);
+    if (request.type !== 'reconnect' || serverIndex > 0) await checkServer(serverUrl, request.type === 'reconnect' ? undefined : this.onProgress, this.newCheckSignal());
+    // Si se canceló mientras se comprobaba el servidor (hasta 45 s si está dormido), no se abre ningún WebSocket.
+    if (ticket !== this.closeCount) throw new RoomConnectionCancelled();
     return new Promise<RoomGameState>((resolve, reject) => {
       let settled = false;
       let connected = false;
@@ -345,7 +381,7 @@ export class RoomClient {
         this.roomCode = message.state.roomCode;
         if (message.sessionToken) this.sessionToken = message.sessionToken;
         if (this.sessionToken && this.playerId) void saveSession({ roomCode: message.state.roomCode, player: this.playerId, sessionToken: this.sessionToken });
-        if (message.state.reconnectDeadline) this.reconnectDeadline = message.state.reconnectDeadline;
+        this.reconnectDeadline = ownReconnectDeadline(message.state, message.player);
         if (message.state.phase === 'abandoned') void clearSavedSession(message.state.roomCode);
         if (!settled) {
           settled = true;
@@ -399,7 +435,16 @@ export class RoomClient {
     this.send({ type: 'rematch' });
   }
 
+  private newCheckSignal() {
+    if (typeof AbortController === 'undefined') return undefined;
+    this.checkAbort = new AbortController();
+    return this.checkAbort.signal;
+  }
+
   close(options: { forgetSession?: boolean } = {}) {
+    this.closeCount += 1;
+    this.checkAbort?.abort();
+    this.checkAbort = null;
     this.intentionalClose = true;
     if (this.reconnectTimer) clearTimeout(this.reconnectTimer);
     this.reconnectTimer = null;
@@ -442,7 +487,8 @@ export class RoomClient {
       await this.open({ type: 'reconnect', roomCode: this.roomCode, player: this.playerId, sessionToken: this.sessionToken });
       this.reconnectDeadline = 0;
       this.onError('');
-    } catch {
+    } catch (cause) {
+      if (cause instanceof RoomConnectionCancelled) return;
       this.onError('Se perdió la conexión. Intentando reconectar durante 1 minuto…');
       this.scheduleReconnect();
     }

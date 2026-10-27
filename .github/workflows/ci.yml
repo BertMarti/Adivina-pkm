@@ -67,7 +67,7 @@ jobs:
         run: npm run single-player:verify
       - name: Build web (como en Pages)
         run: npm run build:web
-      - name: Prueba de humo de la web (Chromium sin cabeza; Solitario y PWA sin red)
+      - name: Prueba de humo de la web (Chromium sin cabeza; Solitario, Duelo sin servidor y PWA sin red)
         run: npm run test:web
         env:
           CHROME_PATH: google-chrome

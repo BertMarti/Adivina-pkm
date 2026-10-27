@@ -10,6 +10,64 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 
 > Cambios pendientes de incluir en la próxima versión.
 
+## [1.0.0] - 2026-10-26
+
+Primera versión estable de PokéQuién. Resume el camino desde el prototipo (0.1–0.4) y añade lo que faltaba para
+cerrarlo: que el Duelo nunca deje al jugador colgado aunque el servidor no responda.
+
+### 🎮 Qué trae la 1.0
+
+- **Web jugable** en <https://bertmarti.github.io/Adivina-pkm/>, sin cuenta ni instalación, e **instalable** como app
+  (PWA) en el móvil y el ordenador; el Solitario funciona **sin conexión**.
+- **Duelo (2 jugadores)**: sala con código de 8 caracteres o enlace de invitación, 9 generaciones o las 1.025 especies,
+  elección secreta, tablero 5×5 para tachar, revancha y 60 s para reconectar si alguien se cae.
+- **Solitario**: la Pokédex adivina tu Pokémon con preguntas de SÍ o NO (máximo 30), con historial local y exportación.
+- **Accesible**: lectores de pantalla anuncian fases y turnos, controles de 44 px, foco visible, movimiento reducido y
+  fuente pixel con mayúsculas acentuadas legibles.
+- **Seguro**: servidor de salas con límites por IP, mensajes validados y orígenes permitidos; web con CSP estricta y
+  service worker limitado a su carpeta; CI con gitleaks, pruebas y prueba de humo en Chromium.
+
+### ✨ Añadido
+
+- Botón **CANCELAR** mientras el Duelo conecta (el servidor gratuito puede tardar 1 minuto en despertar). Ir al
+  Solitario durante la conexión también la cancela.
+- **‹ SALIR DE LA SALA** y aviso de rival desconectado en la elección del Pokémon y en la espera (antes no había forma de
+  salir si el rival no elegía).
+- La versión se ve en la app: pie **ACERCA DE · CRÉDITOS Y LICENCIAS** y ventana «Acerca de PokéQuién».
+- El servidor de salas indica su versión en `GET /` y al arrancar (la app no depende de ella: funciona con un servidor
+  anterior).
+- Prueba de humo con dos pasos nuevos (servidor dormido → CANCELAR; servidor caído → mensaje, REINTENTAR y Solitario) y
+  prueba que comprueba que la versión coincide en todos los manifiestos.
+- Pruebas unitarias de las reglas de conexión del Duelo (`src/game/roomSession.ts`): plazo de reconexión propio, código
+  ocupado e intentos cancelados.
+
+### 🐛 Corregido
+
+- Una conexión al Duelo que terminaba tarde sacaba al jugador del Solitario y lo metía en la sala.
+- Los errores y avisos del Duelo salían al final de la pantalla de inicio, fuera de la vista en el móvil; ahora salen
+  junto al panel que los provoca (o arriba, si se entra con un enlace de invitación).
+- El botón de crear sala decía «CARGANDO POKÉDEX…» también mientras se intentaba unirse a otra sala.
+- El mensaje de servidor inaccesible contempla también que esté en mantenimiento.
+- Tras el abandono del rival, el cliente de la sala seguía vivo y había guardado el plazo de reconexión **del rival**:
+  un corte posterior terminaba «la partida» al instante y sacaba al jugador del Solitario. Ahora el cliente se cierra al
+  abandonarse la partida, solo cuenta el plazo propio, entrar en el Solitario cierra cualquier conexión pendiente y ese
+  aviso ya no cambia de pantalla si se está en el Solitario.
+- CANCELAR con la sala ya pedida dejaba ocupado el código y **REINTENTAR** fallaba siempre con «ya está ocupado»; ahora
+  se genera un código nuevo al cancelar y ante ese error. Cancelar también aborta la comprobación del servidor en curso.
+- Solitario: **BORRAR** el historial lo eliminaba con una sola pulsación; ahora pide confirmación. **COPIAR JSON** no
+  avisaba en la web (ni si fallaba); ahora lo confirma o explica el error.
+
+### 🔄 Cambiado
+
+- Versión 1.0.0 en la app (`package.json`, `app.json`) y en el servidor de salas (`server/package.json`).
+- Documentación de usuario y de seguridad al día con la 1.0.0; los documentos de fases anteriores quedan marcados como
+  históricos.
+
+### 🔐 Seguridad
+
+- Sin cambios de dependencias. Sigue abierto el aviso de `node-forge` (GHSA-86w9-cpqp-85rv), sin versión corregida
+  publicada: solo afecta a la herramienta de desarrollo de Expo, no a la web, a la APK ni al servidor.
+
 ## [0.4.0] — 2026-10-25
 
 ### 🔐 Seguridad
@@ -125,7 +183,10 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 
 ---
 
-## [1.0.0] — 2026-09-15
+## [Prototipo inicial] — 2026-09-15
+
+> Esta entrada se tituló «[1.0.0]» por error: era el primer prototipo, nunca se publicó con ese número. La versión
+> 1.0.0 real es la del 26/10/2026 (arriba).
 
 ### ⚡ Lanzamiento inicial
 

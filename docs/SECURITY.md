@@ -29,15 +29,22 @@ PokéQuién no tiene cuentas, contraseñas ni datos personales. La sala se ident
 | Recursos | TTL de salas desconectadas y retención corta del estado abandonado. |
 | Cliente | Las URLs de sprites solo se presentan como fuentes de imagen; no se interpolan como HTML. |
 
-## Puesta en producción pendiente
+## Estado en producción (1.0.0, 26/10/2026)
 
-- Servir el cliente y el WebSocket con HTTPS/WSS; `EXPO_PUBLIC_ROOM_SERVER_URL` debe usar `wss://` fuera de localhost.
-- En un PaaS que inyecte `PORT`, el servidor lo acepta antes de `ROOM_SERVER_PORT`; `render.yaml` deja preparada una instancia única para la beta.
-- Sustituir el `Map` en memoria por almacenamiento efímero (los límites por IP/proxy ya están desde el 24/10/2026).
-- Configurar `ROOM_SERVER_ALLOWED_ORIGINS` con el dominio exacto y eliminar la tolerancia a localhost.
-- Añadir observabilidad sin registrar tokens ni mensajes completos y alertas de abuso (el heartbeat ya existe).
-- La web de GitHub Pages ya lleva CSP por `<meta>`; Pages no permite cabeceras propias, así que `frame-ancestors` no se puede aplicar ahí. Referencia: [CSP de MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP).
-- Revisar licencias/atribuciones de retratos, audios y fondo antes de distribuir públicamente.
+### Hecho
+
+- Cliente web y WebSocket en GitHub Pages y Render con HTTPS/WSS.
+- El servidor acepta `PORT` (con prioridad sobre `ROOM_SERVER_PORT`).
+- `ROOM_SERVER_ALLOWED_ORIGINS` en Render: `https://bertmarti.github.io`.
+- La CSP de Pages está aplicada en la build; Pages no permite cabeceras propias, por lo que no incluye `frame-ancestors`.
+- Límites por IP y heartbeat activos.
+
+### Limitaciones conocidas
+
+- Las salas viven en un `Map` en memoria y se pierden si Render reinicia.
+- La lista de orígenes acepta además `localhost` y `127.0.0.1` a propósito para desarrollo.
+- No hay observabilidad ni alertas.
+- Las licencias de GIF y sonidos de terceros deben revisarse antes de publicar en tiendas.
 
 ## Verificación
 
@@ -48,10 +55,6 @@ node --check server/room-server.js
 git diff --check
 ```
 
-Dependencias (25/10/2026, SDK 58): `zod` se fuerza a `^4.6.7` dentro de `@expo/cli` con `overrides` en `package.json` (aviso GHSA-mrhx-c7xc-m3w5 resuelto; el CLI solo usa API compatible con zod 4). Queda `node-forge` ≤ 1.4.0 (GHSA-86w9-cpqp-85rv), **sin versión corregida publicada**: solo lo usa `@expo/cli` (herramienta de desarrollo) para leer certificados de firma de iOS y de expo-updates, funciones que este proyecto no usa; no llega a la APK, a la web ni al servidor de salas. Se quitará cuando salga una versión corregida (Dependabot la propondrá).
+Dependencias (26/10/2026, SDK 58): `npm audit` detecta 4 vulnerabilidades altas, todas en la cadena `node-forge` ≤ 1.4.0 (GHSA-86w9-cpqp-85rv) dentro de `@expo/cli`, herramienta de desarrollo, sin versión corregida publicada. No llegan a la APK, la web ni el servidor de salas. `npm audit` dentro de `server/` da 0 vulnerabilidades. `zod` se fuerza a `^4.6.7` dentro de `@expo/cli` con `overrides` en `package.json` (GHSA-mrhx-c7xc-m3w5 resuelto; el CLI solo usa API compatible con zod 4).
 
 Las decisiones siguen la [guía de seguridad WebSocket de OWASP](https://cheatsheetseries.owasp.org/cheatsheets/WebSocket_Security_Cheat_Sheet.html): allowlist de `Origin`, validación de cada mensaje, límites de tamaño, rate limiting y limpieza de conexiones. `expo-secure-store` se usa solo para el token pequeño de sesión, siguiendo su almacenamiento seguro en [Android/iOS](https://docs.expo.dev/versions/v54.0.0/sdk/securestore/); el historial local de partidas sigue siendo deliberadamente no sensible.
-
-## Auditoría de dependencias
-
-`npm audit --omit=dev --audit-level=high` no detecta vulnerabilidades altas o críticas, pero informa 10 moderadas transitivas relacionadas con `uuid`/`xcode` dentro de la cadena Expo. `npm audit fix --force` propone degradar Expo y rompería el SDK actual, por lo que no se aplicó automáticamente. Queda anotado para resolverlo con una actualización coordinada de Expo.
