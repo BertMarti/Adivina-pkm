@@ -89,7 +89,8 @@ function launchChrome(executable, roomServerPort) {
     const [command, commandArgs] = lowPriority ? ['nice', ['-n', '19', 'ionice', '-c3', executable, ...args]] : [executable, args];
     browser = spawn(command, commandArgs, { detached: true, stdio: ['ignore', 'ignore', 'pipe'] });
     let stderr = '';
-    const timeout = setTimeout(() => reject(new Error('Chromium no ha anunciado DevTools')), 15000);
+    // 30 s: en el CI, el primer arranque de Chrome a veces tarda más de 15 s (falló así el 31/10/2026).
+    const timeout = setTimeout(() => reject(new Error('Chromium no ha anunciado DevTools')), 30000);
     browser.stderr.on('data', (chunk) => {
       stderr += chunk.toString();
       const match = stderr.match(/DevTools listening on (ws:\/\/\S+)/);

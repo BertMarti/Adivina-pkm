@@ -38,7 +38,7 @@ Llegan los **Ajustes**: el juego se adapta a ti (sonido, vibración, daltonismo)
 ### 🔐 Seguridad
 
 - `node-forge` 1.4.2 dentro de las herramientas de Expo: cierra la alerta ALTA GHSA-86w9-cpqp-85rv y otros 11 avisos.
-  `npm audit`: 0 altas y 0 críticas (quedan 12 moderadas/bajas solo en herramientas de desarrollo de Expo, sin parche
+  `npm audit`: 0 altas y 0 críticas (quedan 11–12 moderadas/bajas solo en herramientas de desarrollo de Expo, sin parche
   en su versión; ver `docs/SECURITY.md`).
 - Ajustes e historial con claves prefijadas `adivina-pkm:` (origen compartido de GitHub Pages) y validados al leerlos;
   el CSV exportado neutraliza fórmulas.
