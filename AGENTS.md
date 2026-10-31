@@ -18,7 +18,10 @@ Android, iOS) con dos modos: **Duelo** (2 jugadores, servidor de salas Node + We
 | `App.tsx` | Orquestación del Duelo: estado, cliente de salas, manejadores y qué pantalla se ve; anuncios de fase |
 | `src/screens/` | Pantallas del Duelo: `HomeScreen`, `RoomScreen`, `SelectionScreen`, `WaitingScreen`, `GameScreen` (+ victoria) |
 | `src/ui/components.tsx`, `src/ui/appStyles.ts`, `src/ui/theme.ts` | Piezas comunes, estilos del Duelo, paleta y `PIXEL_FONT` |
-| `src/hooks/` | `useReduceMotion` y `useGameSounds` |
+| `src/hooks/` | `useReduceMotion` y `useGameSounds` (respeta los Ajustes: sonido, volumen y vibración) |
+| `src/settings/` | Ajustes: modelo puro (`settingsModel.ts`), contexto + AsyncStorage (`SettingsContext.tsx`, clave `adivina-pkm:ajustes:v1`) y vibración web (`vibration.ts`) |
+| `src/ui/SettingsModal.tsx` | Ventana de Ajustes: sonido, vibración, tachado visible (modo daltónico) y estadísticas del Solitario con exportación CSV/JSON |
+| `src/game/singlePlayerStats.ts` | Estadísticas del Solitario (puras) a partir del historial y exportación CSV/JSON |
 | `src/game/roomNavigation.ts` | Códigos de sala, enlace de invitación y pantalla según el estado |
 | `src/game/engine.ts` | Motor puro del Duelo (+ `engine.test.ts`) |
 | `src/game/roomClient.ts` | Cliente de salas: WebSocket en web, sondeo HTTPS en móvil, reconexión |
@@ -43,7 +46,7 @@ npm run room-server             # alias de server
 npm --prefix server start       # solo el servidor
 npm --prefix server test        # tests del servidor
 npm run typecheck               # tsc --noEmit
-npm test                        # node --test server/room-server.test.js && tsx --test src/*.test.ts src/game/*.test.ts
+npm test                        # node --test server/room-server.test.js && tsx --test src/*.test.ts src/game/*.test.ts src/settings/*.test.ts src/ui/*.test.ts
 npm run single-player:verify    # verificación del Solitario
 npm run build:web               # dist/ con ruta base /Adivina-pkm + CSP + PWA (como Pages)
 npm run test:web                # prueba de humo de dist/ con Chromium sin cabeza (Solitario, Duelo con servidor dormido/caído y sin red)
@@ -64,6 +67,8 @@ también `npm run build:web && npm run test:web`.
 - No hay framework de UI ni router: navegación por estado en `App.tsx`. No cambiar de framework.
 - Accesibilidad: los cambios de fase se anuncian con `accessibilityLiveRegion` + `aria-live` (web/Android) y
   `AccessibilityInfo.announceForAccessibility` (iOS). Todo control táctil mide ≥ 44 px.
+- Almacenamiento local: claves con prefijo `adivina-pkm:` (origen compartido `bertmarti.github.io`) y nada sensible.
+  Los colores del tachado visible están en `MARKED_CROSS` (`src/ui/theme.ts`) y su contraste lo prueba `src/ui/contrast.test.ts`.
 - Service worker: solo en la build (`scripts/add-web-pwa.mjs`), scope `/Adivina-pkm/` y cachés `pokequien-*`; nunca
   intercepta rutas ni borra cachés de otras webs del origen compartido `bertmarti.github.io`.
 

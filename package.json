@@ -1,6 +1,6 @@
 {
   "name": "pokequien",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.ts",
   "dependencies": {
     "@expo-google-fonts/press-start-2p": "^0.4.1",
@@ -35,7 +35,7 @@
     "server:help": "node server/room-server.js --help",
     "room-server": "node server/room-server.js",
     "typecheck": "tsc --noEmit",
-    "test": "node --test server/room-server.test.js && tsx --test src/*.test.ts src/game/*.test.ts",
+    "test": "node --test server/room-server.test.js && tsx --test src/*.test.ts src/game/*.test.ts src/settings/*.test.ts src/ui/*.test.ts",
     "build:web": "node scripts/build-web.mjs",
     "test:web": "node scripts/smoke-web.mjs",
     "single-player:soak": "tsx scripts/single-player-soak-test.ts",
