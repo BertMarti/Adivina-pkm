@@ -21,6 +21,8 @@ import { SelectionScreen } from './src/screens/SelectionScreen';
 import { WaitingScreen } from './src/screens/WaitingScreen';
 import { GameScreen } from './src/screens/GameScreen';
 import { styles } from './src/ui/appStyles';
+import { SettingsProvider } from './src/settings/SettingsContext';
+import { SettingsModal, SettingsSection } from './src/ui/SettingsModal';
 
 // Qué hacer en cada fase; se anuncia a los lectores de pantalla al cambiar de pantalla.
 const PHASE_HINTS: Record<Screen, string> = {
@@ -32,7 +34,16 @@ const PHASE_HINTS: Record<Screen, string> = {
   'single-player': '', // El Solitario anuncia su propia entrada («Modo 1 jugador preparado»).
 };
 
+// Los ajustes (sonido, vibración, tachado visible) envuelven toda la app: los usan los sonidos y las cartas.
 export default function App() {
+  return (
+    <SettingsProvider>
+      <PokeQuienApp />
+    </SettingsProvider>
+  );
+}
+
+function PokeQuienApp() {
   const [fontsLoaded] = useFonts({ [PIXEL_FONT]: require('./assets/fonts/PokeQuienPixel-Regular.ttf') });
   const [screen, setScreen] = useState<Screen>('home');
   const [generation, setGeneration] = useState<GenerationId>('all');
@@ -60,6 +71,9 @@ export default function App() {
   const playSound = useGameSounds();
   const roomClientRef = useRef<RoomClient | null>(null);
   const previousPhaseRef = useRef<RoomGameState['phase'] | null>(null);
+  // Ajustes abiertos (y en qué sección) y contador para que el Solitario relea su historial si se borra desde Ajustes.
+  const [settingsSection, setSettingsSection] = useState<SettingsSection | null>(null);
+  const [historyRevision, setHistoryRevision] = useState(0);
 
   useEffect(() => {
     if (Platform.OS === 'web' && typeof document !== 'undefined') {
@@ -452,6 +466,7 @@ export default function App() {
               notice={notice}
               retryAction={retryAction}
               reduceMotion={reduceMotion}
+              onOpenSettings={() => setSettingsSection('all')}
             />
           )}
           {screen === 'room' && game && player && (
@@ -478,6 +493,7 @@ export default function App() {
               onToggle={toggle}
               onBack={leaveRoom}
               onRematch={rematch}
+              onOpenSettings={() => setSettingsSection('all')}
             />
           )}
           {screen === 'single-player' && (
@@ -485,8 +501,18 @@ export default function App() {
               reduceMotion={reduceMotion}
               onBack={() => showScreen('home')}
               onSound={(kind) => playSound(kind)}
+              onOpenStats={() => setSettingsSection('stats')}
+              historyRevision={historyRevision}
             />
           )}
+          <SettingsModal
+            visible={settingsSection !== null}
+            section={settingsSection ?? 'all'}
+            onClose={() => setSettingsSection(null)}
+            onTestSound={() => playSound('select', { sound: true })}
+            onTestVibration={() => playSound('victory', { vibration: true })}
+            onStatsCleared={() => setHistoryRevision((value) => value + 1)}
+          />
           {/* Región viva: lectores de pantalla en web y Android anuncian cada cambio de fase. */}
           <Text accessibilityLiveRegion="polite" aria-live="polite" style={styles.srOnly}>
             {/* Vacía en el Solitario (se anuncia él mismo); el Text sigue montado para no perder la región. */}

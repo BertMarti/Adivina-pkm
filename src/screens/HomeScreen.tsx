@@ -6,6 +6,7 @@ import { HowToPlay } from '../ui/HowToPlay';
 import { CreditsLink } from '../ui/CreditsModal';
 import { normalizeRoomCodeInput } from '../game/roomErrors';
 import { Button, RetroPanelHeader } from '../ui/components';
+import { SettingsButton } from '../ui/SettingsModal';
 import { styles } from '../ui/appStyles';
 
 export function HomeScreen({
@@ -30,6 +31,7 @@ export function HomeScreen({
   notice,
   retryAction,
   reduceMotion,
+  onOpenSettings,
 }: {
   generation: GenerationId;
   setGeneration: (generation: GenerationId) => void;
@@ -52,6 +54,7 @@ export function HomeScreen({
   notice: string;
   retryAction: 'create' | 'join' | null;
   reduceMotion: boolean;
+  onOpenSettings: () => void;
 }) {
   const float = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -103,7 +106,7 @@ export function HomeScreen({
     >
       <View style={styles.homeStickyBar}>
         <Text style={styles.homeStickyTitle}>⚡ POKÉQUIÉN</Text>
-        <Text style={styles.homeStickyStatus}>MENÚ PRINCIPAL</Text>
+        <SettingsButton onPress={onOpenSettings} />
       </View>
       <View style={styles.hero}>
         <Animated.Text style={[styles.logo, { transform: [{ translateY: logoY }] }]} accessibilityRole="header">
@@ -123,6 +126,7 @@ export function HomeScreen({
               accessibilityRole="radio"
               accessibilityLabel={`Generación ${item.label}`}
               accessibilityState={{ selected: generation === item.id }}
+              aria-checked={generation === item.id}
               onPress={() => setGeneration(item.id)}
               style={[styles.generationChip, generation === item.id && styles.generationChipActive]}
             >

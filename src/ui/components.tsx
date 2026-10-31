@@ -4,6 +4,7 @@ import { Animated, Image, Platform, Pressable, Text, useWindowDimensions, View }
 import { PokemonCandidate } from '../data/pokemon';
 import { getPokemon, getRemainingCount, PlayerId } from '../game/engine';
 import { RoomGameState } from '../game/roomClient';
+import { useSettings } from '../settings/SettingsContext';
 import { styles } from './appStyles';
 
 export function RetroBackdrop() {
@@ -138,6 +139,8 @@ export function PokemonTile({
     }).start();
   }, [crossed, progress, reduceMotion]);
   const scale = progress.interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] });
+  // Tachado visible (Ajustes → modo daltónico): velo, aspa blanca con borde, borde discontinuo y «FUERA».
+  const marked = useSettings().settings.colorblindMode;
   return (
     <Pressable
       accessibilityRole="button"
@@ -149,6 +152,7 @@ export function PokemonTile({
         styles.tile,
         selected && styles.tileSelected,
         crossed && styles.tileCrossed,
+        crossed && marked && styles.tileCrossedMarked,
         pressed && styles.tilePressed,
       ]}
     >
@@ -156,10 +160,16 @@ export function PokemonTile({
       <Text numberOfLines={1} style={[styles.tileName, crossed && styles.tileNameCrossed]}>
         {pokemon.name}
       </Text>
+      {crossed && marked && <View pointerEvents="none" style={styles.crossVeil} />}
       <Animated.View pointerEvents="none" style={[styles.crossOverlay, { opacity: progress, transform: [{ scale }] }]}>
-        <View style={[styles.crossLine, styles.crossLineA]} />
-        <View style={[styles.crossLine, styles.crossLineB]} />
+        <View style={[styles.crossLine, marked && styles.crossLineMarked, styles.crossLineA]} />
+        <View style={[styles.crossLine, marked && styles.crossLineMarked, styles.crossLineB]} />
       </Animated.View>
+      {crossed && marked && (
+        <Text pointerEvents="none" style={styles.crossBadge} accessible={false} importantForAccessibility="no">
+          FUERA
+        </Text>
+      )}
     </Pressable>
   );
 }
