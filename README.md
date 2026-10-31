@@ -311,7 +311,7 @@ Abre **AJUSTES** arriba a la derecha en la pantalla de inicio. Durante un Duelo,
 
 - 🔊 **Sonido:** activa o desactiva el sonido, ajusta el volumen en pasos del 10 % con **−** y **+** (empieza al 80 %) y pulsa **PROBAR SONIDO**.
 - 📳 **Vibración:** activa o desactiva la vibración y pulsa **PROBAR VIBRACIÓN**. En la app usa la vibración del teléfono; en la web funciona en móviles Android con Chrome (u otro navegador que pueda vibrar). En Safari de iPhone y en ordenadores aparece desactivada porque no pueden vibrar. Si tienes activado «reducir movimiento», empieza apagada y las animaciones no tienen movimiento.
-- 🦻 **Tachado visible:** actívalo para que cada carta descartada se oscurezca y lleve un aspa blanca con borde negro, borde discontinuo y la etiqueta «FUERA». La vista previa muestra una carta disponible y otra descartada.
+- 🦻 **Tachado visible:** en **TACHADO VISIBLE**, activa **MODO DALTÓNICO** para que cada carta descartada se oscurezca y lleve un aspa blanca con borde negro, borde discontinuo y la etiqueta «FUERA». La vista previa muestra una carta disponible y otra descartada.
 - 📊 **Estadísticas del Solitario:** consulta tus resultados, exporta CSV o JSON y borra las estadísticas y el historial del Solitario. Todo se guarda solo en este dispositivo o navegador, no se envía a ningún servidor. **VALORES POR DEFECTO** devuelve los ajustes iniciales.
 
 <p align="center">
@@ -398,7 +398,7 @@ Sí. Abre <b>AJUSTES</b> y apaga el interruptor de <b>Sonido</b> o <b>Vibración
 <details>
 <summary><b>Distingo mal los colores: ¿cómo veo qué cartas he descartado?</b></summary>
 <br>
-Activa <b>TACHADO VISIBLE</b> en <b>AJUSTES</b>. Las cartas descartadas se oscurecen y llevan un aspa blanca con borde negro, borde discontinuo y la etiqueta <b>FUERA</b>.
+En <b>AJUSTES</b>, apartado <b>TACHADO VISIBLE</b>, activa <b>MODO DALTÓNICO</b>. Las cartas descartadas se oscurecen y llevan un aspa blanca con borde negro, borde discontinuo y la etiqueta <b>FUERA</b>.
 </details>
 
 <details>

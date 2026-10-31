@@ -49,7 +49,7 @@ Actualizado el 31/10/2026 (versión 1.1.0). Prioridad de arriba abajo.
   - **estadísticas del Solitario**: partidas, aciertos de la máquina, victorias, preguntas medias y Pokémon más
     difíciles, exportables en CSV o JSON y con borrado confirmado.
 - `aria-checked` en interruptores y en el selector de generación (react-native-web no lo ponía).
-- Mantenimiento: expo 58.0.21 / RN 0.88.1 y `node-forge` 1.4.2 (alerta ALTA cerrada); prueba de humo con paso de
+- Mantenimiento: expo 58.0.22 / RN 0.88.1, `node-forge` 1.4.2 (alerta ALTA cerrada) y fuera el `overrides` de zod; prueba de humo con paso de
   Ajustes y detector de violaciones de CSP.
 
 ## ⏭️ Después de la 1.0
@@ -59,8 +59,8 @@ Actualizado el 31/10/2026 (versión 1.1.0). Prioridad de arriba abajo.
    Volver a desplegar con la 1.1.0 es opcional (el servidor no cambia, solo su número de versión).
 2. **Licencias antes de tiendas o anuncios**: sustituir los GIF de espera y los sonidos de terceros por recursos propios.
 3. **Dependencias de Expo**: ✅ `node-forge` 1.4.2 ya corrige GHSA-86w9-cpqp-85rv (31/10/2026). Quedan avisos moderados
-   de `glob`/`minimatch`/`deepmerge` dentro de las herramientas de Expo: aceptar el parche del SDK 58 que los traiga y
-   quitar el `overrides` de zod cuando @expo/cli dependa de zod 4.
+   de `glob`/`minimatch` dentro de las herramientas de Expo: aceptar el parche del SDK 58 que los traiga. El `overrides`
+   de zod ya se quitó (expo 58.0.22: @expo/cli no depende de zod).
 4. **Duelo en CI**: ampliar `npm run test:web` con un Duelo completo entre dos pestañas contra un servidor local
    (hoy se prueba a mano y con el script de la revisión).
 5. **Reglas compartidas**: extraer las transiciones a un módulo JS común (o pruebas de contrato) para que servidor y

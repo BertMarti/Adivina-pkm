@@ -68,7 +68,7 @@ En la pantalla de elegir Pokémon, pulsa **VER ESTADÍSTICAS** para abrir direct
 
 ### Tachado visible
 
-1. Activa **TACHADO VISIBLE** para distinguir los descartes sin depender del color.
+1. En **TACHADO VISIBLE**, activa **MODO DALTÓNICO** para distinguir los descartes sin depender del color.
 2. Las cartas descartadas se oscurecen y llevan un aspa blanca con borde negro, borde discontinuo y la etiqueta **FUERA**.
 3. Consulta la vista previa: muestra una carta disponible y otra descartada.
 

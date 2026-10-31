@@ -38,14 +38,14 @@ Llegan los **Ajustes**: el juego se adapta a ti (sonido, vibración, daltonismo)
 ### 🔐 Seguridad
 
 - `node-forge` 1.4.2 dentro de las herramientas de Expo: cierra la alerta ALTA GHSA-86w9-cpqp-85rv y otros 11 avisos.
-  `npm audit`: 0 altas y 0 críticas (quedan 11–12 moderadas/bajas solo en herramientas de desarrollo de Expo, sin parche
-  en su versión; ver `docs/SECURITY.md`).
+  `npm audit`: 0 altas y 0 críticas (quedan 11 moderadas solo en herramientas de desarrollo de Expo, sin parche
+  en su versión; ver `docs/SECURITY.md`). Fuera el `overrides` de zod: `@expo/cli` ya no depende de él.
 - Ajustes e historial con claves prefijadas `adivina-pkm:` (origen compartido de GitHub Pages) y validados al leerlos;
   el CSV exportado neutraliza fórmulas.
 
 ### 🔄 Cambiado
 
-- Expo 58.0.21, React Native 0.88.1 y React 19.3.0 (lo que pide el SDK 58; `expo-doctor` 20/20).
+- Expo 58.0.22, expo-audio 58.0.11, React Native 0.88.1 y React 19.3.0 (lo que pide el SDK 58; `expo-doctor` 20/20).
 - La prueba de humo de la web prueba también los Ajustes (guardado y exportación CSV) y falla ante cualquier
   violación de la CSP. Pruebas nuevas de ajustes, vibración web, contraste y estadísticas.
 
