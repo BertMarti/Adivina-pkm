@@ -48,6 +48,38 @@ La máquina dispone de un máximo de **30 preguntas**. Si propone tu Pokémon y 
 
 La máquina no recibe tu elección secreta. Solo trabaja con las respuestas que le das.
 
+En la pantalla de elegir Pokémon, pulsa **VER ESTADÍSTICAS** para abrir directamente las estadísticas del Solitario.
+
+## Ajustes
+
+### Sonido
+
+1. Abre **AJUSTES** arriba a la derecha en la pantalla de inicio, o pulsa **AJUSTES · SONIDO Y TACHADO VISIBLE** debajo de los tableros durante un Duelo.
+2. Activa o desactiva **Sonido**.
+3. Ajusta el volumen con **−** y **+**, en pasos del 10 %. El valor inicial es 80 %.
+4. Pulsa **PROBAR SONIDO** para comprobarlo.
+
+### Vibración
+
+1. Activa o desactiva **Vibración** y pulsa **PROBAR VIBRACIÓN**.
+2. En la app se usa la vibración del teléfono.
+3. En la web funciona en móviles Android con Chrome (u otro navegador que pueda vibrar). En Safari de iPhone y en ordenadores aparece desactivada.
+4. Si el sistema tiene activado «reducir movimiento», empieza apagada y las animaciones no tienen movimiento.
+
+### Tachado visible
+
+1. En **TACHADO VISIBLE**, activa **MODO DALTÓNICO** para distinguir los descartes sin depender del color.
+2. Las cartas descartadas se oscurecen y llevan un aspa blanca con borde negro, borde discontinuo y la etiqueta **FUERA**.
+3. Consulta la vista previa: muestra una carta disponible y otra descartada.
+
+### Estadísticas del Solitario
+
+1. Desde **VER ESTADÍSTICAS**, consulta partidas terminadas, cuántas acertó la máquina y cuántas ganaste tú, con sus porcentajes, partidas sin resolver, medias de preguntas, abandonos y los 5 Pokémon más difíciles para la máquina.
+2. Pulsa **DESCARGAR CSV** para abrir una fila por partida con Excel, LibreOffice o Google Sheets. En la app del móvil aparece **COMPARTIR CSV**.
+3. Pulsa **DESCARGAR JSON** para guardar un resumen y las partidas. En la app del móvil aparece **COMPARTIR JSON**.
+4. Pulsa **BORRAR ESTADÍSTICAS** y vuelve a pulsarlo para confirmar. Se borran las estadísticas y el historial del Solitario de este dispositivo.
+5. Pulsa **VALORES POR DEFECTO** para volver a los ajustes iniciales.
+
 ## Si alguien se desconecta
 
 La sala espera hasta un minuto para que ese jugador vuelva. Si reconecta a tiempo, conserva su tablero. Si no vuelve, la partida termina y se muestra el abandono. Durante la espera aparece **EL RIVAL SE HA DESCONECTADO · Le esperamos N s…**.

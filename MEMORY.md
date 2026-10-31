@@ -1,10 +1,11 @@
 # MEMORY.md — PokéQuién
 
-Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y estado. Última actualización: **26/10/2026**.
+Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y estado. Última actualización: **31/10/2026**.
 
-## Estado actual (26/10/2026)
+## Estado actual (31/10/2026)
 
-- Versión **1.0.0** con Expo SDK 58 (React Native 0.88, React 19.3). Web jugable en
+- Versión **1.1.0** con Expo SDK 58 (expo 58.0.22, React Native 0.88.1, React 19.3). Novedad: ventana de **Ajustes**
+  (sonido y volumen, vibración, tachado visible para daltonismo y estadísticas del Solitario exportables). Web jugable en
   <https://bertmarti.github.io/Adivina-pkm/>, instalable como PWA; el Solitario funciona sin red.
 - Solitario: 100 % local, funciona en la web sin servidor.
 - Duelo: servidor de salas en Render (plan gratuito, salas en memoria). La web de Pages conecta por WSS si
@@ -33,8 +34,8 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 | 24/10/2026 | `connect-src` de la CSP se limita a la web y al servidor configurado | Evita conexiones arbitrarias desde la build publicada. |
 
 | 25/10/2026 | Expo SDK 58 completo de una vez | Cerraba las alertas pendientes del SDK 57 que sí tenían arreglo y Dependabot no puede subir el SDK por piezas. |
-| 25/10/2026 | `overrides` de `zod` ^4.6.7 solo dentro de `@expo/cli` | El CLI usa zod solo para validar complementos de DevTools/MCP con API que zod 4 mantiene; `expo-doctor`, `expo export` y `expo start` funcionan. Quitar el override cuando `@expo/cli` dependa de zod ≥ 4.6.6. |
-| 25/10/2026 | `node-forge` 1.4.0 se deja (alerta abierta) | No existe versión corregida; solo lo usa `@expo/cli` para certificados de firma (iOS y expo-updates), que este proyecto no usa. |
+| 25/10/2026 | `overrides` de `zod` ^4.6.7 solo dentro de `@expo/cli` (**quitado el 31/10/2026**: @expo/cli 58.1.18 ya no depende de zod) | El CLI usa zod solo para validar complementos de DevTools/MCP con API que zod 4 mantiene; `expo-doctor`, `expo export` y `expo start` funcionan. Quitar el override cuando `@expo/cli` dependa de zod ≥ 4.6.6. |
+| 25/10/2026 | `node-forge` 1.4.0 se deja (alerta abierta) | No existe versión corregida; solo lo usa `@expo/cli` para certificados de firma (iOS y expo-updates), que este proyecto no usa. **Resuelto el 31/10/2026:** `npm audit fix` sube a 1.4.2 (dentro del rango `^1.4.0` de `@expo/cli`). |
 | 25/10/2026 | Fuente derivada «PokeQuien Pixel» | Press Start 2P encoge las mayúsculas acentuadas. La OFL permite modificarla, pero con otro nombre (nombre reservado). |
 | 25/10/2026 | PWA generada en la build (`scripts/add-web-pwa.mjs`), no en `public/` | La lista de precaché depende de los nombres con hash de cada build; y en `expo start --web` no debe haber service worker. |
 | 25/10/2026 | Service worker con scope `/Adivina-pkm/` y cachés `pokequien-*` | El origen `bertmarti.github.io` es común a todas las webs de BertMarti: no puede tocar rutas ni cachés ajenas. |
@@ -42,6 +43,11 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 | 26/10/2026 | Versión en el health sin que el cliente dependa de ella | Render puede ir por detrás; el cliente no bloquea el Duelo por una versión del servidor antigua. |
 | 26/10/2026 | Cancelación de conexiones con un contador en `RoomClient` y en `App` | Una conexión tardía ya no saca al jugador del Solitario. |
 | 26/10/2026 | Estado y errores del Duelo junto al panel que los provoca | El jugador identifica si el problema corresponde a CREAR PARTIDA, UNIRSE A PARTIDA o al enlace de invitación. |
+| 31/10/2026 | Ajustes en un contexto de React (`src/settings/`) guardados con AsyncStorage en `adivina-pkm:ajustes:v1` | Origen compartido de Pages: clave con prefijo y nada sensible. Solo se guardan los ajustes cambiados; el resto sigue los valores por defecto (así la vibración puede depender de «reducir movimiento»). |
+| 31/10/2026 | Vibración web solo con `navigator.vibrate` y tras la primera pulsación (`userActivation.hasBeenActive`) | Safari de iPhone y los ordenadores no la tienen; Chrome bloquea y avisa en consola si se llama antes de que la persona toque la página. |
+| 31/10/2026 | Tachado visible (modo daltónico) con velo, aspa blanca con contorno negro, borde discontinuo y «FUERA» | Cuatro señales que no dependen del tono; `src/ui/contrast.test.ts` comprueba WCAG AA (texto ≥ 4,5:1, gráficos ≥ 3:1). |
+| 31/10/2026 | Estadísticas del Solitario calculadas del historial existente (`src/game/singlePlayerStats.ts`), sin almacenamiento nuevo | Una sola fuente de verdad: borrar estadísticas es borrar el historial. CSV con `;`, BOM y protección contra fórmulas para Excel en español. |
+| 31/10/2026 | Avisos moderados de `glob` 13 / `minimatch` 10 sin `overrides` (deepmerge desapareció con expo 58.0.22) | Son majors dentro de las herramientas de Expo; forzarlas podría romper `expo export`. Se esperan al parche del SDK. |
 
 ## Trampas conocidas
 
@@ -56,6 +62,8 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 - **Ruta base**: solo se aplica con `PAGES_BASE_URL`. En Pages, el enlace de invitación debe conservar
   `/Adivina-pkm/` (arreglado en `inviteLinkFor` usando `window.location.pathname`).
 - **Fuente**: Press Start 2P encoge «Á É Í Ó Ú Ü Ñ» y se leían como minúsculas. Desde el 25/10/2026 la app usa PokeQuien Pixel (`assets/fonts/`, generada con `scripts/generate-pixel-font.py`), con el acento 250 unidades por encima de la altura de mayúsculas: si un texto con mayúsculas acentuadas queda recortado arriba, dale algo más de `lineHeight` o de margen superior.
+- **`aria-checked` en la web**: react-native-web 0.21 no traduce `accessibilityState.checked/selected`; en interruptores y
+  radios hay que pasar también `aria-checked` (los lectores de pantalla de la web no se enteraban del estado).
 - **Autoplay en web**: `expo-audio` no captura el rechazo de `play()` si no hubo interacción; aparece un
   `NotAllowedError` en consola solo en navegadores sin gesto del usuario (p. ej. pruebas automáticas). Es inofensivo.
 - **Solitario tolerante a errores**: «Quedan N» no baja siempre tras cada respuesta; el motor usa creencias

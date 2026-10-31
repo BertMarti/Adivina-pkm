@@ -1,6 +1,6 @@
 {
   "name": "pokequien-room-server",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Servidor de salas del modo Duelo de PokéQuién (WebSocket + HTTPS). Solo depende de ws.",
   "main": "room-server.js",

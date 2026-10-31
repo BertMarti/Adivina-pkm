@@ -5,6 +5,7 @@ import { RoomGameState } from '../game/roomClient';
 import { CreditsLink } from '../ui/CreditsModal';
 import { BoardSection, Button, Portrait, ReconnectBanner, VersusStrip } from '../ui/components';
 import { styles } from '../ui/appStyles';
+import { SettingsButton } from '../ui/SettingsModal';
 
 export function VictoryModal({
   game,
@@ -77,6 +78,7 @@ export function GameScreen({
   onToggle,
   onBack,
   onRematch,
+  onOpenSettings,
 }: {
   game: RoomGameState;
   player: PlayerId;
@@ -84,6 +86,7 @@ export function GameScreen({
   onToggle: (player: PlayerId, id: number) => void;
   onBack: () => void;
   onRematch: () => void;
+  onOpenSettings: () => void;
 }) {
   return (
     <>
@@ -120,6 +123,9 @@ export function GameScreen({
           reduceMotion={reduceMotion}
           onToggle={(id) => onToggle(player === 'p1' ? 'p2' : 'p1', id)}
         />
+        <View style={styles.gameSettingsRow}>
+          <SettingsButton onPress={onOpenSettings} label="AJUSTES · SONIDO Y TACHADO VISIBLE" />
+        </View>
         <CreditsLink />
       </ScrollView>
       <VictoryModal game={game} player={player} onRematch={onRematch} />

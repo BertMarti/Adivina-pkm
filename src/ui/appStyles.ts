@@ -1,6 +1,6 @@
 // Estilos del Duelo (movidos tal cual desde App.tsx).
 import { StyleSheet } from 'react-native';
-import { COLORS, PIXEL_FONT } from './theme';
+import { COLORS, MARKED_CROSS, PIXEL_FONT } from './theme';
 
 export const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: COLORS.background },
@@ -36,6 +36,7 @@ export const styles = StyleSheet.create({
     zIndex: 5,
   },
   homeStickyTitle: { color: COLORS.yellow, fontFamily: PIXEL_FONT, fontSize: 9, letterSpacing: 0.7 },
+  gameSettingsRow: { alignItems: 'center', marginTop: 4 },
   homeStickyStatus: { color: COLORS.success, fontFamily: PIXEL_FONT, fontSize: 6, letterSpacing: 0.5 },
   hero: { alignItems: 'center', paddingTop: 8, paddingBottom: 8 },
   logoMark: { display: 'none' },
@@ -91,6 +92,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 2,
     borderRadius: 2,
   },
+  // Por encima del aspa del tachado visible (zIndex 3) y con fondo opaco para mantener el contraste.
+  dexBadgeRaised: { right: 3, bottom: 12, zIndex: 5, backgroundColor: MARKED_CROSS.badgeBackground, color: MARKED_CROSS.badgeText },
   fieldLabel: { color: '#B4B4BB', fontFamily: PIXEL_FONT, fontSize: 9, lineHeight: 18 },
   generationRow: { gap: 7, paddingVertical: 2 },
   generationChip: {
@@ -279,6 +282,19 @@ export const styles = StyleSheet.create({
   tilePressed: { transform: [{ scale: 0.96 }] },
   tileName: { color: COLORS.white, fontFamily: PIXEL_FONT, fontSize: 5, lineHeight: 8, maxWidth: '100%' },
   tileNameCrossed: { color: '#B2B2B6', textDecorationLine: 'line-through' },
+  // Sin tachado de texto: «FUERA» y el aspa ya lo dicen y, a 5 px, la raya hacía ilegible el nombre.
+  tileNameMarked: {
+    position: 'relative',
+    zIndex: 5,
+    textDecorationLine: 'none',
+    // Algo más arriba para que el borde discontinuo no se coma la parte baja de las letras.
+    marginTop: -3,
+    color: MARKED_CROSS.badgeText,
+    backgroundColor: MARKED_CROSS.badgeBackground,
+    paddingHorizontal: 2,
+    borderRadius: 2,
+    overflow: 'hidden',
+  },
   crossOverlay: {
     position: 'absolute',
     left: 1,
@@ -302,6 +318,43 @@ export const styles = StyleSheet.create({
   },
   crossLineA: { transform: [{ rotate: '45deg' }] },
   crossLineB: { transform: [{ rotate: '-45deg' }] },
+  // Tachado visible (modo daltónico): ver MARKED_CROSS en theme.ts.
+  tileCrossedMarked: {
+    borderColor: MARKED_CROSS.border,
+    borderStyle: 'dashed',
+    backgroundColor: MARKED_CROSS.tileBackground,
+  },
+  crossVeil: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundColor: MARKED_CROSS.veil,
+    opacity: MARKED_CROSS.veilOpacity,
+  },
+  crossLineMarked: {
+    height: 8,
+    backgroundColor: MARKED_CROSS.line,
+    borderWidth: 2,
+    borderColor: MARKED_CROSS.lineEdge,
+    shadowOpacity: 0,
+  },
+  crossBadge: {
+    position: 'absolute',
+    top: 2,
+    alignSelf: 'center',
+    paddingHorizontal: 3,
+    paddingVertical: 2,
+    borderRadius: 3,
+    backgroundColor: MARKED_CROSS.badgeBackground,
+    color: MARKED_CROSS.badgeText,
+    fontFamily: PIXEL_FONT,
+    fontSize: 6,
+    lineHeight: 8,
+    overflow: 'hidden',
+    zIndex: 4,
+  },
   waitingScreen: {
     flex: 1,
     alignItems: 'center',

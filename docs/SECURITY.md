@@ -28,8 +28,12 @@ PokéQuién no tiene cuentas, contraseñas ni datos personales. La sala se ident
 | Sesiones | Comparación constante del token de reconexión, una conexión por jugador y ventana de reconexión de 60 segundos. |
 | Recursos | TTL de salas desconectadas y retención corta del estado abandonado. |
 | Cliente | Las URLs de sprites solo se presentan como fuentes de imagen; no se interpolan como HTML. |
+| Almacenamiento local (31/10/2026) | Ajustes (`adivina-pkm:ajustes:v1`) e historial del Solitario (`adivina-pkm:single-player-log:v1`) con prefijo del proyecto, porque `bertmarti.github.io` es un origen compartido; no contienen nada sensible y se validan al leerlos (un valor manipulado se descarta). Las exportaciones CSV escapan celdas que empiezan por `= + - @` para evitar fórmulas en hojas de cálculo. |
 
-## Estado en producción (1.0.0, 26/10/2026)
+## Estado en producción (31/10/2026)
+
+El 31/10/2026 Render ya ejecuta el servidor 1.0.0 (`GET /` → `"version":"1.0.0"`). La 1.1.0 no cambia el servidor ni el
+protocolo (solo su número de versión), así que no hace falta volver a desplegarlo con prisa.
 
 ### Hecho
 
@@ -55,6 +59,6 @@ node --check server/room-server.js
 git diff --check
 ```
 
-Dependencias (26/10/2026, SDK 58): `npm audit` detecta 4 vulnerabilidades altas, todas en la cadena `node-forge` ≤ 1.4.0 (GHSA-86w9-cpqp-85rv) dentro de `@expo/cli`, herramienta de desarrollo, sin versión corregida publicada. No llegan a la APK, la web ni el servidor de salas. `npm audit` dentro de `server/` da 0 vulnerabilidades. `zod` se fuerza a `^4.6.7` dentro de `@expo/cli` con `overrides` en `package.json` (GHSA-mrhx-c7xc-m3w5 resuelto; el CLI solo usa API compatible con zod 4).
+Dependencias (31/10/2026, SDK 58, expo 58.0.22): `node-forge` 1.4.2 (publicada el 27/10/2026) corrige GHSA-86w9-cpqp-85rv y otros 11 avisos de forge; `npm audit` ya no da ninguna alta ni crítica. Quedan 11 avisos moderados, todos dentro de las herramientas de Expo (`@expo/cli`, `@expo/config`, `@expo/metro-config`…), por dos paquetes sin versión corregida dentro de su major: `glob` 13 (GHSA-3g3m-2fjr-6pw4, se corrige en 14.0.2) y `minimatch` 10 (GHSA-g3hv-75wg-m249, en 11.0.1). Solo se usan en el ordenador de desarrollo o en CI con patrones y archivos del propio repo; no llegan a la APK, la web ni el servidor de salas. La «solución» de `npm audit fix --force` (bajar a expo 51) no tiene sentido; se aceptarán cuando Expo publique un parche del SDK 58 con esas majors. `npm audit` dentro de `server/` da 0 vulnerabilidades. El `overrides` de `zod` (GHSA-mrhx-c7xc-m3w5) se quitó el 31/10/2026: desde expo 58.0.22, `@expo/cli` 58.1.18 ya no depende de zod.
 
 Las decisiones siguen la [guía de seguridad WebSocket de OWASP](https://cheatsheetseries.owasp.org/cheatsheets/WebSocket_Security_Cheat_Sheet.html): allowlist de `Origin`, validación de cada mensaje, límites de tamaño, rate limiting y limpieza de conexiones. `expo-secure-store` se usa solo para el token pequeño de sesión, siguiendo su almacenamiento seguro en [Android/iOS](https://docs.expo.dev/versions/v54.0.0/sdk/securestore/); el historial local de partidas sigue siendo deliberadamente no sensible.

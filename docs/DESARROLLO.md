@@ -28,7 +28,7 @@ npm ci
 | `npm run room-server` | Alias de `npm run server`. |
 | `npm run server:help` | Ayuda del servidor en español. |
 | `npm run typecheck` | `tsc --noEmit` con TypeScript estricto. |
-| `npm test` | Pruebas del servidor, `src/version.test.ts` y los tests `src/*.test.ts` y `src/game/*.test.ts`. |
+| `npm test` | Pruebas del servidor, `src/version.test.ts` y los tests de `src/*.test.ts`, `src/game/`, `src/settings/` y `src/ui/` (ajustes, vibración web, contraste WCAG del tachado y estadísticas del Solitario). |
 | `cd server && npm start` | Arranca solo el servidor con su `server/package.json`. |
 | `cd server && npm test` | Ejecuta los tests del servidor. |
 | `npm run single-player:verify` | Verificación determinista del modo Solitario. |
@@ -100,7 +100,7 @@ minuto e IP (429 + `Retry-After`), 20 salas creadas por IP cada 10 min, 20 conex
 
 ## Pruebas y CI
 
-- Local: `npm run typecheck && npm test && npm run single-player:verify` y, si tocas la web, `npm run build:web && npm run test:web`. `npm test` incluye `src/version.test.ts` (versión igual en todos los manifiestos); los pasos f y g de `npm run test:web` usan un servidor de salas falso local (dormido y caído), sin red real.
+- Local: `npm run typecheck && npm test && npm run single-player:verify` y, si tocas la web, `npm run build:web && npm run test:web`. `npm test` incluye `src/version.test.ts` (versión igual en todos los manifiestos); el paso e2 de `npm run test:web` activa el modo daltónico en Ajustes, comprueba que se guarda con prefijo `adivina-pkm:` y sobrevive a recargar y exporta el CSV de estadísticas; los pasos f y g usan un servidor de salas falso local (dormido y caído), sin red real. Cualquier violación de la CSP cuenta como error.
 - CI (`.github/workflows/ci.yml`, en cada PR y push a `master`): gitleaks (historial y árbol), comprobación de sintaxis
   del servidor, tipos, pruebas, verificación del Solitario, build web, prueba de humo con Chrome sin cabeza y
   `npm audit --audit-level=critical`.

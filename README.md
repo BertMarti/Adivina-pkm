@@ -6,7 +6,7 @@
   <a href="https://bertmarti.github.io/Adivina-pkm/"><img src="https://img.shields.io/badge/▶_Jugar_en_la_web-gratis-FFD000?style=for-the-badge&labelColor=1D1E2A" alt="Jugar en la web" /></a>
   <img src="https://img.shields.io/badge/🎮_Pokémon-1025_especies-E3350D?style=for-the-badge&labelColor=1D1E2A" alt="1025 especies" />
   <img src="https://img.shields.io/badge/🕹️_Modos-Duelo_·_Solitario-FFD000?style=for-the-badge&labelColor=1D1E2A" alt="Modos Duelo y Solitario" />
-  <img src="https://img.shields.io/badge/🏷️_Versión-1.0.0-38D37D?style=for-the-badge&labelColor=1D1E2A" alt="Versión 1.0.0" />
+  <img src="https://img.shields.io/badge/🏷️_Versión-1.1.0-38D37D?style=for-the-badge&labelColor=1D1E2A" alt="Versión 1.1.0" />
   <img src="https://img.shields.io/badge/📱_Plataforma-Web_·_instalable_en_el_móvil-4C6BE8?style=for-the-badge&labelColor=1D1E2A" alt="Web, instalable en el móvil" />
   <a href="LICENSE"><img src="https://img.shields.io/badge/Licencia-MIT-38D37D?style=for-the-badge&labelColor=1D1E2A" alt="Licencia MIT (código)" /></a>
 </p>
@@ -49,6 +49,7 @@
 - [🤖 Modo Solitario (1 jugador)](#-modo-solitario-1-jugador)
 - [🗺️ Generaciones disponibles](#️-generaciones-disponibles)
 - [🎨 Interfaz y estética](#-interfaz-y-estética)
+- [⚙️ Ajustes](#️-ajustes)
 - [🔊 Sonidos y sensaciones](#-sonidos-y-sensaciones)
 - [📱 Compatibilidad](#-compatibilidad)
 - [❓ Preguntas frecuentes](#-preguntas-frecuentes)
@@ -236,6 +237,14 @@ Si un jugador se desconecta (eligiendo, esperando o durante la partida):
 - 📜 Cada partida se guarda automáticamente en tu historial local
 - 📋 **COPIAR JSON** para exportar tus sesiones
 - 🗑️ **BORRAR** para limpiar el historial cuando quieras
+- 📊 **VER ESTADÍSTICAS** muestra partidas terminadas, cuántas acertó la máquina y cuántas ganaste tú, con sus porcentajes, partidas sin resolver, medias de preguntas, abandonos y los 5 Pokémon más difíciles para la máquina.
+- 📥 Desde las estadísticas puedes **DESCARGAR CSV** (una fila por partida, compatible con Excel, LibreOffice y Google Sheets) o **DESCARGAR JSON** (resumen y partidas). En la app del móvil aparecen como **COMPARTIR CSV** y **COMPARTIR JSON**.
+- 🗑️ **BORRAR ESTADÍSTICAS** pide una segunda pulsación de confirmación y borra también el historial del Solitario de este dispositivo.
+
+<p align="center">
+  <img src="docs/img/captura-estadisticas.png" width="420" alt="Pantalla de estadísticas del modo Solitario con resumen de partidas, medias y Pokémon más difíciles para la máquina" />
+</p>
+<p align="center"><sub>📊 Estadísticas del Solitario: consulta tus partidas y expórtalas.</sub></p>
 
 ### 🎮 Catálogos disponibles
 
@@ -290,8 +299,30 @@ PokéQuién está diseñado con una estética **pixel-art retro** inspirada en P
 - 🟡 **Colores clásicos**: amarillos, azules, naranjas sobre fondo oscuro
 - 🖼️ **Marcos gruesos** con sombras y botones con relieve
 - 😊→😢 Los retratos cambian de expresión al tachar (Happy → Sad)
+- 🦻 El **tachado visible** oscurece las cartas descartadas y añade un aspa blanca con borde negro, borde discontinuo y la etiqueta «FUERA», para distinguirlas sin depender del color
 - ✨ Animaciones suaves que se reducen si el dispositivo pide menos movimiento
 - 🦻 Con lector de pantalla, la app anuncia cada fase de la partida y qué tienes que hacer, y los botones pequeños tienen una zona táctil cómoda
+
+---
+
+## ⚙️ Ajustes
+
+Abre **AJUSTES** arriba a la derecha en la pantalla de inicio. Durante un Duelo, pulsa **AJUSTES · SONIDO Y TACHADO VISIBLE**, debajo de los tableros. En el Solitario, el botón **VER ESTADÍSTICAS** de la pantalla de elegir Pokémon abre Ajustes directamente en las estadísticas.
+
+- 🔊 **Sonido:** activa o desactiva el sonido, ajusta el volumen en pasos del 10 % con **−** y **+** (empieza al 80 %) y pulsa **PROBAR SONIDO**.
+- 📳 **Vibración:** activa o desactiva la vibración y pulsa **PROBAR VIBRACIÓN**. En la app usa la vibración del teléfono; en la web funciona en móviles Android con Chrome (u otro navegador que pueda vibrar). En Safari de iPhone y en ordenadores aparece desactivada porque no pueden vibrar. Si tienes activado «reducir movimiento», empieza apagada y las animaciones no tienen movimiento.
+- 🦻 **Tachado visible:** en **TACHADO VISIBLE**, activa **MODO DALTÓNICO** para que cada carta descartada se oscurezca y lleve un aspa blanca con borde negro, borde discontinuo y la etiqueta «FUERA». La vista previa muestra una carta disponible y otra descartada.
+- 📊 **Estadísticas del Solitario:** consulta tus resultados, exporta CSV o JSON y borra las estadísticas y el historial del Solitario. Todo se guarda solo en este dispositivo o navegador, no se envía a ningún servidor. **VALORES POR DEFECTO** devuelve los ajustes iniciales.
+
+<p align="center">
+  <img src="docs/img/captura-ajustes.png" width="300" alt="Ventana de Ajustes en el móvil con el tachado visible activado y su vista previa" />
+</p>
+<p align="center"><sub>⚙️ Ajustes en el móvil, con el tachado visible activado y la vista previa.</sub></p>
+
+<p align="center">
+  <img src="docs/img/captura-tachado-visible.png" width="300" alt="Tablero del Duelo en el móvil con cartas descartadas oscurecidas, aspa blanca, borde discontinuo y etiqueta FUERA" />
+</p>
+<p align="center"><sub>🦻 Tachado visible en el Duelo: las cartas descartadas se distinguen sin depender del color.</sub></p>
 
 ---
 
@@ -305,7 +336,7 @@ PokéQuién está diseñado con una estética **pixel-art retro** inspirada en P
 | ⭐ Ganar | 🎵 Fanfarria de victoria | 📳 Vibración de éxito |
 | ☁️ Perder | 🎵 Tono de derrota | 📳 Vibración de error |
 
-> Los sonidos y vibraciones funcionan en móvil. En web se reproduce un tono sintetizado como respaldo.
+> El sonido y el volumen se ajustan en **AJUSTES**. La vibración funciona en la app del móvil y en la web de Chrome para Android; puedes apagarla cuando quieras.
 
 ---
 
@@ -355,7 +386,25 @@ Puede que esté despertando (el plan gratuito tarda hasta 1 minuto la primera ve
 <details>
 <summary><b>¿Qué versión tengo?</b></summary>
 <br>
-Puedes ver la versión en el pie de la pantalla de inicio, en el apartado <b>ACERCA DE</b>. PokéQuién 1.0.0 es la versión estable actual.
+Puedes ver la versión en el pie de la pantalla de inicio, en el apartado <b>ACERCA DE</b>. PokéQuién 1.1.0 es la versión estable actual.
+</details>
+
+<details>
+<summary><b>¿Puedo quitar el sonido o la vibración?</b></summary>
+<br>
+Sí. Abre <b>AJUSTES</b> y apaga el interruptor de <b>Sonido</b> o <b>Vibración</b>. También puedes cambiar el volumen del sonido. En Safari de iPhone y en ordenadores la vibración web aparece desactivada porque esos navegadores o dispositivos no pueden vibrar.
+</details>
+
+<details>
+<summary><b>Distingo mal los colores: ¿cómo veo qué cartas he descartado?</b></summary>
+<br>
+En <b>AJUSTES</b>, apartado <b>TACHADO VISIBLE</b>, activa <b>MODO DALTÓNICO</b>. Las cartas descartadas se oscurecen y llevan un aspa blanca con borde negro, borde discontinuo y la etiqueta <b>FUERA</b>.
+</details>
+
+<details>
+<summary><b>¿Dónde se guardan mis estadísticas? ¿Puedo sacarlas a una hoja de cálculo?</b></summary>
+<br>
+Se guardan solo en este dispositivo o navegador y no se envían a ningún servidor. En <b>VER ESTADÍSTICAS</b> puedes descargar un CSV, que se abre con Excel, LibreOffice o Google Sheets; en la app del móvil puedes compartirlo. También puedes descargar un JSON con el resumen y las partidas.
 </details>
 
 <details>
@@ -421,12 +470,14 @@ Inspirado por **Checo_512** y su juego [Adivina Quién Pokémon](https://adivina
 
 ## 🛠️ Lo que tienes que hacer tú (quien administra el servidor)
 
-Queda un ajuste en el servicio `pokequien-rooms` del panel de [Render](https://dashboard.render.com), para que deje de instalar la app entera (Expo) y solo instale el servidor:
+> ✅ **Estado a 31/10/2026:** Render ya ejecuta el servidor 1.0.0 (`GET /` devuelve `"version":"1.0.0"`), así que estos pasos ya están hechos. La 1.1.0 no cambia el servidor (solo su número de versión): volver a desplegar es opcional y, si lo haces, verás `1.1.0`. Queda pendiente solo comprobar que llega la cabecera `CF-Connecting-IP` (ver `PLAN.md`).
+
+Para un servicio nuevo, o si alguna vez hay que rehacerlo, el ajuste en el servicio `pokequien-rooms` del panel de [Render](https://dashboard.render.com) para que deje de instalar la app entera (Expo) y solo instale el servidor es:
 
 1. En **Settings → Build & Deploy**, pon **Root Directory** en `server`, **Build Command** en `npm ci --omit=dev` y **Start Command** en `node room-server.js`. Si el servicio se creó desde el Blueprint, basta con **Blueprints → Sync**, porque `render.yaml` ya lo trae.
 2. En **Environment**, comprueba `ROOM_SERVER_ALLOWED_ORIGINS` = `https://bertmarti.github.io` y `ROOM_SERVER_TRUST_PROXY` = `1` (a 24/10/2026 ya parecían puestas) y pulsa **Save Changes**.
-3. Ve a **Manual Deploy → Deploy latest commit**. En los logs debe aparecer `✔ Servidor de salas 1.0.0 escuchando…`.
-4. Abre `https://pokequien-rooms.onrender.com/`: debe devolver `"ok":true` y, con la 1.0.0 ya desplegada, `"version":"1.0.0"` (el 26/10/2026 respondía sin `version`: señal de que Render aún ejecutaba un servidor anterior). Comprueba también `curl -H "Origin: https://bertmarti.github.io" https://pokequien-rooms.onrender.com/`: debe devolver `"originAllowed":true` (el 26/10/2026 ya respondía así).
+3. Ve a **Manual Deploy → Deploy latest commit**. En los logs debe aparecer `✔ Servidor de salas 1.1.0 escuchando…` (o la versión que hayas desplegado).
+4. Abre `https://pokequien-rooms.onrender.com/`: debe devolver `"ok":true` y la versión desplegada en `"version"` (sin `version` significaría que Render ejecuta un servidor anterior a la 1.0.0). Comprueba también `curl -H "Origin: https://bertmarti.github.io" https://pokequien-rooms.onrender.com/`: debe devolver `"originAllowed":true` (el 26/10/2026 ya respondía así).
 5. Haz una prueba real: abre <https://bertmarti.github.io/Adivina-pkm/>, pulsa **CREAR SALA**, usa **INVITAR (ENLACE)** y abre el enlace en otro dispositivo.
 
 Si algo falla:

@@ -10,6 +10,45 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 
 > Cambios pendientes de incluir en la próxima versión.
 
+## [1.1.0] - 2026-10-31
+
+Llegan los **Ajustes**: el juego se adapta a ti (sonido, vibración, daltonismo) y el Solitario te enseña tus números.
+
+### ✨ Añadido
+
+- **Ventana de Ajustes**, con el botón AJUSTES arriba a la derecha del inicio y debajo de los tableros en el Duelo
+  (en el Solitario, VER ESTADÍSTICAS abre directamente las estadísticas). Todo se guarda solo en este dispositivo.
+- **Sonido**: activar o desactivar y volumen del 0 al 100 % en pasos del 10 %, con PROBAR SONIDO.
+- **Vibración**: activar o desactivar, con PROBAR VIBRACIÓN. En el móvil usa la vibración del teléfono; en la web,
+  solo en móviles cuyo navegador puede vibrar (Chrome en Android, por ejemplo); en los demás el ajuste aparece desactivado y
+  lo explica. Si el sistema pide reducir el movimiento, empieza apagada.
+- **Tachado visible (modo daltónico)**: las cartas descartadas se oscurecen y llevan un aspa blanca con contorno
+  negro, borde discontinuo y la etiqueta «FUERA», para distinguirlas sin depender del color. Contraste WCAG AA
+  (texto ≥ 4,5:1, aspa y borde ≥ 3:1), con vista previa en Ajustes.
+- **Estadísticas del Solitario**: partidas terminadas, aciertos de la máquina y victorias tuyas (con porcentaje),
+  preguntas medias por partida y para acertar, y los 5 Pokémon que más le cuestan a la máquina. Se descargan en
+  **CSV** (para Excel, LibreOffice o Google Sheets) o **JSON** —en la app del móvil se comparten— y se pueden
+  borrar con confirmación.
+
+### 🐛 Corregido
+
+- En la web, los lectores de pantalla no sabían qué generación estaba elegida en CREAR PARTIDA (faltaba
+  `aria-checked`).
+
+### 🔐 Seguridad
+
+- `node-forge` 1.4.2 dentro de las herramientas de Expo: cierra la alerta ALTA GHSA-86w9-cpqp-85rv y otros 11 avisos.
+  `npm audit`: 0 altas y 0 críticas (quedan 11 moderadas solo en herramientas de desarrollo de Expo, sin parche
+  en su versión; ver `docs/SECURITY.md`). Fuera el `overrides` de zod: `@expo/cli` ya no depende de él.
+- Ajustes e historial con claves prefijadas `adivina-pkm:` (origen compartido de GitHub Pages) y validados al leerlos;
+  el CSV exportado neutraliza fórmulas.
+
+### 🔄 Cambiado
+
+- Expo 58.0.22, expo-audio 58.0.11, React Native 0.88.1 y React 19.3.0 (lo que pide el SDK 58; `expo-doctor` 20/20).
+- La prueba de humo de la web prueba también los Ajustes (guardado y exportación CSV) y falla ante cualquier
+  violación de la CSP. Pruebas nuevas de ajustes, vibración web, contraste y estadísticas.
+
 ## [1.0.0] - 2026-10-26
 
 Primera versión estable de PokéQuién. Resume el camino desde el prototipo (0.1–0.4) y añade lo que faltaba para

@@ -15,3 +15,24 @@ export const COLORS = {
 
 // PokeQuien Pixel = Press Start 2P (OFL) con «Á É Í Ó Ú Ü Ñ» a altura completa (scripts/generate-pixel-font.py).
 export const PIXEL_FONT = 'PokeQuienPixel';
+
+// Tachado visible (modo daltónico, en Ajustes): una carta descartada se reconoce sin depender del color
+// por cuatro señales de forma y luminosidad: velo oscuro sobre el retrato, aspa blanca con borde negro,
+// borde discontinuo claro y la etiqueta «FUERA». src/ui/contrast.test.ts comprueba el contraste WCAG AA.
+export const MARKED_CROSS = {
+  /** Fondo de la carta tachada (el mismo que sin el modo). */
+  tileBackground: '#25262B',
+  /** Fondo del tablero sobre el que se ve el borde de la carta. */
+  boardBackground: '#1C1D27',
+  /** Velo sobre el retrato: color y opacidad. */
+  veil: '#05070B',
+  veilOpacity: 0.62,
+  /** Aspa y su contorno (se ve igual sobre un retrato claro u oscuro). */
+  line: '#F6F5EF',
+  lineEdge: '#05070B',
+  /** Borde discontinuo de la carta. */
+  border: '#F6F5EF',
+  /** Etiqueta FUERA. */
+  badgeBackground: '#05070B',
+  badgeText: '#F6F5EF',
+} as const;

@@ -4,6 +4,7 @@ import { Animated, Image, Platform, Pressable, Text, useWindowDimensions, View }
 import { PokemonCandidate } from '../data/pokemon';
 import { getPokemon, getRemainingCount, PlayerId } from '../game/engine';
 import { RoomGameState } from '../game/roomClient';
+import { useSettings } from '../settings/SettingsContext';
 import { styles } from './appStyles';
 
 export function RetroBackdrop() {
@@ -29,10 +30,13 @@ export function Portrait({
   pokemon,
   variant = 'happy',
   size = 52,
+  dimmed = false,
 }: {
   pokemon: PokemonCandidate;
   variant?: 'happy' | 'sad' | 'normal';
   size?: number;
+  /** Tachado visible: velo oscuro sobre la imagen, por debajo del número de Pokédex. */
+  dimmed?: boolean;
 }) {
   const [sourceIndex, setSourceIndex] = useState(0);
   useEffect(() => setSourceIndex(0), [pokemon.id, variant]);
@@ -52,7 +56,9 @@ export function Portrait({
         style={{ width: size, height: size }}
         resizeMode="contain"
       />
-      <Text style={styles.dexBadge}>#{String(pokemon.id).padStart(3, '0')}</Text>
+      {dimmed && <View pointerEvents="none" style={styles.crossVeil} />}
+      {/* Con velo, el número lo pinta la carta por encima del aspa (en la web cada View crea su propio apilamiento). */}
+      {!dimmed && <Text style={styles.dexBadge}>#{String(pokemon.id).padStart(3, '0')}</Text>}
     </View>
   );
 }
@@ -138,6 +144,8 @@ export function PokemonTile({
     }).start();
   }, [crossed, progress, reduceMotion]);
   const scale = progress.interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] });
+  // Tachado visible (Ajustes → modo daltónico): velo, aspa blanca con borde, borde discontinuo y «FUERA».
+  const marked = useSettings().settings.colorblindMode;
   return (
     <Pressable
       accessibilityRole="button"
@@ -149,17 +157,32 @@ export function PokemonTile({
         styles.tile,
         selected && styles.tileSelected,
         crossed && styles.tileCrossed,
+        crossed && marked && styles.tileCrossedMarked,
         pressed && styles.tilePressed,
       ]}
     >
-      <Portrait pokemon={pokemon} variant={crossed ? 'sad' : 'happy'} size={portraitSize} />
-      <Text numberOfLines={1} style={[styles.tileName, crossed && styles.tileNameCrossed]}>
+      <Portrait pokemon={pokemon} variant={crossed ? 'sad' : 'happy'} size={portraitSize} dimmed={crossed && marked} />
+      {/* Con el tachado visible, nombre y número quedan por encima del velo y del aspa, sobre fondo oscuro. */}
+      <Text
+        numberOfLines={1}
+        style={[styles.tileName, crossed && styles.tileNameCrossed, crossed && marked && styles.tileNameMarked]}
+      >
         {pokemon.name}
       </Text>
+      {crossed && marked && (
+        <Text style={[styles.dexBadge, styles.dexBadgeRaised]} accessible={false} importantForAccessibility="no">
+          #{String(pokemon.id).padStart(3, '0')}
+        </Text>
+      )}
       <Animated.View pointerEvents="none" style={[styles.crossOverlay, { opacity: progress, transform: [{ scale }] }]}>
-        <View style={[styles.crossLine, styles.crossLineA]} />
-        <View style={[styles.crossLine, styles.crossLineB]} />
+        <View style={[styles.crossLine, marked && styles.crossLineMarked, styles.crossLineA]} />
+        <View style={[styles.crossLine, marked && styles.crossLineMarked, styles.crossLineB]} />
       </Animated.View>
+      {crossed && marked && (
+        <Text pointerEvents="none" style={styles.crossBadge} accessible={false} importantForAccessibility="no">
+          FUERA
+        </Text>
+      )}
     </Pressable>
   );
 }
