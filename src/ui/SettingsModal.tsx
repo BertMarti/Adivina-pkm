@@ -232,7 +232,14 @@ export function SettingsModal({
   const previewCrossed = LOCAL_KANTO_ROSTER[24] ?? LOCAL_KANTO_ROSTER[1];
 
   return (
-    <Modal visible={visible} transparent animationType={reduceMotion ? 'none' : 'fade'} onRequestClose={onClose}>
+    <Modal
+      visible={visible}
+      transparent
+      animationType={reduceMotion ? 'none' : 'fade'}
+      onRequestClose={onClose}
+      // Nombre accesible del diálogo en la web (react-native-web lo pasa al elemento role="dialog").
+      aria-label="Ajustes"
+    >
       <View style={styles.backdrop}>
         <View style={styles.panel} accessibilityViewIsModal>
           <Text accessibilityRole="header" style={styles.title}>

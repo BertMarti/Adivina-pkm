@@ -225,7 +225,7 @@ async function main() {
   await waitFor(socket, `(document.body.innerText || '').includes('Descargado pokequien-estadisticas-')`, 'aviso de descarga');
   // Ventana accesible: diálogo modal (react-native-web atrapa el foco) que se cierra con Escape.
   // (react-native-web pone role="dialog" al terminar la animación de entrada: se espera.)
-  await waitFor(socket, `!!document.querySelector('[role="dialog"][aria-modal="true"]')`, 'Ajustes como diálogo modal');
+  await waitFor(socket, `!!document.querySelector('[role="dialog"][aria-modal="true"][aria-label="Ajustes"]')`, 'Ajustes como diálogo modal con nombre accesible');
   await socket.command('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
   await socket.command('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
   await waitFor(socket, `!document.querySelector('[role="dialog"]')`, 'cerrar Ajustes con Escape');

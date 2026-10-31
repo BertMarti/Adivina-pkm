@@ -92,6 +92,8 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 2,
     borderRadius: 2,
   },
+  // Por encima del aspa del tachado visible (zIndex 3) y con fondo opaco para mantener el contraste.
+  dexBadgeRaised: { right: 3, bottom: 12, zIndex: 5, backgroundColor: MARKED_CROSS.badgeBackground, color: MARKED_CROSS.badgeText },
   fieldLabel: { color: '#B4B4BB', fontFamily: PIXEL_FONT, fontSize: 9, lineHeight: 18 },
   generationRow: { gap: 7, paddingVertical: 2 },
   generationChip: {
@@ -280,6 +282,19 @@ export const styles = StyleSheet.create({
   tilePressed: { transform: [{ scale: 0.96 }] },
   tileName: { color: COLORS.white, fontFamily: PIXEL_FONT, fontSize: 5, lineHeight: 8, maxWidth: '100%' },
   tileNameCrossed: { color: '#B2B2B6', textDecorationLine: 'line-through' },
+  // Sin tachado de texto: «FUERA» y el aspa ya lo dicen y, a 5 px, la raya hacía ilegible el nombre.
+  tileNameMarked: {
+    position: 'relative',
+    zIndex: 5,
+    textDecorationLine: 'none',
+    // Algo más arriba para que el borde discontinuo no se coma la parte baja de las letras.
+    marginTop: -3,
+    color: MARKED_CROSS.badgeText,
+    backgroundColor: MARKED_CROSS.badgeBackground,
+    paddingHorizontal: 2,
+    borderRadius: 2,
+    overflow: 'hidden',
+  },
   crossOverlay: {
     position: 'absolute',
     left: 1,
