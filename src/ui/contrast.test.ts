@@ -25,6 +25,8 @@ test('tachado visible: aspa y borde cumplen AA para elementos gráficos (≥ 3:1
   // Un retrato blanco del todo: el contorno oscuro separa el aspa del fondo.
   assert.ok(contrastRatio(MARKED_CROSS.lineEdge, '#FFFFFF') >= 3);
   assert.ok(contrastRatio(MARKED_CROSS.border, MARKED_CROSS.boardBackground) >= 3, 'borde frente al tablero');
+  // El tablero es negro al 64 % sobre el mapa pixel-art: el peor caso es un píxel blanco del mapa debajo.
+  assert.ok(contrastRatio(MARKED_CROSS.border, blend('#000000', '#FFFFFF', 0.64)) >= 3, 'borde frente al tablero más claro posible');
 });
 
 test('tachado visible: se distingue por luminosidad, no solo por el tono', () => {

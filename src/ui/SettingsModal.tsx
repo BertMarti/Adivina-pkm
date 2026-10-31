@@ -344,6 +344,7 @@ export function SettingsModal({
                 <Text style={styles.description}>
                   Aún no hay partidas terminadas del Solitario. Juega una contra la máquina y aquí verás tus números.
                   {stats.abandoned > 0 ? ` Partidas abandonadas: ${stats.abandoned}.` : ''}
+                  {stats.inProgress > 0 ? ` Sin terminar: ${stats.inProgress}.` : ''}
                 </Text>
               )}
               {stats && stats.played > 0 && (
@@ -355,6 +356,7 @@ export function SettingsModal({
                   <StatLine label="Preguntas medias por partida" value={decimal(stats.averageQuestions)} />
                   <StatLine label="Preguntas medias para acertar" value={decimal(stats.averageQuestionsToGuess)} />
                   {stats.abandoned > 0 && <StatLine label="Abandonadas (no cuentan)" value={String(stats.abandoned)} />}
+                  {stats.inProgress > 0 && <StatLine label="Sin terminar (no cuentan)" value={String(stats.inProgress)} />}
                   <Text style={styles.subheading}>POKÉMON MÁS DIFÍCILES PARA LA MÁQUINA</Text>
                   {stats.hardest.map((item, index) => (
                     <Text key={item.pokemonId} style={styles.hardItem}>

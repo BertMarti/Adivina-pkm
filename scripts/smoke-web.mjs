@@ -211,6 +211,7 @@ async function main() {
   await evaluate(socket, `${colorblindSwitch}.click()`);
   await waitFor(socket, `${colorblindSwitch}.getAttribute('aria-checked') === 'true'`, 'activar el modo daltónico');
   await waitFor(socket, `(() => { try { return JSON.parse(localStorage.getItem('adivina-pkm:ajustes:v1') || '{}').colorblindMode === true; } catch { return false; } })()`, 'ajuste guardado');
+  // Perfil de Chromium limpio y origen propio: toda clave que haya la ha escrito PokéQuién y debe llevar su prefijo.
   const foreignKeys = await evaluate(socket, `Object.keys(localStorage).filter((key) => !key.startsWith('adivina-pkm:'))`);
   if (foreignKeys.length) throw new Error(`claves de localStorage sin prefijo: ${foreignKeys.join(', ')}`);
   await evaluate(socket, `(() => { const original = URL.createObjectURL.bind(URL); window.__smokeBlobs = []; URL.createObjectURL = (blob) => { window.__smokeBlobs.push(blob); return original(blob); }; return true; })()`);
@@ -221,7 +222,12 @@ async function main() {
   const csv = await evaluate(socket, `window.__smokeBlobs[0].text()`);
   if (bom !== '239,187,191' || !csv.startsWith('inicio;fin;catalogo;pokemon_id;pokemon;resultado;preguntas;propuestas_rechazadas\r\n') || !csv.includes('Sin terminar')) throw new Error(`el CSV exportado no es el esperado: ${bom} ${csv.slice(0, 160)}`);
   await waitFor(socket, `(document.body.innerText || '').includes('Descargado pokequien-estadisticas-')`, 'aviso de descarga');
-  await clickText(socket, 'CERRAR');
+  // Ventana accesible: diálogo modal (react-native-web atrapa el foco) que se cierra con Escape.
+  // (react-native-web pone role="dialog" al terminar la animación de entrada: se espera.)
+  await waitFor(socket, `!!document.querySelector('[role="dialog"][aria-modal="true"]')`, 'Ajustes como diálogo modal');
+  await socket.command('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
+  await socket.command('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Escape', code: 'Escape', windowsVirtualKeyCode: 27 });
+  await waitFor(socket, `!document.querySelector('[role="dialog"]')`, 'cerrar Ajustes con Escape');
   await socket.command('Page.navigate', { url: `http://127.0.0.1:${port}${prefix}` });
   await waitFor(socket, `(document.body.innerText || '').toLocaleUpperCase('es-ES').includes('JUGAR CONTRA LA MÁQUINA')`, 'inicio tras recargar');
   await clickText(socket, 'AJUSTES');

@@ -24,7 +24,8 @@ export function canVibrateWeb(nav: VibratingNavigator | undefined = currentNavig
  * y dejaría un aviso en la consola.
  */
 export function vibrateWeb(pattern: VibrationPattern, nav: VibratingNavigator | undefined = currentNavigator()): boolean {
-  if (!nav || typeof nav.vibrate !== 'function') return false;
+  // La misma comprobación que muestra Ajustes: si allí sale «no disponible», aquí no se intenta.
+  if (!nav || !canVibrateWeb(nav) || typeof nav.vibrate !== 'function') return false;
   if (nav.userActivation && nav.userActivation.hasBeenActive === false) return false;
   try {
     return nav.vibrate.call(nav, typeof pattern === 'number' ? pattern : [...pattern]) === true;

@@ -77,9 +77,14 @@ test('vibración web: sin navigator.vibrate no vibra ni lanza', () => {
       vibrate: () => {
         throw new Error('bloqueado');
       },
+      maxTouchPoints: 5,
     }),
     false,
   );
+  // Escritorio (no táctil): tampoco se intenta, igual que lo que muestra Ajustes.
+  let called = false;
+  assert.equal(vibrateWeb(20, { vibrate: () => (called = true), maxTouchPoints: 0 }), false);
+  assert.equal(called, false);
 });
 
 test('vibración web: vibra con el patrón y espera a la primera pulsación', () => {
@@ -91,6 +96,6 @@ test('vibración web: vibra con el patrón y espera a la primera pulsación', ()
   assert.equal(vibrateWeb(WEB_VIBRATION_PATTERNS.victory, nav), false, 'antes de pulsar nada no se intenta');
   nav.userActivation.hasBeenActive = true;
   assert.equal(vibrateWeb(WEB_VIBRATION_PATTERNS.victory, nav), true);
-  assert.equal(vibrateWeb(WEB_VIBRATION_PATTERNS.cross, { vibrate: (pattern) => (calls.push(pattern), true) }), true);
+  assert.equal(vibrateWeb(WEB_VIBRATION_PATTERNS.cross, { vibrate: (pattern) => (calls.push(pattern), true), maxTouchPoints: 1 }), true);
   assert.deepEqual(calls, [[60, 40, 60], 30]);
 });

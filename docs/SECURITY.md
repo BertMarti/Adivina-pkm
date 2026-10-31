@@ -30,7 +30,7 @@ PokéQuién no tiene cuentas, contraseñas ni datos personales. La sala se ident
 | Cliente | Las URLs de sprites solo se presentan como fuentes de imagen; no se interpolan como HTML. |
 | Almacenamiento local (31/10/2026) | Ajustes (`adivina-pkm:ajustes:v1`) e historial del Solitario (`adivina-pkm:single-player-log:v1`) con prefijo del proyecto, porque `bertmarti.github.io` es un origen compartido; no contienen nada sensible y se validan al leerlos (un valor manipulado se descarta). Las exportaciones CSV escapan celdas que empiezan por `= + - @` para evitar fórmulas en hojas de cálculo. |
 
-## Estado en producción (1.1.0, 31/10/2026)
+## Estado en producción (31/10/2026)
 
 El 31/10/2026 Render ya ejecuta el servidor 1.0.0 (`GET /` → `"version":"1.0.0"`). La 1.1.0 no cambia el servidor ni el
 protocolo (solo su número de versión), así que no hace falta volver a desplegarlo con prisa.

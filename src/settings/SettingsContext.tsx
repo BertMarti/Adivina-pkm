@@ -38,18 +38,24 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   const [loaded, setLoaded] = useState(false);
   // Un cambio hecho antes de terminar la lectura inicial no debe perderse al llegar lo leído.
   const touchedRef = useRef(false);
+  // Restablecer antes de terminar la lectura inicial: lo leído ya no vale.
+  const resetRef = useRef(false);
   const storedRef = useRef<StoredSettings>({});
+  // Escrituras en cola: dos cambios rápidos nunca se guardan en orden inverso.
+  const writeQueueRef = useRef<Promise<void>>(Promise.resolve());
 
   // Solo se guardan los ajustes cambiados; sin ninguno, se borra la clave.
   const apply = useCallback((next: StoredSettings) => {
     touchedRef.current = true;
     storedRef.current = next;
     setStored(next);
-    const write =
-      Object.keys(next).length === 0
-        ? AsyncStorage.removeItem(SETTINGS_STORAGE_KEY)
-        : AsyncStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(next));
-    void write.catch(() => {});
+    writeQueueRef.current = writeQueueRef.current
+      .then(() =>
+        Object.keys(next).length === 0
+          ? AsyncStorage.removeItem(SETTINGS_STORAGE_KEY)
+          : AsyncStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(next)),
+      )
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -57,7 +63,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     AsyncStorage.getItem(SETTINGS_STORAGE_KEY)
       .then((raw) => {
         if (!active) return;
-        const saved = parseStoredSettings(raw);
+        const saved = resetRef.current ? {} : parseStoredSettings(raw);
         if (touchedRef.current) {
           // Lo cambiado mientras se leía manda sobre lo guardado.
           apply({ ...saved, ...storedRef.current });
@@ -80,7 +86,10 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     [apply],
   );
 
-  const reset = useCallback(() => apply({}), [apply]);
+  const reset = useCallback(() => {
+    resetRef.current = true;
+    apply({});
+  }, [apply]);
 
   const value = useMemo<SettingsContextValue>(
     () => ({ settings: resolveSettings(stored, { reduceMotion }), loaded, reduceMotion, update, reset }),
