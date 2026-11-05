@@ -1,6 +1,6 @@
 {
   "name": "pokequien",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "index.ts",
   "dependencies": {
     "@expo-google-fonts/press-start-2p": "^0.4.1",
@@ -13,8 +13,8 @@
     "expo-haptics": "~58.0.7",
     "expo-secure-store": "~58.0.2",
     "expo-status-bar": "~58.0.4",
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
     "react-native": "0.88.1",
     "react-native-safe-area-context": "~5.10.1",
     "react-native-web": "^0.21.4",
@@ -46,5 +46,17 @@
   "private": true,
   "engines": {
     "node": ">=22.13.0"
+  },
+  "overrides": {
+    "glob": "^14.0.2",
+    "minimatch": "^11.0.4"
+  },
+  "expo": {
+    "install": {
+      "exclude": [
+        "react",
+        "react-dom"
+      ]
+    }
   }
 }

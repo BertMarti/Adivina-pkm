@@ -45,10 +45,15 @@ export type PokemonNameLookup = (pokemonId: number) => string | undefined;
 
 export type SoloStatsExport = Readonly<{
   format: 'adivina-pkm-single-player-stats';
-  formatVersion: 1;
+  formatVersion: 2;
   exportedAt: string;
   summary: SoloStats;
   games: readonly Readonly<{
+    sessionId: string;
+    result: SinglePlayerStoredResult;
+    maxQuestions: number;
+    guessedPokemonId: number | null;
+    rejectedGuessIds: readonly number[];
     startedAt: string;
     finishedAt: string | null;
     catalogId: string;
@@ -154,7 +159,7 @@ function sortedSessions(sessions: readonly SinglePlayerSessionRecord[]): SingleP
   return uniqueSessions(sessions).sort((a, b) => a.startedAt < b.startedAt ? -1 : a.startedAt > b.startedAt ? 1 : 0);
 }
 
-function csvCell(value: string): string {
+export function csvCell(value: string): string {
   const safe = /^[=+\-@\t\r]/.test(value) ? `'${value}` : value;
   return /[;"\n\r]/.test(safe) ? `"${safe.replace(/"/g, '""')}"` : safe;
 }
@@ -192,6 +197,11 @@ export function buildSoloStatsExport(
   const games = sortedSessions(sessions).map((session) => {
     const hasPokemon = typeof session.selectedPokemonId === 'number';
     return {
+      sessionId: session.sessionId,
+      result: session.result,
+      maxQuestions: session.maxQuestions,
+      guessedPokemonId: session.guessedPokemonId ?? null,
+      rejectedGuessIds: [...session.rejectedGuessIds],
       startedAt: session.startedAt,
       finishedAt: session.finishedAt ?? null,
       catalogId: session.catalogId,
@@ -204,7 +214,7 @@ export function buildSoloStatsExport(
   });
   return {
     format: 'adivina-pkm-single-player-stats',
-    formatVersion: 1,
+    formatVersion: 2,
     exportedAt: now.toISOString(),
     summary: computeSoloStats(sessions, nameOf),
     games,
@@ -212,8 +222,9 @@ export function buildSoloStatsExport(
 }
 
 // Nombre del archivo descargado, con la fecha local: pokequien-estadisticas-AAAA-MM-DD.csv
-export function statsFileName(extension: 'csv' | 'json', now: Date = new Date()): string {
+export function statsFileName(extension: 'csv' | 'json', now: Date = new Date(), kind: 'solitario' | 'duelo' | 'todo' = 'solitario'): string {
   const pad = (value: number) => String(value).padStart(2, '0');
   const date = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
-  return `pokequien-estadisticas-${date}.${extension}`;
+  const suffix = kind === 'solitario' ? '' : `-${kind}`;
+  return `pokequien-estadisticas${suffix}-${date}.${extension}`;
 }

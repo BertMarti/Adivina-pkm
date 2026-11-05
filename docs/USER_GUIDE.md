@@ -40,6 +40,8 @@ El resultado aparece en un popup con:
 - Audio de victoria para quien gana y audio de derrota para quien pierde.
 - Botón **Jugar de nuevo** para que ambos elijan otra vez en la misma sala.
 
+El resultado se apunta solo en las **Estadísticas del Duelo** de Ajustes (solo en este dispositivo).
+
 ## Modo solitario
 
 En **Jugar contra la máquina**, elige un Pokémon y responde exclusivamente **SÍ** o **NO** a las preguntas. La máquina va reduciendo las posibilidades con preguntas adaptativas, relacionadas con los tipos, colores, forma, cuerpo, hábitat y conocimientos básicos de Pokémon.
@@ -72,13 +74,34 @@ En la pantalla de elegir Pokémon, pulsa **VER ESTADÍSTICAS** para abrir direct
 2. Las cartas descartadas se oscurecen y llevan un aspa blanca con borde negro, borde discontinuo y la etiqueta **FUERA**.
 3. Consulta la vista previa: muestra una carta disponible y otra descartada.
 
-### Estadísticas del Solitario
+### Estadísticas del Solitario (contra la máquina)
 
 1. Desde **VER ESTADÍSTICAS**, consulta partidas terminadas, cuántas acertó la máquina y cuántas ganaste tú, con sus porcentajes, partidas sin resolver, medias de preguntas, abandonos y los 5 Pokémon más difíciles para la máquina.
 2. Pulsa **DESCARGAR CSV** para abrir una fila por partida con Excel, LibreOffice o Google Sheets. En la app del móvil aparece **COMPARTIR CSV**.
 3. Pulsa **DESCARGAR JSON** para guardar un resumen y las partidas. En la app del móvil aparece **COMPARTIR JSON**.
 4. Pulsa **BORRAR ESTADÍSTICAS** y vuelve a pulsarlo para confirmar. Se borran las estadísticas y el historial del Solitario de este dispositivo.
 5. Pulsa **VALORES POR DEFECTO** para volver a los ajustes iniciales.
+
+### Estadísticas del Duelo (contra un amigo)
+
+1. Abre **AJUSTES**. Debajo de las estadísticas **CONTRA LA MÁQUINA** aparecen las del Duelo.
+2. Consulta los duelos terminados, las victorias y derrotas con porcentaje y la mejor racha de victorias.
+3. **El rival se fue** y **Abandonaste** se muestran aparte. No cuentan como victoria ni derrota. Salir con **SALIR** durante una partida cuenta como **Abandonaste**.
+4. En **POR GENERACIÓN**, cada fila muestra los resultados de esa generación. Verás, por ejemplo, **3 V · 1 D** y una barra amarilla con la parte de victorias. El lector de pantalla también explica el resultado con palabras.
+5. Los resultados se apuntan solos al terminar cada duelo y solo se guardan en este dispositivo.
+6. En la web pulsa **DESCARGAR CSV** o **DESCARGAR JSON**. En la app del móvil aparecen **COMPARTIR CSV** y **COMPARTIR JSON**.
+7. Para borrarlas, pulsa **BORRAR ESTADÍSTICAS DEL DUELO** y vuelve a pulsarlo.
+
+### Importar estadísticas de otro dispositivo
+
+1. En el dispositivo antiguo, abre **AJUSTES** y pulsa **EXPORTAR TODO (JSON)**. En la app del móvil aparece **COMPARTIR TODO (JSON)**.
+2. En el dispositivo nuevo, en la web pulsa **ELEGIR ARCHIVO JSON** o pega el contenido en el cuadro de texto. En la app del móvil, pega el contenido (por ejemplo, el texto que te enviaste con **COMPARTIR TODO (JSON)**).
+3. También puedes usar un **DESCARGAR JSON** del Solitario, incluso de la versión 1.1, un **COPIAR JSON** del historial del Solitario o un **DESCARGAR JSON** del Duelo.
+4. Pulsa **REVISAR JSON**. El archivo no puede superar 8 MB (una copia completa de EXPORTAR TODO cabe de sobra; si un historial del Solitario muy largo no cabe, usa EXPORTAR TODO).
+5. Si es válido, verás «Archivo válido: …». Pulsa **AÑADIR A LAS MÍAS** para fusionar y añadir solo las partidas que faltan, o **REEMPLAZAR LAS MÍAS** para borrar lo de este dispositivo en las secciones que trae el archivo.
+6. Antes de reemplazar aparece «ATENCIÓN: REEMPLAZAR BORRA LO QUE HAY». Pulsa **CONFIRMAR** o **CONFIRMAR REEMPLAZO**. Para volver atrás, pulsa **VOLVER**.
+7. Se comprueba todo antes de importar. Si el archivo está roto, es de otra app, es de una versión más nueva o tiene una partida mal, aparece «ERROR: …» y no cambia nada. Una partida del Solitario sin terminar se importa como abandonada.
+8. Nada se envía a un servidor. Todo queda en el dispositivo o navegador.
 
 ## Si alguien se desconecta
 

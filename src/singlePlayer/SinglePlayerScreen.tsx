@@ -372,7 +372,8 @@ export function SinglePlayerScreen({ reduceMotion: _reduceMotion, onBack, onSoun
 
   const exportLog = async () => {
     try {
-      const content = JSON.stringify(await exportSinglePlayerLog(), null, 2);
+      // Sin sangría: el historial trae las preguntas de cada partida y así cabe mucho más al importarlo en otro dispositivo.
+      const content = JSON.stringify(await exportSinglePlayerLog());
       if (Platform.OS === 'web') {
         await Clipboard.setStringAsync(content);
         flashHistory(`Historial copiado en JSON (${sessionCount} ${sessionCount === 1 ? 'partida' : 'partidas'}).`);

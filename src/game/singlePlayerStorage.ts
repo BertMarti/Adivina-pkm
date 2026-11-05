@@ -47,6 +47,15 @@ const STORAGE_KEY = 'adivina-pkm:single-player-log:v1';
 const MAX_STORED_SESSIONS = 5000;
 let storageWriteQueue: Promise<boolean> = Promise.resolve(true);
 
+export const SINGLE_PLAYER_LOG_STORAGE_KEY = STORAGE_KEY;
+export const MAX_SINGLE_PLAYER_SESSIONS = MAX_STORED_SESSIONS;
+
+export function runSinglePlayerLogExclusive<T>(task: () => Promise<T>): Promise<T> {
+  const run = storageWriteQueue.then(task);
+  storageWriteQueue = run.then(() => true, () => false);
+  return run;
+}
+
 export async function readSinglePlayerLog(): Promise<SinglePlayerSessionRecord[]> {
   try {
     const raw = await AsyncStorage.getItem(STORAGE_KEY);

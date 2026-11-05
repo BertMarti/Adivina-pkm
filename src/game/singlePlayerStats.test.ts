@@ -87,12 +87,16 @@ test('genera CSV con orden, BOM, CRLF y escape de celdas', () => {
 test('genera exportación JSON con formato, fecha y partidas', () => {
   const exported = buildSoloStatsExport([make()], () => 'Pikachu', new Date('2026-10-31T00:00:00.000Z'));
   assert.equal(exported.format, 'adivina-pkm-single-player-stats');
-  assert.equal(exported.formatVersion, 1);
+  assert.equal(exported.formatVersion, 2);
   assert.equal(exported.exportedAt, '2026-10-31T00:00:00.000Z');
   assert.equal(exported.games[0].pokemon, 'Pikachu');
   assert.equal(exported.games[0].outcome, 'machine');
+  assert.equal(exported.games[0].sessionId, 'session-1');
+  assert.equal(exported.games[0].result, 'won');
 });
 
 test('construye el nombre de archivo con fecha local', () => {
   assert.equal(statsFileName('csv', new Date(2026, 9, 31)), 'pokequien-estadisticas-2026-10-31.csv');
+  assert.equal(statsFileName('json', new Date(2026, 9, 31), 'duelo'), 'pokequien-estadisticas-duelo-2026-10-31.json');
+  assert.equal(statsFileName('json', new Date(2026, 9, 31), 'todo'), 'pokequien-estadisticas-todo-2026-10-31.json');
 });

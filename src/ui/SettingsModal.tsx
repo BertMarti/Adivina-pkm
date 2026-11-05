@@ -1,4 +1,5 @@
-// Ajustes: sonido y volumen, vibración, tachado visible (modo daltónico) y estadísticas del Solitario.
+// Ajustes: sonido y volumen, vibración, tachado visible (modo daltónico), estadísticas del Solitario y del Duelo
+// e importación de estadísticas.
 // Todo se guarda solo en este dispositivo (ver src/settings y src/game/singlePlayerStorage.ts).
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Modal, Platform, Pressable, ScrollView, ScrollViewInstance, Share, StyleSheet, Text, View } from 'react-native';
@@ -12,11 +13,17 @@ import {
   statsFileName,
 } from '../game/singlePlayerStats';
 import { clearSinglePlayerLog, readSinglePlayerLog, SinglePlayerSessionRecord } from '../game/singlePlayerStorage';
+import { readDuelLog } from '../game/duelStorage';
+import type { DuelRecord } from '../game/duelStats';
 import { useSettings } from '../settings/SettingsContext';
 import { stepVolume, volumePercent } from '../settings/settingsModel';
 import { canVibrateWeb } from '../settings/vibration';
 import { PokemonTile } from './components';
+import { ActionButton, StatLine } from './settingsControls';
+import { DuelStatsSection } from './DuelStatsSection';
+import { ImportStatsSection } from './ImportStatsSection';
 import { COLORS, PIXEL_FONT } from './theme';
+import { downloadOnWeb } from './webFiles';
 
 export type SettingsSection = 'all' | 'stats';
 
@@ -33,22 +40,6 @@ function decimal(value: number | null) {
 
 function percent(part: number, total: number) {
   return total === 0 ? '' : ` (${Math.round((part / total) * 100)} %)`;
-}
-
-/** Descarga un archivo de texto en la web (Blob + enlace con `download`). Devuelve false si no se puede. */
-function downloadOnWeb(fileName: string, content: string, mime: string) {
-  if (typeof document === 'undefined' || typeof URL === 'undefined' || typeof Blob === 'undefined') return false;
-  const url = URL.createObjectURL(new Blob([content], { type: `${mime};charset=utf-8` }));
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = fileName;
-  link.rel = 'noopener';
-  link.style.display = 'none';
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 10_000);
-  return true;
 }
 
 function SettingSwitch({
@@ -89,69 +80,24 @@ function SettingSwitch({
   );
 }
 
-function ActionButton({
-  label,
-  onPress,
-  disabled = false,
-  danger = false,
-  accessibilityLabel,
-  variant = 'block',
-}: {
-  label: string;
-  onPress: () => void;
-  disabled?: boolean;
-  danger?: boolean;
-  accessibilityLabel?: string;
-  /** block: ancho completo; row: comparte fila; stepper: botón cuadrado de − / +. */
-  variant?: 'block' | 'row' | 'stepper';
-}) {
-  return (
-    <Pressable
-      accessibilityRole="button"
-      accessibilityLabel={accessibilityLabel ?? label}
-      accessibilityState={{ disabled }}
-      disabled={disabled}
-      onPress={onPress}
-      style={({ pressed }) => [
-        styles.action,
-        variant === 'row' && styles.actionInRow,
-        variant === 'stepper' && styles.stepper,
-        danger && styles.actionDanger,
-        pressed && styles.pressed,
-        disabled && styles.disabled,
-      ]}
-    >
-      <Text style={[styles.actionText, variant === 'stepper' && styles.stepperText]}>{label}</Text>
-    </Pressable>
-  );
-}
-
-function StatLine({ label, value }: { label: string; value: string }) {
-  return (
-    <View style={styles.statLine} accessible accessibilityLabel={`${label}: ${value}`}>
-      <Text style={styles.statLabel}>{label}</Text>
-      <Text style={styles.statValue}>{value}</Text>
-    </View>
-  );
-}
-
 export function SettingsModal({
   visible,
   section,
   onClose,
   onTestSound,
   onTestVibration,
-  onStatsCleared,
+  onStatsChanged,
 }: {
   visible: boolean;
   section: SettingsSection;
   onClose: () => void;
   onTestSound: () => void;
   onTestVibration: () => void;
-  onStatsCleared: () => void;
+  onStatsChanged: () => void;
 }) {
   const { settings, update, reset, reduceMotion } = useSettings();
   const [sessions, setSessions] = useState<SinglePlayerSessionRecord[] | null>(null);
+  const [duels, setDuels] = useState<DuelRecord[] | null>(null);
   const [notice, setNotice] = useState('');
   const [confirmClear, setConfirmClear] = useState(false);
   const noticeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -163,10 +109,14 @@ export function SettingsModal({
     if (!visible) return;
     let active = true;
     setSessions(null);
+    setDuels(null);
     setNotice('');
     setConfirmClear(false);
     void readSinglePlayerLog().then((read) => {
       if (active) setSessions(read);
+    });
+    void readDuelLog().then((read) => {
+      if (active) setDuels(read);
     });
     return () => {
       active = false;
@@ -220,7 +170,7 @@ export function SettingsModal({
     try {
       await clearSinglePlayerLog();
       setSessions([]);
-      onStatsCleared();
+      onStatsChanged();
       flash('Estadísticas e historial borrados.');
     } catch {
       flash('No se pudieron borrar. Inténtalo de nuevo.');
@@ -346,6 +296,7 @@ export function SettingsModal({
               <Text accessibilityRole="header" style={styles.sectionTitle}>
                 ESTADÍSTICAS DEL SOLITARIO
               </Text>
+              <Text style={styles.statsKicker}>CONTRA LA MÁQUINA</Text>
               {!stats && <Text style={styles.description}>Cargando…</Text>}
               {stats && stats.played === 0 && (
                 <Text style={styles.description}>
@@ -407,6 +358,27 @@ export function SettingsModal({
               </Text>
             </View>
 
+            <DuelStatsSection
+              records={duels}
+              nameOf={pokemonName}
+              onCleared={() => {
+                setDuels([]);
+                onStatsChanged();
+              }}
+            />
+            <ImportStatsSection
+              sessions={sessions}
+              duels={duels}
+              nameOf={pokemonName}
+              onImported={() => {
+                void Promise.all([readSinglePlayerLog(), readDuelLog()]).then(([readSessions, readDuels]) => {
+                  setSessions(readSessions);
+                  setDuels(readDuels);
+                  onStatsChanged();
+                });
+              }}
+            />
+
             <ActionButton label="VALORES POR DEFECTO" accessibilityLabel="Volver a los ajustes por defecto" onPress={reset} />
           </ScrollView>
           <Pressable
@@ -455,6 +427,7 @@ const styles = StyleSheet.create({
   list: { gap: 16, paddingBottom: 6 },
   section: { gap: 10, borderTopWidth: 2, borderTopColor: '#3A3B48', paddingTop: 12 },
   sectionTitle: { color: COLORS.yellow, fontFamily: PIXEL_FONT, fontSize: 9, lineHeight: 15 },
+  statsKicker: { color: '#C9C9D1', fontFamily: PIXEL_FONT, fontSize: 6, lineHeight: 11, marginTop: -7 },
   subheading: { color: COLORS.yellow, fontFamily: PIXEL_FONT, fontSize: 7, lineHeight: 13, marginTop: 4 },
   description: { color: '#D4D4DA', fontSize: 13, lineHeight: 19 },
   switchRow: {
@@ -489,36 +462,8 @@ const styles = StyleSheet.create({
   volumeValue: { flex: 1, color: COLORS.white, fontFamily: PIXEL_FONT, fontSize: 8, lineHeight: 14, textAlign: 'center' },
   previewLabel: { color: '#C9C9D1', fontFamily: PIXEL_FONT, fontSize: 6, lineHeight: 11 },
   previewRow: { flexDirection: 'row', justifyContent: 'center', gap: 14, width: '100%' },
-  statLine: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    gap: 10,
-    paddingVertical: 6,
-    borderBottomWidth: 1,
-    borderBottomColor: '#30313C',
-  },
-  statLabel: { flex: 1, color: '#D4D4DA', fontSize: 13, lineHeight: 18 },
-  statValue: { color: COLORS.white, fontFamily: PIXEL_FONT, fontSize: 9, lineHeight: 15 },
   hardItem: { color: COLORS.white, fontSize: 13, lineHeight: 19 },
   actionsRow: { flexDirection: 'row', gap: 8, flexWrap: 'wrap' },
-  // En fila, los botones se reparten el ancho (y bajan de línea en pantallas estrechas).
-  actionInRow: { flexGrow: 1, flexBasis: 120 },
-  stepper: { width: 56 },
-  stepperText: { fontSize: 16, lineHeight: 20 },
-  action: {
-    minHeight: 44,
-    minWidth: 44,
-    paddingHorizontal: 10,
-    borderRadius: 8,
-    borderWidth: 2,
-    borderColor: '#67686F',
-    backgroundColor: '#25262F',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  actionDanger: { borderColor: COLORS.orange, backgroundColor: '#3A1B0C' },
-  actionText: { color: COLORS.white, fontFamily: PIXEL_FONT, fontSize: 8, lineHeight: 14, textAlign: 'center' },
   notice: { color: '#7CE0A3', fontSize: 13, lineHeight: 18, fontWeight: '700' },
   hint: { color: '#A7A8B2', fontSize: 12, lineHeight: 17 },
   close: {

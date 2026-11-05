@@ -2,7 +2,7 @@ import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 import { GenerationId, PokemonCandidate } from '../data/pokemon';
 import { LocalGameState, PlayerId } from './engine';
-import { RoomServerError, interpretHealth } from './roomErrors';
+import { RoomServerError, interpretHealth, isRivalAbandonedResponse } from './roomErrors';
 import { ownReconnectDeadline } from './roomSession';
 
 export type RoomGameState = LocalGameState & {
@@ -23,7 +23,7 @@ type RoomRequest =
 
 type RoomResponse =
   | { type: 'state'; state: RoomGameState; player: PlayerId; sessionToken?: string }
-  | { type: 'error'; message: string };
+  | { type: 'error'; message: string; code?: string };
 
 type RoomSocket = WebSocket & {
   onopen: ((event: Event) => void) | null;
@@ -62,6 +62,18 @@ export class RoomConnectionCancelled extends Error {
     super('Conexión cancelada.');
     this.name = 'RoomConnectionCancelled';
   }
+}
+
+/** Al reconectar, el servidor dice que la sala terminó porque el rival abandonó: no tiene sentido reintentar. */
+export class RoomRivalAbandoned extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'RoomRivalAbandoned';
+  }
+}
+
+function serverError(message: { message: string; code?: string }): Error {
+  return isRivalAbandonedResponse(message) ? new RoomRivalAbandoned(message.message) : new Error(message.message);
 }
 
 class HttpNetworkError extends Error {
@@ -165,6 +177,7 @@ export class RoomClient {
   private readonly onState: (state: RoomGameState, player: PlayerId) => void;
   private readonly onError: (message: string) => void;
   private readonly onProgress?: (message: string) => void;
+  private readonly onRivalLeft?: (message: string) => void;
   private reconnectTimer: ReturnType<typeof setTimeout> | null = null;
   private reconnectDeadline = 0;
   private intentionalClose = false;
@@ -183,11 +196,14 @@ export class RoomClient {
     onState: (state: RoomGameState, player: PlayerId) => void,
     onError: (message: string) => void,
     onProgress?: (message: string) => void,
+    /** La reconexión automática encontró la sala terminada porque el rival abandonó (no se reintenta). */
+    onRivalLeft?: (message: string) => void,
   ) {
     this.transport = Platform.OS === 'web' ? 'websocket' : 'http';
     this.onState = onState;
     this.onError = onError;
     this.onProgress = onProgress;
+    this.onRivalLeft = onRivalLeft;
   }
 
   async connect(request: Extract<RoomRequest, { type: 'create' | 'join' }>) {
@@ -226,7 +242,8 @@ export class RoomClient {
     } catch {
       throw new HttpNetworkError();
     }
-    if (!response.ok || message.type === 'error') throw new Error(message.type === 'error' ? message.message : 'El servidor HTTPS rechazó la solicitud.');
+    if (message.type === 'error') throw serverError(message);
+    if (!response.ok) throw new Error('El servidor HTTPS rechazó la solicitud.');
     return message;
   }
 
@@ -371,7 +388,7 @@ export class RoomClient {
           clearTimeout(timeout);
           if (!settled) {
             settled = true;
-            reject(new Error(message.message));
+            reject(serverError(message));
           }
           this.onError(message.message);
           return;
@@ -489,6 +506,13 @@ export class RoomClient {
       this.onError('');
     } catch (cause) {
       if (cause instanceof RoomConnectionCancelled) return;
+      if (cause instanceof RoomRivalAbandoned) {
+        // La sala ya terminó: se deja de reintentar y se olvida la sesión guardada.
+        this.reconnectDeadline = 0;
+        if (this.roomCode) void clearSavedSession(this.roomCode);
+        this.onRivalLeft?.(cause.message);
+        return;
+      }
       this.onError('Se perdió la conexión. Intentando reconectar durante 1 minuto…');
       this.scheduleReconnect();
     }
