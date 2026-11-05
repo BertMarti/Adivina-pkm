@@ -23,6 +23,8 @@ import { GameScreen } from './src/screens/GameScreen';
 import { styles } from './src/ui/appStyles';
 import { SettingsProvider } from './src/settings/SettingsContext';
 import { SettingsModal, SettingsSection } from './src/ui/SettingsModal';
+import { DuelOutcome, duelRecordFromState } from './src/game/duelStats';
+import { recordDuelResult } from './src/game/duelStorage';
 
 // Qué hacer en cada fase; se anuncia a los lectores de pantalla al cambiar de pantalla.
 const PHASE_HINTS: Record<Screen, string> = {
@@ -177,10 +179,23 @@ function PokeQuienApp() {
     setError(`${cause instanceof Error && cause.message ? cause.message : fallback}${extra}`);
   };
 
+  // Estadísticas del Duelo: se guarda cada duelo terminado (o abandonado con la partida en juego) en este dispositivo.
+  // El registro evita duplicados (matchKey) si la app se recarga y vuelve a entrar en una sala ya terminada.
+  const recordDuel = (state: RoomGameState, me: PlayerId, outcome: DuelOutcome) => {
+    void recordDuelResult(duelRecordFromState(state, me, outcome));
+  };
+
   useEffect(() => {
     const phase = game?.phase ?? null;
-    if (phase === 'finished' && previousPhaseRef.current !== 'finished' && game?.winner && player) {
+    const previous = previousPhaseRef.current;
+    if (phase === 'finished' && previous !== 'finished' && game?.winner && player) {
       playSound(game.winner === player ? 'victory' : 'defeat');
+      recordDuel(game, player, game.winner === player ? 'win' : 'loss');
+    }
+    // La sala se cerró con la partida en juego: se fue el rival o te quedaste fuera tú (si pulsas SALIR, lo apunta
+    // leaveRoom; el matchKey evita contarlo dos veces).
+    if (phase === 'abandoned' && previous === 'playing' && game && player && game.abandonedPlayer) {
+      recordDuel(game, player, game.abandonedPlayer === player ? 'left' : 'rival-left');
     }
     previousPhaseRef.current = phase;
   }, [game?.phase, playSound]);
@@ -363,6 +378,8 @@ function PokeQuienApp() {
   };
 
   const leaveRoom = () => {
+    // Salir a mitad de partida cuenta como «Abandonaste» (no suma derrota).
+    if (gameRef.current?.phase === 'playing' && player) recordDuel(gameRef.current, player, 'left');
     roomClientRef.current?.close();
     roomClientRef.current = null;
     setRoomGame(null);
@@ -511,7 +528,7 @@ function PokeQuienApp() {
             onClose={() => setSettingsSection(null)}
             onTestSound={() => playSound('select', { sound: true })}
             onTestVibration={() => playSound('victory', { vibration: true })}
-            onStatsCleared={() => setHistoryRevision((value) => value + 1)}
+            onStatsChanged={() => setHistoryRevision((value) => value + 1)}
           />
           {/* Región viva: lectores de pantalla en web y Android anuncian cada cambio de fase. */}
           <Text accessibilityLiveRegion="polite" aria-live="polite" style={styles.srOnly}>
