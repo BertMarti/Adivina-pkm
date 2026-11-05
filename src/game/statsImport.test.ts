@@ -7,6 +7,7 @@ import { buildSoloStatsExport } from './singlePlayerStats';
 import type { SinglePlayerSessionRecord } from './singlePlayerStorage';
 import {
   buildStatsBackup,
+  byteLength,
   describeImportPlan,
   describeImportResult,
   describeParsedFile,
@@ -204,4 +205,47 @@ test('resumen del archivo revisado', () => {
   const file: ParsedStatsFile = { kind: 'backup', exportedAt: '2026-11-01T12:00:00.000Z', solo: [session('a', '2026-11-01T00:00:00.000Z')], duel: [] };
   assert.match(describeParsedFile(file), /^Archivo válido: 1 partida del Solitario y 0 duelos \(exportado el \d\d\/11\/2026\)\.$/);
   assert.equal(describeParsedFile({ ...file, exportedAt: null, solo: null }), 'Archivo válido: 0 duelos.');
+});
+
+test('los bytes se cuentan en UTF-8 de verdad (sin TextEncoder)', () => {
+  for (const text of ['abc', 'ñandú', 'PokéQuién ⚔️', '😀x', '\ud800suelto']) {
+    assert.equal(byteLength(text), Buffer.byteLength(text, 'utf8'), text);
+  }
+});
+
+test('las exportaciones más grandes posibles caben y se importan (5000 partidas + 2000 duelos)', () => {
+  const sessions = Array.from({ length: 5000 }, (_, index) =>
+    session(`solo-${index.toString(36)}-abcdefgh`, new Date(Date.UTC(2026, 0, 1) + index * 60_000).toISOString(), {
+      selectedPokemonId: (index % 1025) + 1,
+      guessedPokemonId: (index % 1025) + 1,
+      rejectedGuessIds: [4, 7, 150],
+      questionsAsked: 30,
+    }),
+  );
+  const duels = Array.from({ length: 2000 }, (_, index) =>
+    duel(`duel-${index.toString(36)}-abcdefgh`, new Date(Date.UTC(2026, 0, 1) + index * 60_000).toISOString(), { matchKey: `ABCD2345-${index.toString(36)}` }),
+  );
+  const nameOf = () => 'Fletchinder';
+  const backup = JSON.stringify(buildStatsBackup(buildSoloStatsExport(sessions, nameOf, NOW), buildDuelStatsExport(duels, nameOf, NOW), NOW));
+  assert.ok(byteLength(backup) < MAX_IMPORT_BYTES, `la copia completa ocupa ${byteLength(backup)} bytes`);
+  const file = fileOf(parseStatsFile(backup));
+  assert.equal(file.solo?.length, 5000);
+  assert.equal(file.duel?.length, 2000);
+  // DESCARGAR JSON del Solitario va con sangría (para leerlo): también cabe.
+  const indented = JSON.stringify(buildSoloStatsExport(sessions, nameOf, NOW), null, 2);
+  assert.ok(byteLength(indented) < MAX_IMPORT_BYTES, `el JSON del Solitario ocupa ${byteLength(indented)} bytes`);
+  assert.equal(fileOf(parseStatsFile(indented)).solo?.length, 5000);
+});
+
+test('reimportar el mismo origen en v1 y luego en v2 no duplica partidas', () => {
+  const original = session('s1', '2026-10-31T09:00:00.000Z', { result: 'rejected', questionsAsked: 12 });
+  const v2 = fileOf(parseStatsFile(soloJson([original])));
+  const asV1 = JSON.parse(soloJson([original]));
+  asV1.formatVersion = 1;
+  for (const game of asV1.games) for (const key of ['sessionId', 'result', 'maxQuestions', 'guessedPokemonId', 'rejectedGuessIds']) delete game[key];
+  const v1 = fileOf(parseStatsFile(JSON.stringify(asV1)));
+  assert.notEqual(v1.solo?.[0]?.sessionId, v2.solo?.[0]?.sessionId);
+  const afterV1 = planImport({ solo: [], duel: [] }, v1, 'merge');
+  const afterV2 = planImport({ solo: afterV1.solo?.next ?? [], duel: [] }, v2, 'merge');
+  assert.deepEqual([afterV2.solo?.added, afterV2.solo?.duplicates, afterV2.solo?.next.length], [0, 1, 1]);
 });

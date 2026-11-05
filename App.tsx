@@ -141,6 +141,20 @@ function PokeQuienApp() {
         (message) => {
           if (roomClientRef.current === client) setProgress(message);
         },
+        (message) => {
+          // Al volver tras un corte, la sala ya había terminado porque el rival se fue: se apunta así (no como
+          // «Abandonaste») y se cierra el cliente en el acto, sin esperar al plazo de reconexión.
+          if (roomClientRef.current !== client) return;
+          if (gameRef.current?.phase === 'playing' && client.playerId) recordDuel(gameRef.current, client.playerId, 'rival-left');
+          client.close({ forgetSession: true });
+          roomClientRef.current = null;
+          setRoomGame(null);
+          setPlayer(null);
+          if (screenRef.current !== 'single-player') showScreen('home');
+          setErrorSlot('top');
+          setError(`${message} Crea otra sala o juega al Solitario.`);
+          setOfferSolo(true);
+        },
       );
       roomClientRef.current = client;
     }

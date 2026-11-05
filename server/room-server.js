@@ -138,8 +138,9 @@ function createRoomServer(options = {}) {
     }
     if (socket.readyState === socket.OPEN) socket.send(JSON.stringify(message));
   }
-  function error(socket, message) {
-    send(socket, { type: 'error', message });
+  // `code` (opcional) es estable para los clientes; el texto puede cambiar. Los clientes antiguos lo ignoran.
+  function error(socket, message, code) {
+    send(socket, code ? { type: 'error', message, code } : { type: 'error', message });
   }
   function publicState(room, player) {
     return {
@@ -272,7 +273,7 @@ function createRoomServer(options = {}) {
     const playerId = message.player;
     const room = rooms.get(roomCode);
     if (!room || !isPlayerId(playerId)) return error(socket, 'No se puede recuperar esa sala.');
-    if (room.phase === 'abandoned') return error(socket, 'La partida terminó porque el rival abandonó.');
+    if (room.phase === 'abandoned') return error(socket, 'La partida terminó porque el rival abandonó.', 'rival-abandoned');
     const player = room.players[playerId];
     if (
       typeof message.sessionToken !== 'string' ||

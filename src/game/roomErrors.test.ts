@@ -5,8 +5,10 @@ import {
   RoomServerError,
   describeServerProblem,
   interpretHealth,
+  isRivalAbandonedResponse,
   isRoomServerError,
   normalizeRoomCodeInput,
+  RIVAL_ABANDONED_MESSAGE,
   roomCodeFromUrl,
   validateRoomCode,
 } from './roomErrors';
@@ -67,4 +69,11 @@ test('interpretHealth sigue el contrato de GET /', () => {
   assert.equal(interpretHealth(null), 'unknown');
   assert.equal(interpretHealth([]), 'unknown');
   assert.equal(interpretHealth({ ok: false }), 'unknown');
+});
+
+test('reconoce «el rival abandonó» por el código nuevo y por el texto del servidor antiguo', () => {
+  assert.equal(isRivalAbandonedResponse({ message: 'otra cosa', code: 'rival-abandoned' }), true);
+  assert.equal(isRivalAbandonedResponse({ message: RIVAL_ABANDONED_MESSAGE }), true);
+  assert.equal(isRivalAbandonedResponse({ message: 'No se puede recuperar esa sala.' }), false);
+  assert.equal(isRivalAbandonedResponse({ message: 'La sesión de jugador no es válida.', code: 'otro' }), false);
 });

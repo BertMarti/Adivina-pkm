@@ -23,7 +23,7 @@ Android, iOS) con dos modos: **Duelo** (2 jugadores, servidor de salas Node + We
 | `src/ui/SettingsModal.tsx` | Ventana de Ajustes: sonido, vibración, tachado visible (modo daltónico), estadísticas del Solitario y del Duelo e importar |
 | `src/game/singlePlayerStats.ts` | Estadísticas del Solitario (puras) a partir del historial y exportación CSV/JSON (versión 2) |
 | `src/game/duelStats.ts`, `src/game/duelStorage.ts` | Estadísticas del Duelo (puras: registro, validación, por generación, CSV/JSON) y su registro local `adivina-pkm:duel-log:v1` |
-| `src/game/statsImport.ts`, `src/game/statsImportStorage.ts` | Importar estadísticas: parseo y validación estricta (puro), plan de fusión/reemplazo y escritura todo o nada |
+| `src/game/statsImport.ts`, `src/game/statsImportApply.ts`, `src/game/statsImportStorage.ts` | Importar estadísticas: parseo y validación estricta y plan de fusión/reemplazo (puro), escritura todo o nada con almacenamiento inyectado (puro) y su envoltorio con AsyncStorage y colas |
 | `src/ui/DuelStatsSection.tsx`, `src/ui/ImportStatsSection.tsx`, `src/ui/settingsControls.tsx`, `src/ui/webFiles.ts` | Secciones de Ajustes del Duelo e importar, botones comunes y descarga/elección de archivos en la web |
 | `src/game/roomNavigation.ts` | Códigos de sala, enlace de invitación y pantalla según el estado |
 | `src/game/engine.ts` | Motor puro del Duelo (+ `engine.test.ts`) |

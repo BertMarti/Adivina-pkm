@@ -73,3 +73,14 @@ export function interpretHealth(json: unknown): 'ok' | 'origin-rejected' | 'unkn
   if (body.ok === true) return 'ok';
   return 'unknown';
 }
+
+/** Texto con el que el servidor de salas (también el desplegado antes de la 1.2.0) dice que la sala ya terminó. */
+export const RIVAL_ABANDONED_MESSAGE = 'La partida terminó porque el rival abandonó.';
+
+/**
+ * ¿El servidor dice que la partida terminó porque el rival abandonó? Desde la 1.2.0 el servidor añade
+ * `code: 'rival-abandoned'`; el de Render puede ser anterior y solo manda el texto, así que se aceptan los dos.
+ */
+export function isRivalAbandonedResponse(message: { message?: unknown; code?: unknown }): boolean {
+  return message.code === 'rival-abandoned' || message.message === RIVAL_ABANDONED_MESSAGE;
+}

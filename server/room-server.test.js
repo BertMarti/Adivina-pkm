@@ -334,6 +334,31 @@ test('reconexión: el token incorrecto falla y el correcto recupera la sala', as
   assert.equal(state.state.roomCode, roomCode);
 });
 
+test('reconexión a una sala abandonada: error con código estable rival-abandoned', async (t) => {
+  const { port, tracker } = await startServer(t, { reconnectGraceMs: 100 });
+  const roomCode = 'ABAN2345';
+  const p1 = await tracker.open(port);
+  p1.send({ type: 'create', roomCode, generation: 'all', board: makeBoard() });
+  const created = await p1.nextMessage();
+  const p2 = await tracker.open(port);
+  p2.send({ type: 'join', roomCode });
+  await p2.nextMessage();
+  await p1.nextMessage();
+  p2.ws.close();
+  await p2.nextClose();
+  await sleep(250);
+  p1.ws.close();
+  await p1.nextClose();
+  const again = await tracker.open(port);
+  again.send({ type: 'reconnect', roomCode, player: 'p1', sessionToken: created.sessionToken });
+  let reply = await again.nextMessage();
+  while (reply.type !== 'error') reply = await again.nextMessage();
+  assert.equal(reply.code, 'rival-abandoned');
+  // El texto se mantiene: los clientes de la 1.2.0 y anteriores lo reconocen así.
+  assert.equal(reply.message, 'La partida terminó porque el rival abandonó.');
+  again.terminate();
+});
+
 test('cierra con 1008 al superar el límite de mensajes por ventana', async (t) => {
   const { port, tracker } = await startServer(t, { maxMessagesPerWindow: 3 });
   const client = await tracker.open(port);

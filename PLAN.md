@@ -78,6 +78,12 @@ Actualizado el 02/11/2026 (versión 1.2.0). Prioridad de arriba abajo.
    una desconexión; un mensaje `leave` permitiría cerrar la partida al momento.
 8. **APK de Android 1.2.0**: generarla con EAS (`docs/RELEASE_0_1_GRATUITA.md`) cuando se resuelva el punto 2.
 
+### Decisiones conocidas de la 1.2.0 (no son fallos)
+
+- Una revancha idéntica en la misma sala (mismos secretos, ganador y descartes) se cuenta una sola vez: el `matchKey`
+  no la distingue de volver a una sala terminada.
+- Salir con SALIR a mitad de partida («Abandonaste») no corta la racha de victorias, igual que «El rival se fue».
+
 ## 💡 Ideas
 
 - Almacenamiento efímero gratuito (p. ej. Redis/Upstash free) para que las salas sobrevivan a un reinicio.

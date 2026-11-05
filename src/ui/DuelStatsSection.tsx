@@ -3,7 +3,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Platform, Share, StyleSheet, Text, View } from 'react-native';
 
 import { clearDuelLog } from '../game/duelStorage';
-import { buildDuelStatsExport, computeDuelStats, duelRecordsToCsv, DuelRecord } from '../game/duelStats';
+import { buildDuelStatsExport, computeDuelStats, duelRecordsToCsv } from '../game/duelStats';
+import type { DuelRecord } from '../game/duelStats';
 import { statsFileName } from '../game/singlePlayerStats';
 import { ActionButton, StatLine } from './settingsControls';
 import { COLORS, PIXEL_FONT } from './theme';

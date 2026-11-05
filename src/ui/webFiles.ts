@@ -1,3 +1,6 @@
+// Archivos en la web: descargar un texto (Blob + enlace) y elegir un JSON para importarlo.
+import { IMPORT_ERRORS } from '../game/statsImport';
+
 export function downloadOnWeb(fileName: string, content: string, mime: string): boolean {
   if (typeof document === 'undefined' || typeof URL === 'undefined' || typeof Blob === 'undefined') return false;
   const url = URL.createObjectURL(new Blob([content], { type: `${mime};charset=utf-8` }));
@@ -37,7 +40,7 @@ export function pickTextFileOnWeb(
       if (file.size > maxBytes)
         return finish({
           ok: false,
-          error: 'El archivo es demasiado grande (más de 2 MB). Usa un JSON exportado desde PokéQuién.',
+          error: IMPORT_ERRORS.tooBig,
         });
       void file
         .text()

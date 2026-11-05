@@ -91,11 +91,8 @@ export function ImportStatsSection({ sessions, duels, nameOf, onImported }: Prop
   const exportAll = async () => {
     if (loading || nothingToExport) return;
     const fileName = statsFileName('json', new Date(), 'todo');
-    const content = JSON.stringify(
-      buildStatsBackup(buildSoloStatsExport(sessions, nameOf), buildDuelStatsExport(duels, nameOf)),
-      null,
-      2,
-    );
+    // Sin sangría: es para otra copia de PokéQuién, no para leerlo, y ocupa bastante menos.
+    const content = JSON.stringify(buildStatsBackup(buildSoloStatsExport(sessions, nameOf), buildDuelStatsExport(duels, nameOf)));
     setError('');
     try {
       if (Platform.OS === 'web') {

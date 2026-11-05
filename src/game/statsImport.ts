@@ -9,7 +9,9 @@ import type { SinglePlayerSessionRecord, SinglePlayerStoredResult } from './sing
 import { duelRecordProblem, sanitizeDuelRecord, shortHash } from './duelStats';
 import type { DuelRecord, DuelStatsExport } from './duelStats';
 
-export const MAX_IMPORT_BYTES = 2_000_000;
+// 8 MB: cabe con holgura una copia completa (5000 partidas del Solitario + 2000 duelos ≈ 2,3 MB) y un historial
+// COPIAR JSON largo, que trae las preguntas de cada partida.
+export const MAX_IMPORT_BYTES = 8_000_000;
 export const MAX_IMPORT_SOLO = 5000; // igual que el historial del Solitario (MAX_STORED_SESSIONS)
 export const MAX_IMPORT_DUEL = 2000; // igual que MAX_DUEL_RECORDS
 const MAX_QUESTIONS = 200;
@@ -21,7 +23,7 @@ const DUEL_STATS_FORMAT = 'adivina-pkm-duel-stats';
 
 export const IMPORT_ERRORS = {
   empty: 'El archivo está vacío.',
-  tooBig: 'El archivo es demasiado grande (más de 2 MB). Usa un JSON exportado desde PokéQuién.',
+  tooBig: 'El archivo es demasiado grande (más de 8 MB). Si es un historial muy largo del Solitario, usa EXPORTAR TODO (JSON), que ocupa mucho menos.',
   notJson: 'No es un JSON válido. Puede que el archivo esté incompleto o no sea una exportación de PokéQuién.',
   foreign: 'Este JSON no es una exportación de estadísticas de PokéQuién. Usa EXPORTAR TODO (JSON) o DESCARGAR JSON en Ajustes.',
   badVersion: 'El archivo no indica una versión válida.',
@@ -110,6 +112,16 @@ function readList(root: Record<string, unknown>, name: 'games' | 'sessions', max
 
 function badGame(index: number, label: string, reason: string): Readonly<{ ok: false; error: string }> {
   return { ok: false, error: `La partida n.º ${index + 1} ${label} no es válida (${reason}). No se ha importado nada.` };
+}
+
+/**
+ * Clave de contenido de una partida del Solitario: inicio, catálogo, Pokémon, resultado (resumido como en las
+ * estadísticas, porque la exportación v1 solo guardaba el resumen) y preguntas. Así, importar el mismo origen en v1
+ * y luego en v2 (ids distintos) no duplica la partida.
+ */
+export function soloContentKey(session: SinglePlayerSessionRecord): string {
+  const outcome = session.result === 'in-progress' ? 'abandoned' : outcomeOf(session.result);
+  return [session.startedAt, session.catalogId, session.selectedPokemonId ?? '', outcome, session.questionsAsked].join('|');
 }
 
 /** Una partida importada sin terminar no se puede continuar aquí: cuenta como abandonada. */
@@ -250,7 +262,7 @@ function finish(kind: StatsFileKind, root: Record<string, unknown>, solo: Single
     file: {
       kind,
       exportedAt: isDate(root.exportedAt) ? root.exportedAt : null,
-      solo: solo === null ? null : firstOfEach(solo, [(session) => session.sessionId]),
+      solo: solo === null ? null : firstOfEach(solo, [(session) => session.sessionId, soloContentKey]),
       duel: duel === null ? null : firstOfEach(duel, [(record) => record.id, (record) => record.matchKey]),
     },
   };
@@ -287,10 +299,23 @@ function parseRoot(root: Record<string, unknown>): ParseResult {
   return { ok: false, error: IMPORT_ERRORS.foreign };
 }
 
-/** Tamaño en bytes UTF-8 (lo que mide el límite de 2 MB, igual que el tamaño del archivo). */
+/** Tamaño en bytes UTF-8 (lo que mide el límite, igual que el tamaño del archivo). */
 export function byteLength(text: string): number {
-  if (text.length > MAX_IMPORT_BYTES) return text.length; // ya es demasiado grande: no hace falta codificar
-  return typeof TextEncoder === 'undefined' ? text.length * 3 : new TextEncoder().encode(text).length;
+  if (text.length > MAX_IMPORT_BYTES) return text.length; // ya es demasiado grande: no hace falta contar
+  let bytes = 0;
+  for (let index = 0; index < text.length; index += 1) {
+    const code = text.charCodeAt(index);
+    if (code < 0x80) bytes += 1;
+    else if (code < 0x800) bytes += 2;
+    else if (code >= 0xd800 && code <= 0xdbff && index + 1 < text.length) {
+      const next = text.charCodeAt(index + 1);
+      if (next >= 0xdc00 && next <= 0xdfff) {
+        bytes += 4; // par sustituto: un carácter de 4 bytes
+        index += 1;
+      } else bytes += 3;
+    } else bytes += 3;
+  }
+  return bytes;
 }
 
 /** Lee y valida el texto de un JSON de estadísticas. Nunca lanza: los errores vuelven en español, listos para mostrar. */
@@ -374,7 +399,7 @@ export function planImport(
     mode,
     solo: file.solo === null
       ? null
-      : planSection(current.solo, file.solo, mode, MAX_IMPORT_SOLO, (session) => session.startedAt, [(session) => session.sessionId]),
+      : planSection(current.solo, file.solo, mode, MAX_IMPORT_SOLO, (session) => session.startedAt, [(session) => session.sessionId, soloContentKey]),
     duel: file.duel === null
       ? null
       : planSection(current.duel, file.duel, mode, MAX_IMPORT_DUEL, (record) => record.finishedAt, [(record) => record.id, (record) => record.matchKey]),

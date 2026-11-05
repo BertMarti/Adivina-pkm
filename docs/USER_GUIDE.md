@@ -97,7 +97,7 @@ En la pantalla de elegir Pokémon, pulsa **VER ESTADÍSTICAS** para abrir direct
 1. En el dispositivo antiguo, abre **AJUSTES** y pulsa **EXPORTAR TODO (JSON)**. En la app del móvil aparece **COMPARTIR TODO (JSON)**.
 2. En el dispositivo nuevo, en la web pulsa **ELEGIR ARCHIVO JSON** o pega el contenido en el cuadro de texto. En la app del móvil, pega el contenido (por ejemplo, el texto que te enviaste con **COMPARTIR TODO (JSON)**).
 3. También puedes usar un **DESCARGAR JSON** del Solitario, incluso de la versión 1.1, un **COPIAR JSON** del historial del Solitario o un **DESCARGAR JSON** del Duelo.
-4. Pulsa **REVISAR JSON**. El archivo no puede superar 2 MB.
+4. Pulsa **REVISAR JSON**. El archivo no puede superar 8 MB (una copia completa de EXPORTAR TODO cabe de sobra; si un historial del Solitario muy largo no cabe, usa EXPORTAR TODO).
 5. Si es válido, verás «Archivo válido: …». Pulsa **AÑADIR A LAS MÍAS** para fusionar y añadir solo las partidas que faltan, o **REEMPLAZAR LAS MÍAS** para borrar lo de este dispositivo en las secciones que trae el archivo.
 6. Antes de reemplazar aparece «ATENCIÓN: REEMPLAZAR BORRA LO QUE HAY». Pulsa **CONFIRMAR** o **CONFIRMAR REEMPLAZO**. Para volver atrás, pulsa **VOLVER**.
 7. Se comprueba todo antes de importar. Si el archivo está roto, es de otra app, es de una versión más nueva o tiene una partida mal, aparece «ERROR: …» y no cambia nada. Una partida del Solitario sin terminar se importa como abandonada.

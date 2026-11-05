@@ -11,7 +11,7 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 - Solitario: 100 % local, funciona en la web sin servidor.
 - Duelo: servidor de salas en Render (plan gratuito, salas en memoria). La web de Pages conecta por WSS si
   `ROOM_SERVER_ALLOWED_ORIGINS` incluye `https://bertmarti.github.io` en Render.
-- Pruebas: 22 del servidor + 72 de la app (`npm test`), verificación del Solitario, prueba de humo de la
+- Pruebas: 23 del servidor + 80 de la app (`npm test`), verificación del Solitario, prueba de humo de la
   web (`npm run test:web`) y CI en cada PR.
 
 ## Decisiones y por qué
@@ -55,6 +55,12 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 | 02/11/2026 | «El rival se fue» y «Abandonaste» no cuentan como victoria/derrota ni cortan la racha | Una desconexión no es una partida jugada; así las estadísticas no castigan cortes de red. Salir con SALIR a mitad de partida cuenta como «Abandonaste». |
 | 02/11/2026 | Importar: validación estricta (una partida mala rechaza el archivo) y escritura todo o nada con restauración | «Nunca romper las estadísticas existentes»: se comprueba todo antes de escribir, se escribe dentro de las colas de escritura del Solitario y del Duelo, y si falla una escritura se restauran los dos valores previos. |
 | 02/11/2026 | JSON del Solitario versión 2 (sessionId, result, propuestas) | La versión 1 no permitía importar sin perder datos; la v1 se sigue aceptando con un id derivado (importar dos veces no duplica). |
+| 05/11/2026 | Límite de importación 8 MB y EXPORTAR TODO/COPIAR JSON sin sangría (revisión de Fable) | Con 2 MB no cabían las propias exportaciones (copia completa máxima ≈ 2,3 MB; COPIAR JSON con ~400 partidas ≈ 2,2 MB con sangría). DESCARGAR JSON sigue con sangría (5000 partidas caben). |
+| 05/11/2026 | Error de reconexión `rival-abandoned` (código y texto) | El servidor de Render no se redespliega: el cliente reconoce el código nuevo y también el texto antiguo «La partida terminó porque el rival abandonó.», deja de reintentar y apunta «El rival se fue». |
+| 05/11/2026 | Importar aborta si lo guardado no se puede leer | La lectura tolerante daba [] y la fusión actuaba como reemplazo. La lógica todo o nada está en `statsImportApply.ts` con el almacenamiento inyectado (se prueba con un AsyncStorage falso). |
+| 05/11/2026 | Solitario deduplicado también por contenido (inicio, catálogo, Pokémon, resultado resumido, preguntas) | Una v1 no trae `sessionId`: sin esto, importar v1 y luego v2 del mismo origen duplicaba. Se usa el resultado resumido porque la v1 solo guardaba ese. |
+| 05/11/2026 | Decisión conocida: una revancha idéntica en la misma sala (mismos secretos, ganador y descartes) se cuenta una vez | El `matchKey` no puede distinguirla de una reconexión a la sala terminada; es rarísimo y se prefiere no duplicar. |
+| 05/11/2026 | Decisión conocida: SALIR a mitad de partida («Abandonaste») no corta la racha de victorias | Igual que «El rival se fue»: un duelo sin terminar no suma ni resta. |
 | 02/11/2026 | En el móvil se importa pegando el texto | No hay `expo-document-picker` y no se añade una dependencia nativa solo para esto; en el móvil se exporta compartiendo texto, así que pegar es simétrico. En la web, además, ELEGIR ARCHIVO JSON. |
 
 ## Trampas conocidas
