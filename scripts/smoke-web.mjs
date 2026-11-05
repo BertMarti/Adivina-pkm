@@ -236,6 +236,52 @@ async function main() {
   await clickText(socket, 'CERRAR');
   if (consoleErrors.some((error) => !normalise(error).includes('NOTALLOWEDERROR'))) throw new Error('errores de consola');
   console.log('✔ paso e2: Ajustes guardados (modo daltónico) y estadísticas exportadas en CSV');
+  currentStep = 'e3';
+  // Estadísticas del Duelo e importación: un JSON roto no toca nada; uno válido se fusiona (con confirmación),
+  // aparece por generación y se exporta en CSV; reemplazar avisa antes. El Solitario no cambia en ningún momento.
+  await clickText(socket, 'AJUSTES');
+  await waitFor(socket, `(document.body.innerText || '').includes('ESTADÍSTICAS DEL DUELO') && (document.body.innerText || '').includes('Aún no hay duelos terminados')`, 'estadísticas del Duelo vacías');
+  const soloBefore = await evaluate(socket, `localStorage.getItem('adivina-pkm:single-player-log:v1')`);
+  const importBox = `document.querySelector('textarea[aria-label="Contenido JSON para importar"]')`;
+  const paste = (text) => evaluate(socket, `(() => { const box = ${importBox}; const setter = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set; setter.call(box, ${JSON.stringify(text)}); box.dispatchEvent(new Event('input', { bubbles: true })); return true; })()`);
+  const clickLabel = async (label) => {
+    const button = `document.querySelector('[role="button"][aria-label="${label}"]')`;
+    await waitFor(socket, `!!${button} && ${button}.getAttribute('aria-disabled') !== 'true'`, `botón «${label}» disponible`);
+    await evaluate(socket, `${button}.click()`);
+  };
+  await waitFor(socket, `!!${importBox}`, 'cuadro para pegar el JSON');
+  await paste('{"format":');
+  await clickLabel('Revisar el JSON pegado antes de importar');
+  await waitFor(socket, `[...document.querySelectorAll('[role="alert"]')].some((node) => (node.innerText || '').includes('ERROR: No es un JSON válido'))`, 'error de JSON roto');
+  const duelGame = (id, generation, outcome, finishedAt) => ({ id, matchKey: `HUMO2345-${id}`, finishedAt, generation, boardSize: 24, outcome, mySecretId: 25, rivalSecretId: 4, crossedCount: 20 });
+  const duelFile = JSON.stringify({ format: 'adivina-pkm-duel-stats', formatVersion: 1, exportedAt: '2026-11-01T10:00:00.000Z', games: [duelGame('d1', 1, 'win', '2026-11-01T09:00:00.000Z'), duelGame('d2', 2, 'loss', '2026-11-01T09:30:00.000Z')] });
+  await paste(duelFile);
+  await clickLabel('Revisar el JSON pegado antes de importar');
+  await waitFor(socket, `(document.body.innerText || '').includes('Archivo válido: 2 duelos')`, 'revisión del JSON válido');
+  if (await evaluate(socket, `localStorage.getItem('adivina-pkm:duel-log:v1') !== null`)) throw new Error('se ha guardado algo antes de confirmar');
+  await clickLabel('Fusionar: añadir las partidas del archivo a las de este dispositivo');
+  await waitFor(socket, `(document.body.innerText || '').includes('Se añadirán 2 duelos')`, 'confirmación de la fusión');
+  await clickLabel('Confirmar fusión');
+  await waitFor(socket, `(document.body.innerText || '').includes('Importación hecha. Se han añadido: 2 duelos.')`, 'importación hecha');
+  await waitFor(socket, `(() => { try { return JSON.parse(localStorage.getItem('adivina-pkm:duel-log:v1') || '[]').length === 2; } catch { return false; } })()`, 'duelos guardados');
+  await waitFor(socket, `!!document.querySelector('[aria-label="1ª · Kanto: 1 duelo, 1 victoria y 0 derrotas"]') && !!document.querySelector('[aria-label="2ª · Johto: 1 duelo, 0 victorias y 1 derrota"]')`, 'duelos por generación con nombre accesible');
+  await waitFor(socket, `!!document.querySelector('[aria-label="Victorias: 1 (50 %)"]')`, 'resumen del Duelo');
+  await evaluate(socket, `(() => { const original = URL.createObjectURL.bind(URL); window.__smokeBlobs = []; URL.createObjectURL = (blob) => { window.__smokeBlobs.push(blob); return original(blob); }; return true; })()`);
+  await clickLabel('Descargar los duelos en CSV (hoja de cálculo)');
+  await waitFor(socket, `window.__smokeBlobs.length > 0`, 'exportación CSV del Duelo');
+  const duelCsv = await evaluate(socket, `window.__smokeBlobs[0].text()`);
+  if (!duelCsv.startsWith('fecha;generacion;tablero;resultado;tu_pokemon_id;tu_pokemon;pokemon_rival_id;pokemon_rival;descartes\r\n') || !duelCsv.includes('1ª · Kanto;24;Victoria;25;Pikachu;4;Charmander;20')) throw new Error(`el CSV del Duelo no es el esperado: ${duelCsv.slice(0, 240)}`);
+  await paste(duelFile);
+  await clickLabel('Revisar el JSON pegado antes de importar');
+  await waitFor(socket, `(document.body.innerText || '').includes('Archivo válido: 2 duelos')`, 'segunda revisión');
+  await clickLabel('Reemplazar las estadísticas de este dispositivo por las del archivo');
+  await waitFor(socket, `(document.body.innerText || '').includes('ATENCIÓN: REEMPLAZAR BORRA LO QUE HAY') && (document.body.innerText || '').includes('Se borrarán 2 duelos de este dispositivo')`, 'aviso de reemplazo');
+  await clickLabel('Volver a elegir entre añadir y reemplazar');
+  await clickText(socket, 'CANCELAR');
+  if (await evaluate(socket, `localStorage.getItem('adivina-pkm:single-player-log:v1')`) !== soloBefore) throw new Error('importar duelos ha cambiado el historial del Solitario');
+  await clickText(socket, 'CERRAR');
+  if (consoleErrors.some((error) => !normalise(error).includes('NOTALLOWEDERROR'))) throw new Error('errores de consola');
+  console.log('✔ paso e3: estadísticas del Duelo importadas (JSON roto rechazado, fusión confirmada, CSV) sin tocar el Solitario');
   currentStep = 'f';
   // Duelo con el servidor dormido: el enlace de invitación intenta entrar, avisa y se puede CANCELAR sin esperar.
   await socket.command('Page.navigate', { url: `http://127.0.0.1:${port}${prefix}?room=K7XQ2MPA` });

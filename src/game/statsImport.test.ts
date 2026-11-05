@@ -151,7 +151,7 @@ test('fusionar añade solo lo nuevo, en orden cronológico, y respeta el límite
     describeImportPlan(plan),
     'Se añadirá 1 partida del Solitario (1 ya estaba). 2 duelos del archivo ya estaban. Lo que ya tienes se conserva.',
   );
-  assert.equal(describeImportResult(plan), 'Importación hecha: añadidas 1 partida del Solitario.');
+  assert.equal(describeImportResult(plan), 'Importación hecha. Se han añadido: 1 partida del Solitario.');
 
   const many = Array.from({ length: 2000 }, (_, index) => duel(`n${index}`, `2026-11-04T00:00:${String(index % 60).padStart(2, '0')}.000Z`));
   const limited = planImport(current, { kind: 'duel-stats', exportedAt: null, solo: null, duel: many }, 'merge');

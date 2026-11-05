@@ -417,10 +417,10 @@ export function describeImportResult(plan: ImportPlan): string {
   const sections = sectionsOf(plan);
   if (plan.mode === 'merge') {
     const adding = sections.filter((section) => section.plan.added > 0);
-    if (adding.length === 0) return 'Importación hecha: no había nada nuevo.';
-    return `Importación hecha: añadidas ${joinParts(adding.map(({ name, plan: section }) => countLabel(section.added, name)))}.`;
+    if (adding.length === 0) return 'Importación hecha. No había nada nuevo.';
+    return `Importación hecha. Se han añadido: ${joinParts(adding.map(({ name, plan: section }) => countLabel(section.added, name)))}.`;
   }
-  return `Importación hecha: ahora tienes ${joinParts(sections.map(({ name, plan: section }) => countLabel(section.next.length, name)))} del archivo.`;
+  return `Importación hecha. Ahora tienes ${joinParts(sections.map(({ name, plan: section }) => countLabel(section.next.length, name)))} del archivo.`;
 }
 
 function localDate(iso: string): string {
