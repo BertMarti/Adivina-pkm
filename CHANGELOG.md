@@ -10,6 +10,42 @@ El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1
 
 > Cambios pendientes de incluir en la próxima versión.
 
+## [1.2.0] - 2026-11-02
+
+Tus **duelos también cuentan**, y tus estadísticas te acompañan a otro dispositivo.
+
+### ✨ Añadido
+
+- **Estadísticas del Duelo** (contra un amigo) en Ajustes, debajo de las del Solitario (contra la máquina): duelos
+  terminados, victorias y derrotas con porcentaje, mejor racha y un desglose **por generación** («3 V · 1 D» y una
+  barra de victorias decorativa; el lector de pantalla lo lee en palabras). «El rival se fue» y «Abandonaste» se
+  cuentan aparte, sin sumar victoria ni derrota. Se apuntan solas al terminar cada duelo, sin duplicados si la app se
+  recarga y vuelve a la sala, y se exportan en **CSV** o **JSON** (compartir en el móvil) o se borran con doble pulsación.
+- **Importar estadísticas** de otro dispositivo: EXPORTAR TODO (JSON) en uno y, en el otro, ELEGIR ARCHIVO JSON (web)
+  o pegar el contenido y REVISAR JSON. Valen también los JSON del Solitario (incluidos los de la 1.1), el COPIAR JSON
+  del historial y el JSON del Duelo. Se elige **AÑADIR A LAS MÍAS** (fusión, sin repetir partidas) o **REEMPLAZAR LAS
+  MÍAS** (con aviso), siempre con confirmación.
+- Validación estricta: tamaño (2 MB), formato, versión y cada partida; si una sola no cuadra, no se importa nada y el
+  error dice cuál y por qué. La escritura es todo o nada: si falla, se restauran las estadísticas anteriores.
+
+### 🔧 Cambiado
+
+- El JSON de las estadísticas del Solitario pasa a la versión 2 (añade el id de la partida, el resultado guardado y
+  las propuestas rechazadas) para poder importarlo sin perder nada. Los de la versión 1 se siguen importando.
+- React y React DOM 19.3.1 (PR #17 de Dependabot); el SDK 58 fija 19.3.0, así que se excluyen de `expo install --check`.
+
+### 🔒 Seguridad
+
+- `glob` 14.0.3 y `minimatch` 11.0.4 con `overrides` (GHSA-3g3m-2fjr-6pw4 y GHSA-g3hv-75wg-m249, moderadas), solo en
+  las herramientas de Expo. `npm audit`: 0 avisos (antes, 11 moderados).
+- Lo importado se trata como hostil (origen compartido de GitHub Pages): objetos planos comprobados, construidos campo a
+  campo y con todos los tamaños acotados.
+
+### 🧪 Pruebas
+
+- 22 pruebas del servidor y 70 de la app (antes 49): estadísticas del Duelo e importación (errores, versiones, round-trip
+  de cada exportación, fusión, reemplazo, límites y prototipos). Paso e3 nuevo en la prueba de humo.
+
 ## [1.1.0] - 2026-10-31
 
 Llegan los **Ajustes**: el juego se adapta a ti (sonido, vibración, daltonismo) y el Solitario te enseña tus números.

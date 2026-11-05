@@ -20,8 +20,11 @@ Android, iOS) con dos modos: **Duelo** (2 jugadores, servidor de salas Node + We
 | `src/ui/components.tsx`, `src/ui/appStyles.ts`, `src/ui/theme.ts` | Piezas comunes, estilos del Duelo, paleta y `PIXEL_FONT` |
 | `src/hooks/` | `useReduceMotion` y `useGameSounds` (respeta los Ajustes: sonido, volumen y vibración) |
 | `src/settings/` | Ajustes: modelo puro (`settingsModel.ts`), contexto + AsyncStorage (`SettingsContext.tsx`, clave `adivina-pkm:ajustes:v1`) y vibración web (`vibration.ts`) |
-| `src/ui/SettingsModal.tsx` | Ventana de Ajustes: sonido, vibración, tachado visible (modo daltónico) y estadísticas del Solitario con exportación CSV/JSON |
-| `src/game/singlePlayerStats.ts` | Estadísticas del Solitario (puras) a partir del historial y exportación CSV/JSON |
+| `src/ui/SettingsModal.tsx` | Ventana de Ajustes: sonido, vibración, tachado visible (modo daltónico), estadísticas del Solitario y del Duelo e importar |
+| `src/game/singlePlayerStats.ts` | Estadísticas del Solitario (puras) a partir del historial y exportación CSV/JSON (versión 2) |
+| `src/game/duelStats.ts`, `src/game/duelStorage.ts` | Estadísticas del Duelo (puras: registro, validación, por generación, CSV/JSON) y su registro local `adivina-pkm:duel-log:v1` |
+| `src/game/statsImport.ts`, `src/game/statsImportStorage.ts` | Importar estadísticas: parseo y validación estricta (puro), plan de fusión/reemplazo y escritura todo o nada |
+| `src/ui/DuelStatsSection.tsx`, `src/ui/ImportStatsSection.tsx`, `src/ui/settingsControls.tsx`, `src/ui/webFiles.ts` | Secciones de Ajustes del Duelo e importar, botones comunes y descarga/elección de archivos en la web |
 | `src/game/roomNavigation.ts` | Códigos de sala, enlace de invitación y pantalla según el estado |
 | `src/game/engine.ts` | Motor puro del Duelo (+ `engine.test.ts`) |
 | `src/game/roomClient.ts` | Cliente de salas: WebSocket en web, sondeo HTTPS en móvil, reconexión |
@@ -68,6 +71,10 @@ también `npm run build:web && npm run test:web`.
 - Accesibilidad: los cambios de fase se anuncian con `accessibilityLiveRegion` + `aria-live` (web/Android) y
   `AccessibilityInfo.announceForAccessibility` (iOS). Todo control táctil mide ≥ 44 px.
 - Almacenamiento local: claves con prefijo `adivina-pkm:` (origen compartido `bertmarti.github.io`) y nada sensible.
+  Todo lo leído del almacenamiento o importado se valida y se acota (`singlePlayerSanitize.ts`, `duelRecordProblem`,
+  `parseStatsFile`); los objetos se construyen campo a campo, nunca se copian del archivo.
+- Si cambias un formato de exportación, sube su `formatVersion`, sigue aceptando las anteriores en `statsImport.ts` y
+  añade la prueba de ida y vuelta en `statsImport.test.ts`.
   Los colores del tachado visible están en `MARKED_CROSS` (`src/ui/theme.ts`) y su contraste lo prueba `src/ui/contrast.test.ts`.
 - Service worker: solo en la build (`scripts/add-web-pwa.mjs`), scope `/Adivina-pkm/` y cachés `pokequien-*`; nunca
   intercepta rutas ni borra cachés de otras webs del origen compartido `bertmarti.github.io`.

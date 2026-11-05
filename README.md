@@ -6,7 +6,7 @@
   <a href="https://bertmarti.github.io/Adivina-pkm/"><img src="https://img.shields.io/badge/▶_Jugar_en_la_web-gratis-FFD000?style=for-the-badge&labelColor=1D1E2A" alt="Jugar en la web" /></a>
   <img src="https://img.shields.io/badge/🎮_Pokémon-1025_especies-E3350D?style=for-the-badge&labelColor=1D1E2A" alt="1025 especies" />
   <img src="https://img.shields.io/badge/🕹️_Modos-Duelo_·_Solitario-FFD000?style=for-the-badge&labelColor=1D1E2A" alt="Modos Duelo y Solitario" />
-  <img src="https://img.shields.io/badge/🏷️_Versión-1.1.0-38D37D?style=for-the-badge&labelColor=1D1E2A" alt="Versión 1.1.0" />
+  <img src="https://img.shields.io/badge/🏷️_Versión-1.2.0-38D37D?style=for-the-badge&labelColor=1D1E2A" alt="Versión 1.2.0" />
   <img src="https://img.shields.io/badge/📱_Plataforma-Web_·_instalable_en_el_móvil-4C6BE8?style=for-the-badge&labelColor=1D1E2A" alt="Web, instalable en el móvil" />
   <a href="LICENSE"><img src="https://img.shields.io/badge/Licencia-MIT-38D37D?style=for-the-badge&labelColor=1D1E2A" alt="Licencia MIT (código)" /></a>
 </p>
@@ -180,6 +180,8 @@ Al finalizar:
 - 📊 Se muestra tu Pokémon con su retrato, descripción y hasta **3 curiosidades**
 - 🔁 Pulsa **JUGAR DE NUEVO** para otra ronda en la misma sala
 
+El resultado se apunta automáticamente en las **Estadísticas del Duelo** de este dispositivo.
+
 ---
 
 ### 🔌 Desconexiones
@@ -312,7 +314,9 @@ Abre **AJUSTES** arriba a la derecha en la pantalla de inicio. Durante un Duelo,
 - 🔊 **Sonido:** activa o desactiva el sonido, ajusta el volumen en pasos del 10 % con **−** y **+** (empieza al 80 %) y pulsa **PROBAR SONIDO**.
 - 📳 **Vibración:** activa o desactiva la vibración y pulsa **PROBAR VIBRACIÓN**. En la app usa la vibración del teléfono; en la web funciona en móviles Android con Chrome (u otro navegador que pueda vibrar). En Safari de iPhone y en ordenadores aparece desactivada porque no pueden vibrar. Si tienes activado «reducir movimiento», empieza apagada y las animaciones no tienen movimiento.
 - 🦻 **Tachado visible:** en **TACHADO VISIBLE**, activa **MODO DALTÓNICO** para que cada carta descartada se oscurezca y lleve un aspa blanca con borde negro, borde discontinuo y la etiqueta «FUERA». La vista previa muestra una carta disponible y otra descartada.
-- 📊 **Estadísticas del Solitario:** consulta tus resultados, exporta CSV o JSON y borra las estadísticas y el historial del Solitario. Todo se guarda solo en este dispositivo o navegador, no se envía a ningún servidor. **VALORES POR DEFECTO** devuelve los ajustes iniciales.
+- 📊 **Estadísticas del Solitario (CONTRA LA MÁQUINA):** consulta tus resultados, exporta CSV o JSON y borra las estadísticas y el historial del Solitario. Todo se guarda solo en este dispositivo o navegador, no se envía a ningún servidor. **VALORES POR DEFECTO** devuelve los ajustes iniciales.
+- ⚔️ **Estadísticas del Duelo:** consulta duelos terminados, victorias, derrotas, mejor racha, abandonos y el desglose **POR GENERACIÓN**. Se guardan automáticamente en este dispositivo. Puedes usar **DESCARGAR CSV** y **DESCARGAR JSON** (en el móvil, **COMPARTIR CSV** y **COMPARTIR JSON**) o **BORRAR ESTADÍSTICAS DEL DUELO** pulsándolo dos veces.
+- 📥 **Importar estadísticas:** usa **EXPORTAR TODO (JSON)** (en el móvil, **COMPARTIR TODO (JSON)**) para llevar tus datos a otro dispositivo. Allí puedes pulsar **ELEGIR ARCHIVO JSON** en la web o pegar el contenido y pulsar **REVISAR JSON**. Después elige **AÑADIR A LAS MÍAS** o **REEMPLAZAR LAS MÍAS**.
 
 <p align="center">
   <img src="docs/img/captura-ajustes.png" width="300" alt="Ventana de Ajustes en el móvil con el tachado visible activado y su vista previa" />
@@ -323,6 +327,12 @@ Abre **AJUSTES** arriba a la derecha en la pantalla de inicio. Durante un Duelo,
   <img src="docs/img/captura-tachado-visible.png" width="300" alt="Tablero del Duelo en el móvil con cartas descartadas oscurecidas, aspa blanca, borde discontinuo y etiqueta FUERA" />
 </p>
 <p align="center"><sub>🦻 Tachado visible en el Duelo: las cartas descartadas se distinguen sin depender del color.</sub></p>
+
+<p align="center"><img src="docs/img/captura-estadisticas-duelo.png" width="300" alt="Estadísticas del Duelo en el móvil: victorias, derrotas, mejor racha y barras por generación"/></p>
+<p align="center"><sub>⚔️ Estadísticas del Duelo: resultados y barras de victorias por generación.</sub></p>
+
+<p align="center"><img src="docs/img/captura-importar.png" width="300" alt="Importar estadísticas en el móvil: aviso de reemplazo con CONFIRMAR REEMPLAZO y VOLVER"/></p>
+<p align="center"><sub>📥 Importar estadísticas: revisa el archivo antes de añadirlo o reemplazar las tuyas.</sub></p>
 
 ---
 
@@ -386,7 +396,7 @@ Puede que esté despertando (el plan gratuito tarda hasta 1 minuto la primera ve
 <details>
 <summary><b>¿Qué versión tengo?</b></summary>
 <br>
-Puedes ver la versión en el pie de la pantalla de inicio, en el apartado <b>ACERCA DE</b>. PokéQuién 1.1.0 es la versión estable actual.
+Puedes ver la versión en el pie de la pantalla de inicio, en el apartado <b>ACERCA DE</b>. PokéQuién 1.2.0 es la versión estable actual.
 </details>
 
 <details>
@@ -405,6 +415,24 @@ En <b>AJUSTES</b>, apartado <b>TACHADO VISIBLE</b>, activa <b>MODO DALTÓNICO</b
 <summary><b>¿Dónde se guardan mis estadísticas? ¿Puedo sacarlas a una hoja de cálculo?</b></summary>
 <br>
 Se guardan solo en este dispositivo o navegador y no se envían a ningún servidor. En <b>VER ESTADÍSTICAS</b> puedes descargar un CSV, que se abre con Excel, LibreOffice o Google Sheets; en la app del móvil puedes compartirlo. También puedes descargar un JSON con el resumen y las partidas.
+</details>
+
+<details>
+<summary><b>¿Cómo paso mis estadísticas a otro móvil u ordenador?</b></summary>
+<br>
+En el dispositivo antiguo, abre <b>AJUSTES</b> y pulsa <b>EXPORTAR TODO (JSON)</b> (en el móvil, <b>COMPARTIR TODO (JSON)</b>). En el nuevo, pulsa <b>ELEGIR ARCHIVO JSON</b> en la web o pega el contenido y pulsa <b>REVISAR JSON</b>. Revisa el archivo y confirma la opción que prefieras.
+</details>
+
+<details>
+<summary><b>¿Qué diferencia hay entre AÑADIR A LAS MÍAS y REEMPLAZAR LAS MÍAS?</b></summary>
+<br>
+<b>AÑADIR A LAS MÍAS</b> fusiona los datos y añade solo las partidas que no tenías. <b>REEMPLAZAR LAS MÍAS</b> borra las estadísticas de las secciones que trae el archivo y pone las del archivo; muestra el aviso <b>ATENCIÓN: REEMPLAZAR BORRA LO QUE HAY</b>.
+</details>
+
+<details>
+<summary><b>¿Por qué no se cuentan como derrota los duelos que abandono?</b></summary>
+<br>
+Porque abandonar no es perder una partida terminada. Se registra aparte como <b>Abandonaste</b>; si se va el rival, se registra como <b>El rival se fue</b>. Ninguno cuenta como victoria ni derrota.
 </details>
 
 <details>
@@ -470,13 +498,13 @@ Inspirado por **Checo_512** y su juego [Adivina Quién Pokémon](https://adivina
 
 ## 🛠️ Lo que tienes que hacer tú (quien administra el servidor)
 
-> ✅ **Estado a 31/10/2026:** Render ya ejecuta el servidor 1.0.0 (`GET /` devuelve `"version":"1.0.0"`), así que estos pasos ya están hechos. La 1.1.0 no cambia el servidor (solo su número de versión): volver a desplegar es opcional y, si lo haces, verás `1.1.0`. Queda pendiente solo comprobar que llega la cabecera `CF-Connecting-IP` (ver `PLAN.md`).
+> ✅ **Estado a 31/10/2026:** Render ya ejecuta el servidor 1.0.0 (`GET /` devuelve `"version":"1.0.0"`), así que estos pasos ya están hechos. Las versiones 1.1.0 y 1.2.0 no cambian el servidor (solo su número de versión): volver a desplegar es opcional y, si lo haces, verás `1.2.0`. Queda pendiente solo comprobar que llega la cabecera `CF-Connecting-IP` (ver `PLAN.md`).
 
 Para un servicio nuevo, o si alguna vez hay que rehacerlo, el ajuste en el servicio `pokequien-rooms` del panel de [Render](https://dashboard.render.com) para que deje de instalar la app entera (Expo) y solo instale el servidor es:
 
 1. En **Settings → Build & Deploy**, pon **Root Directory** en `server`, **Build Command** en `npm ci --omit=dev` y **Start Command** en `node room-server.js`. Si el servicio se creó desde el Blueprint, basta con **Blueprints → Sync**, porque `render.yaml` ya lo trae.
 2. En **Environment**, comprueba `ROOM_SERVER_ALLOWED_ORIGINS` = `https://bertmarti.github.io` y `ROOM_SERVER_TRUST_PROXY` = `1` (a 24/10/2026 ya parecían puestas) y pulsa **Save Changes**.
-3. Ve a **Manual Deploy → Deploy latest commit**. En los logs debe aparecer `✔ Servidor de salas 1.1.0 escuchando…` (o la versión que hayas desplegado).
+3. Ve a **Manual Deploy → Deploy latest commit**. En los logs debe aparecer `✔ Servidor de salas 1.2.0 escuchando…` (o la versión que hayas desplegado).
 4. Abre `https://pokequien-rooms.onrender.com/`: debe devolver `"ok":true` y la versión desplegada en `"version"` (sin `version` significaría que Render ejecuta un servidor anterior a la 1.0.0). Comprueba también `curl -H "Origin: https://bertmarti.github.io" https://pokequien-rooms.onrender.com/`: debe devolver `"originAllowed":true` (el 26/10/2026 ya respondía así).
 5. Haz una prueba real: abre <https://bertmarti.github.io/Adivina-pkm/>, pulsa **CREAR SALA**, usa **INVITAR (ENLACE)** y abre el enlace en otro dispositivo.
 

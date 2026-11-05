@@ -1,16 +1,17 @@
 # MEMORY.md — PokéQuién
 
-Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y estado. Última actualización: **31/10/2026**.
+Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y estado. Última actualización: **02/11/2026**.
 
-## Estado actual (31/10/2026)
+## Estado actual (02/11/2026)
 
-- Versión **1.1.0** con Expo SDK 58 (expo 58.0.22, React Native 0.88.1, React 19.3). Novedad: ventana de **Ajustes**
-  (sonido y volumen, vibración, tachado visible para daltonismo y estadísticas del Solitario exportables). Web jugable en
+- Versión **1.2.0** con Expo SDK 58 (expo 58.0.22, React Native 0.88.1, React 19.3.1). Novedades: **estadísticas del
+  Duelo** (por generación, exportables) e **importar estadísticas** de otro dispositivo, en Ajustes. La 1.1.0 trajo los
+  Ajustes (sonido, vibración, tachado visible y estadísticas del Solitario). Web jugable en
   <https://bertmarti.github.io/Adivina-pkm/>, instalable como PWA; el Solitario funciona sin red.
 - Solitario: 100 % local, funciona en la web sin servidor.
 - Duelo: servidor de salas en Render (plan gratuito, salas en memoria). La web de Pages conecta por WSS si
   `ROOM_SERVER_ALLOWED_ORIGINS` incluye `https://bertmarti.github.io` en Render.
-- Pruebas: 22 del servidor + 21 de la app (`npm test`), verificación del Solitario, prueba de humo de la
+- Pruebas: 22 del servidor + 70 de la app (`npm test`), verificación del Solitario, prueba de humo de la
   web (`npm run test:web`) y CI en cada PR.
 
 ## Decisiones y por qué
@@ -47,7 +48,14 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 | 31/10/2026 | Vibración web solo con `navigator.vibrate` y tras la primera pulsación (`userActivation.hasBeenActive`) | Safari de iPhone y los ordenadores no la tienen; Chrome bloquea y avisa en consola si se llama antes de que la persona toque la página. |
 | 31/10/2026 | Tachado visible (modo daltónico) con velo, aspa blanca con contorno negro, borde discontinuo y «FUERA» | Cuatro señales que no dependen del tono; `src/ui/contrast.test.ts` comprueba WCAG AA (texto ≥ 4,5:1, gráficos ≥ 3:1). |
 | 31/10/2026 | Estadísticas del Solitario calculadas del historial existente (`src/game/singlePlayerStats.ts`), sin almacenamiento nuevo | Una sola fuente de verdad: borrar estadísticas es borrar el historial. CSV con `;`, BOM y protección contra fórmulas para Excel en español. |
-| 31/10/2026 | Avisos moderados de `glob` 13 / `minimatch` 10 sin `overrides` (deepmerge desapareció con expo 58.0.22) | Son majors dentro de las herramientas de Expo; forzarlas podría romper `expo export`. Se esperan al parche del SDK. |
+| 31/10/2026 | Avisos moderados de `glob` 13 / `minimatch` 10 sin `overrides` (deepmerge desapareció con expo 58.0.22) | Son majors dentro de las herramientas de Expo; forzarlas podría romper `expo export`. Se esperan al parche del SDK. **Cambiado el 02/11/2026** (fila siguiente). |
+| 02/11/2026 | `overrides` `glob` ^14.0.2 y `minimatch` ^11.0.4 | Solo los usan @expo/cli, config, config-plugins, metro-config y fingerprint, con API que sigue en la major nueva (`glob`, `globSync`, `sync`, `globStream`; `Minimatch` con `match`, `negate` y `pattern`; nadie usa `makeRe`/`regexp`, quitados en minimatch 11). Comprobado: `expo export` (build web), `expo config`, `expo install --check`, `expo-doctor` 20/20 y `@expo/fingerprint`. Quitar cuando Expo los traiga. |
+| 02/11/2026 | React/React DOM 19.3.1 (PR #17) con `expo.install.exclude` | El SDK 58 fija 19.3.0. El renderizador de RN 0.88.1 no exige la misma versión exacta de react (solo la usa para DevTools) y react-dom exige igual versión que react, que se suben juntas. Quitar el `exclude` con el siguiente SDK. |
+| 02/11/2026 | Registro del Duelo aparte (`adivina-pkm:duel-log:v1`, máx. 2000) con `matchKey` | El Solitario calcula sus estadísticas del historial; el Duelo no tenía historial. `matchKey` (sala + hash de secretos, ganador y descartes) evita contar dos veces un duelo si la app se recarga y se reconecta a la sala terminada. No se guarda nada del rival salvo su Pokémon (revelado al terminar). |
+| 02/11/2026 | «El rival se fue» y «Abandonaste» no cuentan como victoria/derrota ni cortan la racha | Una desconexión no es una partida jugada; así las estadísticas no castigan cortes de red. Salir con SALIR a mitad de partida cuenta como «Abandonaste». |
+| 02/11/2026 | Importar: validación estricta (una partida mala rechaza el archivo) y escritura todo o nada con restauración | «Nunca romper las estadísticas existentes»: se comprueba todo antes de escribir, se escribe dentro de las colas de escritura del Solitario y del Duelo, y si falla una escritura se restauran los dos valores previos. |
+| 02/11/2026 | JSON del Solitario versión 2 (sessionId, result, propuestas) | La versión 1 no permitía importar sin perder datos; la v1 se sigue aceptando con un id derivado (importar dos veces no duplica). |
+| 02/11/2026 | En el móvil se importa pegando el texto | No hay `expo-document-picker` y no se añade una dependencia nativa solo para esto; en el móvil se exporta compartiendo texto, así que pegar es simétrico. En la web, además, ELEGIR ARCHIVO JSON. |
 
 ## Trampas conocidas
 

@@ -9,10 +9,6 @@ import { ActionButton, StatLine } from './settingsControls';
 import { COLORS, PIXEL_FONT } from './theme';
 import { downloadOnWeb } from './webFiles';
 
-function percent(part: number, total: number) {
-  return total === 0 ? 0 : Math.round((part / total) * 100);
-}
-
 function plural(count: number, one: string, many: string) {
   return `${count} ${count === 1 ? one : many}`;
 }
@@ -90,8 +86,9 @@ export function DuelStatsSection({
       {stats && stats.played > 0 && (
         <>
           <StatLine label="Duelos terminados" value={String(stats.played)} />
-          <StatLine label="Victorias" value={`${stats.wins} (${percent(stats.wins, stats.played)} %)`} />
-          <StatLine label="Derrotas" value={`${stats.losses} (${percent(stats.losses, stats.played)} %)`} />
+          {/* Derrotas = 100 − victorias, para que los dos porcentajes sumen siempre 100. */}
+          <StatLine label="Victorias" value={`${stats.wins} (${stats.winRate ?? 0} %)`} />
+          <StatLine label="Derrotas" value={`${stats.losses} (${100 - (stats.winRate ?? 0)} %)`} />
           <StatLine label="Mejor racha de victorias" value={String(stats.bestWinStreak)} />
           {stats.rivalLeft > 0 && <StatLine label="El rival se fue (no cuentan)" value={String(stats.rivalLeft)} />}
           {stats.left > 0 && <StatLine label="Abandonaste (no cuentan)" value={String(stats.left)} />}

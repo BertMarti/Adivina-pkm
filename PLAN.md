@@ -1,6 +1,6 @@
 # PLAN.md — Hoja de ruta de PokéQuién
 
-Actualizado el 31/10/2026 (versión 1.1.0). Prioridad de arriba abajo.
+Actualizado el 02/11/2026 (versión 1.2.0). Prioridad de arriba abajo.
 
 ## ✅ Hecho hoy (24/10/2026, v0.2.0)
 
@@ -52,15 +52,23 @@ Actualizado el 31/10/2026 (versión 1.1.0). Prioridad de arriba abajo.
 - Mantenimiento: expo 58.0.22 / RN 0.88.1, `node-forge` 1.4.2 (alerta ALTA cerrada) y fuera el `overrides` de zod; prueba de humo con paso de
   Ajustes y detector de violaciones de CSP.
 
+## ✅ Versión 1.2.0 (02/11/2026)
+
+- **Estadísticas del Duelo** (contra un amigo) en Ajustes: victorias, derrotas, mejor racha y desglose por generación,
+  con exportación CSV/JSON y borrado confirmado. Registro local en `adivina-pkm:duel-log:v1` (máx. 2000).
+- **Importar estadísticas** de otro dispositivo (EXPORTAR TODO o los JSON del Solitario/Duelo): validación estricta,
+  AÑADIR A LAS MÍAS o REEMPLAZAR LAS MÍAS con confirmación y escritura todo o nada.
+- Mantenimiento: React 19.3.1 (PR #17), `glob` 14 y `minimatch` 11 por `overrides`; `npm audit` a 0.
+
 ## ⏭️ Después de la 1.0
 
 1. **Render (Alberto)**: ✅ el 31/10/2026 `GET /` ya devuelve `"version":"1.0.0"`. Queda verificar que llega
    `CF-Connecting-IP` (si no, los límites por IP usan la primera IP de `X-Forwarded-For`, que el cliente puede falsificar).
    Volver a desplegar con la 1.1.0 es opcional (el servidor no cambia, solo su número de versión).
 2. **Licencias antes de tiendas o anuncios**: sustituir los GIF de espera y los sonidos de terceros por recursos propios.
-3. **Dependencias de Expo**: ✅ `node-forge` 1.4.2 ya corrige GHSA-86w9-cpqp-85rv (31/10/2026). Quedan avisos moderados
-   de `glob`/`minimatch` dentro de las herramientas de Expo: aceptar el parche del SDK 58 que los traiga. El `overrides`
-   de zod ya se quitó (expo 58.0.22: @expo/cli no depende de zod).
+3. **Dependencias de Expo**: ✅ `node-forge` 1.4.2 (31/10/2026) y ✅ `glob` 14 / `minimatch` 11 por `overrides`
+   (02/11/2026). Quitar esos `overrides` y el `expo.install.exclude` de react/react-dom cuando el SDK de Expo los traiga
+   por su cuenta (siguiente SDK o parche de @expo/cli con glob ≥ 14.0.2).
 4. **Duelo en CI**: ampliar `npm run test:web` con un Duelo completo entre dos pestañas contra un servidor local
    (hoy se prueba a mano y con el script de la revisión).
 5. **Reglas compartidas**: extraer las transiciones a un módulo JS común (o pruebas de contrato) para que servidor y
@@ -68,12 +76,13 @@ Actualizado el 31/10/2026 (versión 1.1.0). Prioridad de arriba abajo.
 6. **Accesibilidad en móvil real**: TalkBack (Android) y VoiceOver (iOS); en web ya se anuncian las fases.
 7. **Avisar al rival al salir a propósito**: hoy, al pulsar SALIR por WebSocket, el rival espera 60 s como si fuera
    una desconexión; un mensaje `leave` permitiría cerrar la partida al momento.
-8. **APK de Android 1.1.0**: generarla con EAS (`docs/RELEASE_0_1_GRATUITA.md`) cuando se resuelva el punto 2.
+8. **APK de Android 1.2.0**: generarla con EAS (`docs/RELEASE_0_1_GRATUITA.md`) cuando se resuelva el punto 2.
 
 ## 💡 Ideas
 
 - Almacenamiento efímero gratuito (p. ej. Redis/Upstash free) para que las salas sobrevivan a un reinicio.
-- Estadísticas también del Duelo (victorias y derrotas por generación), con la misma exportación.
-- Importar un JSON de estadísticas exportado en otro dispositivo.
+- Importar en la app del móvil desde un archivo (hoy se pega el texto): necesitaría `expo-document-picker`.
+- Estadísticas del Duelo por rival (hoy no se guarda quién era el rival, a propósito: nada de datos de otras personas).
 
-(«Ajustes de sonido y vibración; modo daltónico extra» y «Estadísticas del Solitario exportables» pasaron a la 1.1.0.)
+(«Ajustes de sonido y vibración; modo daltónico extra» y «Estadísticas del Solitario exportables» pasaron a la 1.1.0;
+«Estadísticas también del Duelo» e «Importar un JSON de estadísticas» pasaron a la 1.2.0.)
