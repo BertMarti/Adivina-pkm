@@ -35,7 +35,7 @@ export type DuelRecord = Readonly<{
   boardSize: number;
   outcome: DuelOutcome;
   mySecretId: number | null;
-  /** Solo se conoce al terminar con victoria o derrota (antes el servidor no lo revela). */
+  /** El servidor nunca lo envía: se sabe al ganar (es la única carta que te queda sin tachar); si no, null. */
   rivalSecretId: number | null;
   /** Pokémon que tachaste. */
   crossedCount: number;
@@ -96,7 +96,11 @@ export function duelRecordFromState(
 ): DuelRecord {
   const mine = state.players[me];
   const rival = state.players[opponentOf(me)];
-  const finished = outcome === 'win' || outcome === 'loss';
+  // El servidor nunca revela el secreto del rival; al ganar es la única carta sin tachar de tu tablero.
+  const crossed = new Set(mine.crossedIds);
+  const remaining = state.board.filter((pokemon) => !crossed.has(pokemon.id));
+  const deduced = outcome === 'win' && remaining.length === 1 ? remaining[0]?.id : undefined;
+  const rivalSecretId = isPokemonId(rival.secretId) ? rival.secretId : isPokemonId(deduced) ? deduced : null;
   return {
     id: `duel-${now.getTime().toString(36)}-${random().toString(36).slice(2, 10)}`,
     matchKey: duelMatchKey(state, me, outcome),
@@ -105,8 +109,8 @@ export function duelRecordFromState(
     boardSize: clampInteger(state.board.length, 1, MAX_BOARD_SIZE),
     outcome,
     mySecretId: isPokemonId(mine.secretId) ? mine.secretId : null,
-    rivalSecretId: finished && isPokemonId(rival.secretId) ? rival.secretId : null,
-    crossedCount: clampInteger(new Set(mine.crossedIds).size, 0, MAX_BOARD_SIZE),
+    rivalSecretId: outcome === 'win' || outcome === 'loss' ? rivalSecretId : null,
+    crossedCount: clampInteger(crossed.size, 0, MAX_BOARD_SIZE),
   };
 }
 

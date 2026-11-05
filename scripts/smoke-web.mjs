@@ -278,6 +278,7 @@ async function main() {
   await waitFor(socket, `(document.body.innerText || '').includes('ATENCIÓN: REEMPLAZAR BORRA LO QUE HAY') && (document.body.innerText || '').includes('Se borrarán 2 duelos de este dispositivo')`, 'aviso de reemplazo');
   await clickLabel('Volver a elegir entre añadir y reemplazar');
   await clickText(socket, 'CANCELAR');
+  if (!await evaluate(socket, `(() => { try { return JSON.parse(localStorage.getItem('adivina-pkm:duel-log:v1') || '[]').length === 2; } catch { return false; } })()`)) throw new Error('cancelar el reemplazo ha cambiado los duelos');
   if (await evaluate(socket, `localStorage.getItem('adivina-pkm:single-player-log:v1')`) !== soloBefore) throw new Error('importar duelos ha cambiado el historial del Solitario');
   await clickText(socket, 'CERRAR');
   if (consoleErrors.some((error) => !normalise(error).includes('NOTALLOWEDERROR'))) throw new Error('errores de consola');

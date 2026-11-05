@@ -48,6 +48,15 @@ test('el registro de una victoria revela el Pokémon rival y cuenta descartes si
   assert.equal(sanitizeDuelRecord(item)?.id, item.id);
 });
 
+test('al ganar, el Pokémon del rival es la única carta sin tachar (el servidor no lo envía)', () => {
+  const fromServer: DuelStateLike = {
+    ...state,
+    players: { p1: { secretId: 25, crossedIds: [1, 25] }, p2: { secretId: null, crossedIds: [] } },
+  };
+  assert.equal(duelRecordFromState(fromServer, 'p1', 'win').rivalSecretId, 4);
+  assert.equal(duelRecordFromState({ ...fromServer, winner: 'p2' }, 'p1', 'loss').rivalSecretId, null);
+});
+
 test('al abandonar no se guarda el Pokémon del rival', () => {
   assert.equal(duelRecordFromState(state, 'p2', 'left').rivalSecretId, null);
   assert.equal(duelRecordFromState(state, 'p2', 'rival-left').mySecretId, 4);

@@ -3,6 +3,7 @@
 // nada. Los objetos se construyen campo a campo (nunca se copian objetos del archivo) y todo se acota en tamaño, porque
 // el JSON puede venir de cualquier sitio.
 import { isPokemonId, sanitizeSession, SINGLE_PLAYER_KNOWLEDGE_VERSION, SINGLE_PLAYER_LOG_VERSION } from './singlePlayerSanitize';
+import { outcomeOf } from './singlePlayerStats';
 import type { SoloStatsExport } from './singlePlayerStats';
 import type { SinglePlayerSessionRecord, SinglePlayerStoredResult } from './singlePlayerStorage';
 import { duelRecordProblem, sanitizeDuelRecord, shortHash } from './duelStats';
@@ -135,6 +136,8 @@ function soloGameToSession(game: unknown, version: number): SinglePlayerSessionR
   if (version >= 2) {
     if (!isShortString(game.sessionId)) return 'identificador no válido';
     if (!isStoredResult(game.result)) return 'resultado desconocido';
+    // El resultado guardado y el resumido tienen que decir lo mismo (si no, el archivo se ha tocado a mano).
+    if (outcomeOf(game.result) !== game.outcome) return 'el resultado no coincide';
     if (!isIntegerIn(game.maxQuestions, 1, MAX_QUESTIONS)) return 'límite de preguntas no válido';
     if (game.guessedPokemonId !== null && !isPokemonId(game.guessedPokemonId)) return 'Pokémon no válido';
     if (!Array.isArray(game.rejectedGuessIds) || game.rejectedGuessIds.length > MAX_QUESTIONS || !game.rejectedGuessIds.every(isPokemonId)) {
@@ -198,8 +201,19 @@ function parseSoloLog(root: Record<string, unknown>): Section<SinglePlayerSessio
     if (!isShortString(raw.sessionId)) return badGame(index, 'del Solitario', 'identificador no válido');
     if (!isDate(raw.startedAt)) return badGame(index, 'del Solitario', 'falta la fecha de inicio');
     if (!isStoredResult(raw.result)) return badGame(index, 'del Solitario', 'resultado desconocido');
+    if (!isShortString(raw.catalogId)) return badGame(index, 'del Solitario', 'catálogo no válido');
+    if (!isIntegerIn(raw.maxQuestions, 1, MAX_QUESTIONS)) return badGame(index, 'del Solitario', 'límite de preguntas no válido');
+    if (!isIntegerIn(raw.questionsAsked, 0, raw.maxQuestions)) return badGame(index, 'del Solitario', 'número de preguntas no válido');
+    if (raw.finishedAt !== undefined && !isDate(raw.finishedAt)) return badGame(index, 'del Solitario', 'fecha de fin no válida');
+    if (raw.selectedPokemonId !== undefined && !isPokemonId(raw.selectedPokemonId)) return badGame(index, 'del Solitario', 'Pokémon no válido');
+    if (raw.guessedPokemonId !== undefined && !isPokemonId(raw.guessedPokemonId)) return badGame(index, 'del Solitario', 'Pokémon no válido');
+    if (!Array.isArray(raw.rejectedGuessIds) || raw.rejectedGuessIds.length > MAX_QUESTIONS || !raw.rejectedGuessIds.every(isPokemonId)) {
+      return badGame(index, 'del Solitario', 'propuestas rechazadas no válidas');
+    }
+    if (!Array.isArray(raw.events) || raw.events.length > raw.maxQuestions) return badGame(index, 'del Solitario', 'preguntas guardadas no válidas');
     const session = sanitizeSession(raw);
-    if (session === null) return badGame(index, 'del Solitario', 'datos incompletos');
+    // sanitizeSession descarta las preguntas mal formadas: si falta alguna, el archivo no es fiable.
+    if (session === null || session.events.length !== raw.events.length) return badGame(index, 'del Solitario', 'datos incompletos');
     items.push(closeInProgress(session));
   }
   return { ok: true, items };
@@ -219,13 +233,12 @@ function parseDuelStats(root: Record<string, unknown>): Section<DuelRecord> {
   return { ok: true, items };
 }
 
-/** Quita duplicados dentro del propio archivo: se queda el primero. */
-function firstOfEach<T>(items: readonly T[], key: (item: T) => string): T[] {
-  const seen = new Set<string>();
+/** Quita duplicados dentro del propio archivo (mismo valor en cualquiera de las claves): se queda el primero. */
+function firstOfEach<T>(items: readonly T[], keys: readonly ((item: T) => string)[]): T[] {
+  const seen = keys.map(() => new Set<string>());
   return items.filter((item) => {
-    const value = key(item);
-    if (seen.has(value)) return false;
-    seen.add(value);
+    if (keys.some((key, index) => seen[index]?.has(key(item)))) return false;
+    keys.forEach((key, index) => seen[index]?.add(key(item)));
     return true;
   });
 }
@@ -237,8 +250,8 @@ function finish(kind: StatsFileKind, root: Record<string, unknown>, solo: Single
     file: {
       kind,
       exportedAt: isDate(root.exportedAt) ? root.exportedAt : null,
-      solo: solo === null ? null : firstOfEach(solo, (session) => session.sessionId),
-      duel: duel === null ? null : firstOfEach(duel, (record) => record.id),
+      solo: solo === null ? null : firstOfEach(solo, [(session) => session.sessionId]),
+      duel: duel === null ? null : firstOfEach(duel, [(record) => record.id, (record) => record.matchKey]),
     },
   };
 }
@@ -274,11 +287,17 @@ function parseRoot(root: Record<string, unknown>): ParseResult {
   return { ok: false, error: IMPORT_ERRORS.foreign };
 }
 
+/** Tamaño en bytes UTF-8 (lo que mide el límite de 2 MB, igual que el tamaño del archivo). */
+export function byteLength(text: string): number {
+  if (text.length > MAX_IMPORT_BYTES) return text.length; // ya es demasiado grande: no hace falta codificar
+  return typeof TextEncoder === 'undefined' ? text.length * 3 : new TextEncoder().encode(text).length;
+}
+
 /** Lee y valida el texto de un JSON de estadísticas. Nunca lanza: los errores vuelven en español, listos para mostrar. */
 export function parseStatsFile(text: string): ParseResult {
   try {
     if (typeof text !== 'string' || text.trim().length === 0) return { ok: false, error: IMPORT_ERRORS.empty };
-    if (text.length > MAX_IMPORT_BYTES) return { ok: false, error: IMPORT_ERRORS.tooBig };
+    if (byteLength(text) > MAX_IMPORT_BYTES) return { ok: false, error: IMPORT_ERRORS.tooBig };
     let parsed: unknown;
     try {
       // Sin el BOM que añaden algunos editores al guardar.
@@ -333,10 +352,12 @@ function planSection<T>(
   const combined = byDate(mode === 'replace' ? fresh : [...current, ...fresh], date);
   const next = combined.slice(Math.max(0, combined.length - max));
   const dropped = combined.length - next.length;
+  // Solo cuenta como añadida la que se queda (una del archivo más antigua que el límite no entra).
+  const kept = new Set(next);
   return {
     before: current.length,
     incoming: incoming.length,
-    added: mode === 'replace' ? next.length : fresh.length,
+    added: mode === 'replace' ? next.length : fresh.filter((item) => kept.has(item)).length,
     duplicates: mode === 'replace' ? 0 : incoming.length - fresh.length,
     dropped,
     next,
@@ -382,7 +403,10 @@ function sectionsOf(plan: ImportPlan): NamedSection[] {
 
 function droppedNote(sections: readonly NamedSection[]): string {
   const dropped = sections.reduce((sum, section) => sum + section.plan.dropped, 0);
-  return dropped > 0 ? ` Se quitarán las ${dropped} más antiguas para no pasar del límite.` : '';
+  if (dropped === 0) return '';
+  return dropped === 1
+    ? ' Se quitará la más antigua para no pasar del límite.'
+    : ` Se quitarán las ${dropped} más antiguas para no pasar del límite.`;
 }
 
 /** Texto de la confirmación, antes de importar. */

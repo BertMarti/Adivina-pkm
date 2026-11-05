@@ -114,6 +114,22 @@ test('copia completa (EXPORTAR TODO) con las dos secciones, y con una vacía', (
   assert.equal(errorOf(parseStatsFile(JSON.stringify(tampered))), IMPORT_ERRORS.foreign);
 });
 
+test('incoherencias y datos a medias se rechazan', () => {
+  const exported = JSON.parse(soloJson([session('s1', '2026-11-01T00:00:00.000Z')]));
+  exported.games[0].outcome = 'player';
+  assert.match(errorOf(parseStatsFile(JSON.stringify(exported))), /\(el resultado no coincide\)/);
+  const log = { format: 'adivina-pkm-single-player-log', formatVersion: 2, sessions: [{ ...session('s1', '2026-11-01T00:00:00.000Z'), questionsAsked: 99 }] };
+  assert.match(errorOf(parseStatsFile(JSON.stringify(log))), /número de preguntas no válido/);
+  const badEvent = { ...log, sessions: [{ ...session('s1', '2026-11-01T00:00:00.000Z'), events: [{ eventId: 'x' }] }] };
+  assert.match(errorOf(parseStatsFile(JSON.stringify(badEvent))), /datos incompletos/);
+  // Mismo duelo con dos ids distintos dentro del archivo: entra una sola vez.
+  const twice = { format: 'adivina-pkm-duel-stats', formatVersion: 1, games: [duel('a', '2026-11-01T00:00:00.000Z', { matchKey: 'k' }), duel('b', '2026-11-01T00:00:00.000Z', { matchKey: 'k' })] };
+  assert.equal(fileOf(parseStatsFile(JSON.stringify(twice))).duel?.length, 1);
+  // El límite son bytes UTF-8, no caracteres.
+  const wide = JSON.stringify({ format: 'otra', relleno: 'ñ'.repeat(MAX_IMPORT_BYTES / 2 + 10) });
+  assert.equal(errorOf(parseStatsFile(wide)), IMPORT_ERRORS.tooBig);
+});
+
 test('historial del Solitario (COPIAR JSON) y partidas sin terminar', () => {
   const file = fileOf(parseStatsFile(JSON.stringify({
     format: 'adivina-pkm-single-player-log', formatVersion: 2, exportedAt: '2026-11-01T00:00:00.000Z',
@@ -158,7 +174,10 @@ test('fusionar añade solo lo nuevo, en orden cronológico, y respeta el límite
   assert.equal(limited.duel?.next.length, 2000);
   assert.equal(limited.duel?.dropped, 1);
   assert.equal(limited.solo, null);
-  assert.match(describeImportPlan(limited), /Se quitarán las 1 más antiguas/);
+  assert.match(describeImportPlan(limited), /Se quitará la más antigua para no pasar del límite\.$/);
+  // Una partida del archivo más antigua que todo lo que cabe no cuenta como añadida.
+  const old = planImport({ solo: [], duel: many }, { kind: 'duel-stats', exportedAt: null, solo: null, duel: [duel('viejo', '2020-01-01T00:00:00.000Z')] }, 'merge');
+  assert.deepEqual([old.duel?.added, old.duel?.dropped], [0, 1]);
 });
 
 test('reemplazar pone solo lo del archivo y avisa de lo que se borra', () => {

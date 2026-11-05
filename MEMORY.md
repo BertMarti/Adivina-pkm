@@ -11,7 +11,7 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 - Solitario: 100 % local, funciona en la web sin servidor.
 - Duelo: servidor de salas en Render (plan gratuito, salas en memoria). La web de Pages conecta por WSS si
   `ROOM_SERVER_ALLOWED_ORIGINS` incluye `https://bertmarti.github.io` en Render.
-- Pruebas: 22 del servidor + 70 de la app (`npm test`), verificación del Solitario, prueba de humo de la
+- Pruebas: 22 del servidor + 72 de la app (`npm test`), verificación del Solitario, prueba de humo de la
   web (`npm run test:web`) y CI en cada PR.
 
 ## Decisiones y por qué
@@ -51,7 +51,7 @@ Memoria del proyecto para personas y agentes: decisiones, trampas conocidas y es
 | 31/10/2026 | Avisos moderados de `glob` 13 / `minimatch` 10 sin `overrides` (deepmerge desapareció con expo 58.0.22) | Son majors dentro de las herramientas de Expo; forzarlas podría romper `expo export`. Se esperan al parche del SDK. **Cambiado el 02/11/2026** (fila siguiente). |
 | 02/11/2026 | `overrides` `glob` ^14.0.2 y `minimatch` ^11.0.4 | Solo los usan @expo/cli, config, config-plugins, metro-config y fingerprint, con API que sigue en la major nueva (`glob`, `globSync`, `sync`, `globStream`; `Minimatch` con `match`, `negate` y `pattern`; nadie usa `makeRe`/`regexp`, quitados en minimatch 11). Comprobado: `expo export` (build web), `expo config`, `expo install --check`, `expo-doctor` 20/20 y `@expo/fingerprint`. Quitar cuando Expo los traiga. |
 | 02/11/2026 | React/React DOM 19.3.1 (PR #17) con `expo.install.exclude` | El SDK 58 fija 19.3.0. El renderizador de RN 0.88.1 no exige la misma versión exacta de react (solo la usa para DevTools) y react-dom exige igual versión que react, que se suben juntas. Quitar el `exclude` con el siguiente SDK. |
-| 02/11/2026 | Registro del Duelo aparte (`adivina-pkm:duel-log:v1`, máx. 2000) con `matchKey` | El Solitario calcula sus estadísticas del historial; el Duelo no tenía historial. `matchKey` (sala + hash de secretos, ganador y descartes) evita contar dos veces un duelo si la app se recarga y se reconecta a la sala terminada. No se guarda nada del rival salvo su Pokémon (revelado al terminar). |
+| 02/11/2026 | Registro del Duelo aparte (`adivina-pkm:duel-log:v1`, máx. 2000) con `matchKey` | El Solitario calcula sus estadísticas del historial; el Duelo no tenía historial. `matchKey` (sala + hash de secretos, ganador y descartes) evita contar dos veces un duelo si la app se recarga y se reconecta a la sala terminada. No se guarda nada del rival salvo su Pokémon cuando ganas (el servidor nunca lo envía: es la única carta sin tachar). Si se acaba el plazo de reconexión con la partida en juego, cuenta como «Abandonaste». |
 | 02/11/2026 | «El rival se fue» y «Abandonaste» no cuentan como victoria/derrota ni cortan la racha | Una desconexión no es una partida jugada; así las estadísticas no castigan cortes de red. Salir con SALIR a mitad de partida cuenta como «Abandonaste». |
 | 02/11/2026 | Importar: validación estricta (una partida mala rechaza el archivo) y escritura todo o nada con restauración | «Nunca romper las estadísticas existentes»: se comprueba todo antes de escribir, se escribe dentro de las colas de escritura del Solitario y del Duelo, y si falla una escritura se restauran los dos valores previos. |
 | 02/11/2026 | JSON del Solitario versión 2 (sessionId, result, propuestas) | La versión 1 no permitía importar sin perder datos; la v1 se sigue aceptando con un id derivado (importar dos veces no duplica). |

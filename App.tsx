@@ -126,6 +126,8 @@ function PokeQuienApp() {
           setError(message);
           if (!message) setOfferSolo(false);
           if (message.includes('no se reconectó') || message.includes('reconexión ha terminado')) {
+            // Se acabó el plazo para volver a la partida: cuenta como «Abandonaste» (sin derrota).
+            if (gameRef.current?.phase === 'playing' && client.playerId) recordDuel(gameRef.current, client.playerId, 'left');
             client.close({ forgetSession: true });
             roomClientRef.current = null;
             setRoomGame(null);

@@ -43,7 +43,7 @@ Tus **duelos también cuentan**, y tus estadísticas te acompañan a otro dispos
 
 ### 🧪 Pruebas
 
-- 22 pruebas del servidor y 70 de la app (antes 49): estadísticas del Duelo e importación (errores, versiones, round-trip
+- 22 pruebas del servidor y 72 de la app (antes 49): estadísticas del Duelo e importación (errores, versiones, round-trip
   de cada exportación, fusión, reemplazo, límites y prototipos). Paso e3 nuevo en la prueba de humo.
 
 ## [1.1.0] - 2026-10-31
