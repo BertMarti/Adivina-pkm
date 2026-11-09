@@ -10,7 +10,7 @@
     "test": "node --test room-server.test.js"
   },
   "dependencies": {
-    "ws": "^8.22.0"
+    "ws": "^8.22.1"
   },
   "engines": {
     "node": ">=20.19.4"
